@@ -1,7 +1,12 @@
+import Dashboard from "./pages/Dashboard";
 import "./styles/index.css";
 
 const App = () => {
-  return <div className="bg-red-500 font-bold text-4xl">Hello</div>;
+  return (
+    <div className="h-screen bg-black">
+      <Dashboard />
+    </div>
+  );
 };
 
 export default App;
