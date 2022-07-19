@@ -1,0 +1,3 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+cd ./services/portal-webapp/portal-webapp && yarn lint-staged
