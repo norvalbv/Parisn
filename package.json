@@ -3,11 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "devDependencies": {
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3"
+    "husky": "^8.0.1"
   },
   "scripts": {
-    "postinstall": "husky install webapp/.husky"
+    "postinstall": "husky install ./.husky"
   },
   "husky": {
     "hooks": {
@@ -17,9 +16,6 @@
   "lint-staged": {
     "src/**/*.{ts,tsx,json,css,scss,md}": [
       "yarn format:fix"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "yarn lint"
     ]
   },
   "packageManager": "yarn@3.2.1"
