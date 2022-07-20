@@ -1,6 +1,6 @@
 import React, { ReactElement } from "react";
 import { Outlet } from "react-router-dom";
-import CardWrapper from "../../components/CardWrapper";
+import CardWrapper from "../components/CardWrapper";
 import NavBar from "./NavBar";
 import Footer from "./Footer";
 
