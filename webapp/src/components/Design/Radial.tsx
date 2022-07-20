@@ -3,15 +3,17 @@ import { FC, ReactElement } from "react";
 interface RadialProps {
   size?: keyof typeof sizeMap;
   color?: string;
+  classes?: string;
 }
 
 const Radial: FC<RadialProps> = ({
   size = "md",
   color = "primary",
+  classes,
 }): ReactElement => {
   return (
     <div
-      className={`absolute w-[30rem] h-[30rem] top-5 left-5 rounded-full bg-[#111] opacity-100 blur-3xl`}
+      className={`absolute w-[35rem] h-[35rem] rounded-full bg-[#111] opacity-80 blur-3xl z-0 ${classes}`}
     />
   );
 };
