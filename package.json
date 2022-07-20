@@ -16,9 +16,6 @@
   "lint-staged": {
     "src/**/*.{ts,tsx,json,css,scss,md}": [
       "yarn format:fix"
-    ],
-    "src/**/*.{ts,tsx}": [
-      "yarn lint"
     ]
   },
   "packageManager": "yarn@3.2.1"
