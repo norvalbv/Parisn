@@ -11,7 +11,7 @@ const Radial: FC<RadialProps> = ({
 }): ReactElement => {
   return (
     <div
-         className={`absolute w-[30rem] h-[30rem] top-5 left-5 rounded-full bg-[#111] opacity-100 blur-3xl`}
+          className={`absolute w-[30rem] h-[30rem] top-5 left-5 rounded-full bg-[#111] opacity-100 blur-3xl`}
     />
   );
 };
