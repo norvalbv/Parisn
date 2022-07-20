@@ -12,7 +12,7 @@ const Radial: FC<RadialProps> = ({
   classes,
 }): ReactElement => {
   return (
-    <div
+    <svg
       className={`absolute w-[35rem] h-[35rem] rounded-full bg-[#111] opacity-80 blur-3xl z-0 ${classes}`}
     />
   );
