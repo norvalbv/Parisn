@@ -6,7 +6,7 @@ import Line from "../components/Design/Line";
 
 const Dashboard = () => {
   return (
-    <>
+    <div className="bg-primary-dark">
       <NavBar />
       <div className="flex items-center">
         <img
@@ -18,8 +18,8 @@ const Dashboard = () => {
         <div className="relative flex justify-center items-center flex-1">
           <Radial />
 
-          <div className="text-white absolute text-center">
-            <div className="my-3">
+          <div className="absolute text-center">
+            <div>
               <span className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
                 PARISN
               </span>
@@ -27,8 +27,10 @@ const Dashboard = () => {
                 .com
               </span>
             </div>
-            <span className="text-3xl tracking-widest">A Fashion Company</span>
-            <Button text="Order now" classes="mt-8" />
+            <span className="text-3xl tracking-widest block">
+              A Fashion Company
+            </span>
+            <Button text="Order now" classes="mt-20" rounded="lg" />
           </div>
         </div>
       </div>
@@ -39,18 +41,21 @@ const Dashboard = () => {
         <Line rotate="verticle" />
       </div>
       <div className="h-screen flex">
-        <p className="flex-1">
-          PARSIN.com <br /> Launched in 2022 allows you to choose the price you
-          pay for your items in a reverse bidding strategy technique. Starting
-          at £10,000 per item, over time the price of the item drops to £0.
+        <p className="flex flex-col justify-center items-center text-center px-40 leading-8">
+          <span className="block font-semibold text-inherit underline">
+            PARSIN.com
+          </span>
+          Launched in 2022 allows you to choose the price you pay for your items
+          in a reverse bidding strategy technique. Starting at £10,000 per item,
+          over time the price of the item drops to £0.
         </p>
         <img
           src={DASHBOARD_IMAGE}
           alt={DASHBOARD_IMAGE}
-          className="h-screen w-[42.5%] flex-1"
+          className="h-screen w-[42.5%]"
         />
       </div>
-    </>
+    </div>
   );
 };
 

@@ -7,10 +7,6 @@ interface ButtonProps {
    */
   text: string;
   /**
-   * What color of button
-   */
-  buttonType?: keyof typeof buttonTypeMap;
-  /**
    * How big the button
    */
   size?: keyof typeof buttonSizeMap;
@@ -76,10 +72,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       text,
-      buttonType = "secondary",
       size = "base",
       rounded = "none",
-      width,
+      width = "25rem",
       color,
       backgroundColor,
       disabled,
@@ -106,11 +101,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         type="submit"
-        className={`relative inline-flex items-center justify-center text-center ${
+        className={`relative inline-flex items-center justify-center text-center hover:bg-buttons-hover ${
           upperCase ? "uppercase" : ""
-        } ${buttonRadiusMap[rounded]} ${buttonTypeMap[buttonType]} ${
+        } ${buttonRadiusMap[rounded]} ${
           buttonSizeMap[size]
-        } ${classes}`}
+        } ${classes} border py-4`}
         style={{ width, color, backgroundColor }}
         onClick={(): void => clickHandle()}
         role="button"
@@ -143,15 +138,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = "Button";
-
-const buttonTypeMap = {
-  primary: "bg-primary text-white",
-  secondary: "bg-secondary text-black",
-  neutral: "bg-neutral text-black",
-  warning: "bg-warning text-white",
-  outline: "bg-white border border-primary text-primary",
-  green: "bg-green-500 text-white",
-};
 
 const buttonSizeMap = {
   xs: "px-1 py-2 text-sm",
