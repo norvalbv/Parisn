@@ -1,11 +1,10 @@
 const app = require('express')();
-const http = require('http');
-const { Server } = require('socket.io');
-const server = http.createServer(app);
-const io = new Server(server, {
+const server = require('http').createServer(app);
+var io = require('socket.io')(server, {
   cors: {
-    origin: 'http://localhost:3000',
+    origin: '*',
     methods: ['GET', 'POST'],
+    credentials: true,
   },
 });
 
@@ -28,15 +27,10 @@ interface SocketData {
   age: number;
 }
 
-const PORT = (process.env.PORT as unknown as number) || 8000;
+const PORT = 8000;
 
-app.get('/', (req: any, res: any) => {
-  res.send('<h1>Hello world</h1>');
-});
-
-io.on('connection', (socket: ServerToClientEvents) => {
-  console.log('a user connected');
-  console.log(socket);
+io.on('connection', (socket: any) => {
+  console.log('Somebody connected via socket.io');
 });
 
 app.listen(PORT, () => {
