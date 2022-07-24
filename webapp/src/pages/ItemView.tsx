@@ -29,7 +29,7 @@ const ItemView = () => {
             <p className="text-xs">Live Viewers: 1,000</p>
           </>
         ) : (
-          <div className="text-center w-3/5 leading-6">
+          <div className="text-center w-3/5 leading-10">
             <p className="underline">Description</p>
             <p className="my-6 font-light">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quo,
