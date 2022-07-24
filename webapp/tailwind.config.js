@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         primary: {
           dark: "#000000",
+          neutral: "#CCCCCC",
           light: "#FAFAFA",
         },
         secondary: {
@@ -14,7 +15,7 @@ module.exports = {
           purple: "#8948DC",
           green: "#00BA92",
           blue: "#1BC5DC",
-          neutral: "#004B6E",
+          neutral: "#C0D1D9",
         },
         buttons: {
           active: "#000000",

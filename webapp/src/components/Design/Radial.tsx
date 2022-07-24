@@ -2,18 +2,23 @@ import { FC, ReactElement } from "react";
 
 interface RadialProps {
   size?: keyof typeof sizeMap;
-  color?: keyof typeof colorMap;
+  colour?: keyof typeof colourMap;
   classes?: string;
 }
 
 const Radial: FC<RadialProps> = ({
-  size = "md",
-  color = "blueGreen",
-  classes,
+  size = "lg",
+  colour = "#004B6E",
+  classes = "",
 }): ReactElement => {
   return (
     <svg
-      className={`absolute w-[35rem] h-[35rem] rounded-full bg-[#111] opacity-80 blur-3xl z-0 ${classes} bg-secondary-${color}`}
+      className={`absolute rounded-full opacity-20 blur-3xl z-0 ${classes}`}
+      style={{
+        backgroundColor: colour,
+        width: sizeMap[size],
+        height: sizeMap[size],
+      }}
     />
   );
 };
@@ -21,18 +26,19 @@ const Radial: FC<RadialProps> = ({
 export default Radial;
 
 const sizeMap = {
-  sm: "5",
-  md: "10",
-  lg: "15",
-  xl: "20",
-  "2xl": "25",
+  sm: "15rem",
+  md: "25rem",
+  lg: "35rem",
+  xl: "40rem",
+  "2xl": "45rem",
 };
 
-const colorMap = {
-  bluegreen: "blueGreen",
-  darkpurple: "darkPurple",
-  purple: "purple",
-  green: "green",
-  blue: "blue",
-  neutral: "neutral",
+const colourMap = {
+  bluegreen: "#004B6E",
+  darkpurple: "#120E44",
+  purple: "#8948DC",
+  green: "#00BA92",
+  blue: "#1BC5DC",
+  neutral: "#C0D1D9",
+  dark: "#888888",
 };

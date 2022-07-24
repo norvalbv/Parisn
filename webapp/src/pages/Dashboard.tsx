@@ -16,7 +16,7 @@ const Dashboard = () => {
         />
 
         <div className="relative flex justify-center items-center flex-1">
-          <Radial />
+          <Radial colour="dark" />
 
           <div className="absolute text-center">
             <div>
@@ -35,10 +35,14 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="h-screen">
-        <Radial />
+        <Radial colour="green" />
         <Line rotate="clockWise" />
+        <p>A new way of shopping</p>
         <Line rotate="antiClockWise" />
+        <p>Your way, your price</p>
         <Line rotate="verticle" />
+        <Radial colour="purple" />
+        <Line />
       </div>
       <div className="h-screen flex">
         <p className="flex flex-col justify-center items-center text-center px-40 leading-8">
