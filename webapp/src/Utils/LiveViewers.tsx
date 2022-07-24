@@ -1,30 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import io from 'socket.io-client';
 
-const socket = io();
+const socket = io('http://localhost:8000', {
+  withCredentials: true,
+  transports: ['websocket', 'polling', 'flashsocket'],
+});
 
 const LiveViewers = () => {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [lastPong, setLastPong] = useState(null);
 
   useEffect(() => {
-    socket.on('connect', () => {
-      setIsConnected(true);
+    // // emit:
+    socket.emit('eventName', () => {
+      console.log('test');
     });
 
-    socket.on('disconnect', () => {
-      setIsConnected(false);
+    // listen to events from sever:
+    socket.on('eventName', (socket) => {
+      console.log(socket);
     });
-
-    socket.on('pong', () => {
-      setLastPong(new Date().toISOString());
-    });
-
-    return () => {
-      socket.off('connect');
-      socket.off('disconnect');
-      socket.off('pong');
-    };
   }, []);
 
   const sendPing = () => {
