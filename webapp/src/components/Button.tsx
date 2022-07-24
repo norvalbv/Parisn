@@ -1,4 +1,5 @@
 import React, { ReactElement, forwardRef } from "react";
+import { useNavigate } from "react-router-dom";
 import Spinner from "./Spinner";
 
 interface ButtonProps {
@@ -70,6 +71,10 @@ interface ButtonProps {
    * Type of button
    */
   type?: "button" | "submit";
+  /**
+   * Navigate to another page within the app
+   */
+  navigateTo?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -92,15 +97,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       classes = "",
       fontWeight = "semibold",
       type = "button",
+      navigateTo,
     },
     ref
   ): ReactElement => {
+    const navigate = useNavigate();
     const clickHandle = (): void => {
       if (loading) {
         return;
       }
 
       if (onClick) onClick();
+
+      if (navigateTo) navigate(navigateTo);
     };
 
     return (

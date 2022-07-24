@@ -29,7 +29,12 @@ const Dashboard = () => {
             <span className="text-3xl tracking-widest block">
               A Fashion Company
             </span>
-            <Button text="View Catalogue" classes="mt-20" rounded="lg" />
+            <Button
+              text="View Catalogue"
+              classes="mt-20"
+              rounded="lg"
+              navigateTo="/catalogue"
+            />
           </div>
         </div>
       </div>

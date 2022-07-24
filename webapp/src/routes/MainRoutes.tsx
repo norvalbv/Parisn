@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 import AboutUs from "../pages/AboutUs";
+import Catalogue from "../pages/Catalogue";
+import ContactUs from "../pages/ContactUs";
 import Dashboard from "../pages/Dashboard";
 import HowItWorks from "../pages/HowItWorks";
 import ItemView from "../pages/ItemView";
@@ -22,6 +24,8 @@ const MainRoutes = () => {
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
         <Route path="shop-item" element={<ItemView />} />
+        <Route path="catalogue" element={<Catalogue />} />
+        <Route path="contact-us" element={<ContactUs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="terms-and-conditions" element={<TermsAndConditions />} />
       </Route>
