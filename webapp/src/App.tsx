@@ -1,10 +1,10 @@
-import Dashboard from "./pages/Dashboard";
+import MainRoutes from "./routes/MainRoutes";
 import "./styles/index.css";
 
 const App = () => {
   return (
-    <div className="h-screen bg-black box-border text-primary-light">
-      <Dashboard />
+    <div className="min-h-screen bg-black box-border text-primary-light">
+      <MainRoutes />
     </div>
   );
 };

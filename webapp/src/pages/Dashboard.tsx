@@ -6,8 +6,7 @@ import Line from "../components/Design/Line";
 
 const Dashboard = () => {
   return (
-    <div className="bg-primary-dark">
-      <NavBar />
+    <>
       <div className="flex items-center">
         <img
           src={DASHBOARD_IMAGE}
@@ -59,7 +58,7 @@ const Dashboard = () => {
           className="h-screen w-[42.5%]"
         />
       </div>
-    </div>
+    </>
   );
 };
 
