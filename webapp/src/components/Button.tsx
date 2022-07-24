@@ -1,6 +1,6 @@
-import React, { ReactElement, forwardRef } from "react";
-import { useNavigate } from "react-router-dom";
-import Spinner from "./Spinner";
+import React, { ReactElement, forwardRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner';
 
 interface ButtonProps {
   /**
@@ -42,7 +42,7 @@ interface ButtonProps {
   /**
    * Icon position
    */
-  iconPosition?: "left" | "right";
+  iconPosition?: 'left' | 'right';
   /**
    * Optional click event
    */
@@ -70,7 +70,7 @@ interface ButtonProps {
   /**
    * Type of button
    */
-  type?: "button" | "submit";
+  type?: 'button' | 'submit';
   /**
    * Navigate to another page within the app
    */
@@ -81,22 +81,22 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       text,
-      size = "base",
-      rounded = "none",
-      width = "25rem",
+      size = 'base',
+      rounded = 'none',
+      width = '25rem',
       color,
       backgroundColor,
       disabled,
       loading = false,
       icon,
-      iconPosition = "left",
+      iconPosition = 'left',
       onClick,
       id,
       dataAtt,
       upperCase = true,
-      classes = "",
-      fontWeight = "semibold",
-      type = "button",
+      classes = '',
+      fontWeight = 'semibold',
+      type = 'button',
       navigateTo,
     },
     ref
@@ -116,10 +116,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         type={type}
         className={`relative inline-flex items-center justify-center text-center hover:bg-buttons-hover ${
-          upperCase ? "uppercase" : ""
-        } ${buttonRadiusMap[rounded]} ${
-          buttonSizeMap[size]
-        } ${classes} border py-4`}
+          upperCase ? 'uppercase' : ''
+        } ${buttonRadiusMap[rounded]} ${buttonSizeMap[size]} ${classes} border py-4`}
         style={{ width, color, backgroundColor }}
         onClick={(): void => clickHandle()}
         role="button"
@@ -128,9 +126,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         ref={ref}
       >
-        {disabled && (
-          <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50" />
-        )}
+        {disabled && <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50" />}
         {loading && (
           <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50">
             {text}
@@ -139,47 +135,43 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             </span>
           </div>
         )}
-        {icon && iconPosition === "left" && (
-          <span className="mr-2.5">{icon}</span>
-        )}
-        <span className={`inline-block ${fontWeightMap[fontWeight]}`}>
-          {text}
-        </span>
-        {icon && iconPosition === "right" && <span>{icon}</span>}
+        {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
+        <span className={`inline-block ${fontWeightMap[fontWeight]}`}>{text}</span>
+        {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
     );
   }
 );
 
-Button.displayName = "Button";
+Button.displayName = 'Button';
 
 const buttonSizeMap = {
-  xs: "px-1 py-2 text-sm",
-  sm: "px-5 py-2.5 text-sm",
-  base: "px-6 py-2.5 text-sm w-full",
-  lg: "px-8 py-2.5 text-base w-full",
+  xs: 'px-1 py-2 text-sm',
+  sm: 'px-5 py-2.5 text-sm',
+  base: 'px-6 py-2.5 text-sm w-full',
+  lg: 'px-8 py-2.5 text-base w-full',
 };
 
 const buttonRadiusMap = {
-  xs: "rounded-xs",
-  small: "rounded-small",
-  base: "rounded",
-  md: "rounded-md",
-  lg: "rounded-lg",
-  xl: "rounded-xl",
-  none: "",
+  xs: 'rounded-xs',
+  small: 'rounded-small',
+  base: 'rounded',
+  md: 'rounded-md',
+  lg: 'rounded-lg',
+  xl: 'rounded-xl',
+  none: '',
 };
 
 const fontWeightMap = {
-  thin: "font-thin",
-  extralight: "font-extralight",
-  light: "font-light",
-  normal: "font-normal",
-  medium: "font-medium",
-  semibold: "font-semibold",
-  bold: "font-bold",
-  extrabold: "font-extrabold",
-  black: "font-black",
+  thin: 'font-thin',
+  extralight: 'font-extralight',
+  light: 'font-light',
+  normal: 'font-normal',
+  medium: 'font-medium',
+  semibold: 'font-semibold',
+  bold: 'font-bold',
+  extrabold: 'font-extrabold',
+  black: 'font-black',
 };
 
 export default React.memo(Button);

@@ -1,5 +1,5 @@
-import MainRoutes from "./routes/MainRoutes";
-import "./styles/index.css";
+import MainRoutes from './routes/MainRoutes';
+import './styles/index.css';
 
 const App = () => {
   return (

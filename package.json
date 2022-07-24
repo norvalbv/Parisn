@@ -7,6 +7,8 @@
     "lint-staged": "^13.0.3"
   },
   "scripts": {
+    "format:check": "prettier --check webapp/src",
+    "format:fix": "prettier --write webapp/src",
     "postinstall": "husky install ./.husky"
   },
   "husky": {
@@ -19,5 +21,8 @@
       "yarn format:fix"
     ]
   },
-  "packageManager": "yarn@3.2.1"
+  "packageManager": "yarn@3.2.1",
+  "dependencies": {
+    "prettier": "^2.7.1"
+  }
 }

@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -11,9 +11,7 @@ const NavBar = () => {
         <li className="px-10 cursor-pointer hover:border-b">Catalogue</li>
       </Link>
       <Link to="/contact-us">
-        <li className="border-l px-10 cursor-pointer hover:border-b">
-          Contact
-        </li>
+        <li className="border-l px-10 cursor-pointer hover:border-b">Contact</li>
       </Link>
     </ul>
   );
