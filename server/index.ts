@@ -1,38 +1,32 @@
 const app = require('express')();
 const server = require('http').createServer(app);
-var io = require('socket.io')(server, {
+const io = require('socket.io')(server, {
   cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
+    origin: 'http://127.0.0.1:5173',
     credentials: true,
   },
 });
 
-interface ServerToClientEvents {
-  noArg: () => void;
-  basicEmit: (a: number, b: string, c: Buffer) => void;
-  withAck: (d: string, callback: (e: number) => void) => void;
-}
+// environment variables
+const PORT = process.env.PORT || 8000;
 
-interface ClientToServerEvents {
-  hello: () => void;
-}
+let amount = 0;
 
-interface InterServerEvents {
-  ping: () => void;
-}
-
-interface SocketData {
-  name: string;
-  age: number;
-}
-
-const PORT = 8000;
-
-io.on('connection', (socket: any) => {
+// socket.io functions
+io.on('connect', function (socket: any) {
   console.log('Somebody connected via socket.io');
+  socket.emit('get viewers', amount);
 });
 
-app.listen(PORT, () => {
-  console.log(`listening on ${PORT}`);
+io.on('increase views', function (t: any) {
+  t + amount;
+});
+
+io.on('disconnect', function () {
+  console.log('somebody disconnected');
+});
+
+// start listening
+server.listen(PORT, () => {
+  console.log(`Listening on port ${PORT} ...`);
 });
