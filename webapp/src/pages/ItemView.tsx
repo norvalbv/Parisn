@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../components/Button';
 import { PRODUCT_1_IMAGE } from '../constants';
+import LiveViewers from '../Utils/LiveViewers';
 
 const ItemView = () => {
   const [clicked, setClicked] = useState(false);
@@ -22,7 +23,7 @@ const ItemView = () => {
             </button>
             <p>£1250</p>
             <Button text="Buy Now" classes="mt-10 mb-4" rounded="lg" />
-            <p className="text-xs">Live Viewers: 1,000</p>
+            <LiveViewers />
           </>
         ) : (
           <div className="text-center w-3/5 leading-10">
