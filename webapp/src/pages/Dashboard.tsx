@@ -11,7 +11,7 @@ const Dashboard = () => {
         <img
           src={DASHBOARD_IMAGE}
           alt={DASHBOARD_IMAGE}
-          className="h-screen w-[42.5%] -mt-[4.5rem]"
+          className="h-screen w-[42.5%]"
         />
 
         <div className="relative flex justify-center items-center flex-1">
@@ -29,7 +29,7 @@ const Dashboard = () => {
             <span className="text-3xl tracking-widest block">
               A Fashion Company
             </span>
-            <Button text="Order now" classes="mt-20" rounded="lg" />
+            <Button text="View Catalogue" classes="mt-20" rounded="lg" />
           </div>
         </div>
       </div>

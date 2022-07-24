@@ -66,6 +66,10 @@ interface ButtonProps {
    * Font weight for text
    */
   fontWeight?: keyof typeof fontWeightMap;
+  /**
+   * Type of button
+   */
+  type?: "button" | "submit";
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -87,6 +91,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       upperCase = true,
       classes = "",
       fontWeight = "semibold",
+      type = "button",
     },
     ref
   ): ReactElement => {
@@ -100,7 +105,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        type="submit"
+        type={type}
         className={`relative inline-flex items-center justify-center text-center hover:bg-buttons-hover ${
           upperCase ? "uppercase" : ""
         } ${buttonRadiusMap[rounded]} ${
