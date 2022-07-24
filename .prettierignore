@@ -1,4 +1,4 @@
 # Ignore artifacts:
-build
-coverage
-.yarn/
+webapp/build
+webapp/coverage
+**/.yarn/
