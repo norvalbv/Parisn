@@ -10,20 +10,9 @@ const io = require('socket.io')(server, {
 // environment variables
 const PORT = process.env.PORT || 8000;
 
-let amount = 0;
-
 // socket.io functions
 io.on('connect', function (socket: any) {
-  console.log('Somebody connected via socket.io');
-  socket.emit('get viewers', amount);
-});
-
-io.on('increase views', function (t: any) {
-  t + amount;
-});
-
-io.on('disconnect', function () {
-  console.log('somebody disconnected');
+  socket.emit('get viewers', io.engine.clientsCount);
 });
 
 // start listening
