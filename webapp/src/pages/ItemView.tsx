@@ -7,8 +7,8 @@ const ItemView = () => {
   const [clicked, setClicked] = useState(false);
   return (
     <div className="flex">
-      <img src={PRODUCT_1_IMAGE} alt={PRODUCT_1_IMAGE} className="h-screen w-[40%]" />
-      <div className="absolute right-0 top-0 h-screen w-1/2 flex flex-col justify-center items-center mx-auto gap-4 tracking-wider">
+      <img src={PRODUCT_1_IMAGE} alt={PRODUCT_1_IMAGE} className=" h-[95vh] w-[40%]" />
+      <div className="absolute right-0 top-0 h-[95vh] w-1/2 flex flex-col justify-center items-center mx-auto gap-4 tracking-wider">
         {!clicked ? (
           <>
             <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
