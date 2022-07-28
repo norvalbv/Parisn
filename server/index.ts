@@ -1,21 +1,29 @@
 const app = require('express')();
 const server = require('http').createServer(app);
+const cors = require('cors');
+
+//app.use(cors());
 const io = require('socket.io')(server, {
   cors: {
-    origin: 'http://127.0.0.1:5173',
+    origin: 'http://localhost:5173',
     credentials: true,
-  },
+  }
 });
+
+const dotENV = require('dotenv');
+dotENV.config();
 
 // environment variables
 const PORT = process.env.PORT || 8000;
 
 let amount = 0;
 
-// socket.io functions
+// socket.io 
+// https://socket.io/docs/v4/server-api/#engineclientscount
 io.on('connect', function (socket: any) {
-  console.log('Somebody connected via socket.io');
-  socket.emit('get viewers', amount);
+  console.log('Somebody connected via socket.io, views: ' + io.engine.clientsCount);
+  //amount++;
+  socket.emit('get viewers', io.engine.clientsCount);
 });
 
 io.on('increase views', function (t: any) {

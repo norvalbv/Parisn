@@ -10,6 +10,7 @@
 **/.pnp.*
 
 # Editor directories and files
+.vs/
 **/.vscode/*
 !**/.vscode/extensions.json
 **/.idea
