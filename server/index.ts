@@ -13,6 +13,13 @@ const PORT = process.env.PORT || 8000;
 // socket.io functions
 io.on('connect', function (socket: any) {
   socket.emit('get viewers', io.engine.clientsCount);
+
+  console.log(socket.handshake);
+  socket.join('room 237');
+
+  socket.join(['room 237', 'room 238']);
+
+  io.to('room 237').emit('a new user has joined the room'); // broadcast to everyone in the room
 });
 
 // start listening

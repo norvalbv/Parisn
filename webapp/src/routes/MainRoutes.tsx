@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
 import AboutUs from '../pages/AboutUs';
-import Catalogue from '../pages/Catalogue';
+import Catalogue from '../pages/Products/Catalogue';
 import ContactUs from '../pages/ContactUs';
 import Dashboard from '../pages/Dashboard';
 import HowItWorks from '../pages/HowItWorks';
-import ItemView from '../pages/ItemView';
+import ItemView from '../pages/Products/ItemView';
 import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';
 import TermsAndConditions from '../pages/Legal/TermsAndConditions';
 

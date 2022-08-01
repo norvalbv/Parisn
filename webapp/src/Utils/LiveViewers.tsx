@@ -8,7 +8,7 @@ let socket = io('ws://localhost:8000', {
 const LiveViewers = () => {
   const [viewCount, setViewCount] = useState(0);
   socket.on('get viewers', (amount) => setViewCount(amount));
-
+  console.log(viewCount);
   return <p>Live viewers: {viewCount}</p>;
 };
 
