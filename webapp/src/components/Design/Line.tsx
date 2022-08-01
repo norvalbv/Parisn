@@ -2,7 +2,7 @@ import { FC, ReactElement } from 'react';
 
 interface LineProps {
   thickness?: keyof typeof thicknessMap;
-  colour?: string;
+  colour?: keyof typeof coloursMap;
   classes?: string;
   rotate?: keyof typeof rotateMap;
 }
@@ -15,11 +15,10 @@ const Line: FC<LineProps> = ({
 }): ReactElement => {
   return (
     <svg
-      className={`absolute w-screen h-${
-        thicknessMap[thickness]
-      } bg-primary-${colour} opacity-50 z-0 ${classes} ${
+      className={`absolute w-screen opacity-75 z-0 ${classes} ${
         rotate === 'antiClockWise' ? '-rotate-90' : `rotate-${rotateMap[rotate]}`
       }`}
+      style={{ backgroundColor: coloursMap[colour], height: thicknessMap[thickness] }}
     />
   );
 };
@@ -27,11 +26,11 @@ const Line: FC<LineProps> = ({
 export default Line;
 
 const thicknessMap = {
-  sm: 'px',
-  md: '0.5',
-  lg: '1',
-  xl: '1.5',
-  '2xl': '2',
+  sm: '1px',
+  md: '2px',
+  lg: '3px',
+  xl: '4px',
+  '2xl': '5px',
 };
 
 const rotateMap = {
@@ -39,4 +38,13 @@ const rotateMap = {
   clockWise: 45,
   antiClockWise: 45,
   verticle: 90,
+};
+
+const coloursMap = {
+  blueGreen: '#004B6E',
+  darkPurple: '#120E44',
+  purple: '#8948DC',
+  green: '#00BA92',
+  blue: '#1BC5DC',
+  neutral: '#C0D1D9',
 };

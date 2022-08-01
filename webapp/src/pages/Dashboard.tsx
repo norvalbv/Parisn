@@ -25,14 +25,14 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="h-screen">
-        <Radial colour="green" />
+      <div className="h-[150vh] relative overflow-hidden">
+        <Radial colour="green" classes="-top-32 -right-32" />
         <Line rotate="clockWise" />
         <p>A new way of shopping</p>
         <Line rotate="antiClockWise" />
         <p>Your way, your price</p>
         <Line rotate="verticle" />
-        <Radial colour="purple" />
+        <Radial colour="purple" classes="-bottom-32 -left-32" />
         <Line />
       </div>
       <div className="h-screen flex">
