@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import Button from '../components/Button';
-import { PRODUCT_1_IMAGE } from '../constants';
-import LiveViewers from '../Utils/LiveViewers';
+import Button from '../../components/Button';
+import Chart from '../../components/Chart';
+import { PRODUCT_1_IMAGE } from '../../constants';
+import LiveViewers from '../../Utils/LiveViewers';
 
 const ItemView = () => {
   const [clicked, setClicked] = useState(false);
@@ -11,6 +12,7 @@ const ItemView = () => {
       <div className="absolute right-0 top-0 h-screen w-1/2 flex flex-col justify-center items-center mx-auto gap-4 tracking-wider">
         {!clicked ? (
           <>
+            {/* <Chart /> */}
             <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
               PARISN official White Trainers
             </span>
