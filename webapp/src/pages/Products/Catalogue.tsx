@@ -71,7 +71,7 @@ const Catalogue = () => {
           className="flex flex-col flex-wrap justify-center items-center border-r border-secondary-neutral last:border-none pt-10"
         >
           <p className="underline">{product.title}</p>
-          <Link to="/shop-item" className="flex justify-center items-center">
+          <Link to="/shop-item?temp=temp" className="flex justify-center items-center">
             <img src={product.image} alt={product.name} className="w-3/4 cursor-pointer"></img>
           </Link>
           <p>Current Price: £{product.currentPrice}</p>

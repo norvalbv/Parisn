@@ -10,9 +10,10 @@
   },
   "dependencies": {
     "@types/socket.io-client": "^3.0.0",
+    "@visx/annotation": "^2.12.2",
+    "@visx/responsive": "^2.10.0",
     "@visx/scale": "^2.2.2",
     "@visx/shape": "^2.11.1",
-    "@visx/visx": "^2.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",

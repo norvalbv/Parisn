@@ -2,7 +2,9 @@ import Radial from '../components/Design/Radial';
 import NavBar from '../layout/NavBar';
 import { DASHBOARD_IMAGE } from '../constants';
 import Button from '../components/Button';
-import Line from '../components/Design/Line';
+import { ParentSize } from '@visx/responsive';
+import { Line } from '@visx/shape';
+import { Label } from '@visx/annotation';
 
 const Dashboard = () => {
   return (
@@ -26,14 +28,57 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="h-[150vh] relative overflow-hidden">
-        <Radial colour="green" classes="-top-32 -right-32" />
-        <Line rotate="clockWise" />
-        <p>A new way of shopping</p>
-        <Line rotate="antiClockWise" />
-        <p>Your way, your price</p>
-        <Line rotate="verticle" />
-        <Radial colour="purple" classes="-bottom-32 -left-32" />
-        <Line />
+        <ParentSize>
+          {(parent) => (
+            <>
+              <svg height={parent.height} width={parent.width} fill="#555555" stroke="#ffffff">
+                <Line
+                  from={{ x: 0, y: 0 }}
+                  to={{ x: parent.width, y: parent.height / 5 }}
+                  stroke="#FAFAFA"
+                  strokeOpacity={0.75}
+                />
+                <Line
+                  from={{ x: parent.width, y: parent.height / 5 }}
+                  to={{ x: 0, y: parent.height / 3 }}
+                  stroke="#FAFAFA"
+                  strokeOpacity={0.75}
+                />
+                <Line
+                  from={{ x: 0, y: parent.height / 3 }}
+                  to={{ x: parent.width, y: parent.height / 1.5 }}
+                  stroke="#FAFAFA"
+                  strokeOpacity={0.75}
+                />
+                <Line
+                  from={{ x: parent.width, y: parent.height / 1.5 }}
+                  to={{ x: 0, y: parent.height }}
+                  stroke="#FAFAFA"
+                  strokeOpacity={0.75}
+                />
+              </svg>
+              <p
+                className={`absolute text-primary-light text-center tracking-widest text-lg rotate-[8.85deg]`}
+                style={{ left: parent.width / 2 - 50, top: parent.height / 11.75 }}
+              >
+                A new way of shopping
+              </p>
+              <p
+                className={`absolute text-primary-light text-center tracking-widest text-lg block rotate-[${
+                  parent.width / 50
+                }deg]`}
+                style={{
+                  left: parent.width / 2 - 50,
+                  top: parent.height / 2.05,
+                }}
+              >
+                Your way, your price
+              </p>
+              <Radial colour="green" classes="-top-32 -right-32" />
+              <Radial colour="purple" classes="-bottom-32 -left-32" />
+            </>
+          )}
+        </ParentSize>
       </div>
       <div className="h-screen flex">
         <p className="flex flex-col justify-center items-center text-center px-40 leading-8">
