@@ -64,9 +64,7 @@ const Dashboard = () => {
                 A new way of shopping
               </p>
               <p
-                className={`absolute text-primary-light text-center tracking-widest text-lg block rotate-[${
-                  parent.width / 50
-                }deg]`}
+                className={`absolute text-primary-light text-center tracking-widest text-lg block rotate-[15deg]`}
                 style={{
                   left: parent.width / 2 - 50,
                   top: parent.height / 2.05,
