@@ -33,8 +33,8 @@ const ItemView = () => {
     sizes: [
       { size: 'S', stock: 0 },
       { size: 'M', stock: 1 },
-      { size: 'L', stock: 0 },
-      { size: 'XL', stock: 0 },
+      { size: 'L', stock: 5 },
+      { size: 'XL', stock: 3 },
     ],
   });
 
@@ -79,6 +79,18 @@ const ItemView = () => {
               })
             }
           />
+          <p className="text-sm -mt-2 -mb-1">
+            {
+              Object.values(
+                productSize.sizes[
+                  productSize.sizes.findIndex(
+                    (x) => Object.values(x)[0] === productSize.selectedSize
+                  )
+                ]
+              )[1]
+            }
+            : left in stock
+          </p>
           <LiveViewers />
         </div>
         <div
