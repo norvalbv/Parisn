@@ -9,6 +9,7 @@ import HowItWorks from '../pages/HowItWorks';
 import ItemView from '../pages/Products/ItemView';
 import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';
 import TermsAndConditions from '../pages/Legal/TermsAndConditions';
+import Checkout from '../pages/Checkout';
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const MainRoutes = () => {
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
         <Route path="shop-item" element={<ItemView />} />
+        <Route path="checkout" element={<Checkout />} />
         <Route path="catalogue" element={<Catalogue />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />

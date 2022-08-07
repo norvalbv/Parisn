@@ -18,9 +18,9 @@ const ItemView = () => {
       }),
     []
   );
+  let num = 80000;
 
   useEffect(() => {
-    let num = 80000;
     const timer = setInterval(() => {
       setPrice(priceScale.invert(num));
       num--;
@@ -37,6 +37,8 @@ const ItemView = () => {
       { size: 'XL', stock: 3 },
     ],
   });
+
+  // console.log(Array.from(Array(num).keys()).map((i) => priceScale(i)));
 
   return (
     <div className="relative overflow-auto scroll-smooth">
@@ -65,6 +67,7 @@ const ItemView = () => {
             hoveredText={`Buy at £${price.toFixed(2)}`}
             classes="mt-10"
             rounded="lg"
+            navigateTo="/checkout"
           />
           <ProductSizes
             classes="mb-4"
