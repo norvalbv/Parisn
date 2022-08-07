@@ -12,4 +12,4 @@ const LiveViewers = () => {
   return <p>Live viewers: {viewCount}</p>;
 };
 
-export default LiveViewers;
+export default React.memo(LiveViewers);

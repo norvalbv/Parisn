@@ -1,4 +1,4 @@
-import React, { ReactElement, forwardRef } from 'react';
+import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Spinner from './Spinner';
 
@@ -7,6 +7,10 @@ interface ButtonProps {
    * Text or label of button
    */
   text: string;
+  /**
+   * Text or label for when hovered
+   */
+  hoveredText?: string;
   /**
    * How big the button
    */
@@ -81,6 +85,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       text,
+      hoveredText,
       size = 'base',
       rounded = 'none',
       width = '25rem',
@@ -101,6 +106,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ): ReactElement => {
+    const [hovered, setHovered] = useState(false);
+
     const navigate = useNavigate();
     const clickHandle = (): void => {
       if (loading) {
@@ -111,6 +118,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
       if (navigateTo) navigate(navigateTo);
     };
+
+    console.log(hovered, hoveredText);
 
     return (
       <button
@@ -125,6 +134,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-testid={dataAtt}
         disabled={disabled}
         ref={ref}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
       >
         {disabled && <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50" />}
         {loading && (
@@ -136,7 +147,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </div>
         )}
         {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
-        <span className={`inline-block ${fontWeightMap[fontWeight]}`}>{text}</span>
+        <span className={`inline-block ${fontWeightMap[fontWeight]}`}>
+          {hovered ? hoveredText : text}
+        </span>
         {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
     );

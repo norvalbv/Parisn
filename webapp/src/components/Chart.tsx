@@ -1,47 +1,112 @@
 import React, { useMemo } from 'react';
-import { LinePath, Line } from '@visx/shape';
+import { LinePath, Line, Polygon } from '@visx/shape';
 import { scaleLinear, scaleUtc } from '@visx/scale';
+import { scaleLog } from 'd3-scale';
+import { AxisBottom, AxisLeft } from '@visx/axis';
 
-const Chart = () => {
-  // The X axis is a time series scale, which is a d3 scale for automatic generation of a sensible scale
-  const dateScale = useMemo(
-    () =>
-      scaleUtc({
-        // Start and end points depend on how much margin space is defined
-        range: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-        ],
-        domain: [1, 100],
-        nice: true,
-        clamp: true,
-      }),
-    []
-  );
+interface Data {}
 
-  // The Y axis is a scale that depends on the input data values.
-  const sohScale = useMemo(
+interface ChartProps {
+  height: number;
+  width: number;
+  data: any;
+}
+
+const Chart = ({ width, height, data }: ChartProps) => {
+  // Margin applied to chart to ensure axis are visible
+  const marginTop = 0;
+  const marginLeft = 10;
+  const marginRight = 0;
+  const marginBottom = 10;
+
+  // Inner width and ehight of the charts
+  const innerHeight = height - marginTop - marginBottom;
+  const innerWidth = width - marginLeft - marginRight;
+
+  // const priceScale = useMemo(
+  //   () =>
+  //     scaleLog({
+  //       domain: [1, 1000],
+  //       range: [0, 100000],
+  //     }),
+  //   []
+  // );
+
+  const axisLeft = useMemo(
     () =>
       scaleLinear({
-        range: [
-          1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-        ],
-        domain: [1, 100],
+        range: [1, 2],
+        domain: [0, 1000],
       }),
     []
   );
+
+  const axisBottom = useMemo(
+    () =>
+      scaleLinear({
+        range: [0, 1000],
+        domain: [1, 2],
+      }),
+    []
+  );
+
   return (
-    <div className="w-[70%] h-[35%] border-2 border-secondary-neutral">
-      <LinePath
-        stroke="#DDDDDD"
-        strokeWidth={2}
-        data={sohScale.ticks(24)}
-        strokeDasharray={4}
-        markerStart="url(#marker-circle-start)"
-        markerMid="url(#marker-circle)"
-        markerEnd="url(#marker-circle)"
+    <svg width={width} height={height}>
+      <rect
+        stroke="#ffffff"
+        width={innerWidth}
+        height={innerHeight}
+        x={marginLeft}
+        y={-marginBottom}
       />
-    </div>
+      <AxisLeft
+        scale={axisLeft}
+        left={marginLeft}
+        numTicks={20}
+        stroke="#FAFAFA"
+        tickStroke="none"
+        tickLabelProps={() => ({
+          fill: '#FAFAFA',
+          fontSize: 10,
+          textAnchor: 'middle',
+        })}
+      />
+      <AxisBottom
+        scale={axisBottom}
+        top={height - 20}
+        left={marginLeft}
+        numTicks={2}
+        stroke="#FAFAFA"
+        tickStroke="#FAFAFA"
+        tickLength={4}
+        tickLabelProps={() => ({
+          fill: '#FAFAFA',
+          fontSize: 10,
+          textAnchor: 'middle',
+        })}
+      />
+      {/* <LinePath<number>
+        stroke="#ffffff"
+        fill="#ffffff"
+        strokeWidth={2}
+        data={data}
+        x={priceScale(data)}
+        y={priceScale(data)}
+      /> */}
+      <Polygon
+        fill="green"
+        center={{ x: width - data / 2, y: height - data / 4 }}
+        sides={500}
+        className="z-50"
+        stroke="none"
+      />
+      <Line
+        from={{ x: 0, y: 0 }}
+        to={{ x: width - data / 2, y: height - data / 4 }}
+        stroke="#ffffff"
+      />
+    </svg>
   );
 };
 
-export default Chart;
+export default React.memo(Chart);
