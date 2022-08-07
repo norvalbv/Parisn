@@ -32,6 +32,10 @@ interface ButtonProps {
    */
   backgroundColor?: string;
   /**
+   * Require a hover colour?
+   */
+  hoverColorRequired?: boolean;
+  /**
    * Is button disabled
    */
   disabled?: boolean;
@@ -79,6 +83,10 @@ interface ButtonProps {
    * Navigate to another page within the app
    */
   navigateTo?: string;
+  /**
+   * Require boarders?
+   */
+  borderRequired?: keyof typeof borderRequiredMap;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -91,6 +99,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       width = '25rem',
       color,
       backgroundColor,
+      hoverColorRequired = true,
       disabled,
       loading = false,
       icon,
@@ -103,6 +112,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fontWeight = 'semibold',
       type = 'button',
       navigateTo,
+      borderRequired = 'all',
     },
     ref
   ): ReactElement => {
@@ -119,14 +129,14 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       if (navigateTo) navigate(navigateTo);
     };
 
-    console.log(hovered, hoveredText);
-
     return (
       <button
         type={type}
-        className={`relative inline-flex items-center justify-center text-center hover:bg-buttons-hover ${
-          upperCase ? 'uppercase' : ''
-        } ${buttonRadiusMap[rounded]} ${buttonSizeMap[size]} ${classes} border py-4`}
+        className={`relative inline-flex items-center justify-center text-center ${
+          hoverColorRequired && 'hover:bg-buttons-hover'
+        } ${upperCase ? 'uppercase' : ''} ${buttonRadiusMap[rounded]} ${
+          buttonSizeMap[size]
+        } ${classes} ${borderRequiredMap[borderRequired]} py-4`}
         style={{ width, color, backgroundColor }}
         onClick={(): void => clickHandle()}
         role="button"
@@ -157,6 +167,15 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+
+const borderRequiredMap = {
+  all: 'border',
+  none: 'none',
+  bottom: 'border-b',
+  top: 'border-t',
+  left: 'border-l',
+  right: 'border-r',
+};
 
 const buttonSizeMap = {
   xs: 'px-1 py-2 text-sm',

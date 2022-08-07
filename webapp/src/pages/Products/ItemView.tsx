@@ -1,10 +1,11 @@
 import { ParentSize } from '@visx/responsive';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Button from '../../components/Button';
 import Chart from '../../components/Chart';
 import { PRODUCT_1_IMAGE } from '../../constants';
 import LiveViewers from '../../Utils/LiveViewers';
-import { scaleLinear, scaleLog } from '@visx/scale';
+import { scaleLog } from '@visx/scale';
+import ProductSizes from '../../components/ProductSizes';
 
 const ItemView = () => {
   const [price, setPrice] = useState(1000);
@@ -27,6 +28,11 @@ const ItemView = () => {
     return () => clearInterval(timer);
   }, []);
 
+  const [productSize, setProductSize] = useState({
+    selectedSize: 'M',
+    sizes: ['S', 'M', 'L', 'XL'],
+  });
+
   return (
     <div className="relative overflow-auto scroll-smooth">
       <img src={PRODUCT_1_IMAGE} alt={PRODUCT_1_IMAGE} className="h-screen w-[40%] sticky top-0" />
@@ -48,12 +54,25 @@ const ItemView = () => {
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
             View Description
           </a>
-          <p>£{price.toFixed(2)}</p>
+          <p className="text-lg">£{price.toFixed(2)}</p>
           <Button
             text="Buy Now"
             hoveredText={`Buy at £${price.toFixed(2)}`}
-            classes="mt-10 mb-4"
+            classes="mt-10"
             rounded="lg"
+          />
+          <ProductSizes
+            classes="mb-4"
+            selectedSize={productSize.selectedSize}
+            sizes={productSize.sizes}
+            onClick={(size) =>
+              setProductSize((prev) => {
+                return {
+                  ...prev,
+                  selectedSize: size,
+                };
+              })
+            }
           />
           <LiveViewers />
         </div>
