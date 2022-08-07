@@ -30,7 +30,12 @@ const ItemView = () => {
 
   const [productSize, setProductSize] = useState({
     selectedSize: 'M',
-    sizes: ['S', 'M', 'L', 'XL'],
+    sizes: [
+      { size: 'S', stock: 0 },
+      { size: 'M', stock: 1 },
+      { size: 'L', stock: 0 },
+      { size: 'XL', stock: 0 },
+    ],
   });
 
   return (

@@ -147,7 +147,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        {disabled && <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50" />}
+        {disabled && (
+          <svg width="100%" height="100%" className="absolute">
+            <line x2="100%" y2="100%" stroke="darkRed" strokeWidth={2.25} />
+          </svg>
+        )}
         {loading && (
           <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50">
             {text}
