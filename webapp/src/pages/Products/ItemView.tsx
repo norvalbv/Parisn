@@ -46,7 +46,7 @@ const ItemView = () => {
           id="product-overview"
           className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
         >
-          <div className="w-[70%] h-[30vh]">
+          <div className="w-[70%] h-[35vh]">
             <ParentSize>
               {(parent) => <Chart width={parent.width} height={parent.height} data={price} />}
             </ParentSize>
