@@ -148,7 +148,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
         <span className={`inline-block ${fontWeightMap[fontWeight]}`}>
-          {hovered ? hoveredText : text}
+          {hovered && hoveredText ? hoveredText : text}
         </span>
         {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
