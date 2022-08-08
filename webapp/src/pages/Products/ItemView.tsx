@@ -6,6 +6,8 @@ import { PRODUCT_1_IMAGE } from '../../constants';
 import LiveViewers from '../../Utils/LiveViewers';
 import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../components/ProductSizes';
+import { useProductById } from '../../services/DataApiService';
+import { useSearchParams } from 'react-router-dom';
 
 const ItemView = () => {
   const [price, setPrice] = useState(1000);
@@ -20,13 +22,13 @@ const ItemView = () => {
   );
   let num = 80000;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPrice(priceScale.invert(num));
-      num--;
-    }, 10);
-    return () => clearInterval(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setPrice(priceScale.invert(num));
+  //     num--;
+  //   }, 10);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   const [productSize, setProductSize] = useState({
     selectedSize: 'M',
@@ -37,6 +39,22 @@ const ItemView = () => {
       { size: 'XL', stock: 3 },
     ],
   });
+
+  const [searchParams] = useSearchParams();
+  const currentProduct = searchParams.get('product');
+
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const { data } = await useProductById(currentProduct || '');
+      const indexed = data.findIndex((x) => x.id === currentProduct);
+      setProducts(data[indexed]);
+    })();
+  }, []);
+
+  if (!products) return <></>;
+
+  console.log(products);
 
   // console.log(Array.from(Array(num).keys()).map((i) => priceScale(i)));
 
