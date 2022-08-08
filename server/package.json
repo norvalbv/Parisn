@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@shopify/shopify-api": "^5.0.1",
+    "axios": "^0.27.2",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
