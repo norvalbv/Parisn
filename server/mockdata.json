@@ -6,12 +6,10 @@
     "image": "https://i.ibb.co/BfMMsYS/adrian-hernandez-QKP-f-XB615w-unsplash.jpg",
     "price": 1000,
     "stock": {
-      "quantity": {
-        "small": 2,
-        "medium": 1,
-        "large": 1,
-        "extralarge": 2
-      }
+      "small": 2,
+      "medium": 1,
+      "large": 1,
+      "extralarge": 2
     }
   },
   "product_2": {
@@ -21,12 +19,10 @@
     "image": "https://i.ibb.co/DLP1Xmc/peri-stojnic-r3rb-Iw-Z9-DJc-unsplash.jpg",
     "price": 1000,
     "stock": {
-      "quantity": {
-        "small": 2,
-        "medium": 0,
-        "large": 0,
-        "extralarge": 2
-      }
+      "small": 2,
+      "medium": 0,
+      "large": 0,
+      "extralarge": 2
     }
   },
   "product_3": {
@@ -36,12 +32,10 @@
     "image": "https://i.ibb.co/8zfKbdJ/quinton-coetzee-k-Vb-Jz-Dc-Lrew-unsplash.jpg",
     "price": 1000,
     "stock": {
-      "quantity": {
-        "small": 1,
-        "medium": 3,
-        "large": 2,
-        "extralarge": 0
-      }
+      "small": 1,
+      "medium": 3,
+      "large": 2,
+      "extralarge": 0
     }
   },
   "product_4": {
@@ -51,12 +45,10 @@
     "image": "https://i.ibb.co/gJ0k2hS/zachary-keimig-w-T-v-Iwt-Vnjk-unsplash.jpg",
     "price": 1000,
     "stock": {
-      "quantity": {
-        "small": 0,
-        "medium": 3,
-        "large": 1,
-        "extralarge": 2
-      }
+      "small": 0,
+      "medium": 3,
+      "large": 1,
+      "extralarge": 2
     }
   }
 }

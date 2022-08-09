@@ -2,7 +2,6 @@ import { ParentSize } from '@visx/responsive';
 import { useEffect, useMemo, useState } from 'react';
 import Button from '../../components/Button';
 import Chart from '../../components/Chart';
-import { PRODUCT_1_IMAGE } from '../../constants';
 import LiveViewers from '../../Utils/LiveViewers';
 import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../components/ProductSizes';
@@ -30,37 +29,33 @@ const ItemView = () => {
   //   return () => clearInterval(timer);
   // }, []);
 
-  const [productSize, setProductSize] = useState({
-    selectedSize: 'M',
-    sizes: [
-      { size: 'S', stock: 0 },
-      { size: 'M', stock: 1 },
-      { size: 'L', stock: 5 },
-      { size: 'XL', stock: 3 },
-    ],
-  });
+  const [selectedSize, setSelectedSize] = useState('M');
 
   const [searchParams] = useSearchParams();
   const currentProduct = searchParams.get('product');
 
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState([]);
   useEffect(() => {
     (async () => {
       const { data } = await useProductById(currentProduct || '');
       const indexed = data.findIndex((x) => x.id === currentProduct);
-      setProducts(data[indexed]);
+      setProduct(data[indexed]);
     })();
   }, []);
 
-  if (!products) return <></>;
-
-  console.log(products);
+  if (!product.stock) return <></>;
 
   // console.log(Array.from(Array(num).keys()).map((i) => priceScale(i)));
 
+  const compareSelectedVals = Object.entries(product.stock)[
+    Object.entries(product.stock).findIndex((x) =>
+      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
+    )
+  ][1];
+
   return (
     <div className="relative overflow-auto scroll-smooth">
-      <img src={PRODUCT_1_IMAGE} alt={PRODUCT_1_IMAGE} className="h-screen w-[40%] sticky top-0" />
+      <img src={product.image} alt={product.image} className="h-screen w-[40%] sticky top-0" />
       <div className="absolute right-0 top-0 w-[60%]">
         <div
           id="product-overview"
@@ -73,7 +68,7 @@ const ItemView = () => {
           </div>
 
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            PARISN official White Trainers
+            {product.title}
           </span>
 
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
@@ -89,28 +84,12 @@ const ItemView = () => {
           />
           <ProductSizes
             classes="mb-4"
-            selectedSize={productSize.selectedSize}
-            sizes={productSize.sizes}
-            onClick={(size) =>
-              setProductSize((prev) => {
-                return {
-                  ...prev,
-                  selectedSize: size,
-                };
-              })
-            }
+            selectedSize={selectedSize}
+            sizes={product.stock}
+            onClick={(size) => setSelectedSize(size)}
           />
-          <p className="text-sm -mt-2 -mb-1">
-            {
-              Object.values(
-                productSize.sizes[
-                  productSize.sizes.findIndex(
-                    (x) => Object.values(x)[0] === productSize.selectedSize
-                  )
-                ]
-              )[1]
-            }
-            : left in stock
+          <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
+            {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
           </p>
           <LiveViewers />
         </div>
@@ -119,11 +98,7 @@ const ItemView = () => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quo, debitis, magni
-            distinctio ullam minima culpa modi animi excepturi minus quasi in maxime nobis vitae!
-            Amet ea et harum quam.
-          </p>
+          <p className="my-6 font-light">{product.description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>
