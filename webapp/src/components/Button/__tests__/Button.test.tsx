@@ -1,0 +1,44 @@
+import { FC } from 'react';
+import renderer from 'react-test-renderer';
+
+import Button, { ButtonProps } from '../';
+
+const ButtonWithRequiredProps: FC<Required<ButtonProps>> = Button;
+
+describe('<Button />', () => {
+  test('Button props with mandatory props', () => {
+    const tree = renderer.create(<Button text="Test Text" />).toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
+  test('Button props with all props as required', () => {
+    const tree = renderer
+      .create(
+        <ButtonWithRequiredProps
+          text="Test Text"
+          hoveredText="Hovered Text"
+          size="base"
+          rounded="none"
+          width="25rem"
+          color="text-red-500"
+          backgroundColor="bg-red-200"
+          hoverColorRequired
+          disabled
+          loading={false}
+          icon={<div>Icon</div>}
+          iconPosition="left"
+          onClick={jest.fn()}
+          id="Test Id"
+          dataAtt="Data Attribute"
+          upperCase
+          classes="underline"
+          fontWeight="semibold"
+          type="button"
+          navigateTo="/"
+          borderRequired="all"
+        />
+      )
+      .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+});

@@ -1,8 +1,8 @@
 import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Spinner from './Spinner';
+import Spinner from '../Spinner';
 
-interface ButtonProps {
+export interface ButtonProps {
   /**
    * Text or label of button
    */
@@ -22,7 +22,7 @@ interface ButtonProps {
   /**
    * Set button width manually
    */
-  width?: number;
+  width?: string;
   /**
    * Overwrite text color
    */

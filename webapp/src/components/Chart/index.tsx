@@ -3,9 +3,7 @@ import { LinePath, Line, Polygon } from '@visx/shape';
 import { scaleLog, scaleTime } from '@visx/scale';
 import { AxisBottom, AxisLeft } from '@visx/axis';
 
-interface Data {}
-
-interface ChartProps {
+export interface ChartProps {
   height: number;
   width: number;
   data: any;
@@ -35,14 +33,14 @@ const Chart = ({ width, height, data }: ChartProps) => {
     () =>
       scaleTime({
         range: [marginLeft, innerWidth],
-        domain: [new Date(), new Date('2022-08-08T00:00:00')],
+        domain: [new Date('2022-08-08T00:00:00'), new Date('2022-08-10T00:00:00')],
       }),
     []
   );
 
   return (
     <svg width={width} height={height}>
-      <rect stroke="#ffffff" width={innerWidth} height={innerHeight} x={marginLeft} y={marginTop} />
+      {/* <rect stroke="#ffffff" width={innerWidth} height={innerHeight} x={marginLeft} y={marginTop} /> */}
       <AxisLeft
         scale={axisLeft}
         left={marginLeft}
@@ -54,7 +52,8 @@ const Chart = ({ width, height, data }: ChartProps) => {
         tickFormat={(v) => {
           const asString = `£${v}`;
           // label only major ticks
-          return asString.match(/^[.01?[\]]*$/) ? asString : '';
+          return asString;
+          // return asString.match(/^[.01?[\]]*$/) ? asString : '';
         }}
         tickLabelProps={() => ({
           fill: '#FAFAFA',
@@ -77,7 +76,7 @@ const Chart = ({ width, height, data }: ChartProps) => {
         })}
       />
       {/* This is excluded right now until backend produces an array of all prices. */}
-      {/* <LinePath<number>
+      <LinePath<number>
         stroke="#ffffff"
         fill="#ffffff"
         strokeWidth={2}
@@ -87,7 +86,7 @@ const Chart = ({ width, height, data }: ChartProps) => {
           return axisBottom(d) ?? 0;
         }}
         y={(d) => axisLeft(d) ?? 0}
-      /> */}
+      />
       <Polygon
         fill="green"
         center={{ x: innerWidth - data / 2, y: innerHeight - data / 5 }}

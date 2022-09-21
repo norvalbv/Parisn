@@ -1,16 +1,16 @@
 import { FC, ReactElement } from 'react';
 
-interface RadialProps {
+export interface RadialProps {
   size?: keyof typeof sizeMap;
   colour?: keyof typeof colourMap;
   classes?: string;
 }
 
-const Radial: FC<RadialProps> = ({
+const Radial = ({
   size = 'xl',
-  colour = '#004B6E',
+  colour = 'darkpurple',
   classes = '',
-}): ReactElement => {
+}: RadialProps): ReactElement => {
   return (
     <svg
       className={`absolute rounded-full opacity-[15%] blur-3xl z-0 ${classes}`}

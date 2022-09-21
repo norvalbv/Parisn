@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import Button from './Button';
+import Button from '../Button';
 
-interface ProductSizesProps {
+export interface ProductSizesProps {
   sizes: { small: string; medium: string; large: string; extralarge: string };
   classes?: string;
   onClick?: (arg: string) => void;
@@ -27,7 +27,7 @@ const ProductSizes = ({ sizes, classes, onClick, selectedSize }: ProductSizesPro
             key={i}
             text={productSize}
             size="xs"
-            width={30}
+            width="25rem"
             borderRequired="bottom"
             hoverColorRequired={false}
             disabled={Boolean(!size[1])}

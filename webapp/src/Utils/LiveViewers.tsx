@@ -1,13 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import io from 'socket.io-client';
 
-// let socket = io('ws://localhost:8000', {
-//   withCredentials: true,
-// });
+let socket = io('ws://localhost:8000', {
+  withCredentials: true,
+});
 
-const LiveViewers = () => {
+interface LiveViewersProps {
+  params?: string;
+}
+
+const LiveViewers = ({ params }: LiveViewersProps) => {
+  const [searchParams] = useSearchParams();
+  const itemParams = searchParams.get('product') || '';
+
   const [viewCount, setViewCount] = useState(0);
-  // socket.on('get viewers', (amount) => setViewCount(amount));
+
+  useEffect(() => {
+    if (!params) {
+      socket.emit('join room', itemParams, (amount: number) => {
+        console.log(amount);
+        return setViewCount(amount);
+      });
+    } else {
+      socket.emit('get room', params, (amount: number) => {
+        console.log(amount);
+        return setViewCount(amount);
+      });
+    }
+
+    // return () => {
+    //   socket.disconnect();
+    // };
+  }, []);
+
+  if (params) console.log(viewCount, 'live viewers');
+
   return <p className="text-sm">Live viewers: {viewCount}</p>;
 };
 

@@ -1,10 +1,10 @@
 import { ParentSize } from '@visx/responsive';
 import { useEffect, useMemo, useState } from 'react';
-import Button from '../../components/Button';
-import Chart from '../../components/Chart';
+import Button from '../components/Button';
+import Chart from '../components/Chart';
 import LiveViewers from '../../Utils/LiveViewers';
 import { scaleLog } from '@visx/scale';
-import ProductSizes from '../../components/ProductSizes';
+import ProductSizes from '../components/ProductSizes';
 import { useProductById } from '../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 
@@ -21,13 +21,13 @@ const ItemView = () => {
   );
   let num = 80000;
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setPrice(priceScale.invert(num));
-  //     num--;
-  //   }, 10);
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setPrice(priceScale.invert(num));
+      num--;
+    }, 10);
+    return () => clearInterval(timer);
+  }, []);
 
   const [selectedSize, setSelectedSize] = useState('M');
 
