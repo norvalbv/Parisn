@@ -6,7 +6,7 @@ let socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
-interface LiveViewersProps {
+export interface LiveViewersProps {
   params?: string;
 }
 

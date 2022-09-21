@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useProducts } from '../../services/DataApiService';
-import LiveViewers from '../../Utils/LiveViewers';
+import { useProducts } from '../../../services/DataApiService';
+import LiveViewers from '../../../components/LiveViewers';
 
 const Catalogue = () => {
   const [products, setProducts] = useState([]);

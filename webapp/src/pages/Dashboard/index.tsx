@@ -1,6 +1,6 @@
 import Radial from 'components/Design/Radial';
-import NavBar from '../layout/NavBar';
-import { DASHBOARD_IMAGE } from '../constants';
+import NavBar from '../../layout/NavBar';
+import { DASHBOARD_IMAGE } from '../../constants';
 import Button from 'components/Button';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';

@@ -2,10 +2,10 @@ import { ParentSize } from '@visx/responsive';
 import { useEffect, useMemo, useState } from 'react';
 import Button from '../components/Button';
 import Chart from '../components/Chart';
-import LiveViewers from '../../Utils/LiveViewers';
+import LiveViewers from '../../../components/LiveViewers';
 import { scaleLog } from '@visx/scale';
 import ProductSizes from '../components/ProductSizes';
-import { useProductById } from '../../services/DataApiService';
+import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 
 const ItemView = () => {
