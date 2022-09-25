@@ -1,7 +1,7 @@
-import Radial from 'components/Design/Radial';
+import Radial from '../../components/Design/Radial';
 import NavBar from '../../layout/NavBar';
 import { DASHBOARD_IMAGE } from '../../constants';
-import Button from 'components/Button';
+import Button from '../../components/Button';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';
 import { Label } from '@visx/annotation';

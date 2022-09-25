@@ -8,11 +8,7 @@ const ProductSizesWithRequiredProps: FC<Required<ProductSizesProps>> = ProductSi
 describe('<ProductSizes />', () => {
   test('ProductSizes props with mandatory props', () => {
     const tree = renderer
-      .create(
-        <ProductSizes
-          sizes={{ small: 'Small', medium: 'Medium', large: 'Large', extralarge: 'Extra Large' }}
-        />
-      )
+      .create(<ProductSizes sizes={{ small: 5, medium: 4, large: 3, extralarge: 2 }} />)
       .toJSON();
     expect(tree).toMatchSnapshot();
   });
@@ -21,7 +17,7 @@ describe('<ProductSizes />', () => {
     const tree = renderer
       .create(
         <ProductSizesWithRequiredProps
-          sizes={{ small: 'Small', medium: 'Medium', large: 'Large', extralarge: 'Extra Large' }}
+          sizes={{ small: 5, medium: 4, large: 3, extralarge: 2 }}
           classes="bg-red-500"
           onClick={jest.fn()}
           selectedSize="Medium"

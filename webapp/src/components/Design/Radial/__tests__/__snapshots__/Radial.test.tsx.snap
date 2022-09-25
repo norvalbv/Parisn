@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Radial /> Radial props with all props as required 1`] = `
+<svg
+  className="absolute rounded-full opacity-[15%] blur-3xl z-0 bg-red-500"
+  style={
+    {
+      "backgroundColor": "blue",
+      "height": "25rem",
+      "width": "25rem",
+    }
+  }
+/>
+`;
+
+exports[`<Radial /> Radial props with mandatory props 1`] = `
+<svg
+  className="absolute rounded-full opacity-[15%] blur-3xl z-0 "
+  style={
+    {
+      "backgroundColor": "darkpurple",
+      "height": "40rem",
+      "width": "40rem",
+    }
+  }
+/>
+`;

@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Checkout /> Checkout props with mandatory props 1`] = `
+<div>
+  Checkout
+</div>
+`;

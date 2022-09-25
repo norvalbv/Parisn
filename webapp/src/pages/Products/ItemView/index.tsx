@@ -1,12 +1,13 @@
 import { ParentSize } from '@visx/responsive';
 import { useEffect, useMemo, useState } from 'react';
-import Button from '../components/Button';
-import Chart from '../components/Chart';
+import Button from '../../../components/Button';
+import Chart from '../../../components/Chart';
 import LiveViewers from '../../../components/LiveViewers';
 import { scaleLog } from '@visx/scale';
-import ProductSizes from '../components/ProductSizes';
+import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
+import { MockData, Stock } from '../../../../../server';
 
 const ItemView = () => {
   const [price, setPrice] = useState(1000);
@@ -32,18 +33,18 @@ const ItemView = () => {
   const [selectedSize, setSelectedSize] = useState('M');
 
   const [searchParams] = useSearchParams();
-  const currentProduct = searchParams.get('product');
+  const currentProduct = searchParams.get('product') || '';
 
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<null | MockData>(null);
   useEffect(() => {
     (async () => {
       const { data } = await useProductById(currentProduct || '');
-      const indexed = data.findIndex((x) => x.id === currentProduct);
+      const indexed = data.findIndex((x) => (x.id as unknown as string) === currentProduct);
       setProduct(data[indexed]);
     })();
   }, []);
 
-  if (!product.stock) return <></>;
+  if (!product) return <></>;
 
   // console.log(Array.from(Array(num).keys()).map((i) => priceScale(i)));
 
@@ -55,7 +56,11 @@ const ItemView = () => {
 
   return (
     <div className="relative overflow-auto scroll-smooth">
-      <img src={product.image} alt={product.image} className="h-screen w-[40%] sticky top-0" />
+      <img
+        src={product.image as unknown as string}
+        alt={product.image as unknown as string}
+        className="h-screen w-[40%] sticky top-0"
+      />
       <div className="absolute right-0 top-0 w-[60%]">
         <div
           id="product-overview"
@@ -68,7 +73,7 @@ const ItemView = () => {
           </div>
 
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            {product.title}
+            {product.title as unknown as string}
           </span>
 
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
@@ -85,7 +90,7 @@ const ItemView = () => {
           <ProductSizes
             classes="mb-4"
             selectedSize={selectedSize}
-            sizes={product.stock}
+            sizes={product.stock as unknown as Stock}
             onClick={(size) => setSelectedSize(size)}
           />
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
@@ -98,7 +103,7 @@ const ItemView = () => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{product.description}</p>
+          <p className="my-6 font-light">{product.description as unknown as string}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>

@@ -19,12 +19,12 @@ const LiveViewers = ({ params }: LiveViewersProps) => {
   useEffect(() => {
     if (!params) {
       socket.emit('join room', itemParams, (amount: number) => {
-        console.log(amount);
+        // console.log(amount);
         return setViewCount(amount);
       });
     } else {
       socket.emit('get room', params, (amount: number) => {
-        console.log(amount);
+        // console.log(amount);
         return setViewCount(amount);
       });
     }
@@ -34,7 +34,7 @@ const LiveViewers = ({ params }: LiveViewersProps) => {
     // };
   }, []);
 
-  if (params) console.log(viewCount, 'live viewers');
+  // if (params) console.log(viewCount, 'live viewers');
 
   return <p className="text-sm">Live viewers: {viewCount}</p>;
 };
