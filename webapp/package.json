@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "scripts": {
     "start": "vite",
-    "build": "tsc && vite build",
+    "build": "yarn tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
-    "test": "tsc && jest",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "dependencies": {
@@ -42,7 +42,7 @@
     "react-test-renderer": "^18.2.0",
     "tailwindcss": "^3.1.6",
     "ts-jest": "^29.0.1",
-    "typescript": "^4.6.4",
+    "typescript": "^4.8.3",
     "vite": "^3.0.0"
   },
   "jest": {
