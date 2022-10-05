@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Radial /> Radial props with all props as required 1`] = `
+[
+  <p
+    className="text-sm"
+  >
+    Live viewers: 
+    0
+  </p>,
+  " ",
+]
+`;
+
+exports[`<Radial /> Radial props with mandatory props 1`] = `
+<p
+  className="text-sm"
+>
+  Live viewers: 
+  0
+</p>
+`;

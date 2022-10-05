@@ -1,0 +1,191 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ProductSizes /> ProductSizes props with all props as required 1`] = `
+<div
+  className="flex gap-4 bg-red-500"
+>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      s
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      m
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      l
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      xl
+    </span>
+  </button>
+</div>
+`;
+
+exports[`<ProductSizes /> ProductSizes props with mandatory props 1`] = `
+<div
+  className="flex gap-4 undefined"
+>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      s
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      m
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      l
+    </span>
+  </button>
+  <button
+    className="relative inline-flex items-center justify-center text-center false uppercase  px-1 py-2 text-sm hover:border-b-pink-500 hover:scale-125  border-b py-4"
+    disabled={false}
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "1.5rem",
+      }
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
+    >
+      xl
+    </span>
+  </button>
+</div>
+`;

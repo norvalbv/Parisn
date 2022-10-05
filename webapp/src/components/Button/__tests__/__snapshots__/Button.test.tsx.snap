@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Button props with all props as required 1`] = `
+<button
+  className="relative inline-flex items-center justify-center text-center hover:bg-buttons-hover uppercase  px-6 py-2.5 text-sm w-full underline border py-4"
+  data-testid="Data Attribute"
+  disabled={true}
+  id="Test Id"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  role="button"
+  style={
+    {
+      "backgroundColor": "bg-red-200",
+      "color": "text-red-500",
+      "width": "25rem",
+    }
+  }
+  type="button"
+>
+  <svg
+    className="absolute"
+    height="100%"
+    width="100%"
+  >
+    <line
+      stroke="darkRed"
+      strokeWidth={2.25}
+      x2="100%"
+      y2="100%"
+    />
+  </svg>
+  <span
+    className="mr-2.5"
+  >
+    <div>
+      Icon
+    </div>
+  </span>
+  <span
+    className="inline-block font-semibold"
+  >
+    Test Text
+  </span>
+</button>
+`;
+
+exports[`<Button /> Button props with mandatory props 1`] = `
+<button
+  className="relative inline-flex items-center justify-center text-center hover:bg-buttons-hover uppercase  px-6 py-2.5 text-sm w-full  border py-4"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  role="button"
+  style={
+    {
+      "backgroundColor": undefined,
+      "color": undefined,
+      "width": "25rem",
+    }
+  }
+  type="button"
+>
+  <span
+    className="inline-block font-semibold"
+  >
+    Test Text
+  </span>
+</button>
+`;
