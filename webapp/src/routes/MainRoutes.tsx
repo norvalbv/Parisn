@@ -10,6 +10,7 @@ import ItemView from '../pages/Products/ItemView';
 import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';
 import TermsAndConditions from '../pages/Legal/TermsAndConditions';
 import Checkout from '../pages/Checkout';
+import NotFound from '../pages/NotFound';
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -30,6 +31,7 @@ const MainRoutes = () => {
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
   );
