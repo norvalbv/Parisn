@@ -14,7 +14,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
 
-    // Emit -- What is this?????
+    // Emit
     "noEmit": true,
 
     // Interop Constraints
@@ -30,5 +30,3 @@
     "noErrorTruncation": true
   }
 }
-
-// Read about top level compiler options (files, extends, include, exclude, references etc...)
