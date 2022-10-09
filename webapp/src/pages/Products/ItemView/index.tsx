@@ -8,9 +8,13 @@ import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 import { MockData, Stock } from '../../../types';
+import useProduct from '../../../hooks/useProduct';
 
 const ItemView = () => {
-  const [price, setPrice] = useState(1000);
+  const [localProduct, setLocalProduct] = useState<null | MockData>(null);
+  const [localPrice, setLocalPrice] = useState(1000);
+
+  const { setPrice, setProduct } = useProduct();
 
   const priceScale = useMemo(
     () =>
@@ -24,7 +28,7 @@ const ItemView = () => {
 
   // useEffect(() => {
   //   const timer = setInterval(() => {
-  //     setPrice(priceScale.invert(num));
+  //     setLocalPrice(priceScale.invert(num));
   //     num--;
   //   }, 10);
   //   return () => clearInterval(timer);
@@ -35,28 +39,29 @@ const ItemView = () => {
   const [searchParams] = useSearchParams();
   const currentProduct = searchParams.get('product') || '';
 
-  const [product, setProduct] = useState<null | MockData>(null);
   useEffect(() => {
     (async () => {
       const { data } = await useProductById(currentProduct || '');
       const indexed = data.findIndex((x) => (x.id as unknown as string) === currentProduct);
-      setProduct(data[indexed]);
+      setLocalProduct(data[indexed]);
     })();
   }, []);
 
-  if (!product) return <></>;
+  if (!localProduct) return <></>;
 
-  // console.log(Array.from(Array(num).keys()).map((i) => priceScale(i)));
-
-  const compareSelectedVals = Object.entries(product.stock)[
-    Object.entries(product.stock).findIndex((x) =>
+  const compareSelectedVals = Object.entries(localProduct.stock)[
+    Object.entries(localProduct.stock).findIndex((x) =>
       x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
     )
   ][1];
 
   return (
     <div className="relative overflow-auto scroll-smooth">
-      <img src={product.image} alt={product.image} className="h-screen w-[40%] sticky top-0" />
+      <img
+        src={localProduct.image}
+        alt={localProduct.image}
+        className="h-screen w-[40%] sticky top-0"
+      />
       <div className="absolute right-0 top-0 w-[60%]">
         <div
           id="product-overview"
@@ -64,30 +69,33 @@ const ItemView = () => {
         >
           <div className="w-[70%] h-[35vh]">
             <ParentSize>
-              {(parent) => <Chart width={parent.width} height={parent.height} data={price} />}
+              {(parent) => <Chart width={parent.width} height={parent.height} data={localPrice} />}
             </ParentSize>
           </div>
 
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            {product.title}
+            {localProduct.title}
           </span>
 
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
             View Description
           </a>
-          <p className="text-lg">£{price.toFixed(2)}</p>
+          <p className="text-lg">£{localPrice.toFixed(2)}</p>
           <Button
             text="Buy Now"
-            hoveredText={`Buy at £${price.toFixed(2)}`}
+            hoveredText={`Buy at £${localPrice.toFixed(2)}`}
             classes="mt-10"
             rounded="lg"
             navigateTo="/checkout"
-            onClick={() => console.log(product)}
+            onClick={() => {
+              setPrice(localPrice);
+              setProduct(localProduct);
+            }}
           />
           <ProductSizes
             classes="mb-4"
             selectedSize={selectedSize}
-            sizes={product.stock}
+            sizes={localProduct.stock}
             onClick={(size) => setSelectedSize(size)}
           />
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
@@ -100,7 +108,7 @@ const ItemView = () => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{product.description}</p>
+          <p className="my-6 font-light">{localProduct.description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>
