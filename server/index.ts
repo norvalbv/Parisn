@@ -9,22 +9,7 @@ const io = require('socket.io')(server, {
   },
 });
 
-export interface Stock {
-  small: number;
-  medium: number;
-  large: number;
-  extralarge: number;
-}
-export interface MockData {
-  [key: string]: {
-    id: string;
-    title: string;
-    description: string;
-    image: string;
-    price: number;
-    stock: Stock;
-  };
-}
+import { MockData } from '../webapp/src/types';
 
 const data: MockData = require('./mockdata.json');
 
