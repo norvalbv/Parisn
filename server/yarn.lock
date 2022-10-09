@@ -177,10 +177,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^18.7.21":
-  version: 18.7.21
-  resolution: "@types/node@npm:18.7.21"
-  checksum: 9e0558dd44766fb3b1b26815e9877849d8f1188115e0d2bee540cee2c5a11f90e4c00ee059edae8ea018e7f66217e4bf53271536c9a6fd05e33f713b8daa4c66
+"@types/node@npm:^18.8.3":
+  version: 18.8.3
+  resolution: "@types/node@npm:18.8.3"
+  checksum: 9201adc6dc389644c9f478f950ef8926a93e5827865dcd80d7d12fefacab665c96879c87cd6ec74d5eccdd998c4603d02e1e07a35d71a63fe4c20670a381f6ef
   languageName: node
   linkType: hard
 
@@ -1705,7 +1705,7 @@ __metadata:
   resolution: "server@workspace:."
   dependencies:
     "@types/express": ^4.17.13
-    "@types/node": ^18.7.21
+    "@types/node": ^18.8.3
     axios: ^0.27.2
     cors: ^2.8.5
     dotenv: ^16.0.1
