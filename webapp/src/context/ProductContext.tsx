@@ -1,5 +1,5 @@
 import React, { createContext, useState, useMemo, useEffect } from 'react';
-import { MockData, ProductContextData, ProductInfoValues } from '../types';
+import { ProductContextData, ProductInfoValues } from '../types';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -15,14 +15,18 @@ export const ProductContextProvider = ({ children }: ProductContextProviderProps
   });
 
   useEffect(() => {
-    if (productInfo) {
-      localStorage.setItem('savedProductInfo', JSON.stringify(productInfo));
-    }
+    const retreviedProductInfo = localStorage.getItem('savedProductInfo');
+    const parsedData = JSON.parse(retreviedProductInfo || '');
+    // // Checks whether all data is truthy or not.
+    const truthyDataParsed = Object.values(parsedData).every((item) => item);
 
-    if (!productInfo) {
-      const retreviedProductInfo = localStorage.getItem('savedProductInfo');
-      retreviedProductInfo && setProductInfo(JSON.parse(retreviedProductInfo));
+    if (truthyDataParsed) {
+      return setProductInfo(parsedData);
     }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('savedProductInfo', JSON.stringify(productInfo));
   }, [productInfo]);
 
   const memoisedValue = useMemo(
@@ -30,7 +34,7 @@ export const ProductContextProvider = ({ children }: ProductContextProviderProps
       productInfo,
       setProductInfo,
     }),
-    [productInfo]
+    [productInfo?.product]
   );
 
   return <ProductContext.Provider value={memoisedValue}>{children}</ProductContext.Provider>;
