@@ -15,7 +15,7 @@ const ItemView = () => {
   const [localPrice, setLocalPrice] = useState(1000);
   const [localSelectedSize, setLocalSelectedSize] = useState('M');
 
-  const { setPrice, setProduct, setSelectedSize } = useProduct();
+  const { setProductInfo } = useProduct();
 
   const priceScale = useMemo(
     () =>
@@ -87,9 +87,11 @@ const ItemView = () => {
             rounded="lg"
             navigateTo="/checkout"
             onClick={() => {
-              setPrice(localPrice);
-              setProduct(localProduct);
-              setSelectedSize(localSelectedSize);
+              setProductInfo({
+                product: localProduct,
+                price: localPrice,
+                selectedSize: localSelectedSize,
+              });
             }}
           />
           <ProductSizes

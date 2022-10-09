@@ -2,12 +2,12 @@ import React from 'react';
 import useProduct from '../../hooks/useProduct';
 
 const Checkout = () => {
-  const { product, price } = useProduct();
-  if (!product) return <></>;
+  const { productInfo } = useProduct();
+  if (!productInfo) return <></>;
   return (
     <div>
-      {price}
-      {product.title}
+      {productInfo.price}
+      {productInfo.product?.title}
     </div>
   );
 };
