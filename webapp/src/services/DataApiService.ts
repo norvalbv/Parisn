@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { MockData } from '../../../server/index';
+import { MockData } from '../types';
 
 interface UseProductByIdReturn {
   data: MockData[];
