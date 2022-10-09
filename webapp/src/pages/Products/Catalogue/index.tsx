@@ -16,12 +16,9 @@ const Catalogue = (): ReactElement => {
   if (!products) return <></>;
 
   return (
-    <div className="grid grid-cols-3 pt-24 pb-8">
+    <div className="grid grid-cols-3 pt-24 pb-8 divide-x divide-secondary-neutral">
       {products.map((product) => (
-        <div
-          key={product.id}
-          className="flex flex-col flex-wrap justify-center items-center border-r border-secondary-neutral last:border-none pt-10"
-        >
+        <div key={product.id} className="flex flex-col flex-wrap justify-center items-center pt-10">
           <p className="underline">{product.title}</p>
           <Link
             to={`/shop-item?product=${product.id}`}
