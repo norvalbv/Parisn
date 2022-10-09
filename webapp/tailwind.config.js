@@ -40,6 +40,9 @@ module.exports = {
           '50%': { transform: 'rotate(45deg)' },
         },
       },
+      animation: {
+        'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+      },
     },
   },
   plugins: [],

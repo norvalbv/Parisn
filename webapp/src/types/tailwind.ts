@@ -46,3 +46,10 @@ const colourMap = {
 };
 
 export type colour = keyof typeof colourMap;
+
+export const animationDurationMap = {
+  fast: 'animate-pulse-fast',
+  slow: 'animate-pulse',
+};
+
+export type AnimationDuration = keyof typeof animationDurationMap;
