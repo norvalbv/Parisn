@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Stock } from '../../../../server';
+import { Stock } from '../../types';
 import Button from '../Button';
 
 export interface ProductSizesProps {
