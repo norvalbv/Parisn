@@ -16,6 +16,7 @@ const ReusableSVG = ({
   size = 15,
   viewBox = '0 0 14 16',
   className = '',
+  strokeWidth = 1,
 }: ReusableSVGProps): ReactElement => {
   return (
     <svg
@@ -26,6 +27,7 @@ const ReusableSVG = ({
       xmlns="http://www.w3.org/2000/svg"
       stroke={colour}
       className={className}
+      strokeWidth={strokeWidth}
     >
       {group}
     </svg>
@@ -61,5 +63,23 @@ export const Spinner = ({
     size={size}
     viewBox="0 0 24 24"
     className={className}
+  />
+);
+
+export const Basket = ({ fill, colour = 'white', size = 24 }: IconProps): ReactElement => (
+  <ReusableSVG
+    group={
+      <g>
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline points="7 10 12 4 17 10" />
+        <path d="M21 10l-2 8a2 2.5 0 0 1 -2 2h-10a2 2.5 0 0 1 -2 -2l-2 -8z" />
+        <circle cx="12" cy="15" r="2" />
+      </g>
+    }
+    fill={fill}
+    colour={colour}
+    size={size}
+    viewBox="0 0 20 24"
+    strokeWidth={1.5}
   />
 );
