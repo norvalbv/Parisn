@@ -21,7 +21,6 @@ export const useProductById = async (productid: string): Promise<UseProductByIdR
     .catch((err) => console.log(err));
 
   const data: MockData[] = Object.values(response);
-  console.log(data);
 
   // const temp = t.findIndex((x) => x.id === productid);
 
