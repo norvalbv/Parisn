@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<NavBar /> should render correctly 1`] = `
+<ul
+  className="absolute right-0 flex text-white items-center pr-8 py-6 z-50 divide-x"
+>
+  <a
+    href="/home"
+    onClick={[Function]}
+  >
+    <li
+      className="px-10 cursor-pointer hover:underline underline-offset-8"
+    >
+      Home
+    </li>
+  </a>
+  <a
+    href="/catalogue"
+    onClick={[Function]}
+  >
+    <li
+      className="px-10 cursor-pointer hover:underline underline-offset-8"
+    >
+      Catalogue
+    </li>
+  </a>
+  <a
+    href="/contact-us"
+    onClick={[Function]}
+  >
+    <li
+      className="px-10 cursor-pointer hover:underline underline-offset-8"
+    >
+      Contact
+    </li>
+  </a>
+</ul>
+`;
