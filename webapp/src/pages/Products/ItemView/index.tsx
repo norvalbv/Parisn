@@ -54,8 +54,6 @@ const ItemView = () => {
     )
   ][1];
 
-  console.log(product);
-
   return (
     <div className="relative overflow-auto scroll-smooth">
       <img src={product.image} alt={product.image} className="h-screen w-[40%] sticky top-0" />
@@ -84,6 +82,7 @@ const ItemView = () => {
             classes="mt-10"
             rounded="lg"
             navigateTo="/checkout"
+            onClick={() => console.log(product)}
           />
           <ProductSizes
             classes="mb-4"

@@ -11,6 +11,7 @@ import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';
 import TermsAndConditions from '../pages/Legal/TermsAndConditions';
 import Checkout from '../pages/Checkout';
 import NotFound from '../pages/NotFound';
+import { ProductContextProvider } from '../context/ProductContext';
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -25,8 +26,22 @@ const MainRoutes = () => {
         <Route path="/home" element={<Dashboard />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
-        <Route path="shop-item" element={<ItemView />} />
-        <Route path="checkout" element={<Checkout />} />
+        <Route
+          path="shop-item"
+          element={
+            <ProductContextProvider>
+              <ItemView />
+            </ProductContextProvider>
+          }
+        />
+        <Route
+          path="checkout"
+          element={
+            <ProductContextProvider>
+              <Checkout />
+            </ProductContextProvider>
+          }
+        />
         <Route path="catalogue" element={<Catalogue />} />
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
