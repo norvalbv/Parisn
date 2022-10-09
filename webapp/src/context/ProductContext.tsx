@@ -18,8 +18,7 @@ export const ProductContextProvider = ({ children }: ProductContextProviderProps
     const retreviedProductInfo = localStorage.getItem('savedProductInfo');
     const parsedData = JSON.parse(retreviedProductInfo || 'null');
     // Checks whether all data is truthy or not.
-    const truthyDataParsed =
-      typeof parsedData === 'object' && Object.values(parsedData).every((item) => item);
+    const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
     if (truthyDataParsed) {
       return setProductInfo(parsedData);
