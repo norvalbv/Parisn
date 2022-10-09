@@ -7,7 +7,7 @@ import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
-import { MockData, Stock } from '../../../../../server';
+import { MockData, Stock } from '../../../types';
 
 const ItemView = () => {
   const [price, setPrice] = useState(1000);
@@ -22,13 +22,13 @@ const ItemView = () => {
   );
   let num = 80000;
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setPrice(priceScale.invert(num));
-      num--;
-    }, 10);
-    return () => clearInterval(timer);
-  }, []);
+  // useEffect(() => {
+  //   const timer = setInterval(() => {
+  //     setPrice(priceScale.invert(num));
+  //     num--;
+  //   }, 10);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   const [selectedSize, setSelectedSize] = useState('M');
 
@@ -54,13 +54,11 @@ const ItemView = () => {
     )
   ][1];
 
+  console.log(product);
+
   return (
     <div className="relative overflow-auto scroll-smooth">
-      <img
-        src={product.image as unknown as string}
-        alt={product.image as unknown as string}
-        className="h-screen w-[40%] sticky top-0"
-      />
+      <img src={product.image} alt={product.image} className="h-screen w-[40%] sticky top-0" />
       <div className="absolute right-0 top-0 w-[60%]">
         <div
           id="product-overview"
@@ -73,7 +71,7 @@ const ItemView = () => {
           </div>
 
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            {product.title as unknown as string}
+            {product.title}
           </span>
 
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
@@ -90,7 +88,7 @@ const ItemView = () => {
           <ProductSizes
             classes="mb-4"
             selectedSize={selectedSize}
-            sizes={product.stock as unknown as Stock}
+            sizes={product.stock}
             onClick={(size) => setSelectedSize(size)}
           />
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
@@ -103,7 +101,7 @@ const ItemView = () => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{product.description as unknown as string}</p>
+          <p className="my-6 font-light">{product.description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>
