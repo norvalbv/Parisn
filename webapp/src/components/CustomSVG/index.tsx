@@ -9,10 +9,6 @@ interface ReusableSVGProps extends IconProps {
   group: JSX.Element;
 }
 
-interface EggTimerIconProps extends IconProps {
-  SVGoutline?: boolean;
-}
-
 const ReusableSVG = ({
   group,
   fill = 'none',
