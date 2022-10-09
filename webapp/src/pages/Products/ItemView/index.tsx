@@ -7,14 +7,15 @@ import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
-import { MockData, Stock } from '../../../types';
+import { MockData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 
 const ItemView = () => {
   const [localProduct, setLocalProduct] = useState<null | MockData>(null);
   const [localPrice, setLocalPrice] = useState(1000);
+  const [localSelectedSize, setLocalSelectedSize] = useState('M');
 
-  const { setPrice, setProduct } = useProduct();
+  const { setPrice, setProduct, setSelectedSize } = useProduct();
 
   const priceScale = useMemo(
     () =>
@@ -34,8 +35,6 @@ const ItemView = () => {
   //   return () => clearInterval(timer);
   // }, []);
 
-  const [selectedSize, setSelectedSize] = useState('M');
-
   const [searchParams] = useSearchParams();
   const currentProduct = searchParams.get('product') || '';
 
@@ -51,7 +50,7 @@ const ItemView = () => {
 
   const compareSelectedVals = Object.entries(localProduct.stock)[
     Object.entries(localProduct.stock).findIndex((x) =>
-      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
+      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === localSelectedSize.toLowerCase()
     )
   ][1];
 
@@ -90,13 +89,14 @@ const ItemView = () => {
             onClick={() => {
               setPrice(localPrice);
               setProduct(localProduct);
+              setSelectedSize(localSelectedSize);
             }}
           />
           <ProductSizes
             classes="mb-4"
-            selectedSize={selectedSize}
+            selectedSize={localSelectedSize}
             sizes={localProduct.stock}
-            onClick={(size) => setSelectedSize(size)}
+            onClick={(size) => setLocalSelectedSize(size)}
           />
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}

@@ -16,6 +16,8 @@ export interface MockData {
 export type ProductContextData = {
   product: MockData | null;
   price: number | null;
+  selectedSize: string | null;
   setProduct: React.Dispatch<React.SetStateAction<MockData | null>>;
   setPrice: React.Dispatch<React.SetStateAction<number | null>>;
+  setSelectedSize: React.Dispatch<React.SetStateAction<string | null>>;
 };
