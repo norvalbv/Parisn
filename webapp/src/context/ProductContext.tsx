@@ -1,5 +1,5 @@
 import React, { createContext, useState, useMemo, useEffect } from 'react';
-import { MockData, ProductContextData } from '../types';
+import { MockData, ProductContextData, ProductInfoValues } from '../types';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -8,37 +8,29 @@ type ProductContextProviderProps = {
 const ProductContext = createContext<ProductContextData | null>(null);
 
 export const ProductContextProvider = ({ children }: ProductContextProviderProps) => {
-  const [product, setProduct] = useState<MockData | null>(null);
-  const [price, setPrice] = useState<number | null>(null);
-  const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [productInfo, setProductInfo] = useState<ProductInfoValues | null>({
+    product: null,
+    price: null,
+    selectedSize: null,
+  });
 
   useEffect(() => {
-    if (product && price) {
-      localStorage.setItem('savedProduct', JSON.stringify(product));
-      localStorage.setItem('savedPrice', JSON.stringify(price));
-      localStorage.setItem('savedSize', JSON.stringify(selectedSize));
+    if (productInfo) {
+      localStorage.setItem('savedProductInfo', JSON.stringify(productInfo));
     }
 
-    if (!product && !price) {
-      const retreviedProduct = localStorage.getItem('savedProduct');
-      const retreviedPrice = localStorage.getItem('savedPrice');
-      const retreviedSize = localStorage.getItem('savedSize');
-      retreviedProduct && setProduct(JSON.parse(retreviedProduct));
-      retreviedPrice && setPrice(JSON.parse(retreviedPrice));
-      retreviedSize && setSelectedSize(JSON.parse(retreviedSize));
+    if (!productInfo) {
+      const retreviedProductInfo = localStorage.getItem('savedProductInfo');
+      retreviedProductInfo && setProductInfo(JSON.parse(retreviedProductInfo));
     }
-  }, [product, price]);
+  }, [productInfo]);
 
   const memoisedValue = useMemo(
     () => ({
-      product,
-      price,
-      selectedSize,
-      setProduct,
-      setPrice,
-      setSelectedSize,
+      productInfo,
+      setProductInfo,
     }),
-    [product, price]
+    [productInfo]
   );
 
   return <ProductContext.Provider value={memoisedValue}>{children}</ProductContext.Provider>;
