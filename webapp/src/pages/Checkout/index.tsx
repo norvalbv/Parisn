@@ -21,10 +21,7 @@ const Checkout = () => {
               <div>
                 <Button
                   text="Clear shopping Basket"
-                  onClick={() => {
-                    localStorage.clear();
-                    window.location.reload();
-                  }}
+                  onClick={() => localStorage.clear()}
                   navigateTo="/"
                 />
               </div>
