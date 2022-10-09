@@ -64,6 +64,10 @@ export interface ButtonProps {
    */
   onClick?: () => void;
   /**
+   * Optional mouse event
+   */
+  onMouseLeave?: () => void;
+  /**
    * id to identify button on dom
    */
   id?: string;
@@ -113,6 +117,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       iconPosition = 'left',
       onClick,
+      onMouseLeave,
       id,
       dataAtt,
       upperCase = true,
@@ -153,7 +158,10 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         ref={ref}
         onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        onMouseLeave={() => {
+          setHovered(false);
+          if (onMouseLeave) onMouseLeave();
+        }}
       >
         {disabled && (
           <svg width="100%" height="100%" className="absolute">

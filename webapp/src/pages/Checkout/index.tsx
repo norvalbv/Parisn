@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../../components/Button';
 import useProduct from '../../hooks/useProduct';
 
@@ -6,6 +6,8 @@ const Checkout = () => {
   const { productInfo } = useProduct();
 
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
+
+  const [hovered, setHovered] = useState(false);
 
   if (!productInfo) return <></>;
 
@@ -17,15 +19,26 @@ const Checkout = () => {
           <div>
             {productInfo.price}
             {productInfo.product?.title}
-            {truthyDataParsed && (
-              <div>
-                <Button
-                  text="Clear shopping Basket"
-                  onClick={() => localStorage.clear()}
-                  navigateTo="/"
-                />
-              </div>
+            {truthyDataParsed && !hovered ? (
+              <Button text="Clear shopping Basket" onClick={() => setHovered(true)} />
+            ) : (
+              <Button
+                text="Are you sure?"
+                onClick={() => {
+                  localStorage.clear();
+                  setHovered(false);
+                }}
+                onMouseLeave={() => {
+                  console.log('called');
+                  setHovered(false);
+                }}
+                navigateTo="/"
+              />
             )}
+            <p>
+              Note: If you clear your basket, you will not be able to add anything new for 60
+              seconds
+            </p>
           </div>
         </>
       ) : (
