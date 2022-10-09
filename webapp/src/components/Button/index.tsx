@@ -1,5 +1,13 @@
 import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {
+  BorderRequired,
+  borderRequiredMap,
+  FontWeight,
+  fontWeightMap,
+  Rounded,
+  roundedMap,
+} from '../../types/tailwind';
 import Spinner from '../Spinner';
 
 export interface ButtonProps {
@@ -18,7 +26,7 @@ export interface ButtonProps {
   /**
    * How big the border radius
    */
-  rounded?: keyof typeof buttonRadiusMap;
+  rounded?: Rounded;
   /**
    * Set button width manually
    */
@@ -74,7 +82,7 @@ export interface ButtonProps {
   /**
    * Font weight for text
    */
-  fontWeight?: keyof typeof fontWeightMap;
+  fontWeight?: FontWeight;
   /**
    * Type of button
    */
@@ -86,7 +94,7 @@ export interface ButtonProps {
   /**
    * Require boarders?
    */
-  borderRequired?: keyof typeof borderRequiredMap;
+  borderRequired?: BorderRequired;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -134,7 +142,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         type={type}
         className={`relative inline-flex items-center justify-center text-center ${
           hoverColorRequired && 'hover:bg-buttons-hover'
-        } ${upperCase ? 'uppercase' : ''} ${buttonRadiusMap[rounded]} ${
+        } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
         } ${classes} ${borderRequiredMap[borderRequired]} py-4`}
         style={{ width, color, backgroundColor }}
@@ -172,42 +180,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = 'Button';
 
-const borderRequiredMap = {
-  all: 'border',
-  none: 'none',
-  bottom: 'border-b',
-  top: 'border-t',
-  left: 'border-l',
-  right: 'border-r',
-};
-
 const buttonSizeMap = {
   xs: 'px-1 py-2 text-sm',
   sm: 'px-5 py-2.5 text-sm',
   base: 'px-6 py-2.5 text-sm w-full',
   lg: 'px-8 py-2.5 text-base w-full',
-};
-
-const buttonRadiusMap = {
-  xs: 'rounded-xs',
-  small: 'rounded-small',
-  base: 'rounded',
-  md: 'rounded-md',
-  lg: 'rounded-lg',
-  xl: 'rounded-xl',
-  none: '',
-};
-
-const fontWeightMap = {
-  thin: 'font-thin',
-  extralight: 'font-extralight',
-  light: 'font-light',
-  normal: 'font-normal',
-  medium: 'font-medium',
-  semibold: 'font-semibold',
-  bold: 'font-bold',
-  extrabold: 'font-extrabold',
-  black: 'font-black',
 };
 
 export default React.memo(Button);

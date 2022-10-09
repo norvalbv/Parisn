@@ -1,8 +1,9 @@
 import { FC, ReactElement } from 'react';
+import { colour } from '../../../types/tailwind';
 
 export interface RadialProps {
   size?: keyof typeof sizeMap;
-  colour?: keyof typeof colourMap;
+  colour?: colour;
   classes?: string;
 }
 
@@ -31,14 +32,4 @@ const sizeMap = {
   lg: '35rem',
   xl: '40rem',
   '2xl': '45rem',
-};
-
-const colourMap = {
-  bluegreen: '#004B6E',
-  darkpurple: '#120E44',
-  purple: '#8948DC',
-  green: '#00BA92',
-  blue: '#1BC5DC',
-  neutral: '#C0D1D9',
-  dark: '#888888',
 };
