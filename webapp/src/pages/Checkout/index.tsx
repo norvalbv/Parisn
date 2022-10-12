@@ -38,10 +38,10 @@ const Checkout = () => {
 
   return (
     <>
-      <h2 className="text-4xl top-40 border-b w-min mx-auto relative">Checkout</h2>
+      <h2 className="text-4xl top-10 border-b w-min mx-auto relative">Checkout</h2>
       {truthyDataParsed ? (
         <div className="flex justify-around divide-x items-center h-screen">
-          <div className="flex flex-col items-center">
+          <div className="flex-1 flex flex-col items-center">
             <p className="underline underline-offset-2">Purchase Information:</p>
             <img src={productInfo.product?.image} className="mx-8 flex-1" />
             <div className="flex text-sm divide-x">
@@ -65,7 +65,7 @@ const Checkout = () => {
               </>
             ))}
 
-            <Button text="Submit" type="submit" classes="mt-4" />
+            <Button text={`Purchase for £${productInfo.price}`} type="submit" classes="mt-4" />
             <div>
               {truthyDataParsed && !hovered ? (
                 <Button text="Clear shopping Basket" onClick={() => setHovered(true)} />
