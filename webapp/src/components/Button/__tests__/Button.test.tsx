@@ -36,6 +36,7 @@ describe('<Button />', () => {
             icon={<div>Icon</div>}
             iconPosition="left"
             onClick={jest.fn()}
+            onMouseLeave={jest.fn()}
             id="Test Id"
             dataAtt="Data Attribute"
             upperCase
