@@ -1,10 +1,35 @@
 import { useFormik } from 'formik';
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, ReactElement, useState } from 'react';
 import Button from '../../components/Button';
+import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
 
-const Checkout = () => {
+const validate = (values) => {
+  const errors = {};
+  if (!values.firstName) {
+    errors.firstName = 'Required';
+  } else if (values.firstName.length > 15) {
+    errors.firstName = 'Must be 15 characters or less';
+  }
+
+  if (!values.lastName) {
+    errors.lastName = 'Required';
+  } else if (values.lastName.length > 20) {
+    errors.lastName = 'Must be 20 characters or less';
+  }
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address';
+  }
+
+  return errors;
+};
+
+const Checkout = (): ReactElement => {
   const { productInfo } = useProduct();
+
   const formik = useFormik({
     initialValues: {
       firstName: '',
@@ -15,6 +40,7 @@ const Checkout = () => {
       country: '',
       postcode: '',
     },
+    validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
     },
@@ -36,8 +62,6 @@ const Checkout = () => {
 
   if (!productInfo) return <></>;
 
-  console.log(formik);
-
   return (
     <>
       {truthyDataParsed ? (
@@ -57,7 +81,15 @@ const Checkout = () => {
             <form className="flex-1 pl-8 flex flex-col gap-8">
               {Object.entries(formik.initialValues).map(([key], idx) => (
                 <Fragment key={key}>
-                  <label htmlFor={key}>{values[idx]}</label>
+                  <div className="flex gap-8 items-center">
+                    <label htmlFor={key}>{values[idx]}</label>
+
+                    {Object.values(formik.errors)[idx] ? (
+                      <span className="text-sm text-utility-warning-main">
+                        {Object.values(formik.errors)[idx]}
+                      </span>
+                    ) : null}
+                  </div>
                   <input
                     id={key}
                     name={key}
@@ -66,14 +98,12 @@ const Checkout = () => {
                     value={Object.values(formik.values)[idx]}
                     className="w-2/3 bg-transparent outline-none border-0 border-b border-primary-main -mb-4 -mt-8"
                   />
-                  {Object.values(formik.errors)[idx] ? (
-                    <div>{Object.values(formik.errors)[idx]}</div>
-                  ) : null}
                 </Fragment>
               ))}
               <Button text={`Purchase for £${productInfo.price}`} type="submit" classes="mt-4" />
+              <Counter />
               <div>
-                {truthyDataParsed && !hovered ? (
+                {!hovered ? (
                   <Button text="Clear shopping Basket" onClick={() => setHovered(true)} />
                 ) : (
                   <Button

@@ -5,7 +5,6 @@ import { Basket } from '../components/CustomSVG';
 const NavBar = () => {
   const retreviedProductInfo = localStorage.getItem('savedProductInfo');
   const parsedData = JSON.parse(retreviedProductInfo || 'null');
-
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
   const location = useLocation();
