@@ -1,37 +1,30 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Checkout /> Checkout props with mandatory props 1`] = `
-[
-  <h2
-    className="text-4xl top-10 border-b w-min mx-auto relative"
-  >
-    Checkout
-  </h2>,
-  <div
-    className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl"
-  >
-    Basket Empty
-    <button
-      className="relative inline-flex items-center justify-center text-center hover:bg-buttons-hover uppercase  px-6 py-2.5 text-sm w-full  border py-4"
-      onClick={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      role="button"
-      style={
-        {
-          "backgroundColor": undefined,
-          "color": undefined,
-          "width": "25rem",
-        }
+<div
+  className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl"
+>
+  Basket Empty
+  <button
+    className="relative inline-flex items-center justify-center text-center hover:bg-buttons-hover uppercase  px-6 py-2.5 text-sm w-full  border py-4"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    role="button"
+    style={
+      {
+        "backgroundColor": undefined,
+        "color": undefined,
+        "width": "25rem",
       }
-      type="button"
+    }
+    type="button"
+  >
+    <span
+      className="inline-block font-semibold"
     >
-      <span
-        className="inline-block font-semibold"
-      >
-        Continue Shopping
-      </span>
-    </button>
-  </div>,
-]
+      Continue Shopping
+    </span>
+  </button>
+</div>
 `;
