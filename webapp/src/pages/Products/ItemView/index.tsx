@@ -1,5 +1,5 @@
+import React, { useEffect, useMemo, useState } from 'react';
 import { ParentSize } from '@visx/responsive';
-import { useEffect, useMemo, useState } from 'react';
 import Button from '../../../components/Button';
 import Chart from '../../../components/Chart';
 import LiveViewers from '../../../components/LiveViewers';
@@ -120,4 +120,4 @@ const ItemView = () => {
   );
 };
 
-export default ItemView;
+export default React.memo(ItemView);

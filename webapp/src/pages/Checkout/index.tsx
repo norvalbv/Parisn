@@ -1,31 +1,9 @@
-import { useFormik } from 'formik';
 import React, { Fragment, ReactElement, useState } from 'react';
+import { Field, useFormik } from 'formik';
 import Button from '../../components/Button';
 import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
-
-const validate = (values) => {
-  const errors = {};
-  if (!values.firstName) {
-    errors.firstName = 'Required';
-  } else if (values.firstName.length > 15) {
-    errors.firstName = 'Must be 15 characters or less';
-  }
-
-  if (!values.lastName) {
-    errors.lastName = 'Required';
-  } else if (values.lastName.length > 20) {
-    errors.lastName = 'Must be 20 characters or less';
-  }
-
-  if (!values.email) {
-    errors.email = 'Required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-    errors.email = 'Invalid email address';
-  }
-
-  return errors;
-};
+import { validate } from '../../utils/validation';
 
 const Checkout = (): ReactElement => {
   const { productInfo } = useProduct();
@@ -83,24 +61,27 @@ const Checkout = (): ReactElement => {
                 <Fragment key={key}>
                   <div className="flex gap-8 items-center">
                     <label htmlFor={key}>{values[idx]}</label>
-
-                    {Object.values(formik.errors)[idx] ? (
+                    {Object.keys(formik.errors).includes(key) &&
+                    Object.keys(formik.touched).includes(key) ? (
                       <span className="text-sm text-utility-warning-main">
-                        {Object.values(formik.errors)[idx]}
+                        {Object.values(formik.errors)[Object.keys(formik.errors).indexOf(key)]}
                       </span>
                     ) : null}
                   </div>
-                  <input
+                  <Field
                     id={key}
-                    name={key}
-                    type={key}
-                    onChange={formik.handleChange}
-                    value={Object.values(formik.values)[idx]}
+                    type={key === 'email' ? 'email' : 'string'}
+                    {...formik.getFieldProps(key)}
                     className="w-2/3 bg-transparent outline-none border-0 border-b border-primary-main -mb-4 -mt-8"
                   />
                 </Fragment>
               ))}
-              <Button text={`Purchase for £${productInfo.price}`} type="submit" classes="mt-4" />
+              <Button
+                text={`Purchase for £${productInfo.price}`}
+                type="submit"
+                classes="mt-4"
+                disabled={formik.isSubmitting}
+              />
               <Counter />
               <div>
                 {!hovered ? (

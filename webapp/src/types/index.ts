@@ -23,3 +23,13 @@ export type ProductContextData = {
   productInfo: ProductInfoValues | null;
   setProductInfo: React.Dispatch<React.SetStateAction<ProductInfoValues | null>>;
 };
+
+export type FormValidation = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  firstLineOfAddress: string;
+  secondLineOfAddress: string;
+  country: string;
+  postcode: string;
+};
