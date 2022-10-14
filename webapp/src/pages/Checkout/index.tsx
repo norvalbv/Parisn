@@ -21,6 +21,7 @@ const Checkout = (): ReactElement => {
     validate,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
+      localStorage.clear();
     },
   });
 
@@ -81,6 +82,7 @@ const Checkout = (): ReactElement => {
                 type="submit"
                 classes="mt-4"
                 disabled={formik.isSubmitting}
+                navigateTo="/"
               />
               <Counter />
               <div>
