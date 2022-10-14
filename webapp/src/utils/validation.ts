@@ -22,5 +22,17 @@ export const validate = (values: FormValidation) => {
     errors.email = 'Invalid email address';
   }
 
+  if (!values.firstLineOfAddress) {
+    errors.firstLineOfAddress = 'Required';
+  }
+
+  if (!values.country) {
+    errors.country = 'Required';
+  }
+
+  if (!values.postcode) {
+    errors.postcode = 'Required';
+  }
+
   return errors;
 };
