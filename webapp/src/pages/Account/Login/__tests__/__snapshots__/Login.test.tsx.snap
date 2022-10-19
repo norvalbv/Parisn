@@ -1,7 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<LoginPage /> should render correctly 1`] = `
-<div>
-  Login
-</div>
+<button
+  className="relative inline-flex items-center justify-center text-center hover:bg-buttons-hover uppercase  px-6 py-2.5 text-sm w-full my-96 border py-4"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  role="button"
+  style={
+    {
+      "backgroundColor": undefined,
+      "color": undefined,
+      "width": "25rem",
+    }
+  }
+  type="button"
+>
+  <span
+    className="inline-block font-semibold"
+  >
+    Login
+  </span>
+</button>
 `;
