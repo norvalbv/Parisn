@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <h3 align="center">'Parisn'</h3>
+  <h3 align="center">'Parisn' **in progress**</h3>
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -14,6 +14,7 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
       </ul>
     </li>
     <li>
@@ -55,6 +56,17 @@ Back end:
 
 - [Express](https://expressjs.com/)
 - [Node](https://nodejs.org/en/)
+
+<p align="right">(<a href="#top">back to top</a>)</p>
+
+<!-- Roadmap -->
+
+### Roadmap
+
+*Note: this is more of a personal roadmap and just note-worthy features that will be added*
+- Connect AWS DynamoDB for database
+- Fix azure pipeline
+- Add websockets to ensure live data is correct
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
