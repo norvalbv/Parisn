@@ -12,6 +12,8 @@ import TermsAndConditions from '../pages/Legal/TermsAndConditions';
 import Checkout from '../pages/Checkout';
 import NotFound from '../pages/NotFound';
 import { ProductContextProvider } from '../context/ProductContext';
+import Login from '../pages/Account/Login';
+import MyAccount from '../pages/Account/MyAccount';
 
 const MainRoutes = () => {
   const navigate = useNavigate();
@@ -46,6 +48,8 @@ const MainRoutes = () => {
         <Route path="contact-us" element={<ContactUs />} />
         <Route path="privacy-policy" element={<PrivacyPolicy />} />
         <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="login" element={<Login />} />
+        <Route path="my-account" element={<MyAccount />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

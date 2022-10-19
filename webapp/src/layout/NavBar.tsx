@@ -16,7 +16,7 @@ const NavBar = () => {
 
   const navigate = useNavigate();
 
-  const { user, setUser } = useUser();
+  const { user } = useUser();
 
   useEffect(() => {
     if (truthyDataParsed && location.pathname !== '/checkout') navigate('/checkout');
@@ -47,19 +47,13 @@ const NavBar = () => {
           )}
 
           {user.id ? (
-            <Link to="/contact-us">
+            <Link to="/my-account">
               <li className="px-10 cursor-pointer hover:underline underline-offset-8">Account</li>
             </Link>
           ) : (
-            // <Link to="/contact-us">
-            // <li className="px-10 cursor-pointer hover:underline underline-offset-8">Login</li>
-            <button
-              onClick={() => setUser({ id: 'string' })}
-              className="px-10 cursor-pointer hover:underline underline-offset-8"
-            >
-              Click
-            </button>
-            // </Link>
+            <Link to="/login">
+              <li className="px-10 cursor-pointer hover:underline underline-offset-8">Login</li>
+            </Link>
           )}
         </ul>
       )}
