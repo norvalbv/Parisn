@@ -69,7 +69,7 @@ const Checkout = (): ReactElement => {
                       </span>
                     ) : null}
                   </div>
-                  <Field
+                  <input
                     id={key}
                     type={key === 'email' ? 'email' : 'string'}
                     {...formik.getFieldProps(key)}
@@ -79,10 +79,9 @@ const Checkout = (): ReactElement => {
               ))}
               <Button
                 text={`Purchase for £${productInfo.price}`}
-                type="submit"
+                type="button"
                 classes="mt-4"
                 disabled={formik.isSubmitting}
-                navigateTo="/"
               />
               <Counter />
               <div>
