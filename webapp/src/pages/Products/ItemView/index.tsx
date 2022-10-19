@@ -9,6 +9,7 @@ import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 import { MockData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
+import PriceDecrease from '../../../components/Price';
 
 const ItemView = () => {
   const [localProduct, setLocalProduct] = useState<null | MockData>(null);
@@ -79,7 +80,7 @@ const ItemView = () => {
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
             View Description
           </a>
-          <p className="text-lg">£{localPrice.toFixed(2)}</p>
+          <PriceDecrease />
           <Button
             text="Buy Now"
             hoveredText={`Buy at £${localPrice.toFixed(2)}`}
