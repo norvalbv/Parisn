@@ -2,12 +2,18 @@
 
 exports[`<Radial /> Radial props with all props as required 1`] = `
 <div>
-  PriceDecrease
+  £
+  <span>
+    1000
+  </span>
 </div>
 `;
 
 exports[`<Radial /> Radial props with mandatory props 1`] = `
 <div>
-  PriceDecrease
+  £
+  <span>
+    1000
+  </span>
 </div>
 `;

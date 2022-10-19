@@ -6,7 +6,6 @@ export type PriceDecreaseProps = {
 };
 
 const PriceDecrease = ({ duration }: PriceDecreaseProps) => {
-  const ref = useRef();
   const { number } = useSpring({
     from: { number: 1000 },
     number: 0,
@@ -17,7 +16,7 @@ const PriceDecrease = ({ duration }: PriceDecreaseProps) => {
 
   return (
     <div>
-      £<animated.span ref={ref}>{number.to((n) => n.toFixed(2))}</animated.span>
+      £<animated.span>{number.to((n) => n.toFixed(2))}</animated.span>
     </div>
   );
 };
