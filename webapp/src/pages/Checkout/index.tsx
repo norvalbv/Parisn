@@ -1,9 +1,9 @@
 import React, { Fragment, ReactElement, useState } from 'react';
-import { Field, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import Button from '../../components/Button';
 import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
-import { validate } from '../../utils/validation';
+import { validateCheckout } from '../../utils/validation';
 
 const Checkout = (): ReactElement => {
   const { productInfo } = useProduct();
@@ -18,7 +18,7 @@ const Checkout = (): ReactElement => {
       country: '',
       postcode: '',
     },
-    validate,
+    validateCheckout,
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
       localStorage.clear();
@@ -45,7 +45,7 @@ const Checkout = (): ReactElement => {
     <>
       {truthyDataParsed ? (
         <>
-          <h2 className="text-4xl top-10 border-b w-min mx-auto relative">Checkout</h2>
+          <h2 className="text-4xl top-10 border-b w-min mx-auto relative">Contact</h2>
 
           <div className="flex justify-around divide-x items-center h-screen">
             <div className="flex-1 flex flex-col items-center">
