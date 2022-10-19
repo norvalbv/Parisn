@@ -33,3 +33,7 @@ export type FormValidation = {
   country: string;
   postcode: string;
 };
+
+export type UserInformation = {
+  id: string | null;
+};
