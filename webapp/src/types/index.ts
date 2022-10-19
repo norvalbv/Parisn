@@ -37,3 +37,8 @@ export type FormValidation = {
 export type UserInformation = {
   id: string | null;
 };
+
+export type UserContextInformation = {
+  user: UserInformation;
+  setUser: React.Dispatch<React.SetStateAction<UserInformation | null>>;
+};

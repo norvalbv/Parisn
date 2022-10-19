@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import UserContext from '../context/UserContext';
-import { UserInformation } from '../types';
+import { UserContextInformation } from '../types';
 
-const useProduct = (): UserInformation => {
+const useUser = (): UserContextInformation => {
   const context = useContext(UserContext);
 
   if (!context) {
@@ -12,4 +12,4 @@ const useProduct = (): UserInformation => {
   return context;
 };
 
-export default useProduct;
+export default useUser;

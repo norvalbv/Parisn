@@ -1,26 +1,20 @@
 import React, { createContext, useState, useMemo, useEffect } from 'react';
-import { ProductInfoValues, UserInformation } from '../types';
+import { UserContextInformation, UserInformation } from '../types';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
 };
 
-const UserContext = createContext<UserInformation | null>(null);
+const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
-  const [user, setUser] = useState<UserInformation | null>({
-    id: null,
-  });
+  const [user, setUser] = useState<UserInformation | null>(null);
 
   useEffect(() => {
     const retreviedProductInfo = localStorage.getItem('userInformation');
-    const parsedData: UserInformation = JSON.parse(retreviedProductInfo || '{id: null}');
-    // Checks whether all data is truthy or not.
-    const truthyDataParsed = parsedData.id;
+    const parsedData: UserInformation = JSON.parse(retreviedProductInfo || 'null');
 
-    if (truthyDataParsed) {
-      return setUser(parsedData);
-    }
+    setUser(parsedData ?? null);
   }, []);
 
   useEffect(() => {
@@ -29,7 +23,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   const memoisedValue = useMemo(
     () => ({
-      id: user?.id ?? null,
+      user: { id: user?.id ?? null },
       setUser,
     }),
     [user]

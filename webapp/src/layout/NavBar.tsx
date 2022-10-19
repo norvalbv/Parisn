@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Basket } from '../components/CustomSVG';
+import useUser from '../hooks/useUser';
+import Login from '../pages/Account/Login';
+import MyAccount from '../pages/Account/MyAccount';
 
 const NavBar = () => {
   const retreviedProductInfo = localStorage.getItem('savedProductInfo');
@@ -12,6 +15,8 @@ const NavBar = () => {
   const [hovered, setHovered] = useState(false);
 
   const navigate = useNavigate();
+
+  const { user, setUser } = useUser();
 
   useEffect(() => {
     if (truthyDataParsed && location.pathname !== '/checkout') navigate('/checkout');
@@ -39,6 +44,22 @@ const NavBar = () => {
             >
               <Basket colour={hovered ? 'pink' : 'white'} />
             </Link>
+          )}
+
+          {user.id ? (
+            <Link to="/contact-us">
+              <li className="px-10 cursor-pointer hover:underline underline-offset-8">Account</li>
+            </Link>
+          ) : (
+            // <Link to="/contact-us">
+            // <li className="px-10 cursor-pointer hover:underline underline-offset-8">Login</li>
+            <button
+              onClick={() => setUser({ id: 'string' })}
+              className="px-10 cursor-pointer hover:underline underline-offset-8"
+            >
+              Click
+            </button>
+            // </Link>
           )}
         </ul>
       )}
