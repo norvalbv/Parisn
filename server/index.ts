@@ -29,7 +29,9 @@ app.get('/products', async (req: any, res: any) => {
 
 app.get('/products/:productid', async (req: any, res: any) => {
   try {
-    const data = await ddbDocClient.send(new GetCommand(TableParams({ Key: { ID: '1' } })));
+    const data = await ddbDocClient.send(
+      new GetCommand(TableParams({ Key: { ID: req.params.productid, Category: 'Shoes' } }))
+    );
     res.send(data.Item);
   } catch (err) {
     console.log('Error', err);
@@ -39,23 +41,23 @@ app.get('/products/:productid', async (req: any, res: any) => {
 // socket.io functions
 io.on('connect', function (socket: any) {
   socket.on('join room', async (param: string, callback: any) => {
-    console.log(param);
+    // console.log(param);
     socket.join(param);
 
     callback(io.engine.clientsCount);
   });
 
   socket.on('get room', async (param: string, callback: any) => {
-    console.log(param);
+    // console.log(param);
 
-    console.log(
-      io
-        .in(param)
-        .fetchSockets()
-        .then((room: any) => {
-          console.log('clients in this room:' + param, room.length);
-        })
-    );
+    // console.log(
+    //   io
+    //     .in(param)
+    //     .fetchSockets()
+    //     .then((room: any) => {
+    //       console.log('clients in this room:' + param, room.length);
+    //     })
+    // );
 
     callback(io.engine.clientsCount);
 

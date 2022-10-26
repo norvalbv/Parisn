@@ -16,7 +16,7 @@ const Catalogue = (): ReactElement => {
   if (!products) return <></>;
 
   return (
-    <div className="grid grid-cols-3 pt-24 pb-8 divide-x divide-secondary-neutral">
+    <div className="grid grid-cols-3 pt-24 pb-8 divide-x">
       {products.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
           <p className="underline">{product.Title}</p>

@@ -41,19 +41,18 @@ const ItemView = () => {
 
   useEffect(() => {
     (async () => {
-      const { data } = await useProductById(currentProduct || '');
-      const indexed = data.findIndex((x) => (x.id as unknown as string) === currentProduct);
-      setproduct(data[indexed]);
+      const data = await useProductById(currentProduct || '');
+      setproduct(data);
     })();
   }, []);
 
   if (!product) return <></>;
 
-  const compareSelectedVals = Object.entries(product.Stock)[
-    Object.entries(product.Stock).findIndex((x) =>
-      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
-    )
-  ][1];
+  // const compareSelectedVals = Object.entries(product.Stock)[
+  //   Object.entries(product.Stock).findIndex((x) =>
+  //     x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
+  //   )
+  // ][1];
 
   return (
     <div className="relative overflow-auto scroll-smooth">
@@ -97,9 +96,9 @@ const ItemView = () => {
             sizes={product.Stock}
             onClick={(size) => setselectedSize(size)}
           />
-          <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
+          {/* <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
-          </p>
+          </p> */}
           <LiveViewers />
         </div>
         <div
