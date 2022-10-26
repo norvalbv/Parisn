@@ -8,11 +8,11 @@ import { UserInformationProvider } from '../context/UserContext';
 
 const MainLayout = (): ReactElement => (
   <UserInformationProvider>
-    <>
+    <div className="relative min-h-screen">
       <NavBar />
       <Outlet />
       <Footer />
-    </>
+    </div>
   </UserInformationProvider>
 );
 
