@@ -73,7 +73,7 @@ const ItemView = () => {
             <>
               <p>Price: £{localPrice.toFixed(2)}</p>
               <progress
-                className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen"
+                className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
                 value={localPrice / 10}
                 max="100"
               />
@@ -82,7 +82,6 @@ const ItemView = () => {
           <Button
             text="Buy Now"
             hoveredText={`Buy at £${localPrice.toFixed(2)}`}
-            classes="mt-10"
             rounded="lg"
             navigateTo="/checkout"
             onClick={() => {
