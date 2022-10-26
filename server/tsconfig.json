@@ -8,12 +8,11 @@
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", ".yarn", ".husky"]
+  "exclude": ["node_modules", ".yarn"]
 }

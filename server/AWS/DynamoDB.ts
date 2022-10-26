@@ -4,8 +4,8 @@ import { ddbDocClient } from './Client/docClient';
 export const params = {
   TableName: 'Products',
   Key: {
-    primaryKey: { s: '1' },
-    sortKey: { s: 'Shoes' },
+    primaryKey: '1',
+    sortKey: 'Shoes',
   },
 };
 

@@ -19,13 +19,8 @@ const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 
-app.get('/products', (req: any, res: any) => {
-  res.send(data);
-});
-
-app.get('/products/:productid', (req: any, res: any) => {
-  res.send(data);
-});
+app.get('/products', (req: any, res: any) => res.send(data));
+app.get('/products/:productid', (req: any, res: any) => res.send(data));
 
 // socket.io functions
 io.on('connect', function (socket: any) {
