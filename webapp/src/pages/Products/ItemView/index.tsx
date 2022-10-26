@@ -1,7 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { ParentSize } from '@visx/responsive';
 import Button from '../../../components/Button';
-import Chart from '../../../components/Chart';
 import LiveViewers from '../../../components/LiveViewers';
 import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
@@ -9,7 +7,6 @@ import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
-import PriceDecrease from '../../../components/Price';
 
 const ItemView = () => {
   const [product, setproduct] = useState<null | ProductData>(null);
@@ -28,13 +25,13 @@ const ItemView = () => {
   );
   let num = 80000;
 
-  // useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setLocalPrice(priceScale.invert(num));
-  //     num--;
-  //   }, 10);
-  //   return () => clearInterval(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLocalPrice(priceScale.invert(num));
+      num--;
+    }, 200);
+    return () => clearInterval(timer);
+  }, []);
 
   const [searchParams] = useSearchParams();
   const currentProduct = searchParams.get('product') || '';
@@ -64,20 +61,24 @@ const ItemView = () => {
           id="product-overview"
           className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
         >
-          <div className="w-[70%] h-[35vh]">
-            <ParentSize>
-              {(parent) => <Chart width={parent.width} height={parent.height} data={localPrice} />}
-            </ParentSize>
-          </div>
-
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
             {product.Title}
           </span>
-
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
             View Description
           </a>
-          <PriceDecrease />
+          {Number(localPrice.toFixed(1)) === 0 ? (
+            'FREE'
+          ) : (
+            <>
+              <p>Price: £{localPrice.toFixed(2)}</p>
+              <progress
+                className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen"
+                value={localPrice / 10}
+                max="100"
+              />
+            </>
+          )}
           <Button
             text="Buy Now"
             hoveredText={`Buy at £${localPrice.toFixed(2)}`}

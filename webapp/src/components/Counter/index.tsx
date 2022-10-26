@@ -43,9 +43,20 @@ const Counter = () => {
   return (
     <div className="text-secondary-blue -my-4 italic">
       Item held in basket for:{' '}
-      <span className="underline">
-        {timeLeft.minutes || 0} minutes {timeLeft.seconds || 0} seconds
-      </span>
+      <div className="flex gap-5">
+        <div>
+          <span className="countdown font-mono text-4xl">
+            <span>{timeLeft.minutes}</span>
+          </span>
+          min
+        </div>
+        <div>
+          <span className="countdown font-mono text-4xl">
+            <span>{timeLeft.seconds}</span>
+          </span>
+          sec
+        </div>
+      </div>
     </div>
   );
 };
