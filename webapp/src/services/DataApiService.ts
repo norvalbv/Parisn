@@ -9,7 +9,7 @@ export const useProducts = async (): Promise<UseProductByIdReturn> => {
   const response = await axios('http://localhost:8000/products')
     .then((response) => response.data)
     .catch((err) => console.log(err));
-
+  console.log(response, 'response');
   const data: MockData[] = Object.values(response);
 
   return { data };

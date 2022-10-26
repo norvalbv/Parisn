@@ -8,19 +8,26 @@ const io = require('socket.io')(server, {
     credentials: true,
   },
 });
+require('dotenv').config();
 
-import { MockData } from '../webapp/src/types';
-import { getItem } from './AWS/DynamoDB';
-
-const data: MockData = require('./mockdata.json');
+import { params } from './AWS/TableParams';
+import { GetCommand } from '@aws-sdk/lib-dynamodb';
+import { ddbDocClient } from './AWS/Client/docClient';
 
 // environment variables
 const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 
-app.get('/products', (req: any, res: any) => res.send(data));
-app.get('/products/:productid', (req: any, res: any) => res.send(data));
+app.get('/products', async (req: any, res: any) => {
+  try {
+    const data = await ddbDocClient.send(new GetCommand(params()));
+    res.send(data.Item);
+  } catch (err) {
+    console.log('Error', err);
+  }
+});
+// app.get('/products/:productid', (req: any, res: any) => res.send(getItem()));
 
 // socket.io functions
 io.on('connect', function (socket: any) {
@@ -56,5 +63,3 @@ server.listen(PORT, () => {
 // Open a socket between client and server for continuous price decrements...
 // When the user goes to checkout / buy the product, the user then makes an API call to checkout for that price
 // Perhaps there is a discount on the product, so price is £1k, purchase price at £200 is a 80% provided via params.
-
-console.log(getItem());
