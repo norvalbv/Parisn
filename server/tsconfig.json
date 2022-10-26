@@ -1,19 +1,19 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
+    "module": "commonJS",
     "resolveJsonModule": true,
-    "target": "es6",
+    "target": "ES6",
     "skipLibCheck": true,
     "noImplicitAny": true,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
-    // Interop Constraints
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    // Emit
     "noEmit": true
-  }
+  },
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules", ".yarn", ".husky"]
 }

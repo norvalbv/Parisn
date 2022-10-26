@@ -10,6 +10,7 @@ const io = require('socket.io')(server, {
 });
 
 import { MockData } from '../webapp/src/types';
+import { getItem } from './AWS/DynamoDB';
 
 const data: MockData = require('./mockdata.json');
 
@@ -60,3 +61,5 @@ server.listen(PORT, () => {
 // Open a socket between client and server for continuous price decrements...
 // When the user goes to checkout / buy the product, the user then makes an API call to checkout for that price
 // Perhaps there is a discount on the product, so price is £1k, purchase price at £200 is a 80% provided via params.
+
+console.log(getItem());
