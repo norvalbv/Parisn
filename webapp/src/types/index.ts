@@ -1,20 +1,21 @@
 export interface Stock {
-  small: number;
-  medium: number;
-  large: number;
-  extralarge: number;
+  Small: number;
+  Medium: number;
+  Large: number;
+  ExtraLarge: number;
 }
-export interface MockData {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  price: number;
-  stock: Stock;
+export interface ProductData {
+  ID: string;
+  Category: String;
+  Title: string;
+  Description: string;
+  Image: string;
+  Price: number;
+  Stock: Stock;
 }
 
 export type ProductInfoValues = {
-  product: MockData | null;
+  product: ProductData | null;
   price: number | null;
   selectedSize: string | null;
 };

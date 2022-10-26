@@ -1,9 +1,11 @@
-export const params = () => {
+import { TableParamsProps } from '../Types';
+
+export const TableParams = ({
+  TableName = 'Products',
+  Key = { ID: '1', Category: 'Shoes' },
+}: TableParamsProps) => {
   return {
-    TableName: 'Products',
-    Key: {
-      ID: '2',
-      Category: 'Shoes',
-    },
+    TableName,
+    Key,
   };
 };

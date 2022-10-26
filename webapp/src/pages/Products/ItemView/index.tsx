@@ -7,14 +7,14 @@ import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
-import { MockData } from '../../../types';
+import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import PriceDecrease from '../../../components/Price';
 
 const ItemView = () => {
-  const [localProduct, setLocalProduct] = useState<null | MockData>(null);
+  const [product, setproduct] = useState<null | ProductData>(null);
+  const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState(1000);
-  const [localSelectedSize, setLocalSelectedSize] = useState('M');
 
   const { setProductInfo } = useProduct();
 
@@ -43,25 +43,21 @@ const ItemView = () => {
     (async () => {
       const { data } = await useProductById(currentProduct || '');
       const indexed = data.findIndex((x) => (x.id as unknown as string) === currentProduct);
-      setLocalProduct(data[indexed]);
+      setproduct(data[indexed]);
     })();
   }, []);
 
-  if (!localProduct) return <></>;
+  if (!product) return <></>;
 
-  const compareSelectedVals = Object.entries(localProduct.stock)[
-    Object.entries(localProduct.stock).findIndex((x) =>
-      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === localSelectedSize.toLowerCase()
+  const compareSelectedVals = Object.entries(product.Stock)[
+    Object.entries(product.Stock).findIndex((x) =>
+      x[0].slice(0, 1) === 'e' ? 'xl' : x[0].slice(0, 1) === selectedSize.toLowerCase()
     )
   ][1];
 
   return (
     <div className="relative overflow-auto scroll-smooth">
-      <img
-        src={localProduct.image}
-        alt={localProduct.image}
-        className="h-screen w-[40%] sticky top-0"
-      />
+      <img src={product.Image} alt={product.Image} className="h-screen w-[40%] sticky top-0" />
       <div className="absolute right-0 top-0 w-[60%]">
         <div
           id="product-overview"
@@ -74,7 +70,7 @@ const ItemView = () => {
           </div>
 
           <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            {localProduct.title}
+            {product.Title}
           </span>
 
           <a className="hover:underline hover:text-secondary-neutral" href="#description">
@@ -89,17 +85,17 @@ const ItemView = () => {
             navigateTo="/checkout"
             onClick={() => {
               setProductInfo({
-                product: localProduct,
+                product: product,
                 price: Number(localPrice.toFixed(2)),
-                selectedSize: localSelectedSize,
+                selectedSize: selectedSize,
               });
             }}
           />
           <ProductSizes
             classes="mb-4"
-            selectedSize={localSelectedSize}
-            sizes={localProduct.stock}
-            onClick={(size) => setLocalSelectedSize(size)}
+            selectedSize={selectedSize}
+            sizes={product.Stock}
+            onClick={(size) => setselectedSize(size)}
           />
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
@@ -111,7 +107,7 @@ const ItemView = () => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{localProduct.description}</p>
+          <p className="my-6 font-light">{product.Description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>

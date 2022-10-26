@@ -1,6 +1,5 @@
 const app = require('express')();
 const server = require('http').createServer(app);
-const axios = require('axios');
 const cors = require('cors');
 const io = require('socket.io')(server, {
   cors: {
@@ -10,8 +9,8 @@ const io = require('socket.io')(server, {
 });
 require('dotenv').config();
 
-import { params } from './AWS/TableParams';
-import { GetCommand } from '@aws-sdk/lib-dynamodb';
+import { TableParams } from './AWS/TableParams';
+import { GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './AWS/Client/docClient';
 
 // environment variables
@@ -21,13 +20,21 @@ app.use(cors());
 
 app.get('/products', async (req: any, res: any) => {
   try {
-    const data = await ddbDocClient.send(new GetCommand(params()));
+    const data = await ddbDocClient.send(new ScanCommand({ TableName: 'Products' }));
+    res.send(data.Items);
+  } catch (err) {
+    console.log('Error', err);
+  }
+});
+
+app.get('/products/:productid', async (req: any, res: any) => {
+  try {
+    const data = await ddbDocClient.send(new GetCommand(TableParams({ Key: { ID: '1' } })));
     res.send(data.Item);
   } catch (err) {
     console.log('Error', err);
   }
 });
-// app.get('/products/:productid', (req: any, res: any) => res.send(getItem()));
 
 // socket.io functions
 io.on('connect', function (socket: any) {
