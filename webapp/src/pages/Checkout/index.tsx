@@ -50,11 +50,11 @@ const Checkout = (): ReactElement => {
           <div className="flex justify-around divide-x items-center h-screen">
             <div className="flex-1 flex flex-col items-center">
               <p className="underline underline-offset-2">Purchase Information:</p>
-              <img src={productInfo.product?.image} className="mx-8 flex-1" />
+              <img src={productInfo.product?.Image} className="mx-8 flex-1" />
               <div className="flex text-sm divide-x">
                 <p className="px-2">£{productInfo.price}</p>
-                <p className="px-2">{productInfo.product?.title}</p>
-                <p className="px-2">{productInfo.product?.title}</p>
+                <p className="px-2">{productInfo.product?.Title}</p>
+                <p className="px-2">{productInfo.product?.Title}</p>
               </div>
             </div>
             <form className="flex-1 pl-8 flex flex-col gap-8">

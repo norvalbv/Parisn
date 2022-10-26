@@ -26,11 +26,12 @@ const ContactUs = (): ReactElement => {
   const values = ['First Name', 'Last Name', 'Email', 'Order Number', 'Message'];
 
   return (
-    <div className="flex">
+    <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
 
-      <div className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider absolute right-0 top-0 w-[60%]">
-        <h2 className="text-4xl underline mx-auto relative mb-10">Contact Us</h2>{' '}
+      <div className="flex flex-col justify-center items-center gap-4 tracking-wider w-full">
+        <h2 className="text-4xl underline mx-auto relative mb-10">Contact Us</h2>
+        <h3>Contact Parisn Customer Support</h3>
         <form className="flex-1 pl-8 flex flex-col w-full gap-8">
           {Object.entries(formik.initialValues).map(([key], idx) => (
             <Fragment key={key}>
