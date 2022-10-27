@@ -52,6 +52,7 @@ const MainRoutes = () => {
         <Route path="terms-and-conditions" element={<TermsAndConditions />} />
         <Route path="login" element={<Login />} />
         <Route path="my-account" element={<MyAccount />} />
+        <Route path="about-us" element={<AboutUs />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

@@ -13,7 +13,7 @@ const Categories = (): ReactElement => {
             <img
               src={PRODUCT_1_IMAGE}
               alt={PRODUCT_1_IMAGE}
-              className="w-[24rem] h-[34rem] cursor-pointer"
+              className="w-[24rem] h-[34rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
             />
           </Link>
           <p className="underline mt-10 text-xl uppercase tracking-widest font-thin underline-offset-8">

@@ -19,7 +19,7 @@ const Catalogue = (): ReactElement => {
     <div className="grid grid-cols-4 h-screen">
       {products.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
-          <p className="underline">{product.Title}</p>
+          <p className="underline z-10">{product.Title}</p>
           <Link
             to={`/shop-item?product=${product.ID}`}
             className="flex justify-center items-center my-4"
@@ -27,7 +27,7 @@ const Catalogue = (): ReactElement => {
             <img
               src={product.Image}
               alt={product.Title}
-              className="w-[24rem] h-[34rem] cursor-pointer"
+              className="w-[24rem] h-[34rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
             />
           </Link>
           {/* <p>Current Price: £{product.price}</p> */}

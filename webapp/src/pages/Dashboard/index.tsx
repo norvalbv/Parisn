@@ -14,7 +14,7 @@ const Dashboard = () => {
             muted
             autoPlay
             loop
-            className="absolute overflow-hidden h-screen opacity-50 sepia contrast-125"
+            className="absolute overflow-hidden h-[100vh] w-screen opacity-50 sepia contrast-125"
           />
           <div className="absolute h-screen bg-fuchsia-200 opacity-10 w-screen" />
         </div>

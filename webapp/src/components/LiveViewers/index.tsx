@@ -36,7 +36,7 @@ const LiveViewers = ({ params }: LiveViewersProps) => {
 
   // if (params) console.log(viewCount, 'live viewers');
 
-  return <p className="text-sm">Live viewers: {viewCount}</p>;
+  return <p className="text-sm z-10">Live viewers: {viewCount}</p>;
 };
 
 export default React.memo(LiveViewers);
