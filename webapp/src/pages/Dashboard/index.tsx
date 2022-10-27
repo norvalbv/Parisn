@@ -1,6 +1,6 @@
 import Radial from '../../components/Design/Radial';
 import NavBar from '../../layout/NavBar';
-import { DASHBOARD_IMAGE } from '../../constants';
+import { DASHBOARD_IMAGE, DASHBOARD_VIDEO } from '../../constants';
 import Button from '../../components/Button';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';
@@ -10,7 +10,17 @@ const Dashboard = () => {
   return (
     <>
       <div className="flex items-center">
-        <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
+        {/* <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" /> */}
+        <div className="h-screen">
+          <video
+            src={DASHBOARD_VIDEO}
+            muted
+            autoPlay
+            loop
+            className="absolute overflow-hidden h-screen opacity-50 sepia contrast-125"
+          />
+          <div className="absolute h-screen bg-fuchsia-200 opacity-10 w-screen" />
+        </div>
 
         <div className="relative flex justify-center items-center flex-1">
           <Radial colour="dark" />

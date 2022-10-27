@@ -146,7 +146,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         type={type}
         className={`relative inline-flex items-center justify-center text-center ${
-          hoverColorRequired && 'hover:bg-buttons-hover'
+          hoverColorRequired && 'hover:bg-buttons-hover transition-colors duration-200'
         } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
         } ${classes} ${borderRequiredMap[borderRequired]} py-4`}
