@@ -29,7 +29,7 @@ const NavBar = () => {
           <Link to="/home">
             <li className="px-10 cursor-pointer hover:underline underline-offset-8">Home</li>
           </Link>
-          <Link to="/catalogue">
+          <Link to="/categories">
             <li className="px-10 cursor-pointer hover:underline underline-offset-8">Catalogue</li>
           </Link>
           <Link to="/contact-us">

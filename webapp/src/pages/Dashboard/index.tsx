@@ -1,16 +1,13 @@
 import Radial from '../../components/Design/Radial';
-import NavBar from '../../layout/NavBar';
 import { DASHBOARD_IMAGE, DASHBOARD_VIDEO } from '../../constants';
 import Button from '../../components/Button';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';
-import { Label } from '@visx/annotation';
 
 const Dashboard = () => {
   return (
     <>
       <div className="flex items-center">
-        {/* <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" /> */}
         <div className="h-screen">
           <video
             src={DASHBOARD_VIDEO}
@@ -23,17 +20,15 @@ const Dashboard = () => {
         </div>
 
         <div className="relative flex justify-center items-center flex-1">
-          <Radial colour="dark" />
-
           <div className="absolute text-center">
             <div>
-              <span className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
+              <span className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]">
                 PARISN
               </span>
               <span className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">.com</span>
             </div>
             <span className="text-3xl tracking-widest block">A Fashion Company</span>
-            <Button text="View Catalogue" classes="mt-20" rounded="lg" navigateTo="/catalogue" />
+            <Button text="View Catalogue" classes="mt-20" rounded="lg" navigateTo="/categories" />
           </div>
         </div>
       </div>

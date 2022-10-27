@@ -14,20 +14,22 @@ import NotFound from '../pages/NotFound';
 import { ProductContextProvider } from '../context/ProductContext';
 import Login from '../pages/Account/Login';
 import MyAccount from '../pages/Account/MyAccount';
+import Categories from '../pages/Products/Categories';
 
 const MainRoutes = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === '/') navigate('/home');
+    if (location.pathname === '/') navigate('home');
   }, [location.pathname]);
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
-        <Route path="/home" element={<Dashboard />} />
+        <Route path="home" element={<Dashboard />} />
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
+        <Route path="categories" element={<Categories />} />
         <Route
           path="shop-item"
           element={

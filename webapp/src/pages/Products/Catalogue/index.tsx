@@ -16,13 +16,13 @@ const Catalogue = (): ReactElement => {
   if (!products) return <></>;
 
   return (
-    <div className="grid grid-cols-4 pt-24 pb-8">
+    <div className="grid grid-cols-4 h-screen">
       {products.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
           <p className="underline">{product.Title}</p>
           <Link
             to={`/shop-item?product=${product.ID}`}
-            className="flex justify-center items-center"
+            className="flex justify-center items-center my-4"
           >
             <img
               src={product.Image}
