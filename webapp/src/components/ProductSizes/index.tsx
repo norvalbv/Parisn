@@ -17,7 +17,11 @@ const ProductSizes = ({ sizes, classes, onClick, selectedSize }: ProductSizesPro
     setSelected(size);
   };
 
-  const sortedList = Object.entries(sizes).sort((a, b) => a[1] - b[1]);
+  const priority = ['Small', 'Medium', 'Large', 'ExtraLarge'];
+
+  const sortedList = Object.entries(sizes).sort(
+    (a, b) => priority.indexOf(a[0]) - priority.indexOf(b[0])
+  );
 
   return (
     <div className={`flex gap-4 ${classes}`}>
