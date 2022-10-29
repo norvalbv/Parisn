@@ -8,7 +8,11 @@ const Categories = (): ReactElement => {
   return (
     <div className="grid grid-cols-3 h-screen">
       {arr.map((__, idx) => (
-        <div key={idx} className="flex flex-col flex-wrap justify-center items-center pt-10">
+        <div
+          key={idx}
+          className="flex flex-col flex-wrap justify-center items-center pt-10"
+          data-testid="Shoes"
+        >
           <Link to="/catalogue" className="flex justify-center items-center">
             <img
               src={PRODUCT_1_IMAGE}

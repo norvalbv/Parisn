@@ -21,7 +21,7 @@ const Dashboard = () => {
 
         <div className="relative flex justify-center items-center flex-1">
           <div className="absolute text-center">
-            <div>
+            <div data-testid="PARISN.com">
               <span className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]">
                 PARISN
               </span>

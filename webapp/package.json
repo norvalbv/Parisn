@@ -59,5 +59,9 @@
       "^.+\\.(ts|tsx|js|jsx)$": "ts-jest"
     },
     "testEnvironment": "jsdom"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true,
+    "stepDefinitions": "cypress/e2e/**/*.ts"
   }
 }
