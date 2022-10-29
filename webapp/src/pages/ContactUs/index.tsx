@@ -28,32 +28,33 @@ const ContactUs = (): ReactElement => {
   return (
     <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
-
-      <div className="flex flex-col justify-center items-center gap-4 tracking-wider w-full">
-        <h2 className="text-4xl underline mx-auto relative mb-10">Contact Us</h2>
-        <h3>Contact Parisn Customer Support</h3>
-        <form className="flex-1 pl-8 flex flex-col w-full gap-8">
-          {Object.entries(formik.initialValues).map(([key], idx) => (
-            <Fragment key={key}>
-              <div className="flex gap-8 items-center">
-                <label htmlFor={key}>{values[idx]}</label>
-                {Object.keys(formik.errors).includes(key) &&
-                Object.keys(formik.touched).includes(key) ? (
-                  <span className="text-sm text-utility-warning-main">
-                    {Object.values(formik.errors)[Object.keys(formik.errors).indexOf(key)]}
-                  </span>
-                ) : null}
-              </div>
-              <input
-                id={key}
-                type={key === 'email' ? 'email' : 'string'}
-                {...formik.getFieldProps(key)}
-                className="w-2/3 bg-transparent outline-none border-0 border-b border-primary-main -mb-4 -mt-8"
-              />
-            </Fragment>
-          ))}
-          <Button text="Submit" />
-        </form>
+      <div className="grid place-items-center w-full">
+        <div className="flex flex-col text-center gap-4 tracking-wider">
+          <h2 className="text-4xl underline mx-auto relative">Contact Us</h2>
+          <h3 className="my-6">Contact Parisn Customer Support</h3>
+          <form className="flex flex-col gap-8">
+            {Object.entries(formik.initialValues).map(([key], idx) => (
+              <Fragment key={key}>
+                <div className="flex gap-8 items-center">
+                  <label htmlFor={key}>{values[idx]}</label>
+                  {Object.keys(formik.errors).includes(key) &&
+                  Object.keys(formik.touched).includes(key) ? (
+                    <span className="text-sm text-utility-warning-main">
+                      {Object.values(formik.errors)[Object.keys(formik.errors).indexOf(key)]}
+                    </span>
+                  ) : null}
+                </div>
+                <input
+                  id={key}
+                  type={key === 'email' ? 'email' : 'string'}
+                  {...formik.getFieldProps(key)}
+                  className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
+                />
+              </Fragment>
+            ))}
+            <Button text="Submit" />
+          </form>
+        </div>
       </div>
     </div>
   );
