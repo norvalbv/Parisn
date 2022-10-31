@@ -7,14 +7,14 @@ import { Line } from '@visx/shape';
 const Dashboard = () => {
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center overflow-hidden">
         <div className="h-screen">
           <video
             src={DASHBOARD_VIDEO}
             muted
             autoPlay
             loop
-            className="absolute overflow-hidden h-[100vh] w-screen opacity-50 sepia contrast-125"
+            className="absolute h-[100vh] opacity-50 sepia contrast-125"
           />
           <div className="absolute h-screen bg-fuchsia-200 opacity-10 w-screen" />
         </div>

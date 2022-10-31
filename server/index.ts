@@ -38,30 +38,22 @@ app.get('/products/:productid', async (req: any, res: any) => {
   }
 });
 
-// socket.io functions
-io.on('connect', function (socket: any) {
+/**
+ * Socket io functions
+ */
+io.on('connect', (socket: any) => {
   socket.on('join room', async (param: string, callback: any) => {
-    // console.log(param);
     socket.join(param);
-
-    callback(io.engine.clientsCount);
+    const sockets = await io.in(param).allSockets();
+    callback(sockets.size);
   });
 
   socket.on('get room', async (param: string, callback: any) => {
-    // console.log(param);
+    const sockets = await io.in(param).allSockets();
+    callback(sockets.size);
 
-    // console.log(
-    //   io
-    //     .in(param)
-    //     .fetchSockets()
-    //     .then((room: any) => {
-    //       console.log('clients in this room:' + param, room.length);
-    //     })
-    // );
-
-    callback(io.engine.clientsCount);
-
-    // io.to(param).emit('get viewers', io.engine.clientsCount); // broadcast to everyone in the room
+    // What are namespaces?
+    // Difference between fetchSockets and allSockets?
   });
 });
 

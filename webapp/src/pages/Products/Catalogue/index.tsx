@@ -30,7 +30,7 @@ const Catalogue = (): ReactElement => {
               className="w-[24rem] h-[34rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
             />
           </Link>
-          {/* <p>Current Price: £{product.price}</p> */}
+          {/* <p>Current Price: £{product.ID}</p> */}
           <LiveViewers params={product.ID} />
         </div>
       ))}
