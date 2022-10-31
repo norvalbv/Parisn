@@ -7,11 +7,14 @@ import { useProductById } from '../../../services/DataApiService';
 import { useSearchParams } from 'react-router-dom';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
+import Chat from '../../../components/Chat';
 
 const ItemView = () => {
   const [product, setproduct] = useState<null | ProductData>(null);
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState(1000);
+
+  const [chatOpen, setChatOpen] = useState(false);
 
   const { setProductInfo } = useProduct();
 
@@ -102,6 +105,15 @@ const ItemView = () => {
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
           </p>
           <LiveViewers />
+          <Button
+            text="Open Chat"
+            width="9rem"
+            size="xs"
+            borderRequired="bottom"
+            hoverColorRequired={false}
+            onClick={() => setChatOpen(!chatOpen)}
+            classes="hover:scale-105 transition-all"
+          />
         </div>
         <div
           id="description"
@@ -114,6 +126,7 @@ const ItemView = () => {
           </a>
         </div>
       </div>
+      {chatOpen && <Chat onclick={() => setChatOpen(!chatOpen)} />}
     </div>
   );
 };

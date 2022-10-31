@@ -51,9 +51,6 @@ io.on('connect', (socket: any) => {
   socket.on('get room', async (param: string, callback: any) => {
     const sockets = await io.in(param).allSockets();
     callback(sockets.size);
-
-    // What are namespaces?
-    // Difference between fetchSockets and allSockets?
   });
 });
 
