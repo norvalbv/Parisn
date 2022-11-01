@@ -105,15 +105,20 @@ const ItemView = () => {
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
           </p>
           <LiveViewers />
-          <Button
-            text="Open Chat"
-            width="9rem"
-            size="xs"
-            borderRequired="bottom"
-            hoverColorRequired={false}
-            onClick={() => setChatOpen(!chatOpen)}
-            classes="hover:scale-105 transition-all"
-          />
+          {chatOpen ? (
+            <Chat onclick={() => setChatOpen(!chatOpen)} />
+          ) : (
+            <Button
+              text="Open Chat"
+              width="9rem"
+              size="xs"
+              borderRequired="bottom"
+              hoverColorRequired={false}
+              onClick={() => setChatOpen(!chatOpen)}
+              classes="hover:scale-105 transition-all -rotate-90 right-0"
+              positioning="absolute"
+            />
+          )}
         </div>
         <div
           id="description"
@@ -126,7 +131,6 @@ const ItemView = () => {
           </a>
         </div>
       </div>
-      {chatOpen && <Chat onclick={() => setChatOpen(!chatOpen)} />}
     </div>
   );
 };

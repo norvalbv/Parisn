@@ -7,7 +7,7 @@ type ChatProps = {
 
 const Chat = ({ onclick }: ChatProps): ReactElement => {
   return (
-    <div className="h-[80%] rounded bg-primary-neutral/20 w-[20rem] absolute right-0 top-20 z-50§">
+    <div className="h-[30rem] rounded bg-primary-neutral/20 w-[20rem] absolute right-0 top-20">
       <div className="flex items-center justify-between p-4">
         <span>Chat</span>
         <Button
@@ -27,7 +27,10 @@ const Chat = ({ onclick }: ChatProps): ReactElement => {
           borderRequired="none"
           hoverColorRequired={false}
           classes="h-full left-4"
-          //   onClick={() => return}
+        />
+        <input
+          type="text"
+          className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7"
         />
       </div>
     </div>

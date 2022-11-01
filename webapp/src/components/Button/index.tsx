@@ -84,6 +84,10 @@ export interface ButtonProps {
    */
   classes?: string;
   /**
+   * Positioning of button
+   */
+  positioning?: 'relative' | 'absolute';
+  /**
    * Font weight for text
    */
   fontWeight?: FontWeight;
@@ -104,28 +108,29 @@ export interface ButtonProps {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      text,
-      hoveredText,
-      size = 'base',
-      rounded = 'none',
-      width = '25rem',
-      color,
       backgroundColor,
-      hoverColorRequired = true,
+      borderRequired = 'all',
+      classes = '',
+      color,
+      dataAtt,
       disabled,
-      loading = false,
+      fontWeight = 'semibold',
+      hoverColorRequired = true,
+      hoveredText,
       icon,
       iconPosition = 'left',
+      id,
+      loading = false,
+      navigateTo,
       onClick,
       onMouseLeave,
-      id,
-      dataAtt,
-      upperCase = true,
-      classes = '',
-      fontWeight = 'semibold',
+      positioning = 'relative',
+      rounded = 'none',
+      size = 'base',
+      text,
       type = 'button',
-      navigateTo,
-      borderRequired = 'all',
+      upperCase = true,
+      width = '25rem',
     },
     ref
   ): ReactElement => {
@@ -145,7 +150,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         type={type}
-        className={`relative inline-flex items-center justify-center text-center ${
+        className={`${positioning} inline-flex items-center justify-center text-center ${
           hoverColorRequired && 'hover:bg-buttons-hover transition-colors duration-200'
         } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
