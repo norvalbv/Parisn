@@ -42,6 +42,7 @@ app.get('/products/:productid', async (req: any, res: any) => {
  * Socket io functions
  */
 io.on('connect', (socket: any) => {
+  console.log('user connected');
   socket.on('join room', async (param: string, callback: any) => {
     socket.join(param);
     const sockets = await io.in(param).allSockets();
@@ -51,6 +52,14 @@ io.on('connect', (socket: any) => {
   socket.on('get room', async (param: string, callback: any) => {
     const sockets = await io.in(param).allSockets();
     callback(sockets.size);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  socket.on('chat message', (msg: string) => {
+    io.emit('chat message', msg);
   });
 });
 

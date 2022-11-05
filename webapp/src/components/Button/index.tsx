@@ -62,7 +62,7 @@ export interface ButtonProps {
   /**
    * Optional click event
    */
-  onClick?: () => void;
+  onClick?: (arg1?: unknown) => void;
   /**
    * Optional mouse event
    */
