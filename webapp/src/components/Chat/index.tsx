@@ -1,8 +1,9 @@
 import { Field, Form, Formik } from 'formik';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { io } from 'socket.io-client';
 import Button from '../Button';
 import { animated, useTransition } from '@react-spring/web';
+import LiveViewers from '../LiveViewers';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -15,21 +16,36 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
-  const [messages, setMessages] = useState<string[] | null>(null);
+  const [messages, setMessages] = useState<string[]>([]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
     socket.emit('chat to room', pageParams, userInput);
   };
 
   socket.on('get chat message from room', (msg: string) => {
-    console.log(msg);
-    setMessages([msg]);
+    setMessages([...messages, msg]);
+  });
+
+  const [userTyping, setUserTyping] = useState<number | null>(null);
+
+  const handleChange = () => {
+    socket.emit('chat user typing', pageParams);
+  };
+
+  socket.on('get chat user typing', (amount: number) => {
+    setUserTyping(amount);
   });
 
   const transitions = useTransition(isOpen, {
     from: { width: '0%' },
     enter: { width: '33%' },
     leave: { width: '0%' },
+  });
+
+  const ref = useRef<HTMLSpanElement | null>(null);
+
+  useEffect(() => {
+    if (ref.current) ref.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
   });
 
   return transitions(
@@ -39,8 +55,8 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
           style={styles}
           className="h-screen rounded bg-secondary-purple/90 relative z-40"
         >
-          <div className="p-4">
-            <div className="flex items-center justify-between pb-4">
+          <div className="p-4 relative h-[86.5%]">
+            <div className="flex items-center justify-between mb-4">
               <span className="underline">Chat</span>
               <Button
                 text="x"
@@ -51,12 +67,21 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 onClick={() => onclick()}
               />
             </div>
-            <div>
-              {messages?.map((message) => (
-                <div>
-                  <span>{message}</span>
+            <div className="overflow-x-hidden break-words overflow-y-scroll h-full">
+              {messages?.map((message, idx) => (
+                <div key={idx}>
+                  <span
+                    className="bg-primary-neutral/20 rounded-xl py-1 px-2 inline-block my-0.5"
+                    ref={ref}
+                  >
+                    {message}
+                  </span>
                 </div>
               ))}
+            </div>
+            <div className="flex flex-row-reverse items-center justify-between">
+              <LiveViewers fontSize="xs" label="Active:" />
+              {userTyping && <span className="text-xs">{userTyping} typing...</span>}
             </div>
           </div>
           <Formik
@@ -64,6 +89,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
               userInput: '',
             }}
             onSubmit={(values, { resetForm }) => {
+              if (!values.userInput) return;
               handleSubmit(values);
               resetForm();
             }}

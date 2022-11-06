@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { io } from 'socket.io-client';
+import { FontSize, fontSizeMap } from '../../types/tailwind';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
 export interface LiveViewersProps {
+  fontSize?: FontSize;
+  label?: string;
   pageParams?: string;
   params?: string;
 }
 
-const LiveViewers = ({ params, pageParams }: LiveViewersProps) => {
+const LiveViewers = ({
+  fontSize = 'md',
+  label = 'Live viewers:',
+  pageParams,
+  params,
+}: LiveViewersProps) => {
   const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
@@ -26,7 +34,11 @@ const LiveViewers = ({ params, pageParams }: LiveViewersProps) => {
     }
   }, []);
 
-  return <p className="text-sm z-10">Live viewers: {viewCount}</p>;
+  return (
+    <p className={`${fontSizeMap[fontSize]} z-10`}>
+      {label} {viewCount}
+    </p>
+  );
 };
 
 export default React.memo(LiveViewers);

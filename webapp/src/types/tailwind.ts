@@ -1,3 +1,13 @@
+export const fontSizeMap = {
+  xs: 'text-xs',
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+};
+
+export type FontSize = keyof typeof fontSizeMap;
+
 export const fontWeightMap = {
   thin: 'font-thin',
   extralight: 'font-extralight',
