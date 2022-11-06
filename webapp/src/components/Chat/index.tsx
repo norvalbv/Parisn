@@ -20,7 +20,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
-    socket.emit('chat to room', pageParams, { userInput, user: 'Viewer' });
+    socket.emit('chat to room', pageParams, { message: userInput, user: 'Viewer' });
   };
 
   socket.on('get chat message from room', (messageDetails: Message) => {
@@ -79,7 +79,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                     }`}
                     ref={ref}
                   >
-                    {message.userInput}
+                    {message.message}
                   </span>
                 </div>
               ))}

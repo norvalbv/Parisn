@@ -63,7 +63,6 @@ io.on('connect', (socket: any) => {
 
   socket.on('chat to room', async (page: string, messageDetails: Message) => {
     const sockets = await io.in(page).allSockets();
-    console.log(messageDetails);
     io.emit('get chat message from room', messageDetails);
   });
 
