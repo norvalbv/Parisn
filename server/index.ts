@@ -62,8 +62,12 @@ io.on('connect', (socket: any) => {
 
   socket.on('chat to room', async (page: string, msg: string) => {
     const sockets = await io.in(page).allSockets();
-    console.log(sockets);
     io.emit('get chat message from room', msg);
+  });
+
+  socket.on('chat user typing', async (page: string, msg: string) => {
+    
+    io.emit('get chat user typing', msg);
   });
 });
 
