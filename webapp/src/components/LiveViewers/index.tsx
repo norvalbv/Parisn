@@ -7,22 +7,20 @@ let socket = io('ws://localhost:8000', {
 });
 
 export interface LiveViewersProps {
+  pageParams?: string;
   params?: string;
 }
 
-const LiveViewers = ({ params }: LiveViewersProps) => {
-  const [searchParams] = useSearchParams();
-  const itemParams = searchParams.get('product') || undefined;
-
+const LiveViewers = ({ params, pageParams }: LiveViewersProps) => {
   const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
     if (!params) {
-      socket.emit('join room', itemParams, (amount: number) => {
+      socket.emit('get room count', pageParams, (amount: number) => {
         return setViewCount(amount);
       });
     } else {
-      socket.emit('get room', params, (amount: number) => {
+      socket.emit('get all room counts', params, (amount: number) => {
         return setViewCount(amount);
       });
     }

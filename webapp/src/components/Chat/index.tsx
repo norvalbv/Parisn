@@ -9,16 +9,18 @@ let socket = io('ws://localhost:8000', {
 
 type ChatProps = {
   onclick: () => void;
+  pageParams: string;
 };
 
-const Chat = ({ onclick }: ChatProps): ReactElement => {
+const Chat = ({ onclick, pageParams }: ChatProps): ReactElement => {
   const [messages, setMessages] = useState<string[] | null>(null);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
-    socket.emit('chat message', userInput);
+    socket.emit('chat to room', pageParams, userInput);
   };
 
-  socket.on('chat message', (msg: string) => {
+  socket.on('get chat message from room', (msg: string) => {
+    console.log(msg);
     setMessages([msg]);
   });
 

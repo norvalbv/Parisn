@@ -8,6 +8,11 @@ import { useSearchParams } from 'react-router-dom';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
+import { io } from 'socket.io-client';
+
+let socket = io('ws://localhost:8000', {
+  withCredentials: true,
+});
 
 const ItemView = () => {
   const [product, setproduct] = useState<null | ProductData>(null);
@@ -38,6 +43,9 @@ const ItemView = () => {
 
   const [searchParams] = useSearchParams();
   const currentProduct = searchParams.get('product') || '';
+
+  // join room
+  socket.emit('join room', currentProduct);
 
   useEffect(() => {
     (async () => {
@@ -104,9 +112,9 @@ const ItemView = () => {
           <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
             {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
           </p>
-          <LiveViewers />
+          <LiveViewers pageParams={currentProduct} />
           {chatOpen ? (
-            <Chat onclick={() => setChatOpen(!chatOpen)} />
+            <Chat onclick={() => setChatOpen(!chatOpen)} pageParams={currentProduct} />
           ) : (
             <Button
               text="Open Chat"

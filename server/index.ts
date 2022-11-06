@@ -42,15 +42,17 @@ app.get('/products/:productid', async (req: any, res: any) => {
  * Socket io functions
  */
 io.on('connect', (socket: any) => {
-  console.log('user connected');
-  socket.on('join room', async (param: string, callback: any) => {
-    socket.join(param);
-    const sockets = await io.in(param).allSockets();
+  socket.on('join room', (pageParams: string) => {
+    socket.join(pageParams);
+  });
+
+  socket.on('get room count', async (pageParams: string, callback: any) => {
+    const sockets = await io.in(pageParams).allSockets();
     callback(sockets.size);
   });
 
-  socket.on('get room', async (param: string, callback: any) => {
-    const sockets = await io.in(param).allSockets();
+  socket.on('get all room counts', async (pageParams: string, callback: any) => {
+    const sockets = await io.in(pageParams).allSockets();
     callback(sockets.size);
   });
 
@@ -58,15 +60,13 @@ io.on('connect', (socket: any) => {
     console.log('user disconnected');
   });
 
-  socket.on('chat message', (msg: string) => {
-    io.emit('chat message', msg);
+  socket.on('chat to room', async (page: string, msg: string) => {
+    const sockets = await io.in(page).allSockets();
+    console.log(sockets);
+    io.emit('get chat message from room', msg);
   });
 });
 
 server.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);
 });
-
-// Open a socket between client and server for continuous price decrements...
-// When the user goes to checkout / buy the product, the user then makes an API call to checkout for that price
-// Perhaps there is a discount on the product, so price is £1k, purchase price at £200 is a 80% provided via params.
