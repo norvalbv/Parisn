@@ -51,3 +51,8 @@ export type UserContextInformation = {
   user: UserInformation;
   setUser: React.Dispatch<React.SetStateAction<UserInformation | null>>;
 };
+
+export type Message = {
+  message: string;
+  user: 'Viewer' | 'Other';
+};

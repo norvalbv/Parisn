@@ -12,6 +12,7 @@ require('dotenv').config();
 import { TableParams } from './AWS/TableParams';
 import { GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './AWS/Client/docClient';
+import { Message } from '../webapp/src/types';
 
 // environment variables
 const PORT = process.env.PORT || 8000;
@@ -60,13 +61,13 @@ io.on('connect', (socket: any) => {
     console.log('user disconnected');
   });
 
-  socket.on('chat to room', async (page: string, msg: string) => {
+  socket.on('chat to room', async (page: string, messageDetails: Message) => {
     const sockets = await io.in(page).allSockets();
-    io.emit('get chat message from room', msg);
+    console.log(messageDetails);
+    io.emit('get chat message from room', messageDetails);
   });
 
   socket.on('chat user typing', async (page: string, msg: string) => {
-    
     io.emit('get chat user typing', msg);
   });
 });

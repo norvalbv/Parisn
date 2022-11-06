@@ -4,6 +4,7 @@ import { io } from 'socket.io-client';
 import Button from '../Button';
 import { animated, useTransition } from '@react-spring/web';
 import LiveViewers from '../LiveViewers';
+import { Message } from '../../types';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -16,14 +17,14 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
-    socket.emit('chat to room', pageParams, userInput);
+    socket.emit('chat to room', pageParams, { userInput, user: 'Viewer' });
   };
 
-  socket.on('get chat message from room', (msg: string) => {
-    setMessages([...messages, msg]);
+  socket.on('get chat message from room', (messageDetails: Message) => {
+    setMessages([...messages, messageDetails]);
   });
 
   const [userTyping, setUserTyping] = useState<number | null>(null);
@@ -69,12 +70,16 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             </div>
             <div className="overflow-x-hidden break-words overflow-y-scroll h-full">
               {messages?.map((message, idx) => (
-                <div key={idx}>
+                <div key={idx} className="grid grid-cols-2">
                   <span
-                    className="bg-primary-neutral/20 rounded-xl py-1 px-2 inline-block my-0.5"
+                    className={`rounded-xl py-1 px-2 inline-block my-0.5 w-max ${
+                      message.user === 'Viewer'
+                        ? 'bg-primary-neutral/20 justify-self-end col-start-2'
+                        : 'bg-primary-neutral/40'
+                    }`}
                     ref={ref}
                   >
-                    {message}
+                    {message.userInput}
                   </span>
                 </div>
               ))}
