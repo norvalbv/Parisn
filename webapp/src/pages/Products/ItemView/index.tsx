@@ -68,62 +68,69 @@ const ItemView = () => {
     <div className="relative overflow-auto scroll-smooth">
       <img src={product.Image} alt={product.Image} className="h-screen w-[40%] sticky top-0" />
       <div className="absolute right-0 top-0 w-[60%]">
-        <div
-          id="product-overview"
-          className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
-        >
-          <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-            {product.Title}
-          </span>
-          <a className="hover:underline hover:text-secondary-neutral" href="#description">
-            View Description
-          </a>
-          {Number(localPrice.toFixed(1)) === 0 ? (
-            'FREE'
-          ) : (
-            <>
-              <p>Price: £{localPrice.toFixed(2)}</p>
-              <progress
-                className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
-                value={localPrice / 10}
-                max="100"
-              />
-            </>
-          )}
-          <Button
-            text="Buy Now"
-            hoveredText={`Buy at £${localPrice.toFixed(2)}`}
-            rounded="lg"
-            navigateTo="/checkout"
-            onClick={() => {
-              setProductInfo({
-                product: product,
-                price: Number(localPrice.toFixed(2)),
-                selectedSize: selectedSize,
-              });
-            }}
-          />
-          <ProductSizes
-            classes="mb-4"
-            selectedSize={selectedSize}
-            sizes={product.Stock}
-            onClick={(size) => setselectedSize(size)}
-          />
-          <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
-            {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
-          </p>
-          <LiveViewers pageParams={currentProduct} />
+        <div className="flex relative">
+          <div
+            id="product-overview"
+            className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
+          >
+            <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
+              {product.Title}
+            </span>
+            <a className="hover:underline hover:text-secondary-neutral" href="#description">
+              View Description
+            </a>
+            {Number(localPrice.toFixed(1)) === 0 ? (
+              'FREE'
+            ) : (
+              <>
+                <p>Price: £{localPrice.toFixed(2)}</p>
+                <progress
+                  className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
+                  value={localPrice / 10}
+                  max="100"
+                />
+              </>
+            )}
+            <Button
+              text="Buy Now"
+              hoveredText={`Buy at £${localPrice.toFixed(2)}`}
+              rounded="lg"
+              navigateTo="/checkout"
+              onClick={() => {
+                setProductInfo({
+                  product: product,
+                  price: Number(localPrice.toFixed(2)),
+                  selectedSize: selectedSize,
+                });
+              }}
+            />
+            <ProductSizes
+              classes="mb-4"
+              selectedSize={selectedSize}
+              sizes={product.Stock}
+              onClick={(size) => setselectedSize(size)}
+            />
+            <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
+              {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
+            </p>
+            <LiveViewers pageParams={currentProduct} />
+          </div>
+
           {chatOpen ? (
-            <Chat onclick={() => setChatOpen(!chatOpen)} pageParams={currentProduct} />
+            <Chat
+              onclick={() => setChatOpen(!chatOpen)}
+              pageParams={currentProduct}
+              isOpen={chatOpen}
+            />
           ) : (
             <Button
               text="Open Chat"
               width="9rem"
               size="xs"
-              borderRequired="bottom"
+              borderRequired="none"
               hoverColorRequired={false}
               onClick={() => setChatOpen(!chatOpen)}
-              classes="hover:scale-105 transition-all -rotate-90 right-0"
+              classes="hover:scale-105 transition-all -rotate-90 right-0 top-0 bottom-0 z-40 underline underline-offset-8"
               positioning="absolute"
             />
           )}
