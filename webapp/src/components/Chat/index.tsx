@@ -1,10 +1,10 @@
-import { Field, Form, Formik } from 'formik';
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
+import { Field, Form, Formik } from 'formik';
 import { io } from 'socket.io-client';
-import Button from '../Button';
 import { animated, useTransition } from '@react-spring/web';
-import LiveViewers from '../LiveViewers';
 import { Message } from '../../types';
+import Button from '../Button';
+import LiveViewers from '../LiveViewers';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -27,15 +27,22 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     setMessages([...messages, messageDetails]);
   });
 
-  const [userTyping, setUserTyping] = useState<number | null>(null);
+  const [isTyping, setIsTyping] = useState(false);
+  const [totalTyping, setTotalTyping] = useState(0);
 
   const handleChange = () => {
-    socket.emit('chat user typing', pageParams);
+    socket.emit('chat user typing', isTyping);
   };
 
-  socket.on('get chat user typing', (amount: number) => {
-    setUserTyping(amount);
+  socket.on('get chat user typing', () => {
+    isTyping
+      ? setTotalTyping(totalTyping + 1)
+      : setTotalTyping((prev) => (prev > 0 ? prev - 1 : 0));
   });
+
+  useEffect(() => {
+    handleChange();
+  }, [isTyping]);
 
   const transitions = useTransition(isOpen, {
     from: { width: '0%' },
@@ -47,7 +54,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
 
   useEffect(() => {
     if (ref.current) ref.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
-  });
+  }, [messages]);
 
   return transitions(
     (styles, item) =>
@@ -85,8 +92,8 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
               ))}
             </div>
             <div className="flex flex-row-reverse items-center justify-between">
-              <LiveViewers fontSize="xs" label="Active:" />
-              {userTyping && <span className="text-xs">{userTyping} typing...</span>}
+              <LiveViewers fontSize="xs" label="Active:" pageParams={pageParams} />
+              {totalTyping ? <span className="text-xs">{totalTyping} typing...</span> : null}
             </div>
           </div>
           <Formik
@@ -97,6 +104,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
               if (!values.userInput) return;
               handleSubmit(values);
               resetForm();
+              setIsTyping(false);
             }}
           >
             <Form className="absolute bottom-0 w-full border-t h-12">
@@ -107,14 +115,19 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 borderRequired="none"
                 hoverColorRequired={false}
                 classes="h-full left-4"
-                onClick={(e) => handleSubmit(e)}
+                type="submit"
               />
-              <Field
-                id="userInput"
-                name="userInput"
-                type="text"
-                className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
-              />
+              <Field id="userInput" name="userInput" type="text">
+                {({ field, meta }) => (
+                  <input
+                    type="text"
+                    onInput={() => setIsTyping(true)}
+                    placeholder={meta.touched && meta.error ? meta.error : null}
+                    {...field}
+                    className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
+                  />
+                )}
+              </Field>
             </Form>
           </Formik>
         </animated.div>

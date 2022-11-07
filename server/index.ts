@@ -57,17 +57,18 @@ io.on('connect', (socket: any) => {
     callback(sockets.size);
   });
 
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
-  });
-
   socket.on('chat to room', async (page: string, messageDetails: Message) => {
     const sockets = await io.in(page).allSockets();
     io.emit('get chat message from room', messageDetails);
   });
 
-  socket.on('chat user typing', async (page: string, msg: string) => {
-    io.emit('get chat user typing', msg);
+  socket.on('chat user typing', async (isTyping: boolean) => {
+    console.log(isTyping);
+    io.emit('get chat user typing', isTyping);
+  });
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
   });
 });
 
