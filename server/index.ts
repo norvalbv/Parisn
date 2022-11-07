@@ -39,6 +39,7 @@ app.get('/products/:productid', async (req: any, res: any) => {
   }
 });
 
+let total = 0;
 /**
  * Socket io functions
  */
