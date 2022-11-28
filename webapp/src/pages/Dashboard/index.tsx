@@ -28,7 +28,12 @@ const Dashboard = () => {
               <span className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">.com</span>
             </div>
             <span className="text-3xl tracking-widest block">A Fashion Company</span>
-            <Button text="View Catalogue" classes="mt-20" rounded="lg" navigateTo="/categories" />
+            <Button
+              text="View Collections"
+              classes="mt-20"
+              rounded="lg"
+              navigateTo="/collections"
+            />
           </div>
         </div>
       </div>

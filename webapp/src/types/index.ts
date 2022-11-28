@@ -14,6 +14,11 @@ export interface ProductData {
   Stock: Stock;
 }
 
+export interface CollectionData {
+  collections: string;
+  image: string;
+}
+
 export type ProductInfoValues = {
   product: ProductData | null;
   price: number | null;

@@ -1,6 +1,6 @@
 type TableName = 'Products';
-type Key_ID = '1' | '2' | '3' | '4';
-type KEY_Category = 'Shoes';
+type Key_ID = string | null;
+type KEY_Category = string;
 
 export interface TableParamsProps {
   TableName?: TableName;

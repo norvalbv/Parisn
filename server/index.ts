@@ -9,16 +9,18 @@ const io = require('socket.io')(server, {
 });
 require('dotenv').config();
 
-import { TableParams } from './AWS/TableParams';
+import { ScanParams, TableParams } from './AWS/TableParams';
 import { GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './AWS/Client/docClient';
 import { Message } from '../webapp/src/types';
+import { capitalizeFirstLetter } from '../webapp/src/utils/capitlise';
 
 // environment variables
 const PORT = process.env.PORT || 8000;
 
 app.use(cors());
 
+// Get all products
 app.get('/products', async (req: any, res: any) => {
   try {
     const data = await ddbDocClient.send(new ScanCommand({ TableName: 'Products' }));
@@ -28,12 +30,44 @@ app.get('/products', async (req: any, res: any) => {
   }
 });
 
-app.get('/products/:productid', async (req: any, res: any) => {
+// Get certain products
+app.get('/products/:collection/:productid', async (req: any, res: any) => {
+  const { collection, productid } = req.params;
   try {
     const data = await ddbDocClient.send(
-      new GetCommand(TableParams({ Key: { ID: req.params.productid, Category: 'Shoes' } }))
+      new GetCommand(
+        TableParams({ Key: { ID: productid, Category: capitalizeFirstLetter(collection) } })
+      )
     );
     res.send(data.Item);
+  } catch (err) {
+    console.log('Error', err);
+  }
+});
+
+// Get certain collection
+app.get('/products/collections', async (req: any, res: any) => {
+  try {
+    const data = await ddbDocClient.send(new ScanCommand({ TableName: 'ProductCollections' }));
+
+    console.log(data);
+
+    res.send(data.Items);
+  } catch (err) {
+    console.log('Error', err);
+  }
+});
+
+// Get certain collection
+app.get('/collection/:collection', async (req: any, res: any) => {
+  const { collection } = req.params;
+
+  console.log(collection);
+
+  try {
+    const data = await ddbDocClient.send(new ScanCommand(ScanParams(collection)));
+
+    res.send(data.Items);
   } catch (err) {
     console.log('Error', err);
   }

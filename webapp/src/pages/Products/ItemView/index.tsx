@@ -4,24 +4,24 @@ import LiveViewers from '../../../components/LiveViewers';
 import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
-import { useSearchParams } from 'react-router-dom';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
 import { io } from 'socket.io-client';
+import { useLocation } from 'react-router-dom';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
 const ItemView = () => {
-  const [product, setproduct] = useState<null | ProductData>(null);
+  const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState(1000);
 
   const [chatOpen, setChatOpen] = useState(false);
 
-  const { setProductInfo } = useProduct();
+  // const { setProductInfo } = useProduct();
 
   const priceScale = useMemo(
     () =>
@@ -41,20 +41,26 @@ const ItemView = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const [searchParams] = useSearchParams();
-  const currentProduct = searchParams.get('product') || '';
+  const location = useLocation();
+
+  const currentProduct = location.pathname;
 
   // join room
   socket.emit('join room', currentProduct);
 
   useEffect(() => {
     (async () => {
-      const data = await useProductById(currentProduct || '');
+      const data = await useProductById({
+        collection: currentProduct.split('/').slice(2)[0],
+        productid: currentProduct.split('/').slice(-1)[0],
+      });
+
+      console.log(data, 'data');
       setproduct(data);
     })();
   }, []);
 
-  if (!product) return <></>;
+  if (!product) return <div>No data</div>;
 
   const compareSelectedVals = Object.entries(product.Stock)[
     Object.entries(product.Stock).findIndex((x) =>
@@ -97,11 +103,11 @@ const ItemView = () => {
               rounded="lg"
               navigateTo="/checkout"
               onClick={() => {
-                setProductInfo({
-                  product: product,
-                  price: Number(localPrice.toFixed(2)),
-                  selectedSize: selectedSize,
-                });
+                // setProductInfo({
+                //   product: product,
+                //   price: Number(localPrice.toFixed(2)),
+                //   selectedSize: selectedSize,
+                // });
               }}
             />
             <ProductSizes
