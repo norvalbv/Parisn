@@ -1,9 +1,10 @@
-import React, { Fragment, ReactElement } from 'react';
+import { Fragment, ReactElement } from 'react';
 import { useFormik } from 'formik';
 import { validateContact } from '../../utils/validation';
 import useUser from '../../hooks/useUser';
 import { DASHBOARD_IMAGE } from '../../constants';
 import Button from '../../components/Button';
+import CardWrapper from '../../components/CardWrapper';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
@@ -28,7 +29,7 @@ const ContactUs = (): ReactElement => {
   return (
     <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
-      <div className="grid place-items-center w-full">
+      <CardWrapper cardType="centered">
         <div className="flex flex-col text-center gap-4 tracking-wider">
           <h2 className="text-4xl underline mx-auto relative">Contact Us</h2>
           <h3 className="my-6">Contact Parisn Customer Support</h3>
@@ -55,7 +56,7 @@ const ContactUs = (): ReactElement => {
             <Button text="Submit" />
           </form>
         </div>
-      </div>
+      </CardWrapper>
     </div>
   );
 };
