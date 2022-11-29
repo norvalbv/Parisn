@@ -14,6 +14,7 @@ import { ProductContextProvider } from '../context/ProductContext';
 import Login from '../pages/Account/Login';
 import MyAccount from '../pages/Account/MyAccount';
 import AllCollections from '../pages/Products/AllCollections';
+import SignUp from '../pages/Account/SignUp';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +44,7 @@ export const router = createBrowserRouter(
       <Route path="privacy-policy" element={<PrivacyPolicy />} />
       <Route path="terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="login" element={<Login />} />
+      <Route path="sign-up" element={<SignUp />} />
       <Route path="my-account" element={<MyAccount />} />
       <Route path="about-us" element={<AboutUs />} />
       <Route path="*" element={<NotFound />} />

@@ -30,7 +30,7 @@ const backgroundColorMap = {
 };
 
 const cardTypeMap = {
-  default: { outer: 'max-w-screen-2xl', inner: '' },
+  default: { outer: '', inner: 'max-w-[2000px] mx-auto' },
   centered: { outer: 'h-screen w-full grid place-items-center', inner: '' },
 };
 

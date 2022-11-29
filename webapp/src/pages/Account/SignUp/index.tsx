@@ -1,16 +1,17 @@
-import { Field, Form, Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '../../../components/Button';
 import CardWrapper from '../../../components/CardWrapper';
 
-const Login = () => {
+const SignUp = () => {
   const formik = useFormik({
     initialValues: {
+      username: '',
       firstName: '',
       lastName: '',
       email: '',
-      Message: '',
+      address: '',
     },
     onSubmit: (values) => {
       alert(JSON.stringify(values, null, 2));
@@ -18,14 +19,14 @@ const Login = () => {
     },
   });
 
-  const values = ['Username', 'First Name', 'Last Name', 'Email'];
+  const values = ['Username', 'First Name', 'Last Name', 'Email', 'Address'];
 
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-4xl underline my-6">Login</h2>
-        <Link className="hover:underline cursor-pointer" to="/sign-up">
-          Need an account?
+        <h2 className="text-4xl underline my-6">Sign Up</h2>
+        <Link className="hover:underline cursor-pointer" to="/login">
+          Already have an account?
         </Link>
       </div>
       <form className="flex flex-col gap-8">
@@ -48,11 +49,10 @@ const Login = () => {
             />
           </Fragment>
         ))}
-        <a className="hover:underline cursor-pointer text-end">Forgot your password?</a>
-        <Button text="Login" />
+        <Button text="Sign Up" />
       </form>
     </CardWrapper>
   );
 };
 
-export default Login;
+export default SignUp;
