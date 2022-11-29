@@ -16,22 +16,22 @@ const CardWrapper = ({
 }: CardWrapperProps): ReactElement => {
   return (
     <div
-      className={`${cardTypeMap[cardType].outer} ${backgroundColorMap[backgroundColor]}`}
+      className={`${cardTypeMap[cardType]} ${backgroundColorMap[backgroundColor]} ${className}`}
       role={role}
     >
-      <div className={`${cardTypeMap[cardType].inner} ${className}`}>{children}</div>
+      {children}
     </div>
   );
 };
 
 const backgroundColorMap = {
   white: 'bg-white text-black',
-  black: 'bg-black text-primrary-light',
+  black: 'bg-black text-primary-light',
 };
 
 const cardTypeMap = {
-  default: { outer: 'max-w-screen-2xl', inner: '' },
-  centered: { outer: 'h-screen w-full grid place-items-center', inner: '' },
+  default: 'max-w-screen-2xl',
+  centered: 'h-screen w-full grid place-items-center',
 };
 
 export default CardWrapper;
