@@ -1,8 +1,14 @@
-import { AuthenticationDetails, CognitoUser } from 'amazon-cognito-identity-js';
+import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
-import userPool from '../../../context/AuthContext';
+// import userPool from '../../../context/AuthContext';
+
+const poolData = {
+  UserPoolId: 'eu-west-2_cuz8GIlYg',
+  ClientId: '3gh7ll3fdvsq6nh642g06emka6',
+};
+const userPool = new CognitoUserPool(poolData);
 
 const Login = () => {
   return (
@@ -13,7 +19,7 @@ const Login = () => {
           Need an account?
         </Link>
       </div>
-      <Form
+      {/* <Form
         formValues={{
           firstName: { initialValue: '', type: 'text', label: 'First Name' },
           lastName: { initialValue: '', type: 'text', label: 'Last Name' },
@@ -23,29 +29,29 @@ const Login = () => {
         submitButtonText="Sign In"
         submitFn={(values) => {
           console.log(values);
-          // const user = new CognitoUser({
-          //   Username: values.email,
-          //   Pool: userPool,
-          // });
+          const user = new CognitoUser({
+            Username: values.email,
+            Pool: userPool,
+          });
 
-          // const authDetails = new AuthenticationDetails({
-          //   Username: values.email,
-          //   Password: values.password,
-          // });
+          const authDetails = new AuthenticationDetails({
+            Username: values.email,
+            Password: values.password,
+          });
 
-          // user.authenticateUser(authDetails, {
-          //   onSuccess: (data) => {
-          //     console.log('on succ', data);
-          //   },
-          //   onFailure: (err) => {
-          //     console.error('on fail', err);
-          //   },
-          //   newPasswordRequired: (data) => {
-          //     console.log('new', data);
-          //   },
-          // });
+          user.authenticateUser(authDetails, {
+            onSuccess: (data) => {
+              console.log('on succ', data);
+            },
+            onFailure: (err) => {
+              console.error('on fail', err);
+            },
+            newPasswordRequired: (data) => {
+              console.log('new', data);
+            },
+          });
         }}
-      />
+      /> */}
     </CardWrapper>
   );
 };
