@@ -68,7 +68,14 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   const memoisedValue = useMemo(
     () => ({
-      user: { id: user?.id ?? null },
+      user: {
+        id: user?.id,
+        firstName: user?.firstName,
+        lastName: user?.lastName,
+        username: user?.username,
+        email: user?.email,
+        image: user?.image,
+      },
       setUser,
     }),
     [user]

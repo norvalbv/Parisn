@@ -11,17 +11,15 @@ type MyAccountProps = {
 };
 
 const MyAccount = ({ isOpened }: MyAccountProps) => {
+  const { setUser, user } = useUser();
+
   const transitions = useTransition(isOpened.accountOpen, {
     from: { width: '0%', display: 'none' },
     enter: { width: '66%', display: 'block' },
     leave: { width: '0%', display: 'none' },
   });
 
-  const { setUser, user } = useUser();
-
-  console.log(user);
-
-  const [selectedTab, setSelectedTab] = useState('myinformtion');
+  const [selectedTab, setSelectedTab] = useState('myinformation');
 
   return transitions(
     (styles, item) =>
@@ -43,14 +41,14 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
             />
           </div>
           <div className="h-full grid grid-cols-3 divide-x divide-x-gray">
-            <div className="col-span-1 p-4">
-              <div className="grid grid-cols-2 items-center border-b pb-4 mb-4">
+            <div className="p-4">
+              <div className="flex gap-6 items-center border-b pb-4 mb-4">
                 <img
                   src={PRODUCT_1_IMAGE}
                   alt="User Profile Picture"
                   className="rounded-full h-14 w-14 border-2"
                 />
-                <h3>Hello, {user.username}!</h3>
+                <h3 className="text-2xl capitalize">Hello, {user.firstName}!</h3>
               </div>
               <div className="divide-y">
                 <p
@@ -83,7 +81,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                 />
               </div>
             </div>
-            <div className="cols-span-2 p-4">
+            <div className="p-4 w-80">
               {selectedTab === 'myinformation' ? <MyInformation /> : <MyOrders />}
             </div>
           </div>
