@@ -13,14 +13,14 @@ type FormProps = {
     };
   };
   footerLink?: { active: boolean; label: string; to: string };
-  submitButtonText: string;
+  submitButton: { label: string; className?: string };
   submitFn: (arg: { [key: string]: string }) => void;
 };
 
 const Form = ({
   formValues,
   footerLink = { active: false, label: '', to: '' },
-  submitButtonText,
+  submitButton,
   submitFn,
 }: FormProps): ReactElement => {
   let initalValues: { [key: string]: string } = {};
@@ -34,9 +34,9 @@ const Form = ({
       <FormikForm className="flex flex-col gap-8">
         {Object.entries(formValues).map(([id, values]) => (
           <Fragment key={id}>
-            <div className="flex gap-8 items-center justify-between">
+            <div className="flex items-center justify-between">
               <label htmlFor={id}>{values.label}</label>
-              {false ? <span className="text-sm text-utility-warning-main">ERROR</span> : null}
+              {false ? <ErrorMessage name={id} /> : null}
             </div>
 
             <Field
@@ -46,7 +46,6 @@ const Form = ({
               type={values.type}
               className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
             />
-            <ErrorMessage name={id} />
           </Fragment>
         ))}
         {footerLink?.active ? (
@@ -54,7 +53,7 @@ const Form = ({
             {footerLink.label}
           </Link>
         ) : null}
-        <Button text={submitButtonText} type="submit" />
+        <Button text={submitButton.label} type="submit" classes={submitButton.className} />
       </FormikForm>
     </Formik>
   );

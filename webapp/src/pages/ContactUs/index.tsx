@@ -22,7 +22,7 @@ const ContactUs = (): ReactElement => {
               orderNumber: { initialValue: '', type: 'text', label: 'Order Number' },
               Message: { initialValue: '', type: 'textarea', label: 'Message' },
             }}
-            submitButtonText="Submit Query"
+            submitButton={{ label: 'Submit Query' }}
             submitFn={async (values) => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));

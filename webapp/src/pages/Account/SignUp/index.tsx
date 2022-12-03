@@ -19,7 +19,7 @@ const SignUp = () => {
           email: { initialValue: '', type: 'text', label: 'Email' },
           password: { initialValue: '', type: 'password', label: 'Password' },
         }}
-        submitButtonText="Sign Up"
+        submitButton={{ label: 'Sign Up' }}
         submitFn={async (values) => {
           await new Promise((r) => setTimeout(r, 500));
           alert(JSON.stringify(values, null, 2));

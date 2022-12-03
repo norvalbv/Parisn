@@ -1,39 +1,11 @@
-import React, { Fragment, ReactElement, useState } from 'react';
-import { useFormik } from 'formik';
+import { ReactElement, useState } from 'react';
 import Button from '../../components/Button';
 import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
-import { validateCheckout } from '../../utils/validation';
+import Form from '../../components/Form';
 
 const Checkout = (): ReactElement => {
   const { productInfo } = useProduct();
-
-  const formik = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      firstLineOfAddress: '',
-      secondLineOfAddress: '',
-      country: '',
-      postcode: '',
-    },
-    validateCheckout,
-    onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
-      localStorage.clear();
-    },
-  });
-
-  const values = [
-    'First Name',
-    'Last Name',
-    'Email',
-    'First Line of Address',
-    'Second Line of Address',
-    'Country',
-    'Postcode',
-  ];
 
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
 
@@ -57,53 +29,50 @@ const Checkout = (): ReactElement => {
                 <p className="px-2">{productInfo.product?.Title}</p>
               </div>
             </div>
-            <form className="flex-1 pl-8 flex flex-col gap-8">
-              {Object.entries(formik.initialValues).map(([key], idx) => (
-                <Fragment key={key}>
-                  <div className="flex gap-8 items-center">
-                    <label htmlFor={key}>{values[idx]}</label>
-                    {Object.keys(formik.errors).includes(key) &&
-                    Object.keys(formik.touched).includes(key) ? (
-                      <span className="text-sm text-utility-warning-main">
-                        {Object.values(formik.errors)[Object.keys(formik.errors).indexOf(key)]}
-                      </span>
-                    ) : null}
-                  </div>
-                  <input
-                    id={key}
-                    type={key === 'email' ? 'email' : 'string'}
-                    {...formik.getFieldProps(key)}
-                    className="w-2/3 bg-transparent outline-none border-0 border-b border-primary-main -mb-4 -mt-8"
-                  />
-                </Fragment>
-              ))}
-              <Button
-                text={`Purchase for £${productInfo.price}`}
-                type="button"
-                classes="mt-4"
-                disabled={formik.isSubmitting}
-              />
-              <Counter />
-              <div>
-                {!hovered ? (
-                  <Button text="Clear shopping Basket" onClick={() => setHovered(true)} />
-                ) : (
-                  <Button
-                    text="Are you sure?"
-                    onClick={() => {
-                      localStorage.clear();
-                      setHovered(false);
-                    }}
-                    onMouseLeave={() => setHovered(false)}
-                    navigateTo="/"
-                  />
-                )}
-                <p className="mt-3 italic text-sm underline w-8/12">
-                  Note: If you clear your basket, you will not be able to add anything new for 60
-                  seconds
-                </p>
-              </div>
-            </form>
+            <Form
+              formValues={{
+                firstName: { initialValue: '', type: 'text', label: 'First Name' },
+                lastName: { initialValue: '', type: 'text', label: 'Last Name' },
+                email: { initialValue: '', type: 'password', label: 'Password' },
+                firstLineOfAddress: {
+                  initialValue: '',
+                  type: 'text',
+                  label: 'First Line of Address',
+                },
+                secondLineOfAddress: {
+                  initialValue: '',
+                  type: 'text',
+                  label: 'Second Line of Address',
+                },
+                Country: { initialValue: '', type: 'text', label: 'Country' },
+                Postcode: { initialValue: '', type: 'text', label: 'Postcode' },
+              }}
+              footerLink={{ active: true, label: 'Forgot your password?', to: '/' }}
+              submitButton={{ label: `Purchase for £${productInfo.price}`, className: 'mt-4' }}
+              submitFn={(values) => {
+                console.log(values);
+              }}
+            />
+            <Counter />
+            <div>
+              {!hovered ? (
+                <Button text="Clear shopping Basket" onClick={() => setHovered(true)} />
+              ) : (
+                <Button
+                  text="Are you sure?"
+                  onClick={() => {
+                    localStorage.clear();
+                    setHovered(false);
+                  }}
+                  onMouseLeave={() => setHovered(false)}
+                  navigateTo="/"
+                />
+              )}
+              <p className="mt-3 italic text-sm underline w-8/12">
+                Note: If you clear your basket, you will not be able to add anything new for 60
+                seconds
+              </p>
+            </div>
           </div>
         </>
       ) : (
