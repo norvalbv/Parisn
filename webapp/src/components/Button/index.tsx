@@ -20,7 +20,7 @@ export interface ButtonProps {
    */
   hoveredText?: string;
   /**
-   * How big the button
+   * How big the button is
    */
   size?: keyof typeof buttonSizeMap;
   /**
@@ -103,6 +103,10 @@ export interface ButtonProps {
    * Require boarders?
    */
   borderRequired?: BorderRequired;
+  /**
+   * Positioning of text
+   */
+  textOrientation?: string;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -131,6 +135,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       type = 'button',
       upperCase = true,
       width = '25rem',
+      textOrientation = 'justify-center',
     },
     ref
   ): ReactElement => {
@@ -150,7 +155,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         type={type}
-        className={`${positioning} inline-flex items-center justify-center text-center ${
+        className={`${positioning} inline-flex items-center ${textOrientation} ${
           hoverColorRequired && 'hover:bg-buttons-hover transition-colors duration-200'
         } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
