@@ -131,12 +131,12 @@ const ItemView = () => {
           ) : (
             <Button
               text="Open Chat"
-              width="9rem"
+              width="8rem"
               size="xs"
               borderRequired="none"
               hoverColorRequired={false}
               onClick={() => setChatOpen(!chatOpen)}
-              classes="hover:scale-105 transition-all -rotate-90 right-0 top-0 bottom-0 z-40 underline underline-offset-8"
+              classes="hover:scale-105 transition-all -rotate-90 right-0 top-1/2 z-40 underline underline-offset-8"
               positioning="absolute"
             />
           )}
