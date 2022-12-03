@@ -73,6 +73,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 borderRequired="none"
                 hoverColorRequired={false}
                 onClick={() => onclick()}
+                classes="hover:rotate-90 transform-all duration-300"
               />
             </div>
             <div className="overflow-x-hidden break-words overflow-y-scroll h-full">

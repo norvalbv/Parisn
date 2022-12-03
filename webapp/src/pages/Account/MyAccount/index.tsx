@@ -27,12 +27,13 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
             <div className="flex items-center justify-between mb-4">
               <span className="underline">Chat</span>
               <Button
-                text="x"
+                text="X"
                 size="xs"
                 width="1.5rem"
                 borderRequired="none"
                 hoverColorRequired={false}
                 onClick={() => isOpened.setAccountOpen(!isOpened.accountOpen)}
+                classes="hover:rotate-90 transform-all duration-300"
               />
             </div>
           </div>
