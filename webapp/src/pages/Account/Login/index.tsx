@@ -3,8 +3,6 @@ import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
 
 const Login = () => {
-  const values = ['Username', 'First Name', 'Last Name', 'Email'];
-
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">

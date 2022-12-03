@@ -10,8 +10,6 @@ const SignUp = () => {
   //   console.log(data);
   // });
 
-  const values = ['Username', 'First Name', 'Last Name', 'Email'];
-
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
