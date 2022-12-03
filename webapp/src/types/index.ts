@@ -49,7 +49,12 @@ export interface ContactFormValidation extends BasicUserInformation {
 }
 
 export type UserInformation = {
-  id: string | null;
+  id: string;
+  username: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: string;
 };
 
 export type UserContextInformation = {

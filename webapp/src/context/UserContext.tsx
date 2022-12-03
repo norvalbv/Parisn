@@ -16,7 +16,15 @@ type ProductContextProviderProps = {
 const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
-  const [user, setUser] = useState<UserInformation | null>(null);
+  const [user, setUser] = useState<UserInformation | null>({
+    id: '1231287312',
+    firstName: 'Benji',
+    lastName: 'Norval',
+    username: '',
+    email: 'benjinorval@gmail.com',
+    image:
+      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.henley.ac.uk%2Fnews%2F2021%2Fapplied-entrepreneurship-students-seek-support-for-start-ups&psig=AOvVaw1RhLQWkTshWUg_ndVOhtN5&ust=1670189129240000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKCd3L-x3vsCFQAAAAAdAAAAABAl',
+  });
 
   // const login = async (Username: string, Password: string) => {
   //   return await new Promise((resolve, reject) => {
@@ -63,7 +71,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       user: { id: user?.id ?? null },
       setUser,
     }),
-    [user, setUser]
+    [user]
   );
 
   return <UserContext.Provider value={memoisedValue}>{children}</UserContext.Provider>;
