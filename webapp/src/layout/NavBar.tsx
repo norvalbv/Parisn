@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Basket } from '../components/CustomSVG';
 import useUser from '../hooks/useUser';
 import Login from '../pages/Account/Login';
-import MyAccount from '../pages/Account/MyAccount';
 
-const NavBar = () => {
+type NavBarProps = {
+  setAccountOpen: Dispatch<SetStateAction<boolean>>;
+};
+
+const NavBar = ({ setAccountOpen }: NavBarProps) => {
   const retreviedProductInfo = localStorage.getItem('savedProductInfo');
   const parsedData = JSON.parse(retreviedProductInfo || 'null');
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
@@ -47,9 +50,12 @@ const NavBar = () => {
           )}
 
           {user.id ? (
-            <Link to="/my-account">
-              <li className="px-10 cursor-pointer hover:underline underline-offset-8">Account</li>
-            </Link>
+            <li
+              className="px-10 cursor-pointer hover:underline underline-offset-8"
+              onClick={() => setAccountOpen(true)}
+            >
+              Account
+            </li>
           ) : (
             <Link to="/login">
               <li className="px-10 cursor-pointer hover:underline underline-offset-8">Login</li>
