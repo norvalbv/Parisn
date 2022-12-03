@@ -64,9 +64,10 @@ Back end:
 ### Roadmap
 
 *Note: this is more of a personal roadmap and just note-worthy features that will be added*
-- Connect AWS DynamoDB for database [in progress]
+- Connect AWS DynamoDB for database [Done] (in progress improvements underway)
+- Allow using login (auth etc) using AWS Cognito [in progress]
+- Add websockets to ensure live data is correct [in progress]
 - Fix azure pipeline
-- Add websockets to ensure live data is correct
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
