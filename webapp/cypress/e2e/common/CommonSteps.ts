@@ -2,7 +2,7 @@ import { Given, Then, When } from '@badeball/cypress-cucumber-preprocessor';
 
 Given('I am on the dashboard', () => {
   // This visit link is temp.
-  cy.visit('http://127.0.0.1:5173/home');
+  cy.visit('http://localhost:5050/home');
 });
 
 When('I click on the {string} nav link', (string: string) => {
