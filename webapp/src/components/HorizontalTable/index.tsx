@@ -21,6 +21,7 @@ type HorizontalTableProps = {
 
   widths?: { title: string; value: string };
   requirePadding?: boolean;
+  borderBottomRequired?: boolean;
 };
 
 const HorizontalTable = ({
@@ -33,11 +34,14 @@ const HorizontalTable = ({
   },
   widths = { title: 'w-2/5', value: 'w-3/5' },
   requirePadding = true,
+  borderBottomRequired = true,
 }: HorizontalTableProps): ReactElement => {
   return (
     <div className="flex text-xs group">
       <div
-        className={`border-t group-last:border-b border-l border-white bg-neutral-60 p-4 leading-[1.145]
+        className={`border-r ${
+          borderBottomRequired ? 'border-b' : ''
+        } bg-neutral-60 p-4 leading-[1.145]
         ${widths.title}
         ${fontSizeMap[TitleFontSize]}
         ${fontWeightMap[TitleFontWeight]}
@@ -46,7 +50,7 @@ const HorizontalTable = ({
         {TitleLabel}
       </div>
       <div
-        className={`border-t group-last:border-b border-x border-neutral-60 leading-[1.145] ${
+        className={`${borderBottomRequired ? 'border-b' : ''} leading-[1.145] ${
           requirePadding ? 'p-4' : ''
         } ${widths.value} ${fontSizeMap[ValueFontSize]} ${
           fontWeightMap[ValueFontWeight]

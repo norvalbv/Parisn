@@ -13,7 +13,11 @@ const MyInformation = () => {
           title={{ TitleLabel: 'Name' }}
           value={{ ValueLabel: `${user.firstName} ${user.lastName}` }}
         />
-        <HorizontalTable title={{ TitleLabel: 'Email' }} value={{ ValueLabel: user.email }} />
+        <HorizontalTable
+          borderBottomRequired={false}
+          title={{ TitleLabel: 'Email' }}
+          value={{ ValueLabel: user.email }}
+        />
       </div>
     </div>
   );
