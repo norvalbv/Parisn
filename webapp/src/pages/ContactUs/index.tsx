@@ -16,9 +16,24 @@ const ContactUs = (): ReactElement => {
           <h3 className="my-6">Contact Parisn Customer Support</h3>
           <Form
             formValues={{
-              firstName: { initialValue: user.firstName ?? '', type: 'text', label: 'First Name' },
-              lastName: { initialValue: user.lastName ?? '', type: 'text', label: 'Last Name' },
-              email: { initialValue: user.email ?? '', type: 'text', label: 'Email' },
+              firstName: {
+                disabled: !!user.firstName,
+                initialValue: user.firstName ?? '',
+                label: 'First Name',
+                type: 'text',
+              },
+              lastName: {
+                disabled: !!user.lastName,
+                initialValue: user.lastName ?? '',
+                label: 'Last Name',
+                type: 'text',
+              },
+              email: {
+                disabled: !!user.email,
+                initialValue: user.email ?? '',
+                label: 'Email',
+                type: 'text',
+              },
               orderNumber: { initialValue: '', type: 'text', label: 'Order Number' },
               Message: { initialValue: '', type: 'textarea', label: 'Message' },
             }}

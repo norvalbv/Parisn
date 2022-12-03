@@ -10,6 +10,7 @@ type FormProps = {
       label: string;
       placeholder?: HTMLInputTypeAttribute;
       type: string;
+      disabled?: boolean;
     };
   };
   footerLink?: { active: boolean; label: string; to: string };
@@ -40,11 +41,13 @@ const Form = ({
             </div>
 
             <Field
+              dis
               id={id}
               name={id}
               placeholder={values.placeholder}
               type={values.type}
               className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
+              disabled={values.disabled}
             />
           </Fragment>
         ))}
