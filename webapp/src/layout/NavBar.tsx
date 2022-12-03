@@ -54,7 +54,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps) => {
               className="px-10 cursor-pointer hover:underline underline-offset-8"
               onClick={() => setAccountOpen(true)}
             >
-              Account
+              My Account
             </li>
           ) : (
             <Link to="/login">

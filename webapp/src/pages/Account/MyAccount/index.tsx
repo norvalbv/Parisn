@@ -26,7 +26,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
       item && (
         <animated.div
           style={styles}
-          className="w-2/3 h-screen bg-primary-dark/80 z-50 top-0 bottom-0 right-0 fixed rounded-bl-lg rounded-tl-lg"
+          className="w-2/3 h-screen bg-primary-dark/90 z-50 top-0 bottom-0 right-0 fixed rounded-bl-lg rounded-tl-lg"
         >
           <div className="flex items-center justify-between mb-4 p-4 border-b">
             <h2>My Account</h2>
