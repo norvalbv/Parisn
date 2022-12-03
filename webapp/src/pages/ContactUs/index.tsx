@@ -23,6 +23,10 @@ const ContactUs = (): ReactElement => {
               Message: { initialValue: '', type: 'textarea', label: 'Message' },
             }}
             submitButtonText="Submit Query"
+            submitFn={async (values) => {
+              await new Promise((r) => setTimeout(r, 500));
+              alert(JSON.stringify(values, null, 2));
+            }}
           />
         </div>
       </CardWrapper>

@@ -14,12 +14,14 @@ type FormProps = {
   };
   footerLink?: { active: boolean; label: string; to: string };
   submitButtonText: string;
+  submitFn: (arg: { [key: string]: string }) => void;
 };
 
 const Form = ({
   formValues,
   footerLink = { active: false, label: '', to: '' },
   submitButtonText,
+  submitFn,
 }: FormProps): ReactElement => {
   let initalValues: { [key: string]: string } = {};
 
@@ -28,13 +30,7 @@ const Form = ({
   });
 
   return (
-    <Formik
-      initialValues={initalValues}
-      onSubmit={async (values) => {
-        await new Promise((r) => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
-      }}
-    >
+    <Formik initialValues={initalValues} onSubmit={(values) => submitFn(values)}>
       <FormikForm className="flex flex-col gap-8">
         {Object.entries(formValues).map(([id, values]) => (
           <Fragment key={id}>

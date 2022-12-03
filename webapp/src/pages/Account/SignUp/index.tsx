@@ -27,6 +27,10 @@ const SignUp = () => {
           password: { initialValue: '', type: 'password', label: 'Password' },
         }}
         submitButtonText="Sign In"
+        submitFn={async (values) => {
+          await new Promise((r) => setTimeout(r, 500));
+          alert(JSON.stringify(values, null, 2));
+        }}
       />
     </CardWrapper>
   );
