@@ -64,5 +64,6 @@ export type UserContextInformation = {
 
 export type Message = {
   message: string;
-  user: 'Self' | 'Other';
+  user: string;
+  id: number;
 };

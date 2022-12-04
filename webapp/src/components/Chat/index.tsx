@@ -23,10 +23,11 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
    * Chat submission
    */
   const [messages, setMessages] = useState<Message[]>([
-    { message: 'This chat is in progress...', user: 'Other' },
+    { message: 'This chat is in progress...', user: 'BenjiTheGreat', id: 345678 },
     {
       message: 'I am currently building a login feature that supports the chat :)',
-      user: 'Self',
+      user: 'Shaun1',
+      id: 138616,
     },
   ]);
 
@@ -94,13 +95,15 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 <div key={idx} className={`grid`}>
                   <div
                     className={`relative w-4/5 my-0.5 ${
-                      message.user === 'Self' ? 'justify-self-end' : ''
+                      message.user === user.username ? 'justify-self-end' : ''
                     }`}
                   >
                     <span className="text-xs block">{user.username}:</span>
                     <span
                       className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
-                        message.user === 'Self' ? 'bg-primary-neutral/20' : 'bg-primary-neutral/40'
+                        message.user === user.username
+                          ? 'bg-primary-neutral/20'
+                          : 'bg-primary-neutral/40'
                       }`}
                       ref={ref}
                     >
@@ -125,7 +128,10 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 message: values.userInput,
                 user: 'Viewer',
               });
-              setMessages([...messages, { user: 'Self', message: values.userInput }]);
+              setMessages([
+                ...messages,
+                { user: 'BenjiTheGreat', message: values.userInput, id: 123976 },
+              ]);
               resetForm();
               setIsTyping(false);
             }}
