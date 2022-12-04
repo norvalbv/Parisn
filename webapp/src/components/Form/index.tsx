@@ -4,6 +4,7 @@ import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 
 type FormProps = {
+  footerLink?: { active: boolean; label: string; to: string };
   formValues: {
     [key: string]: {
       initialValue: string;
@@ -13,17 +14,20 @@ type FormProps = {
       disabled?: boolean;
     };
   };
-  footerLink?: { active: boolean; label: string; to: string };
   submitButton: { label: string; className?: string };
   submitFn: (arg: { [key: string]: string }) => void;
+  validationSchema: unknown;
 };
 
 const Form = ({
-  formValues,
   footerLink = { active: false, label: '', to: '' },
+  formValues,
   submitButton,
   submitFn,
+  validationSchema,
 }: FormProps): ReactElement => {
+  console.log(validationSchema);
+
   let initalValues: { [key: string]: string } = {};
 
   Object.entries(formValues).forEach(([label, value]) => {
@@ -31,13 +35,22 @@ const Form = ({
   });
 
   return (
-    <Formik initialValues={initalValues} onSubmit={(values) => submitFn(values)}>
+    <Formik
+      initialValues={initalValues}
+      validateOnChange={false}
+      validationSchema={validationSchema}
+      onSubmit={(values) => submitFn(values)}
+    >
       <FormikForm className="flex flex-col gap-8">
         {Object.entries(formValues).map(([id, values]) => (
           <Fragment key={id}>
             <div className="flex items-center justify-between">
               <label htmlFor={id}>{values.label}</label>
-              {false ? <ErrorMessage name={id} /> : null}
+              <ErrorMessage
+                name={id}
+                component="div"
+                className="font-normal text-red-500 text-sm"
+              />
             </div>
             <Field
               dis

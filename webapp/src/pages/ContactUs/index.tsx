@@ -3,6 +3,7 @@ import useUser from '../../hooks/useUser';
 import { DASHBOARD_IMAGE } from '../../constants';
 import CardWrapper from '../../components/CardWrapper';
 import Form from '../../components/Form';
+import { contactSchema } from '../../utils/validation';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
@@ -42,6 +43,7 @@ const ContactUs = (): ReactElement => {
               await new Promise((r) => setTimeout(r, 500));
               alert(JSON.stringify(values, null, 2));
             }}
+            validationSchema={contactSchema}
           />
         </div>
       </CardWrapper>

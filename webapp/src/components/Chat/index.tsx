@@ -9,7 +9,7 @@ import useUser from '../../hooks/useUser';
 import { v5 as uuidv5 } from 'uuid';
 import convertToDate from '../../utils/convertToDate';
 import { CloseIcon } from '../SVG';
-import { ChatSchema } from '../../utils/validation';
+import { chatSchema } from '../../utils/validation';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -155,7 +155,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             initialValues={{
               userInput: '',
             }}
-            validationSchema={ChatSchema}
+            validationSchema={chatSchema}
             validateOnChange={false}
             onSubmit={(values, { resetForm }) => {
               if (!values.userInput) return;
@@ -181,34 +181,32 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
               setIsTyping(false);
             }}
           >
-            {({ errors, touched }) => (
-              <Form className="absolute bottom-0 w-full border-t h-12">
-                <ErrorMessage
-                  name="userInput"
-                  component="div"
-                  className="font-normal text-xs absolute top-0 ml-2"
-                />
-                <Button
-                  text="send"
-                  size="xs"
-                  width="1.5rem"
-                  borderRequired="none"
-                  hoverColorRequired={false}
-                  classes="h-full left-4"
-                  type="submit"
-                />
-                <Field
-                  className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
-                  id="userInput"
-                  name="userInput"
-                  type="text"
-                  onInput={() => setIsTyping(true)}
-                  autoComplete="off"
-                  disabled={!user.id}
-                  placeholder={!user.id ? 'You must be logged in to chat...' : ''}
-                />
-              </Form>
-            )}
+            <Form className="absolute bottom-0 w-full border-t h-12">
+              <ErrorMessage
+                name="userInput"
+                component="div"
+                className="font-normal text-xs absolute top-0 ml-2"
+              />
+              <Button
+                text="send"
+                size="xs"
+                width="1.5rem"
+                borderRequired="none"
+                hoverColorRequired={false}
+                classes="h-full left-4"
+                type="submit"
+              />
+              <Field
+                className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
+                id="userInput"
+                name="userInput"
+                type="text"
+                onInput={() => setIsTyping(true)}
+                autoComplete="off"
+                disabled={!user.id}
+                placeholder={!user.id ? 'You must be logged in to chat...' : ''}
+              />
+            </Form>
           </Formik>
         </animated.div>
       )
