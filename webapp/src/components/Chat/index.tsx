@@ -8,6 +8,7 @@ import LiveViewers from '../LiveViewers';
 import useUser from '../../hooks/useUser';
 import { v5 as uuidv5 } from 'uuid';
 import convertToDate from '../../utils/convertToDate';
+import { CloseIcon } from '../SVG';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -98,7 +99,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             <div className="flex items-center justify-between mb-4">
               <span className="underline">Chat</span>
               <Button
-                text="x"
+                text={<CloseIcon renderCircle={false} size={44} />}
                 size="xs"
                 width="1.5rem"
                 borderRequired="none"
