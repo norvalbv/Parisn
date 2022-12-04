@@ -39,7 +39,6 @@ const Form = ({
               <label htmlFor={id}>{values.label}</label>
               {false ? <ErrorMessage name={id} /> : null}
             </div>
-
             <Field
               dis
               id={id}

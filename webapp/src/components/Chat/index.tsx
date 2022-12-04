@@ -5,7 +5,6 @@ import { animated, useTransition } from '@react-spring/web';
 import { Message } from '../../types';
 import Button from '../Button';
 import LiveViewers from '../LiveViewers';
-import useUser from '../../hooks/useUser';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -18,11 +17,15 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
-  const { user } = useUser();
-
+  /**
+   * Chat submission
+   */
   const [messages, setMessages] = useState<Message[]>([
     { message: 'This chat is in progress...', user: 'Other' },
-    { message: 'I am currently building a login feature that supports the chat :)', user: 'Other' },
+    {
+      message: 'I am currently building a login feature that supports the chat :)',
+      user: 'Viewer',
+    },
   ]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
@@ -33,6 +36,9 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     setMessages([...messages, messageDetails]);
   });
 
+  /**
+   * Chat interactions
+   */
   const [isTyping, setIsTyping] = useState(false);
   const [totalTyping, setTotalTyping] = useState(0);
 
@@ -46,6 +52,9 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
       : setTotalTyping((prev) => (prev > 0 ? prev - 1 : 0));
   });
 
+  /**
+   * Animations
+   */
   useEffect(() => {
     handleChange();
   }, [isTyping]);
@@ -82,13 +91,13 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 classes="hover:rotate-90 transform-all duration-300"
               />
             </div>
-            <div className="overflow-x-hidden break-words overflow-y-scroll h-full">
+            <div className="break-words overflow-y-scroll h-full">
               {messages?.map((message, idx) => (
-                <div key={idx} className="grid grid-cols-2">
+                <div key={idx} className="grid">
                   <span
-                    className={`rounded-xl py-1 px-2 inline-block my-0.5 w-max ${
+                    className={`rounded-xl py-1 px-2 relative my-1 w-4/5 ${
                       message.user === 'Viewer'
-                        ? 'bg-primary-neutral/20 justify-self-end col-start-2'
+                        ? 'bg-primary-neutral/20 justify-self-end'
                         : 'bg-primary-neutral/40'
                     }`}
                     ref={ref}
@@ -124,7 +133,14 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 classes="h-full left-4"
                 type="submit"
               />
-              <Field id="userInput" name="userInput" type="text" disabled={!user}>
+              <Field
+                className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
+                id="userInput"
+                name="userInput"
+                type="text"
+                onInput={() => setIsTyping(true)}
+              />
+              {/* <Field id="userInput" name="userInput" type="text" disabled={!user}>
                 {({ field, meta }) => (
                   <input
                     type="text"
@@ -134,7 +150,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                     className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
                   />
                 )}
-              </Field>
+              </Field> */}
             </Form>
           </Formik>
         </animated.div>
