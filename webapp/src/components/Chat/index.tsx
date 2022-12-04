@@ -5,6 +5,7 @@ import { animated, useTransition } from '@react-spring/web';
 import { Message } from '../../types';
 import Button from '../Button';
 import LiveViewers from '../LiveViewers';
+import useUser from '../../hooks/useUser';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -17,7 +18,12 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
-  const [messages, setMessages] = useState<Message[]>([]);
+  const { user } = useUser();
+
+  const [messages, setMessages] = useState<Message[]>([
+    { message: 'This chat is in progress...', user: 'Other' },
+    { message: 'I am currently building a login feature that supports the chat :)', user: 'Other' },
+  ]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
     socket.emit('chat to room', pageParams, { message: userInput, user: 'Viewer' });
@@ -118,7 +124,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 classes="h-full left-4"
                 type="submit"
               />
-              <Field id="userInput" name="userInput" type="text">
+              <Field id="userInput" name="userInput" type="text" disabled={!user}>
                 {({ field, meta }) => (
                   <input
                     type="text"
