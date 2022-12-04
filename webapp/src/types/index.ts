@@ -30,24 +30,6 @@ export type ProductContextData = {
   setProductInfo: React.Dispatch<React.SetStateAction<ProductInfoValues | null>>;
 };
 
-type BasicUserInformation = {
-  firstName: string;
-  lastName: string;
-  email: string;
-};
-
-export interface CheckoutFormValidation extends BasicUserInformation {
-  firstLineOfAddress: string;
-  secondLineOfAddress: string;
-  country: string;
-  postcode: string;
-}
-
-export interface ContactFormValidation extends BasicUserInformation {
-  orderNumber?: string;
-  message: string;
-}
-
 export type UserInformation = {
   id: string;
   username: string;

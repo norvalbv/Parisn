@@ -3,6 +3,7 @@ import Button from '../../components/Button';
 import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
 import Form from '../../components/Form';
+import { checkoutSchema } from '../../utils/validation';
 
 const Checkout = (): ReactElement => {
   const { productInfo } = useProduct();
@@ -52,6 +53,7 @@ const Checkout = (): ReactElement => {
               submitFn={(values) => {
                 console.log(values);
               }}
+              validationSchema={checkoutSchema}
             />
             <Counter />
             <div>

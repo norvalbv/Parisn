@@ -26,8 +26,6 @@ const Form = ({
   submitFn,
   validationSchema,
 }: FormProps): ReactElement => {
-  console.log(validationSchema);
-
   let initalValues: { [key: string]: string } = {};
 
   Object.entries(formValues).forEach(([label, value]) => {
