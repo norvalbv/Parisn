@@ -7,6 +7,7 @@ import Button from '../Button';
 import LiveViewers from '../LiveViewers';
 import useUser from '../../hooks/useUser';
 import { v5 as uuidv5 } from 'uuid';
+import convertToDate from '../../utils/convertToDate';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -19,7 +20,6 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
-  // console.log();
   const { user } = useUser();
   /**
    * Chat submission
@@ -27,13 +27,13 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
   const [messages, setMessages] = useState<Message[]>([
     {
       message: 'This chat is in progress...',
-      user: 'BenjiTheGreat',
+      user: 'Parisn',
       time: Date.now(),
       id: uuidv5('This chat is in progress...' + 'BenjiTheGreat' + Date.now(), uuidv5.URL),
     },
     {
       message: 'I am currently building a login feature that supports the chat :)',
-      user: 'Shaun1',
+      user: 'BenjiTheGreatCoder',
       time: Date.now(),
       id: uuidv5(
         'I am currently building a login feature that supports the chat :)' + 'Shaun1' + Date.now(),
@@ -109,13 +109,16 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             </div>
             <div className="break-words overflow-y-scroll h-full">
               {messages?.map((message, idx) => (
-                <div key={idx} className={`grid`}>
+                <div key={idx} className="grid group">
                   <div
                     className={`relative w-4/5 my-0.5 ${
                       message.user === user.username ? 'justify-self-end' : ''
                     }`}
                   >
                     <span className="text-xs block">{message.user}:</span>
+                    <span className="text-xs italic hidden group-hover:block">
+                      {convertToDate(message.time)}
+                    </span>
                     <span
                       className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
                         message.user === user.username
