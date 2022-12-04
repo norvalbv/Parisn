@@ -73,7 +73,6 @@ app.get('/collection/:collection', async (req: any, res: any) => {
   }
 });
 
-let total = 0;
 /**
  * Socket io functions
  */
@@ -97,13 +96,15 @@ io.on('connect', (socket: any) => {
     io.emit('get chat message from room', messageDetails);
   });
 
+  let total = 0;
   socket.on('chat user typing', async (isTyping: boolean) => {
-    console.log(isTyping);
-    io.emit('get chat user typing', isTyping);
-  });
-
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+    if (isTyping) {
+      total++;
+    } else {
+      if (total < 1) return;
+      total--;
+    }
+    io.emit('get chat user typing', total);
   });
 });
 

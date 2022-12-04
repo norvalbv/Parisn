@@ -75,19 +75,18 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     socket.emit('chat user typing', isTyping);
   };
 
-  socket.on('get chat user typing', () => {
-    isTyping
-      ? setTotalTyping(totalTyping + 1)
-      : setTotalTyping((prev) => (prev > 0 ? prev - 1 : 0));
+  // handled by useEffect to only be called once user starts typing and submits messages
+  useEffect(() => {
+    handleChange();
+  }, [isTyping]);
+
+  socket.on('get chat user typing', (arg: number) => {
+    setTotalTyping(arg);
   });
 
   /**
    * Animations
    */
-  useEffect(() => {
-    handleChange();
-  }, [isTyping]);
-
   const transitions = useTransition(isOpen, {
     from: { width: '0%' },
     enter: { width: '33%' },
