@@ -5,6 +5,7 @@ import { animated, useTransition } from '@react-spring/web';
 import { Message } from '../../types';
 import Button from '../Button';
 import LiveViewers from '../LiveViewers';
+import useUser from '../../hooks/useUser';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -17,6 +18,7 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
+  const { user } = useUser();
   /**
    * Chat submission
    */
@@ -24,8 +26,10 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     { message: 'This chat is in progress...', user: 'Other' },
     {
       message: 'I am currently building a login feature that supports the chat :)',
-      user: 'Viewer',
+      user: 'Self',
     },
+    { message: 'This chat is in progress...', user: 'Other' },
+    { message: 'This chat is in progress...', user: 'Other' },
   ]);
 
   const handleSubmit = ({ userInput }: { userInput: string }) => {
@@ -93,17 +97,22 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             </div>
             <div className="break-words overflow-y-scroll h-full">
               {messages?.map((message, idx) => (
-                <div key={idx} className="grid">
-                  <span
-                    className={`rounded-xl py-1 px-2 relative my-1 w-4/5 ${
-                      message.user === 'Viewer'
-                        ? 'bg-primary-neutral/20 justify-self-end'
-                        : 'bg-primary-neutral/40'
+                <div key={idx} className={`grid`}>
+                  <div
+                    className={`relative w-4/5 my-0.5 ${
+                      message.user === 'Self' ? 'justify-self-end' : ''
                     }`}
-                    ref={ref}
                   >
-                    {message.message}
-                  </span>
+                    <span className="text-xs">{user.username}:</span>
+                    <span
+                      className={`rounded-xl inline-block py-1 px-2  ${
+                        message.user === 'Self' ? 'bg-primary-neutral/20' : 'bg-primary-neutral/40'
+                      }`}
+                      ref={ref}
+                    >
+                      {message.message}
+                    </span>
+                  </div>
                 </div>
               ))}
             </div>
