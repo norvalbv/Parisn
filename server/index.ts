@@ -49,9 +49,6 @@ app.get('/products/:collection/:productid', async (req: any, res: any) => {
 app.get('/products/collections', async (req: any, res: any) => {
   try {
     const data = await ddbDocClient.send(new ScanCommand({ TableName: 'ProductCollections' }));
-
-    console.log(data);
-
     res.send(data.Items);
   } catch (err) {
     console.log('Error', err);
@@ -61,9 +58,6 @@ app.get('/products/collections', async (req: any, res: any) => {
 // Get certain collection
 app.get('/collection/:collection', async (req: any, res: any) => {
   const { collection } = req.params;
-
-  console.log(collection);
-
   try {
     const data = await ddbDocClient.send(new ScanCommand(ScanParams(collection)));
 
