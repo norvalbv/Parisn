@@ -6,6 +6,7 @@ import { Message } from '../../types';
 import Button from '../Button';
 import LiveViewers from '../LiveViewers';
 import useUser from '../../hooks/useUser';
+import { v5 as uuidv5 } from 'uuid';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -18,21 +19,37 @@ type ChatProps = {
 };
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
+  // console.log();
   const { user } = useUser();
   /**
    * Chat submission
    */
   const [messages, setMessages] = useState<Message[]>([
-    { message: 'This chat is in progress...', user: 'BenjiTheGreat', id: 345678 },
+    {
+      message: 'This chat is in progress...',
+      user: 'BenjiTheGreat',
+      time: Date.now(),
+      id: uuidv5('This chat is in progress...' + 'BenjiTheGreat' + Date.now(), uuidv5.URL),
+    },
     {
       message: 'I am currently building a login feature that supports the chat :)',
       user: 'Shaun1',
-      id: 138616,
+      time: Date.now(),
+      id: uuidv5(
+        'I am currently building a login feature that supports the chat :)' + 'Shaun1' + Date.now(),
+        uuidv5.URL
+      ),
     },
   ]);
 
   socket.on('get chat message from room', (messageDetails: Message) => {
-    setMessages([...messages, messageDetails]);
+    const checkMessage = messages
+      .flatMap((message) => Object.values(message))
+      .includes(messageDetails.id);
+    console.log(messageDetails);
+    if (!checkMessage) {
+      setMessages([...messages, messageDetails]);
+    }
   });
 
   /**
@@ -98,7 +115,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                       message.user === user.username ? 'justify-self-end' : ''
                     }`}
                   >
-                    <span className="text-xs block">{user.username}:</span>
+                    <span className="text-xs block">{message.user}:</span>
                     <span
                       className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
                         message.user === user.username
@@ -124,13 +141,23 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             }}
             onSubmit={(values, { resetForm }) => {
               if (!values.userInput) return;
+              const time = Date.now();
+              // Socket is used to emit to other users
               socket.emit('chat to room', pageParams, {
+                id: uuidv5(values.userInput + user.username + time, uuidv5.URL),
                 message: values.userInput,
-                user: 'Viewer',
+                user: user.username,
+                time,
               });
+              // Used to set message locally.
               setMessages([
                 ...messages,
-                { user: 'BenjiTheGreat', message: values.userInput, id: 123976 },
+                {
+                  id: uuidv5(values.userInput + user.username + time, uuidv5.URL),
+                  message: values.userInput,
+                  user: 'BenjiTheGreat',
+                  time,
+                },
               ]);
               resetForm();
               setIsTyping(false);
@@ -143,7 +170,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 width="1.5rem"
                 borderRequired="none"
                 hoverColorRequired={false}
-                classes="h-full left-4"
+                classes="h-full top-0.5 left-4"
                 type="submit"
               />
               <Field
@@ -153,6 +180,8 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 type="text"
                 onInput={() => setIsTyping(true)}
                 autoComplete="off"
+                disabled={!user.id}
+                placeholder={!user.id ? 'You must be logged in to chat...' : ''}
               />
               {/* <Field id="userInput" name="userInput" type="text" disabled={!user}>
                 {({ field, meta }) => (
