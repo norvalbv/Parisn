@@ -139,6 +139,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 name="userInput"
                 type="text"
                 onInput={() => setIsTyping(true)}
+                autoComplete="off"
               />
               {/* <Field id="userInput" name="userInput" type="text" disabled={!user}>
                 {({ field, meta }) => (
