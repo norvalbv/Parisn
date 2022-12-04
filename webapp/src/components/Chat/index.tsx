@@ -103,9 +103,9 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                       message.user === 'Self' ? 'justify-self-end' : ''
                     }`}
                   >
-                    <span className="text-xs">{user.username}:</span>
+                    <span className="text-xs block">{user.username}:</span>
                     <span
-                      className={`rounded-xl inline-block py-1 px-2  ${
+                      className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
                         message.user === 'Self' ? 'bg-primary-neutral/20' : 'bg-primary-neutral/40'
                       }`}
                       ref={ref}
