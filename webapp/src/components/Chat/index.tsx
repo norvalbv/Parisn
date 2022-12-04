@@ -28,13 +28,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
       message: 'I am currently building a login feature that supports the chat :)',
       user: 'Self',
     },
-    { message: 'This chat is in progress...', user: 'Other' },
-    { message: 'This chat is in progress...', user: 'Other' },
   ]);
-
-  const handleSubmit = ({ userInput }: { userInput: string }) => {
-    socket.emit('chat to room', pageParams, { message: userInput, user: 'Viewer' });
-  };
 
   socket.on('get chat message from room', (messageDetails: Message) => {
     setMessages([...messages, messageDetails]);
@@ -127,7 +121,11 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
             }}
             onSubmit={(values, { resetForm }) => {
               if (!values.userInput) return;
-              handleSubmit(values);
+              socket.emit('chat to room', pageParams, {
+                message: values.userInput,
+                user: 'Viewer',
+              });
+              setMessages([...messages, { user: 'Self', message: values.userInput }]);
               resetForm();
               setIsTyping(false);
             }}
