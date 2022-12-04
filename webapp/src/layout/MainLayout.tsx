@@ -8,7 +8,7 @@ import MyAccount from '../pages/Account/MyAccount';
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = (): ReactElement => {
-  const [accountOpen, setAccountOpen] = useState(false);
+  const [accountOpen, setAccountOpen] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();

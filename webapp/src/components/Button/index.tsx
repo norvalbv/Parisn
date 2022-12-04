@@ -14,7 +14,7 @@ export interface ButtonProps {
   /**
    * Text or label of button
    */
-  text: string;
+  text: string | JSX.Element;
   /**
    * Text or label for when hovered
    */

@@ -1,6 +1,7 @@
 import { useTransition, animated } from '@react-spring/web';
 import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '../../../components/Button';
+import { CloseIcon } from '../../../components/SVG';
 import { PRODUCT_1_IMAGE } from '../../../constants';
 import useUser from '../../../hooks/useUser';
 import MyInformation from './TabPages/MyInformation';
@@ -31,7 +32,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
           <div className="flex items-center justify-between mb-4 p-4 border-b">
             <h2>My Account</h2>
             <Button
-              text="X"
+              text={<CloseIcon />}
               size="xs"
               width="1.5rem"
               borderRequired="none"
