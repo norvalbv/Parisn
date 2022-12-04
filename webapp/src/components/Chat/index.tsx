@@ -105,7 +105,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
       item && (
         <animated.div
           style={styles}
-          className="h-screen rounded bg-secondary-purple/90 relative z-40"
+          className="h-screen rounded-bl rounded-tl bg-secondary-purple/90 relative z-40"
         >
           <div className="p-4 relative h-[86.5%]">
             <div className="flex items-center justify-between">
