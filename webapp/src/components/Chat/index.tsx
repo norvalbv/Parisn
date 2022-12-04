@@ -183,17 +183,6 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 disabled={!user.id}
                 placeholder={!user.id ? 'You must be logged in to chat...' : ''}
               />
-              {/* <Field id="userInput" name="userInput" type="text" disabled={!user}>
-                {({ field, meta }) => (
-                  <input
-                    type="text"
-                    onInput={() => setIsTyping(true)}
-                    placeholder={meta.touched && meta.error ? meta.error : null}
-                    {...field}
-                    className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
-                  />
-                )}
-              </Field> */}
             </Form>
           </Formik>
         </animated.div>
