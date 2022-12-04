@@ -14,7 +14,7 @@ const Radial = ({
 }: RadialProps): ReactElement => {
   return (
     <svg
-      className={`absolute rounded-full opacity-[15%] blur-3xl z-0 ${classes}`}
+      className={`absolute rounded-full opacity-20 blur-3xl z-0 ${classes}`}
       style={{
         backgroundColor: colour,
         width: sizeMap[size],

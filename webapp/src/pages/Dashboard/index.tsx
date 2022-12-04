@@ -82,11 +82,11 @@ const Dashboard = () => {
               >
                 Your way, your price
               </p>
-              <Radial colour="green" classes="-top-32 -right-32" />
-              <Radial colour="purple" classes="-bottom-32 -left-32" />
             </>
           )}
         </ParentSize>
+        <Radial colour="green" classes="-top-32 -right-32" />
+        <Radial colour="purple" classes="-bottom-32 -left-32" />
       </div>
       <div className="h-screen flex">
         <p className="flex flex-col justify-center items-center text-center px-40 leading-8">
