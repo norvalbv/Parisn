@@ -7664,7 +7664,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:9.0.0":
+"uuid@npm:9.0.0, uuid@npm:^9.0.0":
   version: 9.0.0
   resolution: "uuid@npm:9.0.0"
   bin:
@@ -7796,6 +7796,7 @@ __metadata:
     tailwindcss: ^3.1.6
     ts-jest: ^29.0.1
     typescript: ^4.8.3
+    uuid: ^9.0.0
     vite: ^3.0.0
   languageName: unknown
   linkType: soft
