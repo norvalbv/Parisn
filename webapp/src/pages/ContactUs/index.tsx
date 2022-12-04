@@ -36,7 +36,12 @@ const ContactUs = (): ReactElement => {
                 type: 'text',
               },
               orderNumber: { initialValue: '', type: 'text', label: 'Order Number' },
-              Message: { initialValue: '', type: 'textarea', label: 'Message' },
+              Message: {
+                initialValue: '',
+                type: 'textarea',
+                label: 'Message',
+                disableAutocomplete: 'off',
+              },
             }}
             submitButton={{ label: 'Submit Query' }}
             submitFn={async (values) => {

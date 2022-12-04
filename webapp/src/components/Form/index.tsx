@@ -12,11 +12,12 @@ type FormProps = {
       placeholder?: HTMLInputTypeAttribute;
       type: string;
       disabled?: boolean;
+      disableAutocomplete?: 'off' | 'on';
     };
   };
   submitButton: { label: string; className?: string };
   submitFn: (arg: { [key: string]: string }) => void;
-  validationSchema: unknown;
+  validationSchema?: unknown;
 };
 
 const Form = ({
@@ -58,6 +59,7 @@ const Form = ({
               type={values.type}
               className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
               disabled={values.disabled}
+              autoComplete={values.disableAutocomplete}
             />
           </Fragment>
         ))}
