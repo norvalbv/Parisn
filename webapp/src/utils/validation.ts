@@ -1,5 +1,6 @@
 import { FormikErrors } from 'formik';
 import { CheckoutFormValidation, ContactFormValidation } from '../types';
+import * as Yup from 'yup';
 
 export const validateCheckout = (values: CheckoutFormValidation) => {
   const errors: FormikErrors<CheckoutFormValidation> = {};
@@ -64,3 +65,9 @@ export const validateContact = (values: ContactFormValidation) => {
 
   return errors;
 };
+
+export const ChatSchema = Yup.object().shape({
+  userInput: Yup.string()
+    .min(3, 'Message must be at least 3 characters.')
+    .max(128, 'Message must be less than 128 characters.'),
+});
