@@ -19,8 +19,8 @@ export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: C
     strokeWidth={strokeWidth}
     stroke="#ffffff"
     fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   >
     {renderCircle && <circle cx="12" cy="12" r="9" />}
     <path d="M10 10l4 4m0 -4l-4 4" />

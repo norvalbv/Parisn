@@ -47,11 +47,23 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     const checkMessage = messages
       .flatMap((message) => Object.values(message))
       .includes(messageDetails.id);
-    console.log(messageDetails);
     if (!checkMessage) {
       setMessages([...messages, messageDetails]);
     }
   });
+
+  useEffect(() => {
+    if (messages.length === 2) return;
+    sessionStorage.setItem('messages', JSON.stringify(messages));
+  }, [messages]);
+
+  useEffect(() => {
+    const sessionMessages = sessionStorage.getItem('messages');
+    if (sessionMessages) {
+      const parsed = JSON.parse(sessionMessages);
+      setMessages(parsed);
+    }
+  }, []);
 
   /**
    * Chat interactions
@@ -96,7 +108,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
           className="h-screen rounded bg-secondary-purple/90 relative z-40"
         >
           <div className="p-4 relative h-[86.5%]">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex items-center justify-between">
               <span className="underline">Chat</span>
               <Button
                 text={<CloseIcon renderCircle={false} size={44} />}
