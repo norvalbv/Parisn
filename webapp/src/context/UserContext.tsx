@@ -1,11 +1,12 @@
 import { createContext, useState, useMemo, useEffect } from 'react';
-import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { UserContextInformation, UserInformation } from '../types';
 
-const pool = new CognitoUserPool({
-  UserPoolId: 'eu-west-2_tIGq5GCE6',
-  ClientId: '3gh7ll3fdvsq6nh642g06emka6',
-});
+import { Auth } from 'aws-amplify';
+
+// const pool = new CognitoUserPool({
+//   UserPoolId: 'eu-west-2_tIGq5GCE6',
+//   ClientId: '3gh7ll3fdvsq6nh642g06emka6',
+// });
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -14,15 +15,35 @@ type ProductContextProviderProps = {
 const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
-  const [user, setUser] = useState<UserInformation | null>({
-    id: '1231287312',
-    firstName: 'Benji',
-    lastName: 'Norval',
-    username: 'BenjiTheGreatCoder',
-    email: 'benjinorval@gmail.com',
-    image:
-      'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.henley.ac.uk%2Fnews%2F2021%2Fapplied-entrepreneurship-students-seek-support-for-start-ups&psig=AOvVaw1RhLQWkTshWUg_ndVOhtN5&ust=1670189129240000&source=images&cd=vfe&ved=0CA8QjRxqFwoTCKCd3L-x3vsCFQAAAAAdAAAAABAl',
-  });
+  const [user, setUser] = useState<UserInformation | null>(null);
+
+  const signUp = async (values) => {
+    const { username, password, email } = values;
+    try {
+      const { user } = await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email,
+        },
+        autoSignIn: {
+          // optional - enables auto sign in after user is confirmed
+          enabled: true,
+        },
+      });
+      console.log(user);
+    } catch (error) {
+      console.log('error signing up:', error);
+    }
+  };
+
+  async function signIn() {
+    try {
+      const user = await Auth.signIn(username, password);
+    } catch (error) {
+      console.log('error signing in', error);
+    }
+  }
 
   // const login = async (Username: string, Password: string) => {
   //   return await new Promise((resolve, reject) => {
@@ -74,7 +95,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         email: user?.email,
         image: user?.image,
       },
-      setUser,
+      signUp,
     }),
     [user]
   );

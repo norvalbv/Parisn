@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
-import UserPool from '../../../context/AuthContext';
+import useUser from '../../../hooks/useUser';
 
 const SignUp = () => {
+  const { signUp } = useUser();
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
@@ -14,22 +15,12 @@ const SignUp = () => {
       </div>
       <Form
         formValues={{
-          firstName: { initialValue: '', type: 'text', label: 'First Name' },
-          lastName: { initialValue: '', type: 'text', label: 'Last Name' },
+          username: { initialValue: '', type: 'text', label: 'Username' },
           email: { initialValue: '', type: 'text', label: 'Email' },
           password: { initialValue: '', type: 'password', label: 'Password' },
         }}
         submitButton={{ label: 'Sign Up' }}
-        submitFn={async (values) => {
-          await new Promise((r) => setTimeout(r, 500));
-          alert(JSON.stringify(values, null, 2));
-          // UserPool.signUp(values.email, values.password, [], [], (err, data) => {
-          //   if (err) {
-          //     console.error(err);
-          //   }
-          //   console.log(data);
-          // });
-        }}
+        submitFn={(values) => signUp(values)}
       />
     </CardWrapper>
   );

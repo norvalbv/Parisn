@@ -1,6 +1,6 @@
 {
   "auth": {
-    "parisn01094330": {
+    "Parisn": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -13,12 +13,8 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "ADDRESS",
           "EMAIL",
-          "FAMILY_NAME",
-          "GIVEN_NAME",
-          "PREFERRED_USERNAME",
-          "PICTURE"
+          "PREFERRED_USERNAME"
         ],
         "socialProviders": [],
         "usernameAttributes": [

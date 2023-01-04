@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "parisn01094330_identitypool_01094330",
+    "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "parisn01094330",
-    "userPoolName": "parisn01094330_userpool_01094330",
+    "resourceNameTruncated": "parisn4331e51e",
+    "userPoolName": "Parisn",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -20,34 +20,29 @@
     "passwordPolicyMinLength": 8,
     "passwordPolicyCharacters": [],
     "requiredAttributes": [
-      "address",
       "email",
-      "family_name",
-      "given_name",
-      "preferred_username",
-      "picture"
+      "preferred_username"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
-    "userpoolClientWriteAttributes": [
-      "email"
-    ],
-    "userpoolClientReadAttributes": [
-      "email"
-    ],
-    "userpoolClientLambdaRole": "parisn01094330_userpoolclient_lambda_role",
+    "userpoolClientWriteAttributes": [],
+    "userpoolClientReadAttributes": [],
+    "userpoolClientLambdaRole": "Parisn4331e51e_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "01094330",
-    "resourceName": "parisn01094330",
+    "sharedId": "4331e51e",
+    "resourceName": "Parisn",
     "authSelections": "identityPoolAndUserPool",
-    "useDefault": "default",
+    "serviceName": "Cognito",
     "usernameAttributes": [
       "email"
     ],
-    "triggers": {},
+    "useDefault": "manual",
+    "userPoolGroups": false,
     "userPoolGroupList": [],
-    "serviceName": "Cognito",
+    "adminQueries": false,
+    "thirdPartyAuth": false,
+    "authProviders": [],
     "usernameCaseSensitive": false,
     "useEnabledMfas": true
   }
