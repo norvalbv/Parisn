@@ -1,13 +1,11 @@
 import { createContext, useState, useMemo, useEffect } from 'react';
-import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
+import { CognitoUserPool, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { UserContextInformation, UserInformation } from '../types';
 
-const poolData = {
-  UserPoolId: 'eu-west-2_cuz8GIlYg',
+const pool = new CognitoUserPool({
+  UserPoolId: 'eu-west-2_tIGq5GCE6',
   ClientId: '3gh7ll3fdvsq6nh642g06emka6',
-};
-
-// const userPool = new CognitoUserPool(poolData);
+});
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
