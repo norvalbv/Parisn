@@ -45,6 +45,8 @@ describe('<Button />', () => {
             type="button"
             navigateTo="/"
             borderRequired="all"
+            positioning="relative"
+            textOrientation=""
           />
         </BrowserRouter>
       )

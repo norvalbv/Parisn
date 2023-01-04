@@ -1,12 +1,12 @@
 import { createContext, useState, useMemo, useEffect } from 'react';
 import { UserContextInformation, UserInformation } from '../types';
 
-import { Auth } from 'aws-amplify';
+import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
 
-// const pool = new CognitoUserPool({
-//   UserPoolId: 'eu-west-2_tIGq5GCE6',
-//   ClientId: '3gh7ll3fdvsq6nh642g06emka6',
-// });
+const pool = new CognitoUserPool({
+  UserPoolId: 'eu-west-2_tIGq5GCE6',
+  ClientId: '3gh7ll3fdvsq6nh642g06emka6',
+});
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -17,62 +17,62 @@ const UserContext = createContext<UserContextInformation | null>(null);
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
   const [user, setUser] = useState<UserInformation | null>(null);
 
-  const signUp = async (values) => {
-    const { username, password, email } = values;
-    try {
-      const { user } = await Auth.signUp({
-        username,
-        password,
-        attributes: {
-          email,
+  // const signUp = async (values) => {
+  //   const { username, password, email } = values;
+  //   try {
+  //     const { user } = await Auth.signUp({
+  //       username,
+  //       password,
+  //       attributes: {
+  //         email,
+  //       },
+  //       autoSignIn: {
+  //         // optional - enables auto sign in after user is confirmed
+  //         enabled: true,
+  //       },
+  //     });
+  //     console.log(user);
+  //   } catch (error) {
+  //     console.log('error signing up:', error);
+  //   }
+  // };
+
+  // async function signIn() {
+  //   try {
+  //     const user = await Auth.signIn(username, password);
+  //   } catch (error) {
+  //     console.log('error signing in', error);
+  //   }
+  // }
+
+  const login = async (Username: string, Password: string) => {
+    return await new Promise((resolve, reject) => {
+      const user = new CognitoUser({
+        Username,
+        Pool: pool,
+      });
+
+      const authDetails = new AuthenticationDetails({
+        Username,
+        Password,
+      });
+
+      user.authenticateUser(authDetails, {
+        onSuccess: (data) => {
+          console.log('on succ', data);
+          resolve(data);
         },
-        autoSignIn: {
-          // optional - enables auto sign in after user is confirmed
-          enabled: true,
+        onFailure: (err) => {
+          console.error('on fail', err);
+          reject(err);
+        },
+        newPasswordRequired: (data) => {
+          console.log('new', data);
+          resolve(data);
         },
       });
-      console.log(user);
-    } catch (error) {
-      console.log('error signing up:', error);
-    }
+    });
   };
-
-  async function signIn() {
-    try {
-      const user = await Auth.signIn(username, password);
-    } catch (error) {
-      console.log('error signing in', error);
-    }
-  }
-
-  // const login = async (Username: string, Password: string) => {
-  //   return await new Promise((resolve, reject) => {
-  //     const user = new CognitoUser({
-  //       Username,
-  //       Pool: userPool,
-  //     });
-
-  //     const authDetails = new AuthenticationDetails({
-  //       Username,
-  //       Password,
-  //     });
-
-  //     user.authenticateUser(authDetails, {
-  //       onSuccess: (data) => {
-  //         console.log('on succ', data);
-  //         resolve(data);
-  //       },
-  //       onFailure: (err) => {
-  //         console.error('on fail', err);
-  //         reject(err);
-  //       },
-  //       newPasswordRequired: (data) => {
-  //         console.log('new', data);
-  //         resolve(data);
-  //       },
-  //     });
-  //   });
-  // };
 
   useEffect(() => {
     const retreviedProductInfo = localStorage.getItem('userInformation');
@@ -95,7 +95,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         email: user?.email,
         image: user?.image,
       },
-      signUp,
+      setUser,
     }),
     [user]
   );

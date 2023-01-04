@@ -6636,7 +6636,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"amazon-cognito-identity-js@npm:6.1.2":
+"amazon-cognito-identity-js@npm:6.1.2, amazon-cognito-identity-js@npm:^6.1.2":
   version: 6.1.2
   resolution: "amazon-cognito-identity-js@npm:6.1.2"
   dependencies:
@@ -17758,6 +17758,7 @@ __metadata:
     "@visx/responsive": ^2.10.0
     "@visx/scale": ^2.2.2
     "@visx/shape": ^2.11.1
+    amazon-cognito-identity-js: ^6.1.2
     autoprefixer: ^10.4.7
     aws-amplify: ^5.0.8
     axios: ^0.27.2
