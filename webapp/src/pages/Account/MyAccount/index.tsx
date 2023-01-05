@@ -12,7 +12,7 @@ type MyAccountProps = {
 };
 
 const MyAccount = ({ isOpened }: MyAccountProps) => {
-  const { setUser, user } = useUser();
+  const { user, signOut } = useUser();
 
   const transitions = useTransition(isOpened.accountOpen, {
     from: { width: '0%', display: 'none' },
@@ -67,7 +67,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                 <Button
                   text="Log Out"
                   onClick={() => {
-                    setUser(null);
+                    signOut();
                     isOpened.setAccountOpen(false);
                   }}
                   navigateTo="/"

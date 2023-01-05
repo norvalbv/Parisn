@@ -31,17 +31,27 @@ export type ProductContextData = {
 };
 
 export type UserInformation = {
-  id: string;
+  id: string | number;
   username: string;
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
   email: string;
-  image: string;
+  image?: string;
 };
 
+export type FullUserInformation = {
+  session?: null | string;
+  user?: null | string;
+} & UserInformation;
+
 export type UserContextInformation = {
+  error: null | string;
+  signIn: (values: BasicAuth) => void;
+  signOut: () => void;
+  signUp: (values: Auth) => void;
+  confirmSignUp: (values: VerifyAccount) => void;
   user: UserInformation;
-  setUser: React.Dispatch<React.SetStateAction<UserInformation | null>>;
+  stage: number;
 };
 
 export type Message = {
@@ -50,3 +60,17 @@ export type Message = {
   id: string;
   time: number;
 };
+
+export type BasicAuth = {
+  username: string;
+  password: string;
+};
+
+export type VerifyAccount = {
+  username: string;
+  code: string;
+};
+
+export type Auth = {
+  email: string;
+} & BasicAuth;

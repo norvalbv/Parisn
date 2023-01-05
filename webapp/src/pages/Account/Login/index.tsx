@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
+import useUser from '../../../hooks/useUser';
+import { BasicAuth } from '../../../types';
 
 const Login = () => {
+  const { signIn } = useUser();
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
@@ -13,15 +16,12 @@ const Login = () => {
       </div>
       <Form
         formValues={{
-          firstName: { initialValue: '', type: 'text', label: 'First Name' },
-          lastName: { initialValue: '', type: 'text', label: 'Last Name' },
+          username: { initialValue: '', type: 'text', label: 'Username' },
           password: { initialValue: '', type: 'password', label: 'Password' },
         }}
         footerLink={{ active: true, label: 'Forgot your password?', to: '/' }}
         submitButton={{ label: 'Sign In' }}
-        submitFn={(values) => {
-          console.log(values);
-        }}
+        submitFn={(values) => signIn(values as BasicAuth)}
       />
     </CardWrapper>
   );

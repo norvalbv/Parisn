@@ -1,12 +1,15 @@
+import { Auth } from 'aws-amplify';
 import { createContext, useState, useMemo, useEffect } from 'react';
-import { UserContextInformation, UserInformation } from '../types';
-
-import { AuthenticationDetails, CognitoUser, CognitoUserPool } from 'amazon-cognito-identity-js';
-
-const pool = new CognitoUserPool({
-  UserPoolId: 'eu-west-2_tIGq5GCE6',
-  ClientId: '3gh7ll3fdvsq6nh642g06emka6',
-});
+import {
+  Auth as AuthType,
+  BasicAuth,
+  FullUserInformation,
+  UserContextInformation,
+  UserInformation,
+  VerifyAccount,
+} from '../types';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -15,63 +18,112 @@ type ProductContextProviderProps = {
 const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
-  const [user, setUser] = useState<UserInformation | null>(null);
+  const [user, setUser] = useState<FullUserInformation | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  /** Stage
+  / 1 = not logged in OR confirmed
+  / 2 = unconfirmed
+  */
+  const [stage, setStage] = useState(1);
 
-  // const signUp = async (values) => {
-  //   const { username, password, email } = values;
-  //   try {
-  //     const { user } = await Auth.signUp({
-  //       username,
-  //       password,
-  //       attributes: {
-  //         email,
-  //       },
-  //       autoSignIn: {
-  //         // optional - enables auto sign in after user is confirmed
-  //         enabled: true,
-  //       },
-  //     });
-  //     console.log(user);
-  //   } catch (error) {
-  //     console.log('error signing up:', error);
-  //   }
-  // };
+  const figureStage = (vals?: UserInformation) => {
+    if (vals) {
+      setStage(2);
+    } else {
+      setStage(1);
+    }
+  };
 
-  // async function signIn() {
-  //   try {
-  //     const user = await Auth.signIn(username, password);
-  //   } catch (error) {
-  //     console.log('error signing in', error);
-  //   }
-  // }
-
-  const login = async (Username: string, Password: string) => {
-    return await new Promise((resolve, reject) => {
-      const user = new CognitoUser({
-        Username,
-        Pool: pool,
-      });
-
-      const authDetails = new AuthenticationDetails({
-        Username,
-        Password,
-      });
-
-      user.authenticateUser(authDetails, {
-        onSuccess: (data) => {
-          console.log('on succ', data);
-          resolve(data);
+  const signUp = async (values: AuthType) => {
+    const { username, password, email } = values;
+    try {
+      await Auth.signUp({
+        username,
+        password,
+        attributes: {
+          email,
         },
-        onFailure: (err) => {
-          console.error('on fail', err);
-          reject(err);
-        },
-        newPasswordRequired: (data) => {
-          console.log('new', data);
-          resolve(data);
+        autoSignIn: {
+          enabled: true,
         },
       });
-    });
+      toast('🦄 Signed Up!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
+      setUser({ username: 'user', id: 1, email: 'me@gmail.com' });
+      figureStage();
+    } catch (err) {
+      toast('An error occured');
+      setError('An error occured');
+    }
+  };
+
+  const confirmSignUp = async (values: VerifyAccount) => {
+    const { username, code } = values;
+    try {
+      await Auth.confirmSignUp(username, code);
+      figureStage();
+    } catch (error) {
+      toast('An error occured');
+      setError('An error occured');
+    }
+  };
+
+  const signIn = async (values: BasicAuth) => {
+    const { username, password } = values;
+
+    try {
+      const user = await Auth.signIn(username, password);
+      toast('🦄 Signed In!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (err) {
+      console.log(err);
+      toast('An error occured');
+      setError('An error occured');
+    }
+  };
+
+  const signOut = async () => {
+    try {
+      await Auth.signOut({ global: true });
+      toast('🦄 Signed Out!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    } catch (err) {
+      toast('An error occured! Try again', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+    }
   };
 
   useEffect(() => {
@@ -79,6 +131,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     const parsedData: UserInformation = JSON.parse(retreviedProductInfo || 'null');
 
     setUser(parsedData ?? null);
+    figureStage(parsedData ?? null);
   }, []);
 
   useEffect(() => {
@@ -88,19 +141,29 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const memoisedValue = useMemo(
     () => ({
       user: {
-        id: user?.id,
-        firstName: user?.firstName,
-        lastName: user?.lastName,
-        username: user?.username,
-        email: user?.email,
-        image: user?.image,
+        id: user?.id || '',
+        firstName: user?.firstName || '',
+        lastName: user?.lastName || '',
+        username: user?.username || '',
+        email: user?.email || '',
+        image: user?.image || '',
       },
-      setUser,
+      signUp,
+      signIn,
+      signOut,
+      confirmSignUp,
+      error,
+      stage,
     }),
     [user]
   );
 
-  return <UserContext.Provider value={memoisedValue}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={memoisedValue}>
+      <ToastContainer />
+      {children}
+    </UserContext.Provider>
+  );
 };
 
 export default UserContext;

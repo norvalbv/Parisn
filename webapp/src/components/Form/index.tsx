@@ -15,6 +15,7 @@ type FormProps = {
       disableAutocomplete?: 'off' | 'on';
     };
   };
+  formError?: string | null;
   submitButton: { label: string; className?: string };
   submitFn: (arg: { [key: string]: string }) => void;
   validationSchema?: unknown;
@@ -23,6 +24,7 @@ type FormProps = {
 const Form = ({
   footerLink = { active: false, label: '', to: '' },
   formValues,
+  formError,
   submitButton,
   submitFn,
   validationSchema,
@@ -68,6 +70,9 @@ const Form = ({
             {footerLink.label}
           </Link>
         ) : null}
+        {formError && (
+          <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>
+        )}
         <Button text={submitButton.label} type="submit" classes={submitButton.className} />
       </FormikForm>
     </Formik>
