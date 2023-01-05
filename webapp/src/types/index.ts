@@ -40,11 +40,6 @@ export type UserInformation = {
   image?: string;
 };
 
-export type FullUserInformation = {
-  cognitoInfo?: CognitoUser | null;
-  userInfo: UserInformation | null;
-};
-
 export type CognitoPayload = {
   aud: string;
   auth_time: number;
@@ -59,6 +54,11 @@ export type CognitoPayload = {
   origin_jti: string;
   sub: string;
   token_use: string;
+} | null;
+
+export type FullUserInformation = {
+  cognitoInfo?: CognitoPayload | null;
+  userInfo: UserInformation | null;
 };
 
 export type UserContextInformation = {

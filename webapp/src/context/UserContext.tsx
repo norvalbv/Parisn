@@ -42,7 +42,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const signUp = async (values: AuthType) => {
     const { username, password, email } = values;
     try {
-      const { user } = await Auth.signUp({
+      await Auth.signUp({
         username,
         password,
         attributes: {
@@ -63,12 +63,16 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
+      const user = await Auth.currentUserInfo();
+
+      const decoded: CognitoPayload = jwtDecode(user.signInUserSession.idToken.jwtToken);
+
       setUser({
-        cognitoInfo: user,
+        cognitoInfo: decoded,
         userInfo: {
-          username: 'user',
-          id: 1,
-          email: 'me@gmail.com',
+          username: decoded?.['cognito:username'] || 'demo',
+          email: decoded?.email || 'demo',
+          id: decoded?.aud || 'demo',
         },
       });
       figureStage();
@@ -108,8 +112,12 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       const decoded: CognitoPayload = jwtDecode(user.signInUserSession.idToken.jwtToken);
 
       setUser({
-        cognitoInfo: user,
-        userInfo: { username: decoded['cognito:username'], email: decoded.email, id: decoded.aud },
+        cognitoInfo: decoded,
+        userInfo: {
+          username: decoded?.['cognito:username'] || 'demo',
+          email: decoded?.email || 'demo',
+          id: decoded?.aud || 'demo',
+        },
       });
     } catch (err) {
       console.log(err);
@@ -149,16 +157,34 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   // If
 
   useEffect(() => {
-    const retreviedProductInfo = localStorage.getItem('userInformation');
-    const parsedData: UserInformation = JSON.parse(retreviedProductInfo || 'null');
+    const customer = localStorage.getItem('userInformation');
 
-    setUser(parsedData ?? null);
+    if (customer) {
+      const decoded: CognitoPayload = jwtDecode(customer);
 
-    figureStage(parsedData ?? null);
+      setUser({
+        cognitoInfo: decoded,
+        userInfo: {
+          username: decoded?.['cognito:username'] || 'demo',
+          email: decoded?.email || 'demo',
+          id: decoded?.aud || 'demo',
+        },
+      });
+      figureStage({
+        username: decoded?.['cognito:username'] || 'demo',
+        email: decoded?.email || 'demo',
+        id: decoded?.aud || 'demo',
+      });
+    } else {
+      figureStage();
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('userInformation', JSON.stringify(user));
+    (async () => {
+      const currentUser = Auth.currentSession();
+      if (currentUser) localStorage.setItem('userInformation', JSON.stringify(currentUser));
+    })();
   }, [user]);
 
   const memoisedValue = useMemo(
