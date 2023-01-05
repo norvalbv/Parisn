@@ -3,6 +3,7 @@ import { createContext, useState, useMemo, useEffect } from 'react';
 import {
   Auth as AuthType,
   BasicAuth,
+  CognitoPayload,
   FullUserInformation,
   UserContextInformation,
   UserInformation,
@@ -10,6 +11,7 @@ import {
 } from '../types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import jwtDecode from 'jwt-decode';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -18,7 +20,10 @@ type ProductContextProviderProps = {
 const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
-  const [user, setUser] = useState<FullUserInformation | null>(null);
+  const [user, setUser] = useState<FullUserInformation | null>({
+    cognitoInfo: null,
+    userInfo: null,
+  });
   const [error, setError] = useState<string | null>(null);
   /** Stage
   / 1 = not logged in OR confirmed
@@ -37,7 +42,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const signUp = async (values: AuthType) => {
     const { username, password, email } = values;
     try {
-      await Auth.signUp({
+      const { user } = await Auth.signUp({
         username,
         password,
         attributes: {
@@ -58,7 +63,14 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
-      setUser({ username: 'user', id: 1, email: 'me@gmail.com' });
+      setUser({
+        cognitoInfo: user,
+        userInfo: {
+          username: 'user',
+          id: 1,
+          email: 'me@gmail.com',
+        },
+      });
       figureStage();
     } catch (err) {
       toast('An error occured');
@@ -91,6 +103,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         draggable: true,
         progress: undefined,
         theme: 'light',
+      });
+
+      const decoded: CognitoPayload = jwtDecode(user.signInUserSession.idToken.jwtToken);
+
+      setUser({
+        cognitoInfo: user,
+        userInfo: { username: decoded['cognito:username'], email: decoded.email, id: decoded.aud },
       });
     } catch (err) {
       console.log(err);
@@ -126,11 +145,15 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
+  // set JWT in localstorage.
+  // If
+
   useEffect(() => {
     const retreviedProductInfo = localStorage.getItem('userInformation');
     const parsedData: UserInformation = JSON.parse(retreviedProductInfo || 'null');
 
     setUser(parsedData ?? null);
+
     figureStage(parsedData ?? null);
   }, []);
 
@@ -141,12 +164,14 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const memoisedValue = useMemo(
     () => ({
       user: {
-        id: user?.id || '',
-        firstName: user?.firstName || '',
-        lastName: user?.lastName || '',
-        username: user?.username || '',
-        email: user?.email || '',
-        image: user?.image || '',
+        userInfo: {
+          id: user?.userInfo?.id || '',
+          firstName: user?.userInfo?.firstName || '',
+          lastName: user?.userInfo?.lastName || '',
+          username: user?.userInfo?.username || '',
+          email: user?.userInfo?.email || '',
+          image: user?.userInfo?.image || '',
+        },
       },
       signUp,
       signIn,

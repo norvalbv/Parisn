@@ -1,3 +1,4 @@
+import { CognitoUser } from 'amazon-cognito-identity-js';
 export interface Stock {
   Small: number;
   Medium: number;
@@ -40,9 +41,25 @@ export type UserInformation = {
 };
 
 export type FullUserInformation = {
-  session?: null | string;
-  user?: null | string;
-} & UserInformation;
+  cognitoInfo?: CognitoUser | null;
+  userInfo: UserInformation | null;
+};
+
+export type CognitoPayload = {
+  aud: string;
+  auth_time: number;
+  'cognito:username': string;
+  email: string;
+  email_verified: boolean;
+  event_id: string;
+  exp: number;
+  iat: number;
+  iss: string;
+  jti: string;
+  origin_jti: string;
+  sub: string;
+  token_use: string;
+};
 
 export type UserContextInformation = {
   error: null | string;
