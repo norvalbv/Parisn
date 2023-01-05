@@ -18,20 +18,20 @@ const ContactUs = (): ReactElement => {
           <Form
             formValues={{
               firstName: {
-                disabled: !!user.firstName,
-                initialValue: user.firstName ?? '',
+                disabled: !!user.userInfo?.firstName,
+                initialValue: user.userInfo?.firstName ?? '',
                 label: 'First Name',
                 type: 'text',
               },
               lastName: {
-                disabled: !!user.lastName,
-                initialValue: user.lastName ?? '',
+                disabled: !!user.userInfo?.lastName,
+                initialValue: user.userInfo?.lastName ?? '',
                 label: 'Last Name',
                 type: 'text',
               },
               email: {
-                disabled: !!user.email,
-                initialValue: user.email ?? '',
+                disabled: !!user.userInfo?.email,
+                initialValue: user.userInfo?.email ?? '',
                 label: 'Email',
                 type: 'text',
               },

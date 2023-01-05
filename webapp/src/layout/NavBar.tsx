@@ -49,7 +49,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps) => {
             </Link>
           )}
 
-          {user.id ? (
+          {user.userInfo?.id ? (
             <li
               className="px-10 cursor-pointer hover:underline underline-offset-8"
               onClick={() => setAccountOpen(true)}

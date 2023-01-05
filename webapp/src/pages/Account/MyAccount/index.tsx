@@ -49,7 +49,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                   alt="User Profile Picture"
                   className="rounded-full h-14 w-14 border-2"
                 />
-                <h3 className="text-2xl capitalize">Hello, {user.firstName}!</h3>
+                <h3 className="text-2xl capitalize">Hello, {user.userInfo?.firstName}!</h3>
               </div>
               <div className="divide-y">
                 <p

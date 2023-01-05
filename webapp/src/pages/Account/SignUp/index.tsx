@@ -37,7 +37,7 @@ const SignUp = () => {
           <Form
             formValues={{
               code: { initialValue: '', type: 'text', label: 'Code' },
-              email: { initialValue: user.email || '', type: 'text', label: 'Email' },
+              email: { initialValue: user.userInfo?.email || '', type: 'text', label: 'Email' },
             }}
             formError={error}
             submitButton={{ label: 'Sign Up' }}

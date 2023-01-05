@@ -125,7 +125,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 <div key={idx} className="grid group">
                   <div
                     className={`relative w-4/5 my-0.5 ${
-                      message.user === user.username ? 'justify-self-end' : ''
+                      message.user === user.userInfo?.username ? 'justify-self-end' : ''
                     }`}
                   >
                     <span className="text-xs block">{message.user}:</span>
@@ -134,7 +134,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                     </span>
                     <span
                       className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
-                        message.user === user.username
+                        message.user === user.userInfo?.username
                           ? 'bg-primary-neutral/20'
                           : 'bg-primary-neutral/40'
                       }`}
@@ -162,16 +162,16 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
               const time = Date.now();
               // Socket is used to emit to other users
               socket.emit('chat to room', pageParams, {
-                id: uuidv5(values.userInput + user.username + time, uuidv5.URL),
+                id: uuidv5(values.userInput + user.userInfo?.username + time, uuidv5.URL),
                 message: values.userInput,
-                user: user.username,
+                user: user.userInfo?.username,
                 time,
               });
               // Used to set message locally.
               setMessages([
                 ...messages,
                 {
-                  id: uuidv5(values.userInput + user.username + time, uuidv5.URL),
+                  id: uuidv5(values.userInput + user.userInfo?.username + time, uuidv5.URL),
                   message: values.userInput,
                   user: 'BenjiTheGreat',
                   time,
@@ -203,8 +203,8 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 type="text"
                 onInput={() => setIsTyping(true)}
                 autoComplete="off"
-                disabled={!user.id}
-                placeholder={!user.id ? 'You must be logged in to chat...' : ''}
+                disabled={!user.userInfo?.id}
+                placeholder={!user.userInfo?.id ? 'You must be logged in to chat...' : ''}
               />
             </Form>
           </Formik>
