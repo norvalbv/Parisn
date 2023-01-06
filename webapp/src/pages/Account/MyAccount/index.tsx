@@ -23,7 +23,6 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
   });
 
   const [selectedTab, setSelectedTab] = useState('myinformation');
-  console.log(user);
 
   return transitions(
     (styles, item) =>

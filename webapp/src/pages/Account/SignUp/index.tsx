@@ -27,10 +27,7 @@ const SignUp = () => {
             footerButton={{
               active: true,
               label: 'Verify Account',
-              onClick: () => {
-                console.log('called');
-                setStage(2);
-              },
+              onClick: () => setStage(2),
             }}
             submitButton={{ label: 'Sign Up' }}
             submitFn={(values) => signUp(values as Auth)}
@@ -57,10 +54,7 @@ const SignUp = () => {
             footerButton={{
               active: true,
               label: 'Back',
-              onClick: () => {
-                console.log('called');
-                setStage(1);
-              },
+              onClick: () => setStage(1),
             }}
             submitButton={{ label: 'Sign Up' }}
             submitFn={(values) => confirmSignUp(values as VerifyAccount)}

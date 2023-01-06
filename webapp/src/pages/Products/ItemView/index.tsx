@@ -55,7 +55,6 @@ const ItemView = () => {
         productid: currentProduct.split('/').slice(-1)[0],
       });
 
-      console.log(data, 'data');
       setproduct(data);
     })();
   }, []);

@@ -12,8 +12,6 @@ const PriceDecrease = ({ duration }: PriceDecreaseProps) => {
     config: { duration: 690000 },
   });
 
-  console.log(number.to((n) => n.toFixed(2)));
-
   return (
     <div>
       £<animated.span>{number.to((n) => n.toFixed(2))}</animated.span>
