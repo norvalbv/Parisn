@@ -40,8 +40,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
-  console.log(stage, 'stage');
-
   const signUp = async (values: AuthType) => {
     const { username, password, email } = values;
     try {
