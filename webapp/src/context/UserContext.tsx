@@ -78,7 +78,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       });
       figureStage();
     } catch (err) {
-      toast('An error occured');
+      toast.warning('An error occured');
       setError('An error occured');
     }
   };
@@ -88,9 +88,20 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     try {
       await Auth.confirmSignUp(username, code);
       figureStage();
+      toast('Verified Account');
     } catch (error) {
-      toast('An error occured');
+      toast.warning('An error occured');
       setError('An error occured');
+    }
+  };
+
+  const resendConfirmationCode = async () => {
+    try {
+      await Auth.resendSignUp(user?.userInfo?.username || '');
+      toast('code resent successfully');
+    } catch (err) {
+      toast.warning('Error');
+      console.log('error resending code: ', err);
     }
   };
 
@@ -124,7 +135,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       });
     } catch (err) {
       console.log(err);
-      toast('An error occured');
+      toast.warning('An error occured');
       setError('An error occured');
     }
   };
@@ -184,6 +195,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   useEffect(() => {
     (async () => {
       const currentUser = await Auth.currentSession();
+      console.log(currentUser);
       const token = currentUser.getIdToken().getJwtToken();
 
       if (currentUser) localStorage.setItem('userInformation', JSON.stringify(token));
@@ -193,6 +205,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const memoisedValue = useMemo(
     () => ({
       user: {
+        cognitoInfo: user?.cognitoInfo,
         userInfo: {
           id: user?.userInfo?.id || '',
           firstName: user?.userInfo?.firstName || '',
@@ -206,6 +219,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       signIn,
       signOut,
       confirmSignUp,
+      resendConfirmationCode,
       error,
       stage,
     }),

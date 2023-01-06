@@ -67,6 +67,7 @@ export type UserContextInformation = {
   signOut: () => void;
   signUp: (values: Auth) => void;
   confirmSignUp: (values: VerifyAccount) => void;
+  resendConfirmationCode: () => void;
   user: FullUserInformation;
   stage: number;
 };

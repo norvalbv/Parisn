@@ -6,6 +6,7 @@ import { PRODUCT_1_IMAGE } from '../../../constants';
 import useUser from '../../../hooks/useUser';
 import MyInformation from './TabPages/MyInformation';
 import MyOrders from './TabPages/MyOrders';
+import VerifyAccount from './TabPages/VerifyAccount';
 
 type MyAccountProps = {
   isOpened: { accountOpen: boolean; setAccountOpen: Dispatch<SetStateAction<boolean>> };
@@ -21,6 +22,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
   });
 
   const [selectedTab, setSelectedTab] = useState('myinformation');
+  console.log(user);
 
   return transitions(
     (styles, item) =>
@@ -66,6 +68,14 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                 >
                   My Orders
                 </p>
+                {user.cognitoInfo?.email_verified && (
+                  <p
+                    className="py-2 cursor-pointer hover:underline"
+                    onClick={() => setSelectedTab('verifyaccount')}
+                  >
+                    Verify Account
+                  </p>
+                )}
                 <Button
                   text="Log Out"
                   onClick={() => {
@@ -85,7 +95,13 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
               </div>
             </div>
             <div className="p-4 w-80">
-              {selectedTab === 'myinformation' ? <MyInformation /> : <MyOrders />}
+              {selectedTab === 'myinformation' ? (
+                <MyInformation />
+              ) : selectedTab === 'myorders' ? (
+                <MyOrders />
+              ) : (
+                <VerifyAccount />
+              )}
             </div>
           </div>
         </animated.div>

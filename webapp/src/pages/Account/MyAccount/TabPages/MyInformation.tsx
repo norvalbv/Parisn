@@ -3,7 +3,6 @@ import useUser from '../../../../hooks/useUser';
 
 const MyInformation = () => {
   const { user } = useUser();
-  console.log(`${user.userInfo?.firstName} ${user.userInfo?.lastName}`);
 
   return (
     <div className="w-full">
