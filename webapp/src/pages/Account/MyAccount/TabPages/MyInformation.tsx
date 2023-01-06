@@ -3,6 +3,7 @@ import useUser from '../../../../hooks/useUser';
 
 const MyInformation = () => {
   const { user } = useUser();
+  console.log(`${user.userInfo?.firstName} ${user.userInfo?.lastName}`);
 
   return (
     <div className="w-full">
@@ -10,16 +11,16 @@ const MyInformation = () => {
       <div className="mt-4">
         <HorizontalTable
           title={{ TitleLabel: 'Username' }}
-          value={{ ValueLabel: user.userInfo?.username || null }}
+          value={{ ValueLabel: user.userInfo?.username || '-' }}
         />
         <HorizontalTable
           title={{ TitleLabel: 'Name' }}
-          value={{ ValueLabel: `${user.userInfo?.firstName} ${user.userInfo?.lastName}` }}
+          value={{ ValueLabel: `${user.userInfo?.firstName} ${user.userInfo?.lastName}` || '-' }}
         />
         <HorizontalTable
           borderBottomRequired={false}
           title={{ TitleLabel: 'Email' }}
-          value={{ ValueLabel: user.userInfo?.email || null }}
+          value={{ ValueLabel: user.userInfo?.email || '-' }}
         />
       </div>
     </div>

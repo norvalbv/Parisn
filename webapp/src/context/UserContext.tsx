@@ -63,9 +63,10 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
-      const user = await Auth.currentUserInfo();
+      const session = await Auth.currentSession();
+      const token = session.getIdToken().getJwtToken();
 
-      const decoded: CognitoPayload = jwtDecode(user.signInUserSession.idToken.jwtToken);
+      const decoded: CognitoPayload = jwtDecode(token);
 
       setUser({
         cognitoInfo: decoded,
@@ -109,7 +110,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
-      const decoded: CognitoPayload = jwtDecode(user.signInUserSession.idToken.jwtToken);
+      const token = user.getIdToken().getJwtToken();
+
+      const decoded: CognitoPayload = jwtDecode(token);
 
       setUser({
         cognitoInfo: decoded,
@@ -140,6 +143,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
     } catch (err) {
+      console.log(err);
       toast('An error occured! Try again', {
         position: 'top-center',
         autoClose: 5000,
@@ -153,12 +157,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
-  // set JWT in localstorage.
-  // If
-
   useEffect(() => {
     const customer = localStorage.getItem('userInformation');
-
     if (customer) {
       const decoded: CognitoPayload = jwtDecode(customer);
 
@@ -167,6 +167,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         userInfo: {
           username: decoded?.['cognito:username'] || 'demo',
           email: decoded?.email || 'demo',
+
           id: decoded?.aud || 'demo',
         },
       });
@@ -182,8 +183,10 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   useEffect(() => {
     (async () => {
-      const currentUser = Auth.currentSession();
-      if (currentUser) localStorage.setItem('userInformation', JSON.stringify(currentUser));
+      const currentUser = await Auth.currentSession();
+      const token = currentUser.getIdToken().getJwtToken();
+
+      if (currentUser) localStorage.setItem('userInformation', JSON.stringify(token));
     })();
   }, [user]);
 
