@@ -102,6 +102,7 @@ export type ForgotPasswordSubmit = {
   username: string;
   code: string;
   newPassword: string;
+  confirmPassword: string;
 };
 
 export type Auth = {

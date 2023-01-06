@@ -118,7 +118,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       } else {
         await Auth.resendSignUp(user?.userInfo?.username || '');
       }
-      toast('code resent successfully');
+      toast('Verification code resent successfully.');
     } catch (err) {
       toast.warning('Error');
       console.log('error resending code: ', err);
@@ -215,7 +215,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   // Collect confirmation code and new password, then
   const forgotPasswordSubmit = (values: ForgotPasswordSubmit) => {
-    const { username, code, newPassword } = values;
+    const { username, code, newPassword, confirmPassword } = values;
+    if (newPassword !== confirmPassword) return;
     Auth.forgotPasswordSubmit(username, code, newPassword)
       .then(() => {
         toast('Password has been changed.');

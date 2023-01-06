@@ -13,7 +13,7 @@ const ForgotPassword = () => {
 
   return (
     <CardWrapper cardType="centered">
-      {stage === 2 ? (
+      {stage === 1 ? (
         <>
           <div className="flex items-baseline justify-between">
             <h2 className="text-4xl underline my-6">Reset Password</h2>
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
             }}
           />
         </>
-      ) : stage === 1 ? (
+      ) : stage === 2 ? (
         <>
           <div className="flex items-baseline justify-between">
             <h2 className="text-4xl underline my-6">Reset Password</h2>
@@ -55,12 +55,13 @@ const ForgotPassword = () => {
                 extraInfo: 'A 6 digit code you would have received this code via email.',
               },
               newPassword: { initialValue: '', type: 'password', label: 'New Password' },
+              confirmPassword: { initialValue: '', type: 'password', label: 'Confirm Password' },
             }}
             submitButton={{ label: 'Change Password' }}
             footerButton={{
               label: 'Resend Confirmation Code',
               active: true,
-              onClick: () => resendConfirmationCode(username || ''),
+              onClick: () => resendConfirmationCode(username || 'benjithegreat'),
             }}
             submitFn={(values) => forgotPasswordSubmit(values as ForgotPasswordSubmit)}
           />
