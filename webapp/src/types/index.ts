@@ -1,4 +1,3 @@
-import { CognitoUser } from 'amazon-cognito-identity-js';
 export interface Stock {
   Small: number;
   Medium: number;
@@ -66,6 +65,8 @@ export type UserContextInformation = {
   confirmSignUp: (values: VerifyAccount) => void;
   error: null | string;
   resendConfirmationCode: () => void;
+  forgotPassword: (arg1: string) => void;
+  forgotPasswordSubmit: (values: ForgotPasswordSubmit) => void;
   signIn: (values: BasicAuth) => void;
   signOut: () => void;
   signUp: (values: Auth) => void;
@@ -95,6 +96,12 @@ export type ResetPassword = {
   oldPassword: string;
   newPassword: string;
   confirmPassword: string;
+};
+
+export type ForgotPasswordSubmit = {
+  username: string;
+  code: string;
+  newPassword: string;
 };
 
 export type Auth = {

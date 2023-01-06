@@ -4,6 +4,7 @@ import {
   Auth as AuthType,
   BasicAuth,
   CognitoPayload,
+  ForgotPasswordSubmit,
   FullUserInformation,
   ResetPassword,
   UserContextInformation,
@@ -187,6 +188,21 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
+  // Send confirmation code to user's email
+  const forgotPassword = (username: string) => {
+    Auth.forgotPassword(username)
+      .then(() => toast('Confirmation code sent to your email.'))
+      .catch((err) => console.log(err));
+  };
+
+  // Collect confirmation code and new password, then
+  const forgotPasswordSubmit = (values: ForgotPasswordSubmit) => {
+    const { username, code, newPassword } = values;
+    Auth.forgotPasswordSubmit(username, code, newPassword)
+      .then(() => toast('Password has been changed.'))
+      .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     const customer = localStorage.getItem('userInformation');
     if (customer) {
@@ -243,6 +259,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       signOut,
       signUp,
       setStage,
+      forgotPassword,
+      forgotPasswordSubmit,
       error,
       stage,
     }),
@@ -255,6 +273,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       signOut,
       signUp,
       setStage,
+      forgotPassword,
+      forgotPasswordSubmit,
       error,
       stage,
     ]
