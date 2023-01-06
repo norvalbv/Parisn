@@ -5,7 +5,9 @@ import useUser from '../../../hooks/useUser';
 import { Auth, VerifyAccount } from '../../../types';
 
 const SignUp = () => {
-  const { signUp, error, stage, user, confirmSignUp } = useUser();
+  const { signUp, error, stage, user, confirmSignUp, setStage } = useUser();
+
+  console.log(user, user.userInfo);
 
   return (
     <CardWrapper cardType="centered">
@@ -24,25 +26,48 @@ const SignUp = () => {
               password: { initialValue: '', type: 'password', label: 'Password' },
             }}
             formError={error}
+            footerButton={{
+              active: true,
+              label: 'Verify Account',
+              onClick: () => {
+                console.log('called');
+                setStage(2);
+              },
+            }}
             submitButton={{ label: 'Sign Up' }}
             submitFn={(values) => signUp(values as Auth)}
           />
         </>
       ) : (
         <>
-          <div className="flex items-baseline justify-between">
-            <h2 className="text-4xl underline my-6">Enter confirmation code</h2>
-            <div>You would've received this by email.</div>
-          </div>
+          <h2 className="text-4xl underline my-6">Enter confirmation code</h2>
           <Form
             formValues={{
-              code: { initialValue: '', type: 'text', label: 'Code' },
-              email: { initialValue: user.userInfo?.email || '', type: 'text', label: 'Email' },
+              username: {
+                initialValue: user.userInfo?.username || '',
+                type: 'text',
+                label: 'Username',
+              },
+              code: {
+                initialValue: '',
+                type: 'text',
+                label: 'Code',
+                extraInfo: 'You would have received this code via email or phone.',
+              },
             }}
             formError={error}
+            footerButton={{
+              active: true,
+              label: 'Back',
+              onClick: () => {
+                console.log('called');
+                setStage(1);
+              },
+            }}
             submitButton={{ label: 'Sign Up' }}
             submitFn={(values) => confirmSignUp(values as VerifyAccount)}
           />
+          <button onClick={(): void => setStage(2)}></button>
         </>
       )}
     </CardWrapper>

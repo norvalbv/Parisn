@@ -4,6 +4,7 @@ import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
 
 type FormProps = {
+  footerButton?: { active: boolean; label: string; onClick: (() => void) | null };
   footerLink?: { active: boolean; label: string; to: string };
   formValues: {
     [key: string]: {
@@ -13,6 +14,7 @@ type FormProps = {
       type: string;
       disabled?: boolean;
       disableAutocomplete?: 'off' | 'on';
+      extraInfo?: string;
     };
   };
   formError?: string | null;
@@ -22,6 +24,7 @@ type FormProps = {
 };
 
 const Form = ({
+  footerButton = { active: false, label: '', onClick: null },
   footerLink = { active: false, label: '', to: '' },
   formValues,
   formError,
@@ -63,12 +66,26 @@ const Form = ({
               disabled={values.disabled}
               autoComplete={values.disableAutocomplete}
             />
+            {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
           </Fragment>
         ))}
         {footerLink?.active ? (
           <Link className="hover:underline cursor-pointer text-end" to={footerLink.to}>
             {footerLink.label}
           </Link>
+        ) : null}
+        {footerButton?.active ? (
+          <button
+            type="button"
+            className="hover:underline cursor-pointer text-end"
+            onClick={() => {
+              if (!footerButton.onClick) return;
+
+              footerButton.onClick();
+            }}
+          >
+            {footerButton?.label}
+          </button>
         ) : null}
         {formError && (
           <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>

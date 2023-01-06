@@ -40,6 +40,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
+  console.log(stage, 'stage');
+
   const signUp = async (values: AuthType) => {
     const { username, password, email } = values;
     try {
@@ -77,7 +79,11 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
           id: decoded?.aud || 'demo',
         },
       });
-      figureStage();
+      figureStage({
+        username: decoded?.['cognito:username'] || 'demo',
+        email: decoded?.email || 'demo',
+        id: decoded?.aud || 'demo',
+      });
     } catch (err) {
       toast.warning('An error occured');
       setError('An error occured');
@@ -238,10 +244,22 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       signIn,
       signOut,
       signUp,
+      setStage,
       error,
       stage,
     }),
-    [user]
+    [
+      user,
+      changePassword,
+      confirmSignUp,
+      resendConfirmationCode,
+      signIn,
+      signOut,
+      signUp,
+      setStage,
+      error,
+      stage,
+    ]
   );
 
   return (

@@ -70,6 +70,7 @@ export type UserContextInformation = {
   signOut: () => void;
   signUp: (values: Auth) => void;
   stage: number;
+  setStage: React.Dispatch<React.SetStateAction<number>>;
   user: FullUserInformation;
 };
 
