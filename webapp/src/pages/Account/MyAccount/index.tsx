@@ -4,6 +4,7 @@ import Button from '../../../components/Button';
 import { CloseIcon } from '../../../components/SVG';
 import { PRODUCT_1_IMAGE } from '../../../constants';
 import useUser from '../../../hooks/useUser';
+import ChangePassword from './TabPages/ChangePassword';
 import MyInformation from './TabPages/MyInformation';
 import MyOrders from './TabPages/MyOrders';
 import VerifyAccount from './TabPages/VerifyAccount';
@@ -76,6 +77,12 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                     Verify Account
                   </p>
                 )}
+                <p
+                  className="py-2 cursor-pointer hover:underline"
+                  onClick={() => setSelectedTab('changepassword')}
+                >
+                  Change Password
+                </p>
                 <Button
                   text="Log Out"
                   onClick={() => {
@@ -99,8 +106,10 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                 <MyInformation />
               ) : selectedTab === 'myorders' ? (
                 <MyOrders />
-              ) : (
+              ) : selectedTab === 'verifyaccount' ? (
                 <VerifyAccount />
+              ) : (
+                <ChangePassword />
               )}
             </div>
           </div>

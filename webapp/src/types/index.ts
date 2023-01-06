@@ -62,14 +62,15 @@ export type FullUserInformation = {
 };
 
 export type UserContextInformation = {
+  changePassword: (values: ResetPassword) => void;
+  confirmSignUp: (values: VerifyAccount) => void;
   error: null | string;
+  resendConfirmationCode: () => void;
   signIn: (values: BasicAuth) => void;
   signOut: () => void;
   signUp: (values: Auth) => void;
-  confirmSignUp: (values: VerifyAccount) => void;
-  resendConfirmationCode: () => void;
-  user: FullUserInformation;
   stage: number;
+  user: FullUserInformation;
 };
 
 export type Message = {
@@ -87,6 +88,12 @@ export type BasicAuth = {
 export type VerifyAccount = {
   username: string;
   code: string;
+};
+
+export type ResetPassword = {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
 };
 
 export type Auth = {

@@ -5,6 +5,7 @@ import {
   BasicAuth,
   CognitoPayload,
   FullUserInformation,
+  ResetPassword,
   UserContextInformation,
   UserInformation,
   VerifyAccount,
@@ -168,6 +169,20 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
+  const changePassword = async (values: ResetPassword) => {
+    const { oldPassword, newPassword, confirmPassword } = values;
+    const passwordMatch = newPassword === confirmPassword;
+    if (!passwordMatch) return false;
+    try {
+      const user = await Auth.currentAuthenticatedUser();
+      Auth.changePassword(user, oldPassword, newPassword);
+      toast('Password has been changed!');
+    } catch (err) {
+      toast.warning('Error!');
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     const customer = localStorage.getItem('userInformation');
     if (customer) {
@@ -194,11 +209,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   useEffect(() => {
     (async () => {
-      const currentUser = await Auth.currentSession();
-      console.log(currentUser);
-      const token = currentUser.getIdToken().getJwtToken();
+      try {
+        const currentUser = await Auth.currentSession();
+        console.log(currentUser);
+        const token = currentUser.getIdToken().getJwtToken();
 
-      if (currentUser) localStorage.setItem('userInformation', JSON.stringify(token));
+        if (currentUser) localStorage.setItem('userInformation', JSON.stringify(token));
+      } catch (err) {}
     })();
   }, [user]);
 
@@ -215,11 +232,12 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
           image: user?.userInfo?.image || '',
         },
       },
-      signUp,
-      signIn,
-      signOut,
+      changePassword,
       confirmSignUp,
       resendConfirmationCode,
+      signIn,
+      signOut,
+      signUp,
       error,
       stage,
     }),
