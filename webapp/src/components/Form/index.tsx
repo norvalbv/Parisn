@@ -69,35 +69,28 @@ const Form = ({
             {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
           </Fragment>
         ))}
-        {
-          (footerLink?.active,
-          footerButton?.active,
-          formError && (
-            <div className="flex justify-between items-baseline flex-row-reverse">
-              {footerLink?.active ? (
-                <Link className="hover:underline cursor-pointer" to={footerLink.to}>
-                  {footerLink.label}
-                </Link>
-              ) : footerButton?.active ? (
-                <button
-                  type="button"
-                  className="hover:underline cursor-pointer"
-                  onClick={() => {
-                    if (!footerButton.onClick) return;
+        <div className="flex justify-between items-baseline flex-row-reverse">
+          {footerLink?.active ? (
+            <Link className="hover:underline cursor-pointer" to={footerLink.to}>
+              {footerLink.label}
+            </Link>
+          ) : footerButton?.active ? (
+            <button
+              type="button"
+              className="hover:underline cursor-pointer"
+              onClick={() => {
+                if (!footerButton.onClick) return;
 
-                    footerButton.onClick();
-                  }}
-                >
-                  {footerButton?.label}
-                </button>
-              ) : null}
-              {formError && (
-                <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>
-              )}
-            </div>
-          ))
-        }
-
+                footerButton.onClick();
+              }}
+            >
+              {footerButton?.label}
+            </button>
+          ) : null}
+          {formError && (
+            <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>
+          )}
+        </div>
         <Button text={submitButton.label} type="submit" classes={submitButton.className} />
       </FormikForm>
     </Formik>

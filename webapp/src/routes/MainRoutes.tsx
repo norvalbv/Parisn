@@ -14,6 +14,7 @@ import { ProductContextProvider } from '../context/ProductContext';
 import Login from '../pages/Account/Login';
 import AllCollections from '../pages/Products/AllCollections';
 import SignUp from '../pages/Account/SignUp';
+import ResetPassword from '../pages/Account/ResetPassword';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ export const router = createBrowserRouter(
         }
       />
       <Route path="contact-us" element={<ContactUs />} />
+      <Route path="reset-password" element={<ResetPassword />} />
       <Route path="privacy-policy" element={<PrivacyPolicy />} />
       <Route path="terms-and-conditions" element={<TermsAndConditions />} />
       <Route path="login" element={<Login />} />
