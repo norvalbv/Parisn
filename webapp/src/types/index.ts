@@ -64,8 +64,8 @@ export type UserContextInformation = {
   changePassword: (values: ResetPassword) => void;
   confirmSignUp: (values: VerifyAccount) => void;
   error: null | string;
-  resendConfirmationCode: () => void;
-  forgotPassword: (arg1: string) => void;
+  resendConfirmationCode: (arg1?: string) => void;
+  forgotPassword: (arg1: { username: string }) => void;
   forgotPasswordSubmit: (values: ForgotPasswordSubmit) => void;
   signIn: (values: BasicAuth) => void;
   signOut: () => void;

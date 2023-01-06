@@ -19,7 +19,7 @@ const Login = () => {
           username: { initialValue: '', type: 'text', label: 'Username' },
           password: { initialValue: '', type: 'password', label: 'Password' },
         }}
-        footerLink={{ active: true, label: 'Forgot your password?', to: '/reset-password' }}
+        footerLink={{ active: true, label: 'Forgot your password?', to: '/forgot-password' }}
         submitButton={{ label: 'Sign In' }}
         submitFn={(values) => signIn(values as BasicAuth)}
       />

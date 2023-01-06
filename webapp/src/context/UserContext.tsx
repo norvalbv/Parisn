@@ -27,11 +27,21 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     userInfo: null,
   });
   const [error, setError] = useState<string | null>(null);
-  /** Stage
+  /** Stage is used both for reset password flow and forgot password flow.
+   
+  / RESET PASSWORD FLOW
+  
   / 1 = not logged in OR confirmed
   / 2 = unconfirmed
+
+  / FORGOT PASSWORD FLOW
+
+  / 1 = username input
+  / 2 = reset password
+  / 3 = confirmation of password reset
+
   */
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(2);
 
   const figureStage = (vals?: UserInformation) => {
     if (vals) {
@@ -101,9 +111,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     }
   };
 
-  const resendConfirmationCode = async () => {
+  const resendConfirmationCode = async (username?: string) => {
     try {
-      await Auth.resendSignUp(user?.userInfo?.username || '');
+      if (username) {
+        await Auth.resendSignUp(username);
+      } else {
+        await Auth.resendSignUp(user?.userInfo?.username || '');
+      }
       toast('code resent successfully');
     } catch (err) {
       toast.warning('Error');
@@ -189,9 +203,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   };
 
   // Send confirmation code to user's email
-  const forgotPassword = (username: string) => {
+  const forgotPassword = (values: { username: string }) => {
+    const { username } = values;
     Auth.forgotPassword(username)
-      .then(() => toast('Confirmation code sent to your email.'))
+      .then(() => {
+        toast('Confirmation code sent to your email.');
+        setStage(2);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -199,7 +217,10 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const forgotPasswordSubmit = (values: ForgotPasswordSubmit) => {
     const { username, code, newPassword } = values;
     Auth.forgotPasswordSubmit(username, code, newPassword)
-      .then(() => toast('Password has been changed.'))
+      .then(() => {
+        toast('Password has been changed.');
+        setStage(3);
+      })
       .catch((err) => console.log(err));
   };
 

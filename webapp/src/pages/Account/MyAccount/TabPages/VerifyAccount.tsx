@@ -26,7 +26,7 @@ const VerifyAccount = () => {
           submitFn={(values): void => confirmSignUp(values as VerifyAccountType)}
         />
       </div>
-      <Button onClick={resendConfirmationCode} text="Resend Confirmation Code" />
+      <Button onClick={() => resendConfirmationCode()} text="Resend Confirmation Code" />
     </div>
   );
 };

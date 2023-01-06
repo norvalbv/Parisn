@@ -7,8 +7,6 @@ import { Auth, VerifyAccount } from '../../../types';
 const SignUp = () => {
   const { signUp, error, stage, user, confirmSignUp, setStage } = useUser();
 
-  console.log(user, user.userInfo);
-
   return (
     <CardWrapper cardType="centered">
       {stage === 1 ? (
@@ -52,7 +50,7 @@ const SignUp = () => {
                 initialValue: '',
                 type: 'text',
                 label: 'Code',
-                extraInfo: 'You would have received this code via email or phone.',
+                extraInfo: 'A 6 digit code you would have received this code via email.',
               },
             }}
             formError={error}
