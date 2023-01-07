@@ -68,7 +68,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
                 >
                   My Orders
                 </p>
-                {user.cognitoInfo?.email_verified && (
+                {!user.cognitoInfo?.email_verified && (
                   <p
                     className="py-2 cursor-pointer hover:underline"
                     onClick={() => setSelectedTab('verifyaccount')}

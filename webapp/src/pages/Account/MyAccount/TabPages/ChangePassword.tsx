@@ -26,12 +26,15 @@ const ChangePassword = () => {
           }}
           submitButton={{
             label: 'Verify Account',
-            className: undefined,
           }}
           submitFn={(values): void => changePassword(values as ResetPassword)}
         />
       </div>
-      <Button onClick={() => resendConfirmationCode()} text="Resend Confirmation Code" />
+      <Button
+        onClick={() => resendConfirmationCode()}
+        text="Resend Confirmation Code"
+        classes="mt-10"
+      />
     </div>
   );
 };
