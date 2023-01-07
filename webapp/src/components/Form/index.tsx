@@ -1,4 +1,4 @@
-import { Fragment, HTMLInputTypeAttribute, ReactElement } from 'react';
+import { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react';
 import Button from '../Button';
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
@@ -46,29 +46,41 @@ const Form = ({
       onSubmit={(values) => submitFn(values)}
     >
       <FormikForm className="flex flex-col gap-8">
-        {Object.entries(formValues).map(([id, values]) => (
-          <Fragment key={id}>
-            <div className="flex items-center justify-between">
-              <label htmlFor={id}>{values.label}</label>
-              <ErrorMessage
+        {Object.entries(formValues).map(([id, values]) => {
+          const [type, setType] = useState(values.type);
+          return (
+            <Fragment key={id}>
+              <div className="flex items-center justify-between">
+                <label htmlFor={id}>{values.label}</label>
+                <ErrorMessage
+                  name={id}
+                  component="div"
+                  className="font-normal text-red-500 text-sm"
+                />
+              </div>
+              <Field
+                dis
+                id={id}
                 name={id}
-                component="div"
-                className="font-normal text-red-500 text-sm"
+                placeholder={values.placeholder}
+                type={type}
+                className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
+                disabled={values.disabled}
+                autoComplete={values.disableAutocomplete}
               />
-            </div>
-            <Field
-              dis
-              id={id}
-              name={id}
-              placeholder={values.placeholder}
-              type={values.type}
-              className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
-              disabled={values.disabled}
-              autoComplete={values.disableAutocomplete}
-            />
-            {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
-          </Fragment>
-        ))}
+              {values.label === 'Password' && (
+                <button
+                  type="button"
+                  className="text-sm text-left italic underline m-0"
+                  onClick={() => (type === 'password' ? setType('text') : setType('password'))}
+                >
+                  {type === 'password' ? 'Show Password' : 'Hide Password'}
+                </button>
+              )}
+              {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
+            </Fragment>
+          );
+        })}
         <div className="flex justify-between items-baseline flex-row-reverse">
           {footerLink?.active ? (
             <Link className="hover:underline cursor-pointer" to={footerLink.to}>

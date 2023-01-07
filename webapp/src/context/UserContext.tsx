@@ -141,7 +141,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
-      const token = user.getIdToken().getJwtToken();
+      console.log(await user.getIdToken());
+
+      const token = await user.getIdToken().getJwtToken();
 
       const decoded: CognitoPayload = jwtDecode(token);
 
