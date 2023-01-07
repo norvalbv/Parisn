@@ -2,7 +2,7 @@
 
 exports[`<Radial /> Radial props with all props as required 1`] = `
 <svg
-  className="absolute rounded-full opacity-[15%] blur-3xl z-0 bg-red-500"
+  className="absolute rounded-full opacity-20 blur-3xl z-0 bg-red-500"
   style={
     {
       "backgroundColor": "blue",
@@ -15,7 +15,7 @@ exports[`<Radial /> Radial props with all props as required 1`] = `
 
 exports[`<Radial /> Radial props with mandatory props 1`] = `
 <svg
-  className="absolute rounded-full opacity-[15%] blur-3xl z-0 "
+  className="absolute rounded-full opacity-20 blur-3xl z-0 "
   style={
     {
       "backgroundColor": "darkpurple",

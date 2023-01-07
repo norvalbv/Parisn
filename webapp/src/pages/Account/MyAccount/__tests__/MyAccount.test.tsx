@@ -1,4 +1,3 @@
-import { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
@@ -11,7 +10,12 @@ describe('<MyAccount />', () => {
       .create(
         <UserInformationProvider>
           <BrowserRouter>
-            <MyAccount />
+            <MyAccount
+              isOpened={{
+                accountOpen: false,
+                setAccountOpen: jest.fn(),
+              }}
+            />
           </BrowserRouter>
         </UserInformationProvider>
       )

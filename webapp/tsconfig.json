@@ -28,5 +28,6 @@
 
     // Outputting format
     "noErrorTruncation": true
-  }
+  },
+  "exclude": ["./cypress.config.ts", "cypress"]
 }
