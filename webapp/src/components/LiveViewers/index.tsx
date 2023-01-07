@@ -10,7 +10,13 @@ let socket = io('ws://localhost:8000', {
 export interface LiveViewersProps {
   fontSize?: FontSize;
   label?: string;
+  /**
+   * Params for page
+   */
   pageParams?: string;
+  /**
+   * Other params, i.e, product ID.
+   */
   params?: string;
 }
 

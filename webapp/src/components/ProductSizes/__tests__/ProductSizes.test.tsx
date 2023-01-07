@@ -11,7 +11,7 @@ describe('<ProductSizes />', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
-          <ProductSizes sizes={{ small: 5, medium: 4, large: 3, extralarge: 2 }} />
+          <ProductSizes sizes={{ Small: 5, Medium: 4, Large: 3, ExtraLarge: 2 }} />
         </BrowserRouter>
       )
       .toJSON();
@@ -23,7 +23,7 @@ describe('<ProductSizes />', () => {
       .create(
         <BrowserRouter>
           <ProductSizesWithRequiredProps
-            sizes={{ small: 5, medium: 4, large: 3, extralarge: 2 }}
+            sizes={{ Small: 5, Medium: 4, Large: 3, ExtraLarge: 2 }}
             classes="bg-red-500"
             onClick={jest.fn()}
             selectedSize="Medium"

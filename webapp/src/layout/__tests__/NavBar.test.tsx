@@ -7,7 +7,7 @@ describe('<NavBar />', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
-          <NavBar />
+          <NavBar setAccountOpen={jest.fn()} />
         </BrowserRouter>
       )
       .toJSON();

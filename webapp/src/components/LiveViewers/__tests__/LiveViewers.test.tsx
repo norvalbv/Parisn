@@ -22,7 +22,12 @@ describe('<Radial />', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
-          <LiveViewersWithRequiredProps params="test-params=test" />{' '}
+          <LiveViewersWithRequiredProps
+            params="test-params=test"
+            fontSize="xl"
+            label="Test Label"
+            pageParams="/test"
+          />
         </BrowserRouter>
       )
       .toJSON();
