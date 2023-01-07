@@ -1,10 +1,17 @@
+import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import ProductsByCollection from '..';
 
-describe('<Catalogue />', () => {
-  test('Catalogue props with mandatory props', async () => {
-    const tree = renderer.create(<ProductsByCollection />).toJSON();
+describe('<ProductsByCollection />', () => {
+  test('ProductsByCollection with only desired props', async () => {
+    const tree = renderer
+      .create(
+        <BrowserRouter>
+          <ProductsByCollection />
+        </BrowserRouter>
+      )
+      .toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
