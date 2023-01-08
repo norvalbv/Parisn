@@ -65,7 +65,7 @@ Back end:
 
 *Note: this is more of a personal roadmap and just note-worthy features that will be added*
 - Connect AWS DynamoDB for database [Done] (in progress improvements underway)
-- Allow using login (auth etc) using AWS Cognito [in progress]
+- Allow using login (auth etc) using AWS Cognito (AWS Amplify) [Completed]
 - Add websockets to ensure live data is correct [in progress]
 - Fix azure pipeline
 
