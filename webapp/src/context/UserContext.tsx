@@ -96,6 +96,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         id: decoded?.aud || 'demo',
       });
     } catch (err) {
+      console.log(err);
       toast.warning('An error occured');
       setError('An error occured');
     }

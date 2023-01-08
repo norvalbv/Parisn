@@ -18,7 +18,7 @@ export interface ErrorBoundaryProps {
 const ErrorBoundary = ({
   children,
   errorMessage,
-  onClick,
+  onClick = () => window.location.reload(),
   className = '',
   reset,
 }: ErrorBoundaryProps): ReactElement => {

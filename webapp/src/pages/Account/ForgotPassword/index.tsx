@@ -59,8 +59,8 @@ const ForgotPassword = () => {
             }}
             submitButton={{ label: 'Change Password' }}
             footerButton={{
-              label: 'Resend Confirmation Code',
               active: true,
+              label: 'Resend Confirmation Code',
               onClick: () => resendConfirmationCode(username || 'benjithegreat'),
             }}
             submitFn={(values) => forgotPasswordSubmit(values as ForgotPasswordSubmit)}
