@@ -23,7 +23,7 @@ const SignUp = () => {
               formValues={{
                 username: { initialValue: '', type: 'text', label: 'Username' },
                 email: { initialValue: '', type: 'text', label: 'Email' },
-                password: { initialValue: '', type: 'password', label: 'Password' },
+                password: { initialValue: '', type: 'password', label: 'Password', id: 'password' },
               }}
               formError={error}
               footerButton={{

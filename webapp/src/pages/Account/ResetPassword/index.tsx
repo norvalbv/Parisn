@@ -17,13 +17,20 @@ const ResetPassword = () => {
       <Form
         formValues={{
           username: { initialValue: '', type: 'text', label: 'Username' },
-          oldPassword: { initialValue: '', label: 'Old Password', type: 'password' },
+          oldPassword: {
+            id: 'password',
+            initialValue: '',
+            label: 'Old Password',
+            type: 'password',
+          },
           newPassword: {
+            id: 'password',
             initialValue: '',
             label: 'New Password',
             type: 'password',
           },
           confirmPassword: {
+            id: 'password',
             initialValue: '',
             label: 'Confirm Password',
             type: 'password',

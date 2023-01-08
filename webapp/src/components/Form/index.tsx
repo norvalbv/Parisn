@@ -15,6 +15,7 @@ type FormProps = {
       disabled?: boolean;
       disableAutocomplete?: 'off' | 'on';
       extraInfo?: string;
+      id?: string;
     };
   };
   formError?: string | null;
@@ -67,7 +68,7 @@ const Form = ({
                 disabled={values.disabled}
                 autoComplete={values.disableAutocomplete}
               />
-              {values.label === 'Password' && (
+              {values.id === 'password' && (
                 <button
                   type="button"
                   className="text-sm text-left italic underline m-0"

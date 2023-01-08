@@ -106,6 +106,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       await Auth.confirmSignUp(username, code);
       figureStage();
       toast('Verified Account');
+      navigate('/login');
     } catch (error) {
       toast.warning('An error occured');
       setError('An error occured');

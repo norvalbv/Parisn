@@ -8,24 +8,31 @@ const ChangePassword = () => {
 
   return (
     <div className="w-full">
-      <h4 className="underline">Verify Account</h4>
+      <h4 className="underline">Change Password</h4>
       <div className="mt-4">
         <Form
           formValues={{
-            oldPassword: { initialValue: '', label: 'Old Password', type: 'password' },
+            oldPassword: {
+              id: 'password',
+              initialValue: '',
+              label: 'Old Password',
+              type: 'password',
+            },
             newPassword: {
+              id: 'password',
               initialValue: '',
               label: 'New Password',
               type: 'password',
             },
             confirmPassword: {
+              id: 'password',
               initialValue: '',
               label: 'Confirm Password',
               type: 'password',
             },
           }}
           submitButton={{
-            label: 'Verify Account',
+            label: 'Change Password',
           }}
           submitFn={(values): void => changePassword(values as ResetPassword)}
         />

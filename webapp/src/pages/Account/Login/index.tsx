@@ -16,10 +16,10 @@ const Login = () => {
       </div>
       <Form
         formValues={{
-          username: { initialValue: '', type: 'text', label: 'Username' },
-          password: { initialValue: '', type: 'password', label: 'Password' },
+          username: { initialValue: '', label: 'Username', type: 'text' },
+          password: { id: 'password', initialValue: '', label: 'Password', type: 'password' },
         }}
-        footerLink={{ active: true, label: 'Forgot your password?', to: '/forgot-password' }}
+        footerLink={{ active: true, label: 'Forgotyourpassword?', to: '/forgot-password' }}
         submitButton={{ label: 'Sign In' }}
         submitFn={(values) => signIn(values as BasicAuth)}
       />
