@@ -32,6 +32,8 @@
 
 Parisn is an eCommerce site with a twist. Each product, starting at £1,000 will logarithmically decrease to £0 over a period. The user can purchase the product at any given time but due to the limited stock and tension built around the product, the user can either risk it, wait for a lower price or be faced with the chance of another user purchasing the product.
 
+**NOTE: You currently need to be added to the IAM policy to be able to utilise the DYNAMO DB API Endpoints. I have yet to set this up for individuals outside myself (for security ... for now). Therefore, when you go to collections and view the products etc - nothing will load). For now, it's best to view the code :) ).**
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
