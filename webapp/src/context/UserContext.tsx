@@ -14,6 +14,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwtDecode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;
@@ -22,6 +23,7 @@ type ProductContextProviderProps = {
 const UserContext = createContext<UserContextInformation | null>(null);
 
 export const UserInformationProvider = ({ children }: ProductContextProviderProps) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState<FullUserInformation | null>({
     cognitoInfo: null,
     userInfo: null,
@@ -129,7 +131,7 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     const { username, password } = values;
 
     try {
-      const user = await Auth.signIn(username, password);
+      await Auth.signIn(username, password);
       toast('🦄 Signed In!', {
         position: 'top-center',
         autoClose: 5000,
@@ -141,9 +143,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
 
-      console.log(await user.getIdToken());
-
-      const token = await user.getIdToken().getJwtToken();
+      const session = await Auth.currentSession();
+      const token = session.getIdToken().getJwtToken();
 
       const decoded: CognitoPayload = jwtDecode(token);
 
@@ -155,6 +156,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
           id: decoded?.aud || 'demo',
         },
       });
+
+      navigate('/');
     } catch (err) {
       console.log(err);
       toast.warning('An error occured');
@@ -175,6 +178,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         progress: undefined,
         theme: 'light',
       });
+      localStorage.removeItem('userInformation');
+      navigate('/');
+      location.reload();
     } catch (err) {
       console.log(err);
       toast('An error occured! Try again', {

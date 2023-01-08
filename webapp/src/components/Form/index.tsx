@@ -91,9 +91,7 @@ const Form = ({
               type="button"
               className="hover:underline cursor-pointer"
               onClick={() => {
-                if (!footerButton.onClick) return;
-
-                footerButton.onClick();
+                if (footerButton.onClick) footerButton.onClick();
               }}
             >
               {footerButton?.label}
