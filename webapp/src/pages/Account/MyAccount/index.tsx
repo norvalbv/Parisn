@@ -104,7 +104,7 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
               {selectedTab === 'myinformation' ? (
                 <MyInformation />
               ) : selectedTab === 'myorders' ? (
-                <MyOrders />
+                <MyOrders setAccountOpen={isOpened.setAccountOpen} />
               ) : selectedTab === 'verifyaccount' ? (
                 <VerifyAccount />
               ) : (
