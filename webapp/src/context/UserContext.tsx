@@ -64,16 +64,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
           enabled: true,
         },
       });
-      toast('🦄 Signed Up!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
 
       const session = await Auth.currentSession();
       const token = session.getIdToken().getJwtToken();
@@ -92,6 +82,17 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         username: decoded?.['cognito:username'] || 'demo',
         email: decoded?.email || 'demo',
         id: decoded?.aud || 'demo',
+      });
+
+      toast('🦄 Signed Up!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
       });
     } catch (err) {
       console.log(err);
@@ -132,16 +133,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
     try {
       await Auth.signIn(username, password);
-      toast('🦄 Signed In!', {
-        position: 'top-center',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
 
       const session = await Auth.currentSession();
       const token = session.getIdToken().getJwtToken();
@@ -158,6 +149,16 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       });
 
       navigate('/');
+      toast('🦄 Signed In!', {
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
     } catch (err) {
       console.log(err);
       toast.warning('An error occured');
@@ -168,6 +169,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const signOut = async () => {
     try {
       await Auth.signOut({ global: true });
+      localStorage.removeItem('userInformation');
+      navigate('/');
+      location.reload();
       toast('🦄 Signed Out!', {
         position: 'top-center',
         autoClose: 5000,
@@ -178,9 +182,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         progress: undefined,
         theme: 'light',
       });
-      localStorage.removeItem('userInformation');
-      navigate('/');
-      location.reload();
     } catch (err) {
       console.log(err);
       toast('An error occured! Try again', {
