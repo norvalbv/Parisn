@@ -98,7 +98,7 @@ const Form = ({
           ) : footerButton?.active ? (
             <button
               type="button"
-              className="hover:underline cursor-pointer relative"
+              className="hover:underline cursor-pointer relative w-48 text-end"
               onClick={() => {
                 if (footerButton.onClick) footerButton.onClick();
               }}
