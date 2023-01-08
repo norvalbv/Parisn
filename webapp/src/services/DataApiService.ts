@@ -6,7 +6,7 @@ interface UseProductsReturn {
 }
 
 /**
- * Get individual products
+ * Get all products
  */
 export const useProducts = async (): Promise<UseProductsReturn> => {
   const response = await axios('http://localhost:8000/products')
@@ -45,7 +45,7 @@ type UseCollectionsReturnType = {
  * Get all collections
  */
 export const useCollections = async (): Promise<UseCollectionsReturnType> => {
-  const response = await axios('http://localhost:8000/products/collections')
+  const response = await axios('http://localhost:8000/collections')
     .then((response) => response.data)
     .catch((err) => console.log(err));
   const data: CollectionData[] = Object.values(response);

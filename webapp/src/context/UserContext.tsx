@@ -255,7 +255,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     (async () => {
       try {
         const currentUser = await Auth.currentSession();
-        console.log(currentUser);
         const token = currentUser.getIdToken().getJwtToken();
 
         if (currentUser) localStorage.setItem('userInformation', JSON.stringify(token));
