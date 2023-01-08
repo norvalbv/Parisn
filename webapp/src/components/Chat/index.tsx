@@ -35,7 +35,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
     },
     {
       message: 'I am currently building a login feature that supports the chat :)',
-      user: 'BenjiTheGreatCoder',
+      user: 'benjithegreat',
       time: Date.now(),
       id: uuidv5(
         'I am currently building a login feature that supports the chat :)' + 'Shaun1' + Date.now(),
@@ -173,7 +173,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 {
                   id: uuidv5(values.userInput + user.userInfo?.username + time, uuidv5.URL),
                   message: values.userInput,
-                  user: 'BenjiTheGreat',
+                  user: user.userInfo?.username || '',
                   time,
                 },
               ]);
