@@ -118,7 +118,11 @@ const Form = ({
             <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>
           )}
         </div>
-        <Button text={submitButton.label} type="submit" classes={submitButton.className} />
+        <Button
+          text={submitButton.label}
+          type="submit"
+          classes={`${submitButton.className} -mt-4`}
+        />
       </FormikForm>
     </Formik>
   );

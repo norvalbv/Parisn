@@ -76,10 +76,6 @@ const Checkout = (): ReactElement => {
                 validationSchema={checkoutSchema}
               />
               <Counter />
-              {/* 
-                  Note: If you clear your basket, you will not be able to add anything new for 60
-                  seconds
-        */}
             </div>
           </div>
         </>
