@@ -1,18 +1,18 @@
+import { Auth, VerifyAccount } from '../../../types';
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Form from '../../../components/Form';
 import useUser from '../../../hooks/useUser';
-import { Auth, VerifyAccount } from '../../../types';
 
 const SignUp = () => {
   const { signUp, error, stage, user, confirmSignUp, setStage } = useUser();
 
   return (
-    <CardWrapper cardType="centered">
-      <ErrorBoundary>
-        {stage === 1 ? (
-          <>
+    <ErrorBoundary>
+      <>
+        {stage === 1 && (
+          <CardWrapper cardType="centered">
             <div className="flex items-baseline justify-between">
               <h2 className="text-4xl underline my-6">Sign Up</h2>
               <Link className="hover:underline cursor-pointer" to="/login">
@@ -34,9 +34,10 @@ const SignUp = () => {
               submitButton={{ label: 'Sign Up' }}
               submitFn={(values) => signUp(values as Auth)}
             />
-          </>
-        ) : (
-          <>
+          </CardWrapper>
+        )}
+        {stage === 2 && (
+          <CardWrapper cardType="centered">
             <h2 className="text-4xl underline my-6">Enter confirmation code</h2>
             <Form
               formValues={{
@@ -54,18 +55,17 @@ const SignUp = () => {
               }}
               formError={error}
               footerButton={{
-                active: true,
+                active: false,
                 label: 'Back',
                 onClick: () => setStage(1),
               }}
               submitButton={{ label: 'Sign Up' }}
               submitFn={(values) => confirmSignUp(values as VerifyAccount)}
             />
-            <button onClick={(): void => setStage(2)}></button>
-          </>
+          </CardWrapper>
         )}
-      </ErrorBoundary>
-    </CardWrapper>
+      </>
+    </ErrorBoundary>
   );
 };
 

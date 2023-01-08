@@ -59,7 +59,6 @@ const Form = ({
                 />
               </div>
               <Field
-                dis
                 id={id}
                 name={id}
                 placeholder={values.placeholder}

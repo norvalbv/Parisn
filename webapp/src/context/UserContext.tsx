@@ -40,10 +40,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
 
   / 1 = username input
   / 2 = reset password
-  / 3 = confirmation of password reset
-
-  */
-  const [stage, setStage] = useState(2);
+  / 3 = confirmation of password reset */
+  const [stage, setStage] = useState(1);
 
   const figureStage = (vals?: UserInformation) => {
     if (vals) {
