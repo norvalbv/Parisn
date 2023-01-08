@@ -21,7 +21,7 @@ const ItemView = () => {
 
   const [chatOpen, setChatOpen] = useState(false);
 
-  // const { setProductInfo } = useProduct();
+  const { setProductInfo } = useProduct();
 
   const priceScale = useMemo(
     () =>
@@ -102,11 +102,11 @@ const ItemView = () => {
               rounded="lg"
               navigateTo="/checkout"
               onClick={() => {
-                // setProductInfo({
-                //   product: product,
-                //   price: Number(localPrice.toFixed(2)),
-                //   selectedSize: selectedSize,
-                // });
+                setProductInfo({
+                  product: product,
+                  price: Number(localPrice.toFixed(2)),
+                  selectedSize: selectedSize,
+                });
               }}
             />
             <ProductSizes

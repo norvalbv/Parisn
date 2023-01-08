@@ -2,9 +2,16 @@ import { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react'
 import Button from '../Button';
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import Popup from '../Popup';
 
 type FormProps = {
-  footerButton?: { active: boolean; label: string; onClick: (() => void) | null };
+  footerButton?: {
+    active: boolean;
+    label: string;
+    onClick: (() => void) | null;
+    onMouseLeave?: () => void;
+    showPopup?: { active: boolean; text: string };
+  };
   footerLink?: { active: boolean; label: string; to: string };
   formValues: {
     [key: string]: {
@@ -38,6 +45,8 @@ const Form = ({
   Object.entries(formValues).forEach(([label, value]) => {
     initalValues[label] = value.initialValue;
   });
+
+  const [hovered, setHovered] = useState(false);
 
   return (
     <Formik
@@ -89,11 +98,19 @@ const Form = ({
           ) : footerButton?.active ? (
             <button
               type="button"
-              className="hover:underline cursor-pointer"
+              className="hover:underline cursor-pointer relative"
               onClick={() => {
                 if (footerButton.onClick) footerButton.onClick();
               }}
+              onMouseLeave={() => {
+                if (footerButton.onMouseLeave) footerButton.onMouseLeave();
+                setHovered(false);
+              }}
+              onMouseEnter={() => setHovered(true)}
             >
+              {footerButton.showPopup?.text && hovered && (
+                <Popup text={footerButton.showPopup?.text} />
+              )}
               {footerButton?.label}
             </button>
           ) : null}
