@@ -68,6 +68,58 @@ app.get('/collection/:collection', async (req: any, res: any) => {
   }
 });
 
+import { SendEmailCommand } from '@aws-sdk/client-ses';
+import { sesClient } from './AWS/Client';
+
+const createSendEmailCommand = (fromAddress: string) => {
+  return new SendEmailCommand({
+    Destination: {
+      /* required */
+      CcAddresses: [
+        /* more items */
+      ],
+      ToAddresses: [
+        process.env.EMAIL,
+        /* more To-email addresses */
+      ],
+    },
+    Message: {
+      /* required */
+      Body: {
+        /* required */
+        Html: {
+          Charset: 'UTF-8',
+          Data: 'HTML_FORMAT_BODY',
+        },
+        Text: {
+          Charset: 'UTF-8',
+          Data: 'TEXT_FORMAT_BODY',
+        },
+      },
+      Subject: {
+        Charset: 'UTF-8',
+        Data: 'EMAIL_SUBJECT',
+      },
+    },
+    Source: fromAddress,
+    ReplyToAddresses: [
+      /* more items */
+    ],
+  });
+};
+const sendEmailCommand = createSendEmailCommand('sender@example.com');
+
+app.get('/send-support-email', async (req: any, res: any) => {
+  try {
+    const data = await sesClient.send(sendEmailCommand);
+    // process data.
+    console.log(data);
+    res.send(data);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 /**
  * Socket io functions
  */

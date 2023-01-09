@@ -108,3 +108,11 @@ export type ForgotPasswordSubmit = {
 export type Auth = {
   email: string;
 } & BasicAuth;
+
+export type ContactForm = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  orderNumber?: string;
+  message: string;
+};

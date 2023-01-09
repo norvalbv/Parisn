@@ -4,9 +4,15 @@ import { DASHBOARD_IMAGE } from '../../constants';
 import CardWrapper from '../../components/CardWrapper';
 import Form from '../../components/Form';
 import { contactSchema } from '../../utils/validation';
+import { useCustomerSupport } from '../../services/DataApiService';
+import { ContactForm } from '../../types';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
+
+  const handleFormSubmittion = (values: ContactForm) => {
+    useCustomerSupport(values);
+  };
 
   return (
     <div className="flex flex-row-reverse">
@@ -44,10 +50,7 @@ const ContactUs = (): ReactElement => {
               },
             }}
             submitButton={{ label: 'Submit Query' }}
-            submitFn={async (values) => {
-              await new Promise((r) => setTimeout(r, 500));
-              alert(JSON.stringify(values, null, 2));
-            }}
+            submitFn={(values) => handleFormSubmittion(values as ContactForm)}
             validationSchema={contactSchema}
           />
         </div>

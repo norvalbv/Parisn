@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CollectionData, ProductData } from '../types';
+import { CollectionData, ContactForm, ProductData } from '../types';
 
 interface UseProductsReturn {
   data: ProductData[];
@@ -63,4 +63,16 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
   const data: ProductData[] = Object.values(response);
 
   return { data };
+};
+
+/**
+ * Customer Support Emails
+ */
+
+export const useCustomerSupport = async (values: ContactForm) => {
+  await axios(`http://localhost:8000/send-support-email`, {
+    data: values,
+  })
+    .then((response) => console.log(response.data))
+    .catch((err) => console.log(err));
 };
