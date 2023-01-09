@@ -13,7 +13,6 @@ const Checkout = (): ReactElement => {
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
 
   const [hovered, setHovered] = useState(false);
-  console.log(hovered);
 
   if (!productInfo) return <></>;
 
@@ -71,6 +70,7 @@ const Checkout = (): ReactElement => {
                 }}
                 submitButton={{ label: `Purchase for £${productInfo.price}`, className: 'mt-4' }}
                 submitFn={(values) => {
+                  console.log('called');
                   console.log(values);
                 }}
                 validationSchema={checkoutSchema}
