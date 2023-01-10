@@ -94,10 +94,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         progress: undefined,
         theme: 'light',
       });
-    } catch (err) {
-      console.log(err);
-      toast.warning('An error occured');
-      setError('An error occured');
+    } catch (error) {
+      toast.warning((error as { message: string }).message);
+      setError((error as { message: string }).message);
     }
   };
 
@@ -109,8 +108,8 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       toast('Verified Account');
       navigate('/login');
     } catch (error) {
-      toast.warning('An error occured');
-      setError('An error occured');
+      toast.warning((error as { message: string }).message);
+      setError((error as { message: string }).message);
     }
   };
 
@@ -122,9 +121,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         await Auth.resendSignUp(user?.userInfo?.username || '');
       }
       toast('Verification code resent successfully.');
-    } catch (err) {
-      toast.warning('Error');
-      console.log('error resending code: ', err);
+    } catch (error) {
+      toast.warning((error as { message: string }).message);
+      setError((error as { message: string }).message);
     }
   };
 
@@ -159,10 +158,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         progress: undefined,
         theme: 'light',
       });
-    } catch (err) {
-      console.log(err);
-      toast.warning('An error occured');
-      setError('An error occured');
+    } catch (error) {
+      toast.warning((error as { message: string }).message);
+      setError((error as { message: string }).message);
     }
   };
 
@@ -205,9 +203,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
       const user = await Auth.currentAuthenticatedUser();
       Auth.changePassword(user, oldPassword, newPassword);
       toast('Password has been changed!');
-    } catch (err) {
-      toast.warning('Error!');
-      console.error(err);
+    } catch (error) {
+      toast.warning((error as { message: string }).message);
+      setError((error as { message: string }).message);
     }
   };
 
