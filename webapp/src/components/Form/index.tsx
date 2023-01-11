@@ -29,6 +29,7 @@ type FormProps = {
   submitButton: { label: string; className?: string };
   submitFn: (arg: { [key: string]: string }) => void;
   validationSchema?: unknown;
+  resetFormOnbSubmit?: boolean;
 };
 
 const Form = ({
@@ -39,6 +40,7 @@ const Form = ({
   submitButton,
   submitFn,
   validationSchema,
+  resetFormOnbSubmit = false,
 }: FormProps): ReactElement => {
   let initalValues: { [key: string]: string } = {};
 
@@ -53,7 +55,10 @@ const Form = ({
       initialValues={initalValues}
       validateOnChange={false}
       validationSchema={validationSchema}
-      onSubmit={(values) => submitFn(values)}
+      onSubmit={(values, { resetForm }) => {
+        submitFn(values);
+        if (resetFormOnbSubmit) resetForm();
+      }}
     >
       <FormikForm className="flex flex-col gap-8">
         {Object.entries(formValues).map(([id, values]) => {

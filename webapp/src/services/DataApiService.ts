@@ -70,9 +70,19 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
  */
 
 export const useCustomerSupport = async (values: ContactForm) => {
-  await axios(`http://localhost:8000/send-support-email`, {
-    data: values,
-  })
+  const { firstName, lastName, email, orderNumber, message } = values;
+  console.log(firstName, lastName, email, orderNumber, message);
+  await axios
+    .post(`http://localhost:8000/send-support-email`, {
+      data: {
+        firstName,
+        lastName,
+        email,
+        orderNumber,
+        message,
+      },
+      headers: { 'Content-Type': 'application/json' },
+    })
     .then((response) => console.log(response.data))
     .catch((err) => console.log(err));
 };

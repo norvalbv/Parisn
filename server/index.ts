@@ -7,7 +7,10 @@ const io = require('socket.io')(server, {
     credentials: true,
   },
 });
+const bodyParser = require('body-parser');
 require('dotenv').config();
+// parse application/json
+app.use(bodyParser.json());
 
 import { ScanParams, TableParams } from './AWS/TableParams';
 import { GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
@@ -75,13 +78,8 @@ const createSendEmailCommand = (fromAddress: string) => {
   return new SendEmailCommand({
     Destination: {
       /* required */
-      CcAddresses: [
-        /* more items */
-      ],
-      ToAddresses: [
-        process.env.EMAIL,
-        /* more To-email addresses */
-      ],
+      CcAddresses: [],
+      ToAddresses: [process.env.EMAIL],
     },
     Message: {
       /* required */
@@ -109,15 +107,18 @@ const createSendEmailCommand = (fromAddress: string) => {
 };
 const sendEmailCommand = createSendEmailCommand('sender@example.com');
 
-app.get('/send-support-email', async (req: any, res: any) => {
-  try {
-    const data = await sesClient.send(sendEmailCommand);
-    // process data.
-    console.log(data);
-    res.send(data);
-  } catch (error) {
-    console.log(error);
-  }
+app.post('/send-support-email', async (req: any, res: any) => {
+  const body = req.body;
+  console.log(body);
+  // res.send(body);
+  // try {
+  //   const data = await sesClient.send(sendEmailCommand);
+  //   // process data.
+  //   console.log(data);
+  //   res.send(data);
+  // } catch (error) {
+  //   console.log(error);
+  // }
 });
 
 /**

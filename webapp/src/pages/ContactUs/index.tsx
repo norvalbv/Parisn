@@ -6,12 +6,14 @@ import Form from '../../components/Form';
 import { contactSchema } from '../../utils/validation';
 import { useCustomerSupport } from '../../services/DataApiService';
 import { ContactForm } from '../../types';
+import { toast } from 'react-toastify';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
 
   const handleFormSubmittion = (values: ContactForm) => {
     useCustomerSupport(values);
+    toast.success('Message sent!');
   };
 
   return (
@@ -39,10 +41,10 @@ const ContactUs = (): ReactElement => {
                 disabled: !!user.userInfo?.email,
                 initialValue: user.userInfo?.email ?? '',
                 label: 'Email',
-                type: 'text',
+                type: 'email',
               },
               orderNumber: { initialValue: '', type: 'text', label: 'Order Number' },
-              Message: {
+              message: {
                 initialValue: '',
                 type: 'textarea',
                 label: 'Message',
