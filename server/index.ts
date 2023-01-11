@@ -17,6 +17,7 @@ import { GetCommand, ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { ddbDocClient } from './AWS/Client/docClient';
 import { Message } from '../webapp/src/types';
 import { capitalizeFirstLetter } from '../webapp/src/utils/capitlise';
+import { Request, Response } from 'express';
 
 // environment variables
 const PORT = process.env.PORT || 8000;
@@ -24,7 +25,7 @@ const PORT = process.env.PORT || 8000;
 app.use(cors());
 
 // Get all products
-app.get('/products', async (req: any, res: any) => {
+app.get('/products', async (req: Request, res: Response) => {
   try {
     const data = await ddbDocClient.send(new ScanCommand({ TableName: 'Products' }));
     res.send(data.Items);
@@ -34,7 +35,7 @@ app.get('/products', async (req: any, res: any) => {
 });
 
 // Get certain products
-app.get('/products/:collection/:productid', async (req: any, res: any) => {
+app.get('/products/:collection/:productid', async (req: Request, res: Response) => {
   const { collection, productid } = req.params;
   try {
     const data = await ddbDocClient.send(
@@ -49,7 +50,7 @@ app.get('/products/:collection/:productid', async (req: any, res: any) => {
 });
 
 // Get All collection
-app.get('/collections', async (req: any, res: any) => {
+app.get('/collections', async (req: Request, res: Response) => {
   try {
     const data = await ddbDocClient.send(new ScanCommand({ TableName: 'ProductCollections' }));
     console.log(data.Items);
@@ -60,7 +61,7 @@ app.get('/collections', async (req: any, res: any) => {
 });
 
 // Get certain collection
-app.get('/collection/:collection', async (req: any, res: any) => {
+app.get('/collection/:collection', async (req: Request, res: Response) => {
   const { collection } = req.params;
   try {
     const data = await ddbDocClient.send(new ScanCommand(ScanParams(collection)));
@@ -105,20 +106,27 @@ const createSendEmailCommand = (fromAddress: string) => {
     ],
   });
 };
-const sendEmailCommand = createSendEmailCommand('sender@example.com');
 
-app.post('/send-support-email', async (req: any, res: any) => {
+type SendSupportEmail = {
+  firstName: string;
+  lastName: string;
+  email: string;
+  orderNumber?: string;
+  message: string;
+};
+
+app.post('/send-support-email', async (req: Request<{}, {}, SendSupportEmail>, res: Response) => {
   const body = req.body;
-  console.log(body);
-  // res.send(body);
-  // try {
-  //   const data = await sesClient.send(sendEmailCommand);
-  //   // process data.
-  //   console.log(data);
-  //   res.send(data);
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  const sendEmailCommand = createSendEmailCommand(body.email);
+
+  try {
+    const data = await sesClient.send(sendEmailCommand);
+    console.log(data);
+    res.sendStatus(200);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
 });
 
 /**
