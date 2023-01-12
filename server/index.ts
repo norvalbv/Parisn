@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 /**
- * environment variables
+ * Environment Variables
  */
 const PORT = process.env.PORT || 8000;
 
