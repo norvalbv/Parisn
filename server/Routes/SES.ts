@@ -25,5 +25,7 @@ router.post('/', async (req: Request<{}, {}, SendSupportEmail>, res: Response) =
   }
 });
 
+module.exports = router;
+
 // Removed isolated modules error whilst still keeping isolated modules to true.
 export {};

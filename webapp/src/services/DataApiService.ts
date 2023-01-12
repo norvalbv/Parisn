@@ -30,7 +30,6 @@ export const useProductById = async ({
   collection,
   productid,
 }: ProductByIDProps): Promise<ProductData> => {
-  console.log(collection, productid);
   const response = await axios(`http://localhost:8000/products/${collection}/${productid}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
@@ -57,7 +56,7 @@ export const useCollections = async (): Promise<UseCollectionsReturnType> => {
  * Get certain collection
  */
 export const useProductsByCollection = async (collection: string): Promise<UseProductsReturn> => {
-  const response = await axios(`http://localhost:8000/collection/${collection}`)
+  const response = await axios(`http://localhost:8000/collections/${collection}`)
     .then((response) => response.data)
     .catch((err) => console.log(err));
   const data: ProductData[] = Object.values(response);
