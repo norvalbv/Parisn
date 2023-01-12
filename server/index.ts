@@ -14,31 +14,28 @@ import { Message } from '../webapp/src/types';
 /**
  * Middleware
  */
-
 app.use(bodyParser.urlencoded({ extended: true }));
-// parse application/json
 app.use(bodyParser.json());
-
 app.use(cors());
 
 /**
  * environment variables
  */
-
 const PORT = process.env.PORT || 8000;
 
-/**cors
+/**
  * Routes
  */
+const collections = require('./Routes/Products/collections');
+const products = require('./Routes/Products/products');
+const support = require('./Routes/SES');
+
+// Products and collections
+app.use('/products', products);
+app.use('/collections', collections);
 
 // Customer Support
-app.post('/send-support-email', require('./Routes/products'));
-
-// Products
-app.get('/products', require('./Routes/products'));
-app.get('/products/:collection/:productid', require('./Routes/products'));
-app.get('/collections', require('./Routes/products'));
-app.get('/collection/:collection', require('./Routes/products'));
+app.post('/send-support-email', support);
 
 /**
  * Socket io functions
