@@ -26,13 +26,9 @@ const PORT = process.env.PORT || 8000;
 /**
  * Routes
  */
-const products = require('./Routes/Products/products');
-app.use('/products', products);
-const collections = require('./Routes/Products/collections');
-app.use('/collections', collections);
-
-const support = require('./Routes/SES');
-app.post('/send-support-email', support);
+app.use('/products', require('./Routes/Products/products'));
+app.use('/collections', require('./Routes/Products/collections'));
+app.use('/send-support-email',  require('./Routes/SES'));
 
 /**
  * Socket io functions
