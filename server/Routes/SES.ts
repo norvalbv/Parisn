@@ -13,10 +13,7 @@ type Support = {
 router.post('/', async (req: Request<{}, {}, Support>, res: Response) => {
   const body = req.body;
 
-  const sendEmailCommand = createSendEmailCommand(
-    body.data.email || 'benjinorval@gmail.com',
-    body.data.message || 'Unable to receive body'
-  );
+  const sendEmailCommand = createSendEmailCommand(body.data);
 
   try {
     await sesClient.send(sendEmailCommand);
