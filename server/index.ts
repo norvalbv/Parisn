@@ -26,14 +26,11 @@ const PORT = process.env.PORT || 8000;
 /**
  * Routes
  */
-
-// Products and collections
 const products = require('./Routes/Products/products');
 app.use('/products', products);
 const collections = require('./Routes/Products/collections');
 app.use('/collections', collections);
 
-// Customer Support
 const support = require('./Routes/SES');
 app.post('/send-support-email', support);
 
