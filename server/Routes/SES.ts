@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
+import axios from 'axios';
 import { Request, Response } from 'express';
-import { sesClient } from '../AWS/Client';
-import { createSendEmailCommand } from '../AWS/SES';
 import { SendSupportEmail } from '../Types';
 
 type Support = {
@@ -11,12 +10,16 @@ type Support = {
 };
 
 router.post('/', async (req: Request<{}, {}, Support>, res: Response) => {
-  const body = req.body;
-
-  const sendEmailCommand = createSendEmailCommand(body.data);
+  const { firstName, lastName, email, orderNumber, message } = req.body.data;
 
   try {
-    await sesClient.send(sendEmailCommand);
+    await axios.post('https://t88kddkowj.execute-api.eu-west-2.amazonaws.com/SES', {
+      firstName,
+      lastName,
+      email,
+      orderNumber,
+      message,
+    });
     res.sendStatus(200);
   } catch (error) {
     console.log(error);
