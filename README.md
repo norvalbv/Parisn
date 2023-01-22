@@ -68,7 +68,8 @@ Back end:
 *Note: this is more of a personal roadmap and just note-worthy features that will be added*
 - Connect AWS DynamoDB for database [Done] (in progress improvements underway)
 - Allow using login (auth etc) using AWS Cognito (AWS Amplify) [Completed]
-- Linking up AWS SES to ensure customer support emails are able to be sent [in progress]
+- Linking up AWS SES to ensure customer support emails are able to be sent [done]
+- Go completely serverless by putting all backend code on AWS - namely Lambda. [in progress]
 - Add websockets to ensure live data is correct [in progress]
 - Fix azure pipeline
 
