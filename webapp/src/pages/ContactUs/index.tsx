@@ -49,6 +49,7 @@ const ContactUs = (): ReactElement => {
             submitButton={{ label: 'Submit Query' }}
             submitFn={(values) => useCustomerSupport(values as ContactForm)}
             validationSchema={contactSchema}
+            resetFormOnbSubmit
           />
         </div>
       </CardWrapper>
