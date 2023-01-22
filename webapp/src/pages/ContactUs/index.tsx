@@ -11,11 +11,6 @@ import { toast } from 'react-toastify';
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
 
-  const handleFormSubmittion = (values: ContactForm) => {
-    useCustomerSupport(values);
-    toast.success('Message sent!');
-  };
-
   return (
     <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
@@ -52,7 +47,7 @@ const ContactUs = (): ReactElement => {
               },
             }}
             submitButton={{ label: 'Submit Query' }}
-            submitFn={(values) => handleFormSubmittion(values as ContactForm)}
+            submitFn={(values) => useCustomerSupport(values as ContactForm)}
             validationSchema={contactSchema}
           />
         </div>

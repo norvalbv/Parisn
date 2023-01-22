@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 import { CollectionData, ContactForm, ProductData } from '../types';
 
 interface UseProductsReturn {
@@ -70,7 +71,6 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
 
 export const useCustomerSupport = async (values: ContactForm) => {
   const { firstName, lastName, email, orderNumber, message } = values;
-  console.log(firstName, lastName, email, orderNumber, message);
   await axios
     .post(`http://localhost:8000/send-support-email`, {
       data: {
@@ -82,6 +82,14 @@ export const useCustomerSupport = async (values: ContactForm) => {
       },
       headers: { 'Content-Type': 'application/json' },
     })
-    .then((response) => console.log(response.data))
-    .catch((err) => console.log(err));
+    .then(() => {
+      toast.success('Message sent!');
+    })
+    .catch((err) => {
+      if (typeof err === 'string') {
+        toast.warning(err);
+      } else {
+        toast.warning('An Error occured. Try again.');
+      }
+    });
 };
