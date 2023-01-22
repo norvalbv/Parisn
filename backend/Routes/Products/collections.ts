@@ -4,12 +4,22 @@ import { ScanParams } from '../../AWS/TableParams';
 import { ScanCommand } from '@aws-sdk/lib-dynamodb';
 import { Request, Response } from 'express';
 import { ddbDocClient } from '../../AWS/Client/docClient';
+import axios from 'axios';
+
+// Temporarily stored in backend until app is refactored.
+
+// ! Refactor app.
+
+// !TODO: Put the all collection endpoints in the same lambda?
+// !TODO: Put all endpoints frontend.
+// !TODO: Put all lambda code on backend to simply store. 
 
 // Get All collection
 router.get('/', async (req: Request, res: Response) => {
   try {
-    const data = await ddbDocClient.send(new ScanCommand({ TableName: 'ProductCollections' }));
-    res.send(data.Items);
+    axios('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/Collections').then((r) => {
+      res.send(r.data.Items);
+    });
   } catch (err) {
     console.log('Error', err);
   }

@@ -68,10 +68,9 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
 /**
  * Customer Support Emails
  */
-
-export const useCustomerSupport = async (values: ContactForm) => {
+export const useCustomerSupport = (values: ContactForm) => {
   const { firstName, lastName, email, orderNumber, message } = values;
-  await axios
+  axios
     .post('https://t88kddkowj.execute-api.eu-west-2.amazonaws.com/SES', {
       firstName,
       lastName,
