@@ -28,7 +28,6 @@ const PORT = process.env.PORT || 8000;
  */
 app.use('/products', require('./Routes/Products/products'));
 app.use('/collections', require('./Routes/Products/collections'));
-app.use('/send-support-email',  require('./Routes/SES'));
 
 /**
  * Socket io functions

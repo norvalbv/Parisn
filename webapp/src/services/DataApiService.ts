@@ -72,15 +72,12 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
 export const useCustomerSupport = async (values: ContactForm) => {
   const { firstName, lastName, email, orderNumber, message } = values;
   await axios
-    .post(`http://localhost:8000/send-support-email`, {
-      data: {
-        firstName,
-        lastName,
-        email,
-        orderNumber,
-        message,
-      },
-      headers: { 'Content-Type': 'application/json' },
+    .post('https://t88kddkowj.execute-api.eu-west-2.amazonaws.com/SES', {
+      firstName,
+      lastName,
+      email,
+      orderNumber,
+      message,
     })
     .then(() => {
       toast.success('Message sent!');
