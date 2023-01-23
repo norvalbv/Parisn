@@ -23,21 +23,18 @@ const ItemView = () => {
 
   const { setProductInfo } = useProduct();
 
-  const logScale = (futureTime: number) => {
-    let currentTime = Date.now();
-    let timeDifference = Math.max(futureTime - currentTime, 0);
-    let secondsRemaining = timeDifference / 1000;
-    if (secondsRemaining <= 0) {
-      return 0;
-    } else {
-      return Number(Math.log(secondsRemaining).toFixed(2)) * 1000;
-    }
+  const logScale = (futureTime: number, price: number): number => {
+    const now = Date.now();
+    const timePassed = Math.max(futureTime - now);
+    const logPrice = price * Math.log(timePassed + 1);
+    return Number(Math.round(logPrice).toFixed(2));
   };
 
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
-      setLocalPrice(logScale(product.EndTime));
+      const price = logScale(product.EndTime, product.Price);
+      setLocalPrice(price);
     }, 200);
     return () => clearInterval(timer);
   }, [product]);

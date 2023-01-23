@@ -1,6 +1,6 @@
 import { CloudWatchLogs } from '@aws-sdk/client-cloudwatch-logs';
 
-export const handler = async (event) => {
+export const CloudWatch = async (event) => {
   const cloudwatchlogs = new CloudWatchLogs();
 
   // describeLogStreams to get sequenceToken

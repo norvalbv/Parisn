@@ -1,4 +1,4 @@
-import { DynamoDBDocumentClient, PutItemCommand } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
@@ -16,8 +16,8 @@ export const handler = async (event) => {
   await CloudWatch(event);
 
   try {
-    return await dynamoDb.send(
-      new PutItemCommand({
+    const data = await dynamoDb.send(
+      new PutCommand({
         TableName: 'Products',
         Key: {
           ID: event.pathParameters.productid,
@@ -33,11 +33,17 @@ export const handler = async (event) => {
         },
       })
     );
+
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    };
   } catch (error) {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: 'Error.',
+        message: JSON.stringify(error.message),
       }),
     };
   }
