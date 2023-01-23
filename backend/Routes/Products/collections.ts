@@ -30,7 +30,7 @@ router.get('/:collection', async (req: Request, res: Response) => {
   try {
     // const data = await ddbDocClient.send(new ScanCommand(ScanParams(collection)));
 
-    axios('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/Tshirts').then(
+    axios('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/tshirts').then(
       (r) => {
         console.log(r.data.Items);
       }
