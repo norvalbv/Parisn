@@ -28,7 +28,7 @@ export const handler = async (event) => {
             checkoutId: event.pathParameters.checkoutId,
             timestamp: Date.now(),
             price: 840, // Math function
-            user: null,
+            user: event.pathParameters.user,
           },
         },
       })
