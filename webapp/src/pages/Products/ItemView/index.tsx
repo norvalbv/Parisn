@@ -2,13 +2,14 @@ import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../../../components/Button';
 import LiveViewers from '../../../components/LiveViewers';
 import ProductSizes from '../../../components/ProductSizes';
-import { useProductById } from '../../../services/DataApiService';
+import { useCheckout, useProductById } from '../../../services/DataApiService';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
 import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';
 import convertToDate from '../../../utils/convertToDate';
+import useUser from '../../../hooks/useUser';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -18,6 +19,8 @@ const ItemView = () => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState(1000);
+
+  const { user } = useUser();
 
   const [chatOpen, setChatOpen] = useState(false);
 
@@ -105,10 +108,11 @@ const ItemView = () => {
               navigateTo="/checkout"
               onClick={() => {
                 setProductInfo({
-                  product: product,
+                  product,
                   price: Number(localPrice.toFixed(2)),
-                  selectedSize: selectedSize,
+                  selectedSize,
                 });
+                useCheckout(user);
               }}
             />
             <ProductSizes

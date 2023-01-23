@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { CollectionData, ContactForm, ProductData } from '../types';
+import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
 
 type ProductByIDProps = {
   collection: string;
@@ -73,6 +73,25 @@ export const useCustomerSupport = (values: ContactForm) => {
     })
     .then(() => {
       toast.success('Message sent!');
+    })
+    .catch((err) => {
+      if (typeof err === 'string') {
+        toast.warning(err);
+      } else {
+        toast.warning('An Error occured. Try again.');
+      }
+    });
+};
+
+/**
+ * Send Checkout Confirmation
+ */
+export const useCheckout = (user: FullUserInformation | null) => {
+  const checkoutid = 1;
+  axios
+    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
+      checkoutid,
+      user,
     })
     .catch((err) => {
       if (typeof err === 'string') {
