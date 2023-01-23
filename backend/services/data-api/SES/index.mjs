@@ -1,37 +1,9 @@
 import { SESClient, SendEmailCommand } from '@aws-sdk/client-ses';
-import { CloudWatchLogs } from '@aws-sdk/client-cloudwatch-logs';
 const client = new SESClient({ region: 'eu-west-2' });
-const cloudwatchlogs = new CloudWatchLogs({ region: 'eu-west-2' });
+import { CloudWatch } from './cloudwatch.mjs';
 
 export const handler = async (event) => {
-  const cloudwatchlogs = new CloudWatchLogs();
-
-  // describeLogStreams to get sequenceToken
-  const describeParams = {
-    limit: 1,
-    logGroupName: 'testt',
-    logStreamNamePrefix: 'teststream',
-  };
-
-  const res = await cloudwatchlogs.describeLogStreams(describeParams);
-  const logStreams = res.logStreams;
-  const sequenceToken = logStreams[0].uploadSequenceToken;
-
-  // putLogEvents
-  const logMsg = event;
-  const putLogParams = {
-    logEvents: [
-      {
-        message: JSON.stringify(logMsg),
-        timestamp: new Date().getTime(),
-      },
-    ],
-    logGroupName: 'testt',
-    logStreamName: 'teststream',
-    sequenceToken,
-  };
-
-  await cloudwatchlogs.putLogEvents(putLogParams);
+  await CloudWatch(event);
 
   const body = JSON.parse(event.body);
 

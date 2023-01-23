@@ -34,8 +34,6 @@ const ItemView = () => {
     }
   };
 
-  if (product) console.log('');
-
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
