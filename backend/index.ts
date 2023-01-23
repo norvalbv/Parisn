@@ -7,27 +7,18 @@ const io = require('socket.io')(server, {
     credentials: true,
   },
 });
-const bodyParser = require('body-parser');
 require('dotenv').config();
 import { Message } from '../webapp/src/types';
 
 /**
  * Middleware
  */
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
 app.use(cors());
 
 /**
  * Environment Variables
  */
 const PORT = process.env.PORT || 8000;
-
-/**
- * Routes
- */
-app.use('/products', require('./Routes/Products/products'));
-app.use('/collections', require('./Routes/Products/collections'));
 
 /**
  * Socket io functions
