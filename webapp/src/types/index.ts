@@ -12,6 +12,7 @@ export interface ProductData {
   Image: string;
   Price: number;
   Stock: Stock;
+  EndTime: number;
 }
 
 export interface CollectionData {

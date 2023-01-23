@@ -9,6 +9,7 @@ import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
 import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';
+import convertToDate from '../../../utils/convertToDate';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -96,6 +97,9 @@ const ItemView = () => {
                 />
               </>
             )}
+            <div className="italic underline underline-offset-8 text-sm mb-6">
+              End Date: {convertToDate(product.EndTime)}
+            </div>
             <Button
               text="Buy Now"
               hoveredText={`Buy at £${localPrice.toFixed(2)}`}
