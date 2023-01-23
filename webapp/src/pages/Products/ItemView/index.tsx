@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import Button from '../../../components/Button';
 import LiveViewers from '../../../components/LiveViewers';
-import { scaleLog } from '@visx/scale';
 import ProductSizes from '../../../components/ProductSizes';
 import { useProductById } from '../../../services/DataApiService';
 import { ProductData } from '../../../types';
@@ -24,26 +23,30 @@ const ItemView = () => {
 
   const { setProductInfo } = useProduct();
 
-  const priceScale = useMemo(
-    () =>
-      scaleLog({
-        domain: [1, 1000],
-        range: [0, 80000],
-      }),
-    []
-  );
-  let num = 80000;
+  const logScale = (futureTime: number) => {
+    let currentTime = Date.now();
+    let timeDifference = Math.max(futureTime - currentTime, 0);
+    let secondsRemaining = timeDifference / 1000;
+    if (secondsRemaining <= 0) {
+      return 0;
+    } else {
+      return Number(Math.log(secondsRemaining).toFixed(2)) * 1000;
+    }
+  };
+
+  if (product) console.log('');
 
   useEffect(() => {
+    if (!product) return;
     const timer = setInterval(() => {
-      setLocalPrice(priceScale.invert(num));
-      num--;
+      setLocalPrice(logScale(product.EndTime));
     }, 200);
     return () => clearInterval(timer);
-  }, []);
+  }, [product]);
+
+  console.log(localPrice);
 
   const location = useLocation();
-
   const currentProduct = location.pathname;
 
   // join room
@@ -85,7 +88,7 @@ const ItemView = () => {
             <a className="hover:underline hover:text-secondary-neutral" href="#description">
               View Description
             </a>
-            {Number(localPrice.toFixed(1)) === 0 ? (
+            {Number(localPrice.toFixed(1)) <= 0 ? (
               'FREE'
             ) : (
               <>
