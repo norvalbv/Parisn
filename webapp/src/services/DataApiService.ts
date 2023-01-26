@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
+import { v4 as uuidv4 } from 'uuid';
 
 type ProductByIDProps = {
   collection: string;
@@ -83,21 +84,40 @@ export const useCustomerSupport = (values: ContactForm) => {
     });
 };
 
+interface FullProductData extends ProductData {
+  selectedSize: string;
+}
+
+type UseCheckoutProps = {
+  user: FullUserInformation | null;
+  product: FullProductData;
+};
+
 /**
  * Send Checkout Confirmation
  */
-export const useCheckout = (user: FullUserInformation | null) => {
-  const checkoutid = 1;
+export const useCheckout = ({ user, product }: UseCheckoutProps) => {
+  const { ID, Category, selectedSize } = product;
+  const checkoutid = uuidv4()
+    .substring(0, 8)
+    .split(' ')
+    .filter((d) => d !== '-')
+    .join('')
+    .toString();
   axios
     .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
+      productid: ID,
+      collection: Category,
+      selectedsize: selectedSize,
       checkoutid,
-      user,
+      user: user?.userInfo?.email,
     })
     .catch((err) => {
       if (typeof err === 'string') {
         toast.warning(err);
       } else {
         toast.warning('An Error occured. Try again.');
+        console.log(err.message);
       }
     });
 };

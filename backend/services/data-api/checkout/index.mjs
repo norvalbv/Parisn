@@ -17,6 +17,8 @@ export const handler = async (event) => {
 
   const price = 100.12;
 
+  const currentTime = Date.now();
+
   const params = {
     TableName: 'Products',
     Key: {
@@ -27,9 +29,10 @@ export const handler = async (event) => {
     ExpressionAttributeValues: {
       ':val': {
         CheckoutId: event.pathParameters.checkoutid,
-        Timestamp: Date.now(),
+        Timestamp: currentTime,
         Price: price,
-        UserId: event.pathParameters.user || 'null',
+        SelectedSize: event.pathParameters.selectedsize,
+        UserId: event.pathParameters.user || 'guest',
       },
     },
   };

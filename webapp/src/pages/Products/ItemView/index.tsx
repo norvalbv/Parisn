@@ -18,7 +18,7 @@ let socket = io('ws://localhost:8000', {
 const ItemView = () => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
-  const [localPrice, setLocalPrice] = useState(1000);
+  const [localPrice, setLocalPrice] = useState(0);
 
   const { user } = useUser();
 
@@ -26,23 +26,24 @@ const ItemView = () => {
 
   const { setProductInfo } = useProduct();
 
-  const logScale = (futureTime: number, price: number): number => {
-    const now = Date.now();
-    const timePassed = Math.max(futureTime - now);
-    const logPrice = price * Math.log(timePassed + 1);
-    return Number(Math.round(logPrice).toFixed(2));
+  const logScalePrice = (startTime: number, futureTime: number, price: number): number => {
+    const currentTime = Date.now();
+    let timeElapsed = currentTime - startTime;
+    let timeRemaining = futureTime - currentTime;
+    let decay = Math.exp(timeElapsed / timeRemaining);
+    const t = parseFloat(decay.toFixed(100));
+    console.log(t);
+    return t;
   };
 
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
-      const price = logScale(product.EndTime, product.Price);
-      setLocalPrice(price);
-    }, 200);
+      const price = logScalePrice(1670600000000, product.EndTime, product.Price);
+      setLocalPrice(Math.random() * 1000);
+    }, 225);
     return () => clearInterval(timer);
   }, [product]);
-
-  console.log(localPrice);
 
   const location = useLocation();
   const currentProduct = location.pathname;
@@ -112,7 +113,9 @@ const ItemView = () => {
                   price: Number(localPrice.toFixed(2)),
                   selectedSize,
                 });
-                useCheckout(user);
+
+                const processedProduct = { ...product, selectedSize };
+                useCheckout({ user, product: processedProduct });
               }}
             />
             <ProductSizes
