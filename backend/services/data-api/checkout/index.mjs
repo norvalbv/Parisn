@@ -1,5 +1,5 @@
-import { DynamoDBClient, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
-import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { UpdateCommand, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
 
@@ -17,30 +17,30 @@ export const handler = async (event) => {
 
   const price = 100.12;
 
-  try {
-    const data = new UpdateItemCommand({
-      TableName: 'Products',
-      Key: {
-        ID: event.pathParameters.productid,
-        Category: capitalizeFirstLetter(event.pathParameters.collection),
+  const params = {
+    TableName: 'Products',
+    Key: {
+      ID: event.pathParameters.productid,
+      Category: capitalizeFirstLetter(event.pathParameters.collection),
+    },
+    UpdateExpression: `set checkout_${event.pathParameters.checkoutid}=:val`,
+    ExpressionAttributeValues: {
+      ':val': {
+        CheckoutId: event.pathParameters.checkoutid,
+        Timestamp: Date.now(),
+        Price: price,
+        UserId: event.pathParameters.user || 'null',
       },
-      UpdateExpression: `SET checkout-${event.pathParameters.checkoutid}=:val`,
-      ExpressionAttributeValues: {
-        ':val': {
-          CheckoutId: event.pathParameters.checkoutid,
-          Timestamp: Date.now(),
-          Price: price,
-          User: event.pathParameters.user || 'null',
-        },
-      },
-    });
+    },
+  };
 
-    const response = await dynamoDb.send(data);
+  try {
+    const data = await dynamoDb.send(new UpdateCommand(params));
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(response),
+      body: JSON.stringify(data),
     };
   } catch (error) {
     return {
