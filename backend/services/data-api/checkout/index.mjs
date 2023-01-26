@@ -1,5 +1,5 @@
-import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
-import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBClient, UpdateItemCommand } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
 
@@ -15,35 +15,38 @@ const capitalizeFirstLetter = (string) => {
 export const handler = async (event) => {
   await CloudWatch(event);
 
+  const price = 100.12;
+
   try {
-    const data = await dynamoDb.send(
-      new PutCommand({
-        TableName: 'Products',
-        Key: {
-          ID: event.pathParameters.productid,
-          Category: capitalizeFirstLetter(event.pathParameters.collection),
+    const data = new UpdateItemCommand({
+      TableName: 'Products',
+      Key: {
+        ID: event.pathParameters.productid,
+        Category: capitalizeFirstLetter(event.pathParameters.collection),
+      },
+      UpdateExpression: `SET checkout-${event.pathParameters.checkoutid}=:val`,
+      ExpressionAttributeValues: {
+        ':val': {
+          CheckoutId: event.pathParameters.checkoutid,
+          Timestamp: Date.now(),
+          Price: price,
+          User: event.pathParameters.user || 'null',
         },
-        item: {
-          checkout: {
-            checkoutId: event.pathParameters.checkoutId,
-            timestamp: Date.now(),
-            price: 840, // Math function
-            user: event.pathParameters.user,
-          },
-        },
-      })
-    );
+      },
+    });
+
+    const response = await dynamoDb.send(data);
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(response),
     };
   } catch (error) {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: JSON.stringify(error.message),
+        message: error.message,
       }),
     };
   }
