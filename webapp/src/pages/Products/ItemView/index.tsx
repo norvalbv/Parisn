@@ -26,21 +26,40 @@ const ItemView = () => {
 
   const { setProductInfo } = useProduct();
 
-  const logScalePrice = (startTime: number, futureTime: number, price: number): number => {
+  const decayRate = (N0: number, N1: number, t1: number, t0: number) => {
+    return Math.log(N0 / N1) / (t1 - t0);
+  };
+  const logScalePrice = (startTime: number, endTime: number, price: number): number => {
+    /**
+     *  N(t) = N0 * e^(-λ*(t-t0)
+     *
+     *  Where:
+     *  N(t) = price at current time
+     *  N0 = initial price
+     *  N1 = end price
+     *  t = current time
+     *  t0 = start time
+     *  t1 = end time
+     *  λ = ln(N0/N1) / (t1 - t0)
+     *  ln = natural log, (Math.log)
+     */
     const currentTime = Date.now();
-    let timeElapsed = currentTime - startTime;
-    let timeRemaining = futureTime - currentTime;
-    let decay = Math.exp(timeElapsed / timeRemaining);
-    const t = parseFloat(decay.toFixed(100));
-    console.log(t);
-    return t;
+
+    const endPrice = 0.01;
+
+    const lambda = decayRate(price, endPrice, endTime, startTime);
+    const timeElapsed = currentTime - startTime;
+    // the Math.exp should have an input between -10 and 0.
+    const value = price * Math.exp(-lambda * timeElapsed);
+    console.log(lambda, timeElapsed, lambda, value);
+    return value;
   };
 
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
       const price = logScalePrice(1670600000000, product.EndTime, product.Price);
-      setLocalPrice(Math.random() * 1000);
+      setLocalPrice(price <= 1 ? 0 : price);
     }, 225);
     return () => clearInterval(timer);
   }, [product]);
