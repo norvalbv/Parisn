@@ -28,12 +28,32 @@ const HomePage = () => {
               <span className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">.com</span>
             </div>
             <span className="text-3xl tracking-widest block">A Fashion Company</span>
-            <Button
-              text="View Collections"
-              classes="mt-20"
-              rounded="lg"
-              navigateTo="/collections"
-            />
+            <div className="mt-20 flex gap-10 items-center justify-center">
+              <Button
+                text="View Collections"
+                navigateTo="/collections"
+                borderRequired="none"
+                width="15rem"
+                size="lg"
+                hoverColorRequired={false}
+              />
+              <Button
+                text="How It Works"
+                navigateTo="/how-it-works"
+                borderRequired="none"
+                width="15rem"
+                size="lg"
+                hoverColorRequired={false}
+              />
+              <Button
+                text="Contact Us"
+                navigateTo="/contact-us"
+                borderRequired="none"
+                width="15rem"
+                size="lg"
+                hoverColorRequired={false}
+              />
+            </div>
           </div>
         </div>
       </div>
