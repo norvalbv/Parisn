@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useProductsByCollection } from '../../../services/DataApiService';
 import LiveViewers from '../../../components/LiveViewers';
 import { ProductData } from '../../../types';
+import Loading from '../../../components/Loading';
 
 const Catalogue = (): ReactElement => {
   const [products, setProducts] = useState<ProductData[]>();
@@ -16,7 +17,7 @@ const Catalogue = (): ReactElement => {
     })();
   }, []);
 
-  if (!products) return <></>;
+  if (!products) return <Loading />;
 
   return (
     <div className="grid grid-cols-4 h-screen">
