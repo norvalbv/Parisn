@@ -69,7 +69,7 @@ const ItemView = () => {
     const p = -lambda * timeElapsed; // -λ*(t-t0)
     const value = price * Math.exp(p);
 
-    return value;
+    return Number(value.toFixed(2));
   };
 
   useEffect(() => {
@@ -127,7 +127,7 @@ const ItemView = () => {
               'FREE'
             ) : (
               <>
-                <p>Price: £{localPrice.toFixed(2)}</p>
+                <p>Price: £{localPrice}</p>
                 <progress
                   className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
                   value={localPrice / 10}

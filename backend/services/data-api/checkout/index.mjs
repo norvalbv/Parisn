@@ -39,20 +39,25 @@ export const handler = async (event) => {
     const endPrice = 0.5;
     const lambda = decayRate(price, endPrice, endTime, startTime);
     const timeElapsed = currentTime - startTime;
-    return price * Math.exp(-lambda * timeElapsed);
+    const value = price * Math.exp(-lambda * timeElapsed);
+    return Number(value.toFixed(2));
   };
 
   const data = await dynamoDb.send(
     new GetCommand({
       TableName: 'Products',
       Key: {
-        ID: event.pathParameters.productid,
-        Category: capitalizeFirstLetter(event.pathParameters.collection),
+        ID: body.productid,
+        Category: capitalizeFirstLetter(body.collection),
       },
     })
   );
 
-  const price = logScalePrice(data.Item.startTime, data.Item.endPrice, data.Item.price);
+  await CloudWatch(data);
+
+  const price = logScalePrice(data.Item.StartTime, data.Item.EndTime, data.Item.Price);
+
+  await CloudWatch(price);
 
   const params = {
     TableName: 'Products',
