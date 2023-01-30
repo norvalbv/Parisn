@@ -36,6 +36,7 @@ const HomePage = () => {
                 width="15rem"
                 size="lg"
                 hoverColorRequired={false}
+                hoveredAnimation
               />
               <Button
                 text="How It Works"
@@ -44,6 +45,7 @@ const HomePage = () => {
                 width="15rem"
                 size="lg"
                 hoverColorRequired={false}
+                hoveredAnimation
               />
               <Button
                 text="Contact Us"
@@ -52,6 +54,7 @@ const HomePage = () => {
                 width="15rem"
                 size="lg"
                 hoverColorRequired={false}
+                hoveredAnimation
               />
             </div>
           </div>

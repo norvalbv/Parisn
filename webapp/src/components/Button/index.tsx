@@ -107,6 +107,10 @@ export interface ButtonProps {
    * Positioning of text
    */
   textOrientation?: string;
+  /**
+   * Scale animation on hover
+   */
+  hoveredAnimation?: boolean;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -121,6 +125,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       fontWeight = 'semibold',
       hoverColorRequired = true,
       hoveredText,
+      hoveredAnimation = false,
       icon,
       iconPosition = 'left',
       id,
@@ -159,7 +164,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           hoverColorRequired && 'hover:bg-buttons-hover transition-colors duration-200'
         } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
-        } ${classes} ${borderRequiredMap[borderRequired]} py-4`}
+        } ${classes} ${borderRequiredMap[borderRequired]} py-4 ${
+          hoveredAnimation ? 'hover:scale-110 transition-all' : ''
+        }`}
         style={{ width, color, backgroundColor }}
         onClick={(): void => clickHandle()}
         role="button"
