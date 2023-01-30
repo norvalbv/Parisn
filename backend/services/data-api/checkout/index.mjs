@@ -1,5 +1,5 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import { UpdateCommand, DynamoDBDocumentClient } from '@aws-sdk/lib-dynamodb';
+import { UpdateCommand, DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
 
@@ -17,9 +17,42 @@ export const handler = async (event) => {
 
   const body = JSON.parse(event.body);
 
-  const price = 100.12;
+  const decayRate = (N0, N1, t1, t0) => {
+    return Math.log(N0 / N1) / (t1 - t0);
+  };
 
-  const currentTime = Date.now();
+  const logScalePrice = (startTime, endTime, price) => {
+    /**
+     *  N(t) = N0 * e^(-λ*(t-t0))
+     *
+     *  Where:
+     *  N(t) = price at current time
+     *  N0 = initial price
+     *  N1 = end price
+     *  t = current time
+     *  t0 = start time
+     *  t1 = end time
+     *  λ = ln(N0/N1) / (t1 - t0)
+     *  ln = natural log, (Math.log)
+     */
+    const currentTime = Date.now();
+    const endPrice = 0.5;
+    const lambda = decayRate(price, endPrice, endTime, startTime);
+    const timeElapsed = currentTime - startTime;
+    return price * Math.exp(-lambda * timeElapsed);
+  };
+
+  const data = await dynamoDb.send(
+    new GetCommand({
+      TableName: 'Products',
+      Key: {
+        ID: event.pathParameters.productid,
+        Category: capitalizeFirstLetter(event.pathParameters.collection),
+      },
+    })
+  );
+
+  const price = logScalePrice(data.Item.startTime, data.Item.endPrice, data.Item.price);
 
   const params = {
     TableName: 'Products',
@@ -31,7 +64,7 @@ export const handler = async (event) => {
     ExpressionAttributeValues: {
       ':val': {
         CheckoutId: body.checkoutid,
-        Timestamp: currentTime,
+        Timestamp: Date.now(),
         Price: price,
         SelectedSize: body.selectedsize,
         UserId: body.user || 'guest',
