@@ -15,6 +15,8 @@ const capitalizeFirstLetter = (string) => {
 export const handler = async (event) => {
   await CloudWatch(event);
 
+  const body = JSON.parse(event.body);
+
   const price = 100.12;
 
   const currentTime = Date.now();
@@ -22,17 +24,17 @@ export const handler = async (event) => {
   const params = {
     TableName: 'Products',
     Key: {
-      ID: event.pathParameters.productid,
-      Category: capitalizeFirstLetter(event.pathParameters.collection),
+      ID: body.productid,
+      Category: capitalizeFirstLetter(body.collection),
     },
-    UpdateExpression: `set checkout_${event.pathParameters.checkoutid}=:val`,
+    UpdateExpression: `set checkout_${body.checkoutid}=:val`,
     ExpressionAttributeValues: {
       ':val': {
-        CheckoutId: event.pathParameters.checkoutid,
+        CheckoutId: body.checkoutid,
         Timestamp: currentTime,
         Price: price,
-        SelectedSize: event.pathParameters.selectedsize,
-        UserId: event.pathParameters.user || 'guest',
+        SelectedSize: body.selectedsize,
+        UserId: body.user || 'guest',
       },
     },
   };
