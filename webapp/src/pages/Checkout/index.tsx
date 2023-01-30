@@ -5,6 +5,7 @@ import useProduct from '../../hooks/useProduct';
 import Form from '../../components/Form';
 import { checkoutSchema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
+import Loading from '../../components/Loading';
 
 const Checkout = (): ReactElement => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Checkout = (): ReactElement => {
 
   const [hovered, setHovered] = useState(false);
 
-  if (!productInfo) return <></>;
+  if (!productInfo) return <Loading />;
 
   return (
     <>

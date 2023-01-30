@@ -10,6 +10,7 @@ import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';
 import convertToDate from '../../../utils/convertToDate';
 import useUser from '../../../hooks/useUser';
+import Loading from '../../../components/Loading';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -98,7 +99,7 @@ const ItemView = () => {
     })();
   }, []);
 
-  if (!product) return <div>No data</div>;
+  if (!product) return <Loading />;
 
   const compareSelectedVals = Object.entries(product.Stock)[
     Object.entries(product.Stock).findIndex((x) =>

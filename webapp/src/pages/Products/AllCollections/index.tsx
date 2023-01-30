@@ -1,5 +1,6 @@
 import { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../../../components/Loading';
 import { useCollections } from '../../../services/DataApiService';
 import { CollectionData } from '../../../types';
 
@@ -12,7 +13,7 @@ const AllCollections = (): ReactElement => {
     })();
   }, []);
 
-  if (!products) return <></>;
+  if (!products) return <Loading />;
 
   return (
     <div className="grid grid-cols-3 h-screen">
