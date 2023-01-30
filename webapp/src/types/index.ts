@@ -5,14 +5,15 @@ export interface Stock {
   ExtraLarge: number;
 }
 export interface ProductData {
-  ID: string;
   Category: String;
-  Title: string;
   Description: string;
+  EndTime: number;
+  ID: string;
   Image: string;
   Price: number;
+  StartTime: number;
   Stock: Stock;
-  EndTime: number;
+  Title: string;
 }
 
 export interface CollectionData {

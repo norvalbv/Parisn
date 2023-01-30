@@ -75,7 +75,7 @@ const ItemView = () => {
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
-      const price = logScalePrice(1675080000000, 1675100000000, product.Price);
+      const price = logScalePrice(product.StartTime, product.EndTime, product.Price);
       setLocalPrice(price <= 1 ? 0 : price);
     }, 225);
     return () => clearInterval(timer);
