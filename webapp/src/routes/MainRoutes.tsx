@@ -3,7 +3,7 @@ import MainLayout from '../layout/MainLayout';
 import AboutUs from '../pages/AboutUs';
 import ProductsByCollection from '../pages/Products/ProductsByCollection';
 import ContactUs from '../pages/ContactUs';
-import Dashboard from '../pages/Dashboard';
+import Dashboard from '../pages/HomePage';
 import HowItWorks from '../pages/HowItWorks';
 import ItemView from '../pages/Products/ItemView';
 import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';

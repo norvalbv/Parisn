@@ -27,21 +27,39 @@ export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: C
   </svg>
 );
 
-export const UserIcon = ({}: CloseIconsProps) => (
+export const UserIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-user"
-    width="44"
+    width="34"
     height="44"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
+    viewBox="0 0 24 14"
     stroke="#ffffff"
     fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+    strokeLinecap="round"
+    strokeLinejoin="round"
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none" />
     <circle cx="12" cy="7" r="4" />
     <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  </svg>
+);
+
+export const UserLoginIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="icon icon-tabler icon-tabler-user-check"
+    width="34"
+    height="44"
+    viewBox="0 0 24 14"
+    stroke="#ffffff"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+    <path d="M16 11l2 2l4 -4" />
   </svg>
 );

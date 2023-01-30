@@ -4,7 +4,7 @@ import Button from '../../components/Button';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';
 
-const Dashboard = () => {
+const HomePage = () => {
   return (
     <>
       <div className="flex items-center overflow-hidden">
@@ -101,4 +101,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default HomePage;

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Basket } from '../../components/CustomSVG';
-import { UserIcon } from '../../components/SVG';
+import { UserIcon, UserLoginIcon } from '../../components/SVG';
 import useUser from '../../hooks/useUser';
 import Login from '../../pages/Account/Login';
 
@@ -35,7 +35,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps) => {
               className="px-10 cursor-pointer hover:underline underline-offset-8"
               onClick={() => setAccountOpen(true)}
             >
-              <UserIcon />
+              <UserLoginIcon />
             </li>
           ) : (
             <Link to="/login">
