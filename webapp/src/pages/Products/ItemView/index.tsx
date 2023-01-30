@@ -27,11 +27,13 @@ const ItemView = () => {
   const { setProductInfo } = useProduct();
 
   const decayRate = (N0: number, N1: number, t1: number, t0: number) => {
+    // Should return a positive number.
     return Math.log(N0 / N1) / (t1 - t0);
   };
+
   const logScalePrice = (startTime: number, endTime: number, price: number): number => {
     /**
-     *  N(t) = N0 * e^(-λ*(t-t0)
+     *  N(t) = N0 * e^(-λ*(t-t0))
      *
      *  Where:
      *  N(t) = price at current time
@@ -44,21 +46,39 @@ const ItemView = () => {
      *  ln = natural log, (Math.log)
      */
     const currentTime = Date.now();
+    const endPrice = 0.5;
+    const decrease = 100;
 
-    const endPrice = 0.01;
+    // The bigger the decrease, the smaller both the time elapsed AND lambda is.
 
-    const lambda = decayRate(price, endPrice, endTime, startTime);
-    const timeElapsed = currentTime - startTime;
-    // the Math.exp should have an input between -10 and 0.
-    const value = price * Math.exp(-lambda * timeElapsed);
-    console.log(lambda, timeElapsed, lambda, value);
+    /**
+     * If you have a decreased value, i.e., you have current time as 1675079435056
+     * You should NOT round the value as this will input the same values to the lambda after X period
+     * basically preventing the need to actually call the function every 225 MS (from useEffect)
+     * leading to wasted calls etc.
+     */
+    const processedCurrent = currentTime / decrease;
+    const processedStart = startTime / decrease;
+    const processedEnd = endTime / decrease;
+    /**
+     *  Lambda = decay constant.
+     *  The smaller the decay constant, the slower the decay rate,
+     *  and the larger the decay constant, the faster the decay rate.
+     */
+    const lambda = decayRate(price, endPrice, processedEnd, processedStart); // λ
+    const timeElapsed = processedCurrent - processedStart; // t-t0
+    // the Math.exp should have an input between -7 and 0.
+    const p = -lambda * timeElapsed; // -λ*(t-t0)
+    const value = price * Math.exp(p);
+
+    console.log(processedCurrent);
     return value;
   };
 
   useEffect(() => {
     if (!product) return;
     const timer = setInterval(() => {
-      const price = logScalePrice(1670600000000, product.EndTime, product.Price);
+      const price = logScalePrice(1675080000000, 1675100000000, product.Price);
       setLocalPrice(price <= 1 ? 0 : price);
     }, 225);
     return () => clearInterval(timer);
