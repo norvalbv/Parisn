@@ -2,7 +2,7 @@ import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 import NavBar from '../NavBar';
 import { Amplify, Auth } from 'aws-amplify';
-import awsexports from '../../aws-exports';
+import awsexports from '../../../aws-exports';
 
 jest.mock('aws-amplify');
 Amplify.configure(awsexports);

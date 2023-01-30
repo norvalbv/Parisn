@@ -16,40 +16,45 @@ import AllCollections from '../pages/Products/AllCollections';
 import SignUp from '../pages/Account/SignUp';
 import ResetPassword from '../pages/Account/ResetPassword';
 import ForgotPassword from '../pages/Account/ForgotPassword';
+import HomePage from '../layout/HomePage/HomePage';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<MainLayout />}>
-      <Route path="home" element={<Dashboard />} />
-      <Route path="about" element={<AboutUs />} />
-      <Route path="how-it-works" element={<HowItWorks />} />
-      <Route path="collections" element={<AllCollections />} />
-      <Route path="collections/:category" element={<ProductsByCollection />} />
-      <Route
-        path="/collections/:category/:product"
-        element={
-          <ProductContextProvider>
-            <ItemView />
-          </ProductContextProvider>
-        }
-      />
-      <Route
-        path="checkout"
-        element={
-          <ProductContextProvider>
-            <Checkout />
-          </ProductContextProvider>
-        }
-      />
-      <Route path="contact-us" element={<ContactUs />} />
-      <Route path="reset-password" element={<ResetPassword />} />
-      <Route path="forgot-password" element={<ForgotPassword />} />
-      <Route path="privacy-policy" element={<PrivacyPolicy />} />
-      <Route path="terms-and-conditions" element={<TermsAndConditions />} />
-      <Route path="login" element={<Login />} />
-      <Route path="sign-up" element={<SignUp />} />
-      <Route path="about-us" element={<AboutUs />} />
-      <Route path="*" element={<NotFound />} />
+    <Route path="/">
+      <Route element={<HomePage />}>
+        <Route path="home" element={<Dashboard />} />
+      </Route>
+      <Route element={<MainLayout />}>
+        <Route path="about" element={<AboutUs />} />
+        <Route path="how-it-works" element={<HowItWorks />} />
+        <Route path="collections" element={<AllCollections />} />
+        <Route path="collections/:category" element={<ProductsByCollection />} />
+        <Route
+          path="/collections/:category/:product"
+          element={
+            <ProductContextProvider>
+              <ItemView />
+            </ProductContextProvider>
+          }
+        />
+        <Route
+          path="checkout"
+          element={
+            <ProductContextProvider>
+              <Checkout />
+            </ProductContextProvider>
+          }
+        />
+        <Route path="contact-us" element={<ContactUs />} />
+        <Route path="reset-password" element={<ResetPassword />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="terms-and-conditions" element={<TermsAndConditions />} />
+        <Route path="login" element={<Login />} />
+        <Route path="sign-up" element={<SignUp />} />
+        <Route path="about-us" element={<AboutUs />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Route>
   )
 );

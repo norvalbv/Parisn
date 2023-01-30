@@ -1,8 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Basket } from '../components/CustomSVG';
-import useUser from '../hooks/useUser';
-import Login from '../pages/Account/Login';
+import { Basket } from '../../components/CustomSVG';
+import useUser from '../../hooks/useUser';
+import Login from '../../pages/Account/Login';
 
 type NavBarProps = {
   setAccountOpen: Dispatch<SetStateAction<boolean>>;

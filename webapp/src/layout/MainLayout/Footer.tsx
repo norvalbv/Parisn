@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { InstagramLogo } from '../components/CustomSVG';
+import { InstagramLogo } from '../../components/CustomSVG';
 
 const NavBar = () => {
   return (
