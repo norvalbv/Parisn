@@ -40,5 +40,5 @@ export const logScalePrice = (startTime: number, endTime: number, price: number)
   // the Math.exp should have an input between -7 and 0.
   const p = -lambda * timeElapsed; // -λ*(t-t0)
   const value = price * Math.exp(p);
-  return value;
+  return Number(value.toFixed(2));
 };

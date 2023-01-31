@@ -20,7 +20,7 @@ let socket = io('ws://localhost:8000', {
 const ItemView = () => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
-  const [localPrice, setLocalPrice] = useState(0);
+  const [localPrice, setLocalPrice] = useState<number>();
 
   const { user } = useUser();
 
@@ -79,7 +79,16 @@ const ItemView = () => {
             <a className="hover:underline hover:text-secondary-neutral" href="#description">
               View Description
             </a>
-            {Number(localPrice.toFixed(1)) <= 0 ? (
+            {!localPrice ? (
+              <>
+                <p>Price: £{product.Price}</p>
+                <progress
+                  className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
+                  value={100}
+                  max="100"
+                />
+              </>
+            ) : Number(localPrice.toFixed(2)) <= 0 ? (
               'FREE'
             ) : (
               <>
@@ -96,13 +105,13 @@ const ItemView = () => {
             </div>
             <Button
               text="Buy Now"
-              hoveredText={`Buy at £${localPrice.toFixed(2)}`}
+              hoveredText={`Buy at £${(localPrice || 0).toFixed(2)}`}
               rounded="lg"
               navigateTo="/checkout"
               onClick={() => {
                 setProductInfo({
                   product,
-                  price: Number(localPrice.toFixed(2)),
+                  price: Number((localPrice || 0).toFixed(2)),
                   selectedSize,
                 });
 

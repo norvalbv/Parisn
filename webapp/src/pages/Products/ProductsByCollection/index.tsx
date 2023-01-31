@@ -39,7 +39,7 @@ const Catalogue = (): ReactElement => {
         console.log(updatedCurrentPrices);
         setCurrentPrices(updatedCurrentPrices);
       }
-    }, 1025);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, [products]);
