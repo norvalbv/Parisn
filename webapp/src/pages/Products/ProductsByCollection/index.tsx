@@ -4,6 +4,7 @@ import { useProductsByCollection } from '../../../services/DataApiService';
 import LiveViewers from '../../../components/LiveViewers';
 import { ProductData } from '../../../types';
 import Loading from '../../../components/Loading';
+import { UserIcon } from '../../../components/SVG';
 
 const Catalogue = (): ReactElement => {
   const [products, setProducts] = useState<ProductData[]>();
@@ -20,10 +21,9 @@ const Catalogue = (): ReactElement => {
   if (!products) return <Loading />;
 
   return (
-    <div className="grid grid-cols-4 h-screen">
+    <div className="grid grid-cols-3 h-screen">
       {products.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
-          <p className="underline z-10">{product.Title}</p>
           <Link to={`${product.ID}`} className="flex justify-center items-center my-4">
             <img
               src={product.Image}
@@ -31,8 +31,18 @@ const Catalogue = (): ReactElement => {
               className="w-[24rem] h-[34rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
             />
           </Link>
-          {/* <p>Current Price: £{product.ID}</p> */}
-          <LiveViewers params={product.ID} />
+          <div className="flex justify-between w-[24rem] items-center">
+            <p className="text-sm">{product.Title}</p>
+            <div className="flex gap-2 items-center justify-center text-sm">
+              <p>£{product.ID}</p>
+              <LiveViewers
+                params={product.ID}
+                label={<UserIcon viewBox="-10 0 34 24" />}
+                classNames="flex items-center"
+                fontSize="sm"
+              />
+            </div>
+          </div>
         </div>
       ))}
     </div>

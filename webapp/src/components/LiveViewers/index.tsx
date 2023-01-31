@@ -8,8 +8,9 @@ let socket = io('ws://localhost:8000', {
 });
 
 export interface LiveViewersProps {
+  classNames?: string;
   fontSize?: FontSize;
-  label?: string;
+  label?: string | JSX.Element;
   /**
    * Params for page
    */
@@ -21,6 +22,7 @@ export interface LiveViewersProps {
 }
 
 const LiveViewers = ({
+  classNames,
   fontSize = 'md',
   label = 'Live viewers:',
   pageParams,
@@ -41,7 +43,7 @@ const LiveViewers = ({
   }, []);
 
   return (
-    <p className={`${fontSizeMap[fontSize]} z-10`}>
+    <p className={`${fontSizeMap[fontSize]} ${classNames} z-10`}>
       {label} {viewCount}
     </p>
   );

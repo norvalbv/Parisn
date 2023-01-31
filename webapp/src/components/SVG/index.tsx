@@ -27,13 +27,13 @@ export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: C
   </svg>
 );
 
-export const UserIcon = () => (
+export const UserIcon = ({ viewBox = '0 0 24 14' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-user"
     width="34"
     height="44"
-    viewBox="0 0 24 14"
+    viewBox={viewBox}
     stroke="#ffffff"
     fill="none"
     strokeLinecap="round"
