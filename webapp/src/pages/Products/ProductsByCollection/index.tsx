@@ -5,18 +5,44 @@ import LiveViewers from '../../../components/LiveViewers';
 import { ProductData } from '../../../types';
 import Loading from '../../../components/Loading';
 import { UserIcon } from '../../../components/SVG';
+import { logScalePrice } from '../../../utils/currentPrice';
+
+interface ProductDataWithPrices extends ProductData {
+  CurrentPrice?: number;
+}
 
 const Catalogue = (): ReactElement => {
-  const [products, setProducts] = useState<ProductData[]>();
+  const [products, setProducts] = useState<ProductDataWithPrices[]>();
+  const [currentPrices, setCurrentPrices] = useState<{ [key: string]: number }>({});
 
   const location = useLocation();
   const collection = location.pathname.split('/').slice(-1).toString();
+
   useEffect(() => {
     (async () => {
       const { data } = await useProductsByCollection(collection);
       setProducts(data);
     })();
   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (products) {
+        const updatedCurrentPrices: { [key: string]: number } = {};
+        products.forEach((product) => {
+          updatedCurrentPrices[product.ID] = logScalePrice(
+            product.StartTime,
+            product.EndTime,
+            product.Price
+          );
+        });
+        console.log(updatedCurrentPrices);
+        setCurrentPrices(updatedCurrentPrices);
+      }
+    }, 1025);
+
+    return () => clearInterval(interval);
+  }, [products]);
 
   if (!products) return <Loading />;
 
@@ -34,7 +60,11 @@ const Catalogue = (): ReactElement => {
           <div className="flex justify-between w-[24rem] items-center">
             <p className="text-sm">{product.Title}</p>
             <div className="flex gap-2 items-center justify-center text-sm">
-              <p>£{product.ID}</p>
+              {currentPrices[product.ID] ? (
+                <p>£{currentPrices[product.ID].toFixed(2)} </p>
+              ) : (
+                <p>£{product.Price}</p>
+              )}
               <LiveViewers
                 params={product.ID}
                 label={<UserIcon viewBox="-10 0 34 24" />}
