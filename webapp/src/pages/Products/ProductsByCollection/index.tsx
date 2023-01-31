@@ -36,7 +36,6 @@ const Catalogue = (): ReactElement => {
             product.Price
           );
         });
-        console.log(updatedCurrentPrices);
         setCurrentPrices(updatedCurrentPrices);
       }
     }, 1000);
