@@ -47,7 +47,7 @@ const Catalogue = (): ReactElement => {
   if (!products) return <Loading />;
 
   return (
-    <div className="grid grid-cols-3 h-screen">
+    <div className="grid grid-cols-3 min-h-screen pb-10">
       {products.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
           <Link to={`${product.ID}`} className="flex justify-center items-center my-4">
