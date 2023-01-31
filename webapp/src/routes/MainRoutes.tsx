@@ -21,10 +21,10 @@ import HomePage from '../layout/HomePage/HomePage';
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route element={<HomePage />}>
+      <Route path="/" element={<HomePage />}>
         <Route path="home" element={<Dashboard />} />
       </Route>
-      <Route element={<MainLayout />}>
+      <Route path="/" element={<MainLayout />}>
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
         <Route path="collections" element={<AllCollections />} />
