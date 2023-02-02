@@ -97,7 +97,7 @@ Resources:
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
-      Role: !GetAtt ExecutionRoleForSupport.Arn
+      Role: !GetAtt SupportRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
 
