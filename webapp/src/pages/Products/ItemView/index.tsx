@@ -111,7 +111,7 @@ const ItemView = () => {
               onClick={() => {
                 setProductInfo({
                   product,
-                  price: Number((localPrice || 0).toFixed(2)),
+                  price: Number((localPrice || product.Price).toFixed(2)),
                   selectedSize,
                 });
 
