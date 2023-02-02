@@ -105,7 +105,7 @@ const ItemView = () => {
             </div>
             <Button
               text="Buy Now"
-              hoveredText={`Buy at £${(localPrice || 0).toFixed(2)}`}
+              hoveredText={`Buy at £${(localPrice || product.Price).toFixed(2)}`}
               rounded="lg"
               navigateTo="/checkout"
               onClick={() => {
