@@ -93,7 +93,9 @@ Resources:
       Architectures:
         - 'arm64'
       Code:
+        # Bucket name
         S3Bucket: 'parisntestlambda'
+        # File name
         S3Key: 'support.zip'
       Description: 'A function'
       PackageType: Zip
