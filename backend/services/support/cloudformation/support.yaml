@@ -94,19 +94,21 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisntestlambda'
-        S3Key: 'parisntestlambda.zip'
+        S3Key: 'support.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt SupportRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
+      FunctionName: support-test
+      Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
   SupportLambdaPermissions:
     Type: 'AWS::Lambda::Permission'
     Properties:
-      FunctionName: support
+      FunctionName: !Ref SupportLambdaFunction
       Action: lambda:InvokeFunction
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
