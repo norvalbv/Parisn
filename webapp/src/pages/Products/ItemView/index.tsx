@@ -64,6 +64,8 @@ const ItemView = () => {
     )
   ][1];
 
+  console.log(localPrice, typeof localPrice, localPrice ? 'T' : 'F');
+
   return (
     <div className="relative overflow-auto scroll-smooth">
       <img src={product.Image} alt={product.Image} className="h-screen w-[40%] sticky top-0" />
@@ -79,7 +81,7 @@ const ItemView = () => {
             <a className="hover:underline hover:text-secondary-neutral" href="#description">
               View Description
             </a>
-            {!localPrice ? (
+            {!localPrice && localPrice !== 0 ? (
               <>
                 <p>Price: £{product.Price}</p>
                 <progress
@@ -88,7 +90,7 @@ const ItemView = () => {
                   max="100"
                 />
               </>
-            ) : Number(localPrice.toFixed(2)) <= 0 ? (
+            ) : localPrice <= 1 ? (
               'FREE'
             ) : (
               <>

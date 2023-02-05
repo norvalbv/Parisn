@@ -60,7 +60,11 @@ const Catalogue = (): ReactElement => {
             <p className="text-sm">{product.Title}</p>
             <div className="flex gap-2 items-center justify-center text-sm">
               {currentPrices[product.ID] ? (
-                <p>£{currentPrices[product.ID].toFixed(2)} </p>
+                <p>
+                  {currentPrices[product.ID] <= 1
+                    ? 'FREE'
+                    : `£${currentPrices[product.ID].toFixed(2)}`}
+                </p>
               ) : (
                 <p>£{product.Price}</p>
               )}
