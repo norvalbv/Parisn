@@ -12,11 +12,10 @@ export const handler = async (event) => {
     // Retrieve the item from DynamoDB
     return await dynamoDb.send(new ScanCommand({ TableName: 'ProductCollections' }));
   } catch (error) {
-    console.error(error);
     return {
       statusCode: 500,
       body: JSON.stringify({
-        message: 'Error while decreasing price',
+        message: error.message,
       }),
     };
   }

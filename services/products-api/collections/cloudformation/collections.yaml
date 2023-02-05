@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Support Cloud Formation Template
+Description: Collection Cloud Formation Template
 Resources:
   # Creates a new role for your AWS account.
-  SupportRole:
+  CollectionRole:
     Type: 'AWS::IAM::Role'
     Properties:
       # The trust policy that is associated with this role. Trust policies define which entities can assume the role.
@@ -17,7 +17,7 @@ Resources:
               - 'sts:AssumeRole'
       Policies:
         # Lambda, SES & Cloudwatch Full Access
-        - PolicyName: SupportFunctionPolicy
+        - PolicyName: CollectionFunctionPolicy
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -84,11 +84,9 @@ Resources:
                   - logs:FilterLogEvents
                 Resource: arn:aws:logs:*:*:log-group:/aws/lambda/*
 
-  # ! Should I create one bucket per cloud formation / lambda? How does it work?
-
   # The AWS::Lambda::Function resource creates a Lambda function.
   # To create a function, you need a deployment package and an execution role.
-  SupportLambdaFunction:
+  CollectionLambdaFunction:
     Type: 'AWS::Lambda::Function'
     Properties:
       Architectures:
@@ -99,25 +97,32 @@ Resources:
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
-      Role: !GetAtt SupportRole.Arn
+      Role: !GetAtt CollectionRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
-  SupportLambdaPermissions:
+  CollectionLambdaPermissions:
     Type: 'AWS::Lambda::Permission'
     Properties:
-      FunctionName: support
+      FunctionName: Collection
       Action: lambda:InvokeFunction
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
-      SourceArn: !GetAtt SupportApi.Arn
+      SourceArn: !GetAtt CollectionApi.Arn
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
-  SupportApi:
+  CollectionApi:
     Type: 'AWS::ApiGatewayV2::Api'
     Properties:
-      Name: v2-support-email
+      Name: v2-parisn
       ProtocolType: HTTP
       Version: 1
+
+  CollectionApiRoute:
+    Type: 'AWS::ApiGatewayV2::Route'
+    Properties:
+      RouteKey: GET /collections
+      ApiId: !Ref CollectionApi
+      Target: !Ref CollectionLambdaFunction

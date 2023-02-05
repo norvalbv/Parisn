@@ -121,7 +121,7 @@ Resources:
   SupportApi:
     Type: 'AWS::ApiGatewayV2::Api'
     Properties:
-      Name: v2-support-email
+      Name: v2-parisn
       ProtocolType: HTTP
       Version: 1
 
