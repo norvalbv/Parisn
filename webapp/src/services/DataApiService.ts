@@ -65,7 +65,7 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
 export const useCustomerSupport = (values: ContactForm) => {
   const { firstName, lastName, email, orderNumber, message } = values;
   axios
-    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/customer-support', {
+    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/support-request', {
       firstName,
       lastName,
       email,
