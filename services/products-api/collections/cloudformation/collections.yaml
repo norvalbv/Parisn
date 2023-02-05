@@ -23,90 +23,90 @@ Resources:
             Statement:
               - Effect: Allow
                 Action:
-                - dynamodb:*
-                - dax:*
-                - application-autoscaling:DeleteScalingPolicy
-                - application-autoscaling:DeregisterScalableTarget
-                - application-autoscaling:DescribeScalableTargets
-                - application-autoscaling:DescribeScalingActivities
-                - application-autoscaling:DescribeScalingPolicies
-                - application-autoscaling:PutScalingPolicy
-                - application-autoscaling:RegisterScalableTarget
-                - cloudwatch:DeleteAlarms
-                - cloudwatch:DescribeAlarmHistory
-                - cloudwatch:DescribeAlarms
-                - cloudwatch:DescribeAlarmsForMetric
-                - cloudwatch:GetMetricStatistics
-                - cloudwatch:ListMetrics
-                - cloudwatch:PutMetricAlarm
-                - cloudwatch:GetMetricData
-                - datapipeline:ActivatePipeline
-                - datapipeline:CreatePipeline
-                - datapipeline:DeletePipeline
-                - datapipeline:DescribeObjects
-                - datapipeline:DescribePipelines
-                - datapipeline:GetPipelineDefinition
-                - datapipeline:ListPipelines
-                - datapipeline:PutPipelineDefinition
-                - datapipeline:QueryObjects
-                - ec2:DescribeVpcs
-                - ec2:DescribeSubnets
-                - ec2:DescribeSecurityGroups
-                - iam:GetRole
-                - iam:ListRoles
-                - kms:DescribeKey
-                - kms:ListAliases
-                - sns:CreateTopic
-                - sns:DeleteTopic
-                - sns:ListSubscriptions
-                - sns:ListSubscriptionsByTopic
-                - sns:ListTopics
-                - sns:Subscribe
-                - sns:Unsubscribe
-                - sns:SetTopicAttributes
-                - lambda:CreateFunction
-                - lambda:ListFunctions
-                - lambda:ListEventSourceMappings
-                - lambda:CreateEventSourceMapping
-                - lambda:DeleteEventSourceMapping
-                - lambda:GetFunctionConfiguration
-                - lambda:DeleteFunction
-                - resource-groups:ListGroups
-                - resource-groups:ListGroupResources
-                - resource-groups:GetGroup
-                - resource-groups:GetGroupQuery
-                - resource-groups:DeleteGroup
-                - resource-groups:CreateGroup
-                - tag:GetResources
-                - kinesis:ListStreams
-                - kinesis:DescribeStream
-                - kinesis:DescribeStreamSummary
-                Resource: "*"
+                  - dynamodb:*
+                  - dax:*
+                  - application-autoscaling:DeleteScalingPolicy
+                  - application-autoscaling:DeregisterScalableTarget
+                  - application-autoscaling:DescribeScalableTargets
+                  - application-autoscaling:DescribeScalingActivities
+                  - application-autoscaling:DescribeScalingPolicies
+                  - application-autoscaling:PutScalingPolicy
+                  - application-autoscaling:RegisterScalableTarget
+                  - cloudwatch:DeleteAlarms
+                  - cloudwatch:DescribeAlarmHistory
+                  - cloudwatch:DescribeAlarms
+                  - cloudwatch:DescribeAlarmsForMetric
+                  - cloudwatch:GetMetricStatistics
+                  - cloudwatch:ListMetrics
+                  - cloudwatch:PutMetricAlarm
+                  - cloudwatch:GetMetricData
+                  - datapipeline:ActivatePipeline
+                  - datapipeline:CreatePipeline
+                  - datapipeline:DeletePipeline
+                  - datapipeline:DescribeObjects
+                  - datapipeline:DescribePipelines
+                  - datapipeline:GetPipelineDefinition
+                  - datapipeline:ListPipelines
+                  - datapipeline:PutPipelineDefinition
+                  - datapipeline:QueryObjects
+                  - ec2:DescribeVpcs
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeSecurityGroups
+                  - iam:GetRole
+                  - iam:ListRoles
+                  - kms:DescribeKey
+                  - kms:ListAliases
+                  - sns:CreateTopic
+                  - sns:DeleteTopic
+                  - sns:ListSubscriptions
+                  - sns:ListSubscriptionsByTopic
+                  - sns:ListTopics
+                  - sns:Subscribe
+                  - sns:Unsubscribe
+                  - sns:SetTopicAttributes
+                  - lambda:CreateFunction
+                  - lambda:ListFunctions
+                  - lambda:ListEventSourceMappings
+                  - lambda:CreateEventSourceMapping
+                  - lambda:DeleteEventSourceMapping
+                  - lambda:GetFunctionConfiguration
+                  - lambda:DeleteFunction
+                  - resource-groups:ListGroups
+                  - resource-groups:ListGroupResources
+                  - resource-groups:GetGroup
+                  - resource-groups:GetGroupQuery
+                  - resource-groups:DeleteGroup
+                  - resource-groups:CreateGroup
+                  - tag:GetResources
+                  - kinesis:ListStreams
+                  - kinesis:DescribeStream
+                  - kinesis:DescribeStreamSummary
+                Resource: '*'
               - Effect: Allow
                 Action: cloudwatch:GetInsightRuleReport
                 Resource: arn:aws:cloudwatch:*:*:insight-rule/DynamoDBContributorInsights*
               - Effect: Allow
                 Action:
-                - iam:PassRole
-                Resource: "*"
+                  - iam:PassRole
+                Resource: '*'
                 Condition:
                   StringLike:
                     iam:PassedToService:
-                    - application-autoscaling.amazonaws.com
-                    - application-autoscaling.amazonaws.com.cn
-                    - dax.amazonaws.com
+                      - application-autoscaling.amazonaws.com
+                      - application-autoscaling.amazonaws.com.cn
+                      - dax.amazonaws.com
               - Effect: Allow
                 Action:
-                - iam:CreateServiceLinkedRole
-                Resource: "*"
+                  - iam:CreateServiceLinkedRole
+                Resource: '*'
                 Condition:
                   StringEquals:
                     iam:AWSServiceName:
-                    - replication.dynamodb.amazonaws.com
-                    - dax.amazonaws.com
-                    - dynamodb.application-autoscaling.amazonaws.com
-                    - contributorinsights.dynamodb.amazonaws.com
-                    - kinesisreplication.dynamodb.amazonaws.com
+                      - replication.dynamodb.amazonaws.com
+                      - dax.amazonaws.com
+                      - dynamodb.application-autoscaling.amazonaws.com
+                      - contributorinsights.dynamodb.amazonaws.com
+                      - kinesisreplication.dynamodb.amazonaws.com
               - Effect: Allow
                 Action:
                   - autoscaling:Describe*
@@ -186,29 +186,23 @@ Resources:
       Role: !GetAtt CollectionRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
+      # Required when using the deployment packages of S3...
+      Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
   CollectionLambdaPermissions:
     Type: 'AWS::Lambda::Permission'
     Properties:
-      FunctionName: Collection
+      FunctionName: !Ref CollectionLambdaFunction
       Action: lambda:InvokeFunction
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
-      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${CollectionApi}*'
+      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/oypdu43yze'
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
-  CollectionApi:
-    Type: 'AWS::ApiGatewayV2::Api'
-    Properties:
-      Name: v2-parisn
-      ProtocolType: HTTP
-      Version: 1
-
   CollectionApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
       RouteKey: GET /collections
-      ApiId: !Ref CollectionApi
-      Target: !Ref CollectionLambdaFunction
+      ApiId: 'oypdu43yze'

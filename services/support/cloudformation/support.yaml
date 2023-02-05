@@ -115,19 +115,10 @@ Resources:
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
-      SourceArn: !Sub 'arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${SupportApi}*'
-
-  # The AWS::ApiGatewayV2::Api resource creates an API.
-  SupportApi:
-    Type: 'AWS::ApiGatewayV2::Api'
-    Properties:
-      Name: v2-parisn
-      ProtocolType: HTTP
-      Version: 1
+      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/oypdu43yze'
 
   SupportApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
       RouteKey: GET /support-request
-      ApiId: !Ref SupportApi
-      Target: !Ref SupportLambdaFunction
+      ApiId: 'oypdu43yze'
