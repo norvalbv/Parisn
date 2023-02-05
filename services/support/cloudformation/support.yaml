@@ -128,5 +128,6 @@ Resources:
   SupportApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
-      RouteKey:  GET /support-request
+      RouteKey: GET /support-request
       ApiId: !Ref SupportApi
+      Target: !Ref SupportLambdaFunction
