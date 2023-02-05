@@ -1,0 +1,243 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomePage /> HomePage props with mandatory props 1`] = `
+[
+  <div
+    className="flex items-center overflow-hidden"
+  >
+    <div
+      className="h-screen"
+    >
+      <video
+        autoPlay={true}
+        className="absolute h-[100vh] opacity-50 sepia contrast-125"
+        loop={true}
+        muted={true}
+        src="https://cdn.shopify.com/videos/c/o/v/fe61f36873284fd2b4368f4a8fde0c9b.mp4"
+      />
+      <div
+        className="absolute h-screen bg-fuchsia-200 opacity-10 w-screen"
+      />
+    </div>
+    <div
+      className="relative flex justify-center items-center flex-1"
+    >
+      <div
+        className="absolute text-center"
+      >
+        <div
+          data-testid="PARISN.com"
+        >
+          <span
+            className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]"
+          >
+            PARISN
+          </span>
+          <span
+            className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]"
+          >
+            .com
+          </span>
+        </div>
+        <span
+          className="text-3xl tracking-widest block"
+        >
+          A Fashion Company
+        </span>
+        <div
+          className="mt-20 flex gap-10 items-center justify-center"
+        >
+          <button
+            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="button"
+            style={
+              {
+                "backgroundColor": undefined,
+                "color": undefined,
+                "width": "15rem",
+              }
+            }
+            type="button"
+          >
+            <span
+              className="inline-block font-semibold"
+            >
+              View Collections
+            </span>
+          </button>
+          <button
+            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="button"
+            style={
+              {
+                "backgroundColor": undefined,
+                "color": undefined,
+                "width": "15rem",
+              }
+            }
+            type="button"
+          >
+            <span
+              className="inline-block font-semibold"
+            >
+              How It Works
+            </span>
+          </button>
+          <button
+            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            role="button"
+            style={
+              {
+                "backgroundColor": undefined,
+                "color": undefined,
+                "width": "15rem",
+              }
+            }
+            type="button"
+          >
+            <span
+              className="inline-block font-semibold"
+            >
+              Contact Us
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="h-[150vh] relative overflow-hidden"
+  >
+    <div
+      style={
+        {
+          "height": "100%",
+          "width": "100%",
+        }
+      }
+    >
+      <svg
+        fill="#555555"
+        height={0}
+        stroke="#ffffff"
+        width={0}
+      >
+        <line
+          className="visx-line"
+          fill="transparent"
+          shapeRendering="crispEdges"
+          stroke="#FAFAFA"
+          strokeOpacity={0.75}
+          x1={0}
+          x2={0}
+          y1={0}
+          y2={0}
+        />
+        <line
+          className="visx-line"
+          fill="transparent"
+          shapeRendering="crispEdges"
+          stroke="#FAFAFA"
+          strokeOpacity={0.75}
+          x1={0}
+          x2={0}
+          y1={0}
+          y2={0}
+        />
+        <line
+          className="visx-line"
+          fill="transparent"
+          shapeRendering="crispEdges"
+          stroke="#FAFAFA"
+          strokeOpacity={0.75}
+          x1={0}
+          x2={0}
+          y1={0}
+          y2={0}
+        />
+        <line
+          className="visx-line"
+          fill="transparent"
+          shapeRendering="crispEdges"
+          stroke="#FAFAFA"
+          strokeOpacity={0.75}
+          x1={0}
+          x2={0}
+          y1={0}
+          y2={0}
+        />
+      </svg>
+      <p
+        className="absolute text-primary-light text-center tracking-widest text-lg rotate-[8.85deg]"
+        style={
+          {
+            "left": -50,
+            "top": 0,
+          }
+        }
+      >
+        A new way of shopping
+      </p>
+      <p
+        className="absolute text-primary-light text-center tracking-widest text-lg block rotate-[15deg]"
+        style={
+          {
+            "left": -50,
+            "top": 0,
+          }
+        }
+      >
+        Your way, your price
+      </p>
+    </div>
+    <svg
+      className="absolute rounded-full opacity-20 blur-3xl z-0 -top-32 -right-32"
+      style={
+        {
+          "backgroundColor": "green",
+          "height": "40rem",
+          "width": "40rem",
+        }
+      }
+    />
+    <svg
+      className="absolute rounded-full opacity-20 blur-3xl z-0 -bottom-32 -left-32"
+      style={
+        {
+          "backgroundColor": "purple",
+          "height": "40rem",
+          "width": "40rem",
+        }
+      }
+    />
+  </div>,
+  <div
+    className="h-screen flex"
+  >
+    <p
+      className="flex flex-col justify-center items-center text-center px-40 leading-8"
+    >
+      <span
+        className="block font-semibold text-inherit underline"
+      >
+        PARSIN.com
+      </span>
+      Launched in 2022 allows you to choose the price you pay for your items in a reverse bidding strategy technique. Starting at £10,000 per item, over time the price of the item drops to £0.
+    </p>
+    <img
+      alt="http://localhost:3000/images/dashboard-image.jpg"
+      className="h-screen w-[42.5%]"
+      src="http://localhost:3000/images/dashboard-image.jpg"
+    />
+  </div>,
+]
+`;
