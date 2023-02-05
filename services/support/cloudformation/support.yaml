@@ -94,7 +94,7 @@ Resources:
         - 'arm64'
       Code:
         # Bucket name
-        S3Bucket: 'parisntestlambda'
+        S3Bucket: 'parisn-bucket'
         # File name
         S3Key: 'support.zip'
       Description: 'A function'
