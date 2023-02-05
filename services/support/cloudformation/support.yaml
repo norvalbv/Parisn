@@ -103,7 +103,7 @@ Resources:
       Role: !GetAtt SupportRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
-      FunctionName: support-test
+      FunctionName: support
       Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
@@ -115,10 +115,10 @@ Resources:
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
-      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/oypdu43yze'
+      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
   SupportApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
       RouteKey: GET /support-request
-      ApiId: 'oypdu43yze'
+      ApiId: 'dlnkbdtmp6'

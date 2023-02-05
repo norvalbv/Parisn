@@ -16,7 +16,7 @@ export const useProductById = async ({
   productid,
 }: ProductByIDProps): Promise<ProductData> => {
   const response = await axios(
-    `https://oypdu43yze.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`
+    `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`
   )
     .then((response) => response.data.Item)
     .catch((err) => console.log(err));
@@ -32,7 +32,7 @@ type UseCollectionsReturnType = {
  * Get all collections
  */
 export const useCollections = async (): Promise<UseCollectionsReturnType> => {
-  const response = await axios('https://oypdu43yze.execute-api.eu-west-2.amazonaws.com/collections')
+  const response = await axios('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections')
     .then((r) => r.data.Items)
     .catch((err) => console.log(err));
 
@@ -50,7 +50,7 @@ type UseProductsReturn = {
  */
 export const useProductsByCollection = async (collection: string): Promise<UseProductsReturn> => {
   const response = await axios(
-    `https://oypdu43yze.execute-api.eu-west-2.amazonaws.com/collections/${collection}`
+    `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}`
   )
     .then((r) => r.data.Items)
     .catch((err) => console.log(err));
@@ -65,7 +65,7 @@ export const useProductsByCollection = async (collection: string): Promise<UsePr
 export const useCustomerSupport = (values: ContactForm) => {
   const { firstName, lastName, email, orderNumber, message } = values;
   axios
-    .post('https://oypdu43yze.execute-api.eu-west-2.amazonaws.com/customer-support', {
+    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/customer-support', {
       firstName,
       lastName,
       email,
@@ -105,7 +105,7 @@ export const useCheckout = ({ user, product }: UseCheckoutProps) => {
     .join('')
     .toString();
   axios
-    .post('https://oypdu43yze.execute-api.eu-west-2.amazonaws.com/checkout', {
+    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
       productid: ID,
       collection: Category,
       selectedsize: selectedSize,

@@ -188,6 +188,7 @@ Resources:
       Timeout: 5
       # Required when using the deployment packages of S3...
       Handler: index.handler
+      FunctionName: product-by-id
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
   ProductByIdLambdaPermissions:
@@ -198,10 +199,10 @@ Resources:
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
-      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/oypdu43yze'
+      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
   ProductByIdApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
       RouteKey: GET /collections/{collection}/{productid}
-      ApiId: 'oypdu43yze'
+      ApiId: 'dlnkbdtmp6'
