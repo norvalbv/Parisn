@@ -2,7 +2,7 @@
 
 exports[`<Button /> Button props with all props as required 1`] = `
 <button
-  className="relative inline-flex items-center  hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full underline border py-4"
+  className="relative inline-flex items-center  hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full underline border py-4 hover:scale-110 transition-all"
   data-testid="Data Attribute"
   disabled={true}
   id="Test Id"
@@ -48,7 +48,7 @@ exports[`<Button /> Button props with all props as required 1`] = `
 
 exports[`<Button /> Button props with mandatory props 1`] = `
 <button
-  className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4"
+  className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4 "
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}

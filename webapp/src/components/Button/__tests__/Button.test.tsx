@@ -47,6 +47,7 @@ describe('<Button />', () => {
             borderRequired="all"
             positioning="relative"
             textOrientation=""
+            hoveredAnimation
           />
         </BrowserRouter>
       )

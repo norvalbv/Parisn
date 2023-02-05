@@ -14,6 +14,13 @@ exports[`<ErrorBoundary /> should render if error is thrown from child 1`] = `
   <b>
     An error occured! Please try again or contact support if the error persists
   </b>
+  <button
+    className="border border-gray-500 rounded px-4 py-2 hover:underline"
+    onClick={[Function]}
+    type="button"
+  >
+    Try again
+  </button>
 </div>
 `;
 

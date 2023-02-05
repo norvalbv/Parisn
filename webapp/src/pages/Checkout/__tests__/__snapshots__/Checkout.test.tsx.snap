@@ -6,7 +6,7 @@ exports[`<Checkout /> Checkout props with mandatory props 1`] = `
 >
   Basket Empty
   <button
-    className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4"
+    className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4 "
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}

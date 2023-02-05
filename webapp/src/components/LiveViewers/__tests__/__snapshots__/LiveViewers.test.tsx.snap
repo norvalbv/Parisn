@@ -2,7 +2,7 @@
 
 exports[`<Radial /> Radial props with all props as required 1`] = `
 <p
-  className="text-xl z-10"
+  className="text-xl bg-red-500 z-10"
 >
   Test Label
    
@@ -12,7 +12,7 @@ exports[`<Radial /> Radial props with all props as required 1`] = `
 
 exports[`<Radial /> Radial props with mandatory props 1`] = `
 <p
-  className="text-base z-10"
+  className="text-base undefined z-10"
 >
   Live viewers:
    
