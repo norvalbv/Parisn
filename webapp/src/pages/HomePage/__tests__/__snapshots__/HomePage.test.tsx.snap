@@ -234,9 +234,9 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
       Launched in 2022 allows you to choose the price you pay for your items in a reverse bidding strategy technique. Starting at £10,000 per item, over time the price of the item drops to £0.
     </p>
     <img
-      alt="http://localhost:3000/images/dashboard-image.jpg"
+      alt="http://localhost:3001/images/dashboard-image.jpg"
       className="h-screen w-[42.5%]"
-      src="http://localhost:3000/images/dashboard-image.jpg"
+      src="http://localhost:3001/images/dashboard-image.jpg"
     />
   </div>,
 ]
