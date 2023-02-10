@@ -26,7 +26,7 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
       <img
         src={hovered ? images[hovered] : images[selected]}
         alt={images[selected]}
-        className="h-full w-full"
+        className="h-full w-full pointer-events-none select-none"
       />
       <div className="absolute right-1/3 bottom-0 items-baseline flex z-10">
         {images.map((image, idx) => (
