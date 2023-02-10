@@ -12,6 +12,8 @@ import convertToDate from '../../../utils/convertToDate';
 import useUser from '../../../hooks/useUser';
 import Loading from '../../../components/Loading';
 import { logScalePrice } from '../../../utils/currentPrice';
+import Gallery from '../../../components/Gallery';
+import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -64,12 +66,20 @@ const ItemView = () => {
     )
   ][1];
 
-  console.log(localPrice, typeof localPrice, localPrice ? 'T' : 'F');
-
   return (
-    <div className="relative overflow-auto scroll-smooth">
-      <img src={product.Image} alt={product.Image} className="h-screen w-[40%] sticky top-0" />
-      <div className="absolute right-0 top-0 w-[60%]">
+    <>
+      <div className="w-[40%] h-screen float-left sticky overflow-auto scroll-smooth">
+        <Gallery
+          images={[
+            DASHBOARD_IMAGE,
+            PRODUCT_1_IMAGE,
+            product.Image,
+            DASHBOARD_IMAGE,
+            DASHBOARD_IMAGE,
+          ]}
+        />
+      </div>
+      <div className="w-[60%] h-screen float-right overflow-auto scroll-smooth">
         <div className="flex relative">
           <div
             id="product-overview"
@@ -163,7 +173,7 @@ const ItemView = () => {
           </a>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
