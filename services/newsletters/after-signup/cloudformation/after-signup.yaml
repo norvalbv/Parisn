@@ -1,0 +1,122 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Newsletter sent after initial sign up.
+Resources:
+  # Creates a new role for your AWS account.
+  AfterSignUpRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      # The trust policy that is associated with this role. Trust policies define which entities can assume the role.
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        # Lambda, SES & Cloudwatch Full Access
+        - PolicyName: AfterSignUpPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - autoscaling:Describe*
+                  - cloudwatch:*
+                  - logs:*
+                  - sns:*
+                  - iam:GetPolicy
+                  - iam:GetPolicyVersion
+                  - iam:GetRole
+                  - oam:ListSinks
+                Resource: '*'
+              - Effect: Allow
+                Action: iam:CreateServiceLinkedRole
+                Resource: arn:aws:iam::*:role/aws-service-role/events.amazonaws.com/AWSServiceRoleForCloudWatchEvents*
+                Condition:
+                  StringLike:
+                    iam:AWSServiceName: events.amazonaws.com
+              - Effect: Allow
+                Action:
+                  - oam:ListAttachedLinks
+                Resource: arn:aws:oam:*:*:sink/*
+              - Effect: Allow
+                Action:
+                  - ses:*
+                Resource: '*'
+              - Effect: Allow
+                Action:
+                  - cloudformation:DescribeStacks
+                  - cloudformation:ListStackResources
+                  - cloudwatch:ListMetrics
+                  - cloudwatch:GetMetricData
+                  - ec2:DescribeSecurityGroups
+                  - ec2:DescribeSubnets
+                  - ec2:DescribeVpcs
+                  - kms:ListAliases
+                  - iam:GetPolicy
+                  - iam:GetPolicyVersion
+                  - iam:GetRole
+                  - iam:GetRolePolicy
+                  - iam:ListAttachedRolePolicies
+                  - iam:ListRolePolicies
+                  - iam:ListRoles
+                  - lambda:*
+                  - logs:DescribeLogGroups
+                  - states:DescribeStateMachine
+                  - states:ListStateMachines
+                  - tag:GetResources
+                  - xray:GetTraceSummaries
+                  - xray:BatchGetTraces
+                Resource: '*'
+              - Effect: Allow
+                Action: iam:PassRole
+                Resource: '*'
+                Condition:
+                  StringEquals:
+                    iam:PassedToService: lambda.amazonaws.com
+              - Effect: Allow
+                Action:
+                  - logs:DescribeLogStreams
+                  - logs:GetLogEvents
+                  - logs:FilterLogEvents
+                Resource: arn:aws:logs:*:*:log-group:/aws/lambda/*
+
+  # The AWS::Lambda::Function resource creates a Lambda function.
+  # To create a function, you need a deployment package and an execution role.
+  AfterSignUpLambdaFunction:
+    Type: 'AWS::Lambda::Function'
+    Properties:
+      Architectures:
+        - 'arm64'
+      Code:
+        S3Bucket: 'parisn-bucket'
+        S3Key: 'after-signup.zip'
+      Description: 'A function'
+      PackageType: Zip
+      MemorySize: 256
+      Role: !GetAtt AfterSignUpRole.Arn
+      Runtime: nodejs18.x
+      Timeout: 5
+      FunctionName: AfterSignUpRole
+      # Required when using the deployment packages of S3...
+      Handler: index.handler
+
+  # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
+  AfterSignUpRoleLambdaPermissions:
+    Type: 'AWS::Lambda::Permission'
+    Properties:
+      FunctionName: !Ref AfterSignUpLambdaFunction
+      Action: lambda:InvokeFunction
+      # The principal allows you to choose which service that can invoke the lambda
+      Principal: apigateway.amazonaws.com
+      # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
+      SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
+
+  AfterSignUpRoleApiRoute:
+    Type: 'AWS::ApiGatewayV2::Route'
+    Properties:
+      RouteKey: Get /newsletter-1
+      ApiId: 'dlnkbdtmp6'

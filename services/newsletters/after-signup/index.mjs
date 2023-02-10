@@ -17,7 +17,7 @@ export const handler = async (event) => {
         },
       },
 
-      Subject: { Data: 'Customer Support Query' },
+      Subject: { Data: 'Welcome to the family.' },
     },
     Source: 'benjinorval@gmail.com',
   };
