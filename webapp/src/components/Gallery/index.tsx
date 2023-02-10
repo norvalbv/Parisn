@@ -40,7 +40,7 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
               alt={image}
               key={idx}
               onClick={() => setSelected(idx)}
-              className={`border rounded cursor-pointer ${
+              className={`border rounded cursor-pointer select-none ${
                 hovered === idx || (hovered === null && selected === idx)
                   ? 'w-[60px] h-[80px]'
                   : 'w-[40px] h-[60px]'
