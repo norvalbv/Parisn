@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import { ReactElement, useState } from 'react';
 import { LeftIcon, RightIcon } from '../SVG';
 
 type GalleryProps = {
@@ -8,8 +8,6 @@ type GalleryProps = {
 const Gallery = ({ images }: GalleryProps): ReactElement => {
   const [selected, setSelected] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
-
-  console.log(selected, hovered);
 
   return (
     <div className="relative flex h-full w-full">
