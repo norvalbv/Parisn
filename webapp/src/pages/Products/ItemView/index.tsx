@@ -68,7 +68,7 @@ const ItemView = () => {
 
   return (
     <>
-      <div className="w-[40%] h-screen float-left sticky overflow-auto scroll-smooth">
+      <div className="w-[40%] h-screen float-left">
         <Gallery
           images={[
             DASHBOARD_IMAGE,

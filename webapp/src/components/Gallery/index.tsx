@@ -25,22 +25,30 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
           setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
         }
       />
-      <img src={images[selected]} alt={images[selected]} className="h-full w-full" />
-      <div className="absolute left-0 right-0 bottom-0 items-baseline flex gap-2 z-50">
+      <img
+        src={hovered ? images[hovered] : images[selected]}
+        alt={images[selected]}
+        className="h-full w-full"
+      />
+      <div className="absolute right-1/3 bottom-0 items-baseline flex z-10">
         {images.map((image, idx) => (
-          <img
-            src={image}
-            alt={image}
-            key={idx}
-            onClick={() => setSelected(idx)}
-            className={`border rounded cursor-pointer ${
-              hovered === idx || (!hovered && selected === idx)
-                ? 'w-[60px] h-[80px]'
-                : 'w-[40px] h-[60px]'
-            } transition-all duration-200`}
+          <div
+            className="px-1"
             onMouseEnter={() => setHovered(idx)}
             onMouseLeave={() => setHovered(null)}
-          />
+          >
+            <img
+              src={image}
+              alt={image}
+              key={idx}
+              onClick={() => setSelected(idx)}
+              className={`border rounded cursor-pointer ${
+                hovered === idx || (!hovered && selected === idx)
+                  ? 'w-[60px] h-[80px]'
+                  : 'w-[40px] h-[60px]'
+              } transition-all duration-200`}
+            />
+          </div>
         ))}
       </div>
     </div>

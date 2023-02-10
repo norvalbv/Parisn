@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { InstagramLogo } from '../../components/CustomSVG';
 
-const NavBar = () => {
+const Footer = () => {
   return (
     <div className="w-full p-6 absolute bottom-0 flex justify-between">
       <div className="cursor-pointer">
@@ -28,4 +28,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Footer;
