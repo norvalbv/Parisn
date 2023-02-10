@@ -100,7 +100,7 @@ Resources:
       Role: !GetAtt AfterSignUpRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
-      FunctionName: AfterSignUpRole
+      FunctionName: after-signup
       # Required when using the deployment packages of S3...
       Handler: index.handler
 
