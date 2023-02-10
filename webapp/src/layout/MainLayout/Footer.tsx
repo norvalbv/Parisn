@@ -5,8 +5,10 @@ import { InstagramLogo } from '../../components/CustomSVG';
 const NavBar = () => {
   return (
     <div className="w-full py-6 absolute bottom-0">
-      <InstagramLogo />
-      <ul className="flex justify-end items-center z-50 text-sm">
+      <div className="cursor-pointer">
+        <InstagramLogo />
+      </div>
+      <ul className="flex justify-end items-center text-sm">
         <Link to="/how-it-works">
           <li className="px-4 cursor-pointer hover:border-b">How It Works</li>
         </Link>

@@ -93,6 +93,6 @@ export const InstagramLogo = ({ fill = '#ffffff', colour = 'none', size = 16 }: 
     colour={colour}
     size={size}
     viewBox="0 0 16 16"
-    className="ml-10 -mb-[1.1rem] cursor-pointer"
+    className="ml-10 -mb-[1.1rem]"
   />
 );

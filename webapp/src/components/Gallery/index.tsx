@@ -26,7 +26,7 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
         }
       />
       <img src={images[selected]} alt={images[selected]} className="h-full w-full" />
-      <div className="fixed left-[12.5rem] bottom-0 w-[8rem] items-baseline flex gap-2 z-20">
+      <div className="absolute left-0 right-0 bottom-0 items-baseline flex gap-2 z-50">
         {images.map((image, idx) => (
           <img
             src={image}
