@@ -12,22 +12,20 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
   console.log(selected);
 
   return (
-    <div className="relative flex">
+    <div className="relative flex h-full w-full">
       <LeftIcon
-        className=" top-1/2 right-0 z-50 bg-red-500 cursor-pointer"
+        className="absolute top-1/2 left-0 z-50 border rounded-full border-[#ffffff40] cursor-pointer hover:scale-110"
         onClick={() =>
           setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1))
         }
       />
       <RightIcon
-        className="top-1/2 right-0 z-50 bg-red-500 cursor-pointer"
-        onClick={() => {
-          setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1));
-        }}
+        className="absolute top-1/2 right-0 z-50 border rounded-full border-[#ffffff40] cursor-pointer hover:scale-110"
+        onClick={() =>
+          setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
+        }
       />
-      <div>
-        <img src={images[selected]} alt={images[selected]} className="h-screen w-full" />
-      </div>
+      <img src={images[selected]} alt={images[selected]} className="h-full w-full" />
       <div className="fixed left-[12.5rem] bottom-0 w-[8rem] items-baseline flex gap-2 z-20">
         {images.map((image, idx) => (
           <img
