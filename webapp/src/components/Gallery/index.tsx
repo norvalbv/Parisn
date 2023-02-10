@@ -9,7 +9,7 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
   const [selected, setSelected] = useState(0);
   const [hovered, setHovered] = useState<number | null>(null);
 
-  console.log(selected);
+  console.log(selected, hovered);
 
   return (
     <div className="relative flex h-full w-full">
@@ -43,7 +43,7 @@ const Gallery = ({ images }: GalleryProps): ReactElement => {
               key={idx}
               onClick={() => setSelected(idx)}
               className={`border rounded cursor-pointer ${
-                hovered === idx || (!hovered && selected === idx)
+                hovered === idx || (hovered === null && selected === idx)
                   ? 'w-[60px] h-[80px]'
                   : 'w-[40px] h-[60px]'
               } transition-all duration-200`}
