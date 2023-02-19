@@ -25,7 +25,6 @@ Resources:
                 Action:
                   - autoscaling:Describe*
                   - cloudwatch:*
-                  - logs:*
                   - sns:*
                   - iam:GetPolicy
                   - iam:GetPolicyVersion
