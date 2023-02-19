@@ -30,6 +30,7 @@ type FormProps = {
   submitFn: (arg: { [key: string]: string }) => void;
   validationSchema?: unknown;
   resetFormOnbSubmit?: boolean;
+  newsletterSignUp?: boolean;
 };
 
 const Form = ({
@@ -41,6 +42,7 @@ const Form = ({
   submitFn,
   validationSchema,
   resetFormOnbSubmit = false,
+  newsletterSignUp = false,
 }: FormProps): ReactElement => {
   let initalValues: { [key: string]: string } = {};
 
@@ -95,7 +97,22 @@ const Form = ({
             </Fragment>
           );
         })}
-        <div className="flex justify-between items-baseline flex-row-reverse">
+        <div
+          className={`flex justify-between items-baseline ${
+            newsletterSignUp ? '' : 'flex-row-reverse'
+          }`}
+        >
+          {newsletterSignUp && (
+            <div>
+              <input
+                type="checkbox"
+                id="newsletterSignUp"
+                name="newsletterSignUp"
+                className="mr-2"
+              />
+              <label htmlFor="newsletterSignUp">Sign up to our newsletter</label>
+            </div>
+          )}
           {footerLink?.active ? (
             <Link className="hover:underline cursor-pointer" to={footerLink.to}>
               {footerLink.label}

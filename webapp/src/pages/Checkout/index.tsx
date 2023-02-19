@@ -24,12 +24,12 @@ const Checkout = (): ReactElement => {
     <>
       {truthyDataParsed ? (
         <>
-          <h2 className="text-4xl top-10 border-b w-min mx-auto relative">Checkout</h2>
+          <h2 className="text-4xl pt-10 mb-10 border-b w-min mx-auto">Checkout</h2>
 
-          <div className="flex justify-around items-center w-4/5 mx-auto h-screen">
+          <div className="flex justify-around items-center w-4/5 mx-auto">
             <div className="flex-1 flex flex-col items-center gap-5 pr-5">
               <p className="underline underline-offset-2">Purchase Information:</p>
-              <img src={productInfo.product?.Image} className="mx-8 flex-1 rounded-lg" />
+              <img src={productInfo.product?.Image} className="mx-8 flex-1 rounded-lg w-96" />
               <div className="flex text-sm divide-x">
                 <p className="px-2">£{productInfo.price}</p>
                 <p className="px-2">{productInfo.product?.Title}</p>
@@ -90,6 +90,7 @@ const Checkout = (): ReactElement => {
                   console.log(values);
                 }}
                 validationSchema={checkoutSchema}
+                newsletterSignUp
               />
               <Counter />
             </div>
