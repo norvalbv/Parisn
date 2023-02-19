@@ -38,6 +38,7 @@ jobs:
         inputs:
           awsCredentials: 'AWS'
           regionName: 'eu-west-2'
+          sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/'
           bucketName: 'parisn-bucket'
           globExpressions: |
             *.yaml

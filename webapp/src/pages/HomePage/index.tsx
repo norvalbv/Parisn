@@ -23,7 +23,7 @@ const HomePage = () => {
           <div className="absolute text-center">
             <div data-testid="PARISN.com">
               <span className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]">
-                PARISN
+                DEMO SITE
               </span>
               <span className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">.com</span>
             </div>

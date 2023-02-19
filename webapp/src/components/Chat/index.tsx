@@ -23,24 +23,23 @@ type ChatProps = {
 
 const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
   const { user } = useUser();
+
+  const message = ['This site is 🔥🔥🔥', 'Yeah it is. 💯💯'];
   /**
    * Chat submission
    */
   const [messages, setMessages] = useState<Message[]>([
     {
-      message: 'This chat is in progress...',
-      user: 'Parisn',
+      message: message[0],
+      user: 'Parisn_admin1',
       time: Date.now(),
-      id: uuidv5('This chat is in progress...' + 'BenjiTheGreat' + Date.now(), uuidv5.URL),
+      id: uuidv5(message[0] + 'BenjiTheGreat' + Date.now(), uuidv5.URL),
     },
     {
-      message: 'I am currently building a login feature that supports the chat :)',
+      message: message[1],
       user: 'benjithegreat',
       time: Date.now(),
-      id: uuidv5(
-        'I am currently building a login feature that supports the chat :)' + 'Shaun1' + Date.now(),
-        uuidv5.URL
-      ),
+      id: uuidv5(message[1] + 'Shaun1' + Date.now(), uuidv5.URL),
     },
   ]);
 

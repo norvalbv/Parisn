@@ -26,7 +26,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
   const navigate = useNavigate();
   const [user, setUser] = useState<FullUserInformation | null>({
     cognitoInfo: null,
-    userInfo: null,
+    userInfo: {
+      id: '100',
+      username: 'benjithegreat',
+      firstName: 'Benji',
+      lastName: 'Norval',
+      email: 'benjithegreat@gmail.com',
+    },
   });
   const [error, setError] = useState<string | null>(null);
   /** Stage is used both for reset password flow and forgot password flow.
@@ -133,6 +139,9 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
     try {
       await Auth.signIn(username, password);
 
+      // console.log('t');
+      // console.log(await Auth.currentSession());
+
       const session = await Auth.currentSession();
       const token = session.getIdToken().getJwtToken();
 
@@ -159,7 +168,13 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
     } catch (error) {
-      toast.warning((error as { message: string }).message);
+      toast.warning(
+        (
+          error as {
+            message: string;
+          }
+        ).message
+      );
       setError((error as { message: string }).message);
     }
   };
@@ -181,7 +196,6 @@ export const UserInformationProvider = ({ children }: ProductContextProviderProp
         theme: 'light',
       });
     } catch (err) {
-      console.log(err);
       toast('An error occured! Try again', {
         position: 'top-center',
         autoClose: 5000,

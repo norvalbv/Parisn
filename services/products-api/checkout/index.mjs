@@ -2,7 +2,9 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { UpdateCommand, DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
+import { SchedulerClient, CreateScheduleCommand } from '@aws-sdk/client-scheduler';
 
+const client = new SchedulerClient({ region: 'us-east-1' });
 const ddbClient = new DynamoDBClient({ region: 'eu-west-2' });
 
 // Create the DynamoDB document client.
@@ -76,6 +78,9 @@ export const handler = async (event) => {
       },
     },
   };
+
+  const command = new CreateScheduleCommand(input);
+  const response = await client.send(command);
 
   try {
     const data = await dynamoDb.send(new UpdateCommand(params));

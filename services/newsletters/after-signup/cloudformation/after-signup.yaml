@@ -120,3 +120,15 @@ Resources:
     Properties:
       RouteKey: Get /newsletter-1
       ApiId: 'dlnkbdtmp6'
+
+  Event bus: default
+  Event pattern:
+  {
+    "source": [
+      "aws.lambda"
+    ]
+  }
+  name: after-signup
+  Service principal: events.amazonaws.com
+  Statement ID: AWSEvents_after-signup_Id045a4d65-2e62-4bb0-b39a-2d7bf1d1f4bd
+  url: events/home#/rules/after-signup
