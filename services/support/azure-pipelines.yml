@@ -21,7 +21,7 @@ jobs:
         name: upload_cloudformation
         inputs:
           awsCredentials: 'AWS'
-          regionName: 'eu-west-2'
+          regionName: 'eu-west-1'
           bucketName: 'parisn-bucket'
           createBucket: true
           logRequest: true
@@ -35,7 +35,7 @@ jobs:
       - task: CloudFormationCreateOrUpdateStack@1
         inputs:
           awsCredentials: 'AWS'
-          regionName: 'eu-west-2'
+          regionName: 'eu-west-1'
           stackName: '$(servicename)'
           templateSource: 's3'
           s3BucketName: 'parisn-bucket'
