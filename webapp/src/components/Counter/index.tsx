@@ -34,9 +34,8 @@ const Counter = () => {
 
   useEffect(() => {
     if (timeLeft.total === 1000) {
-      console.log('logged');
       localStorage.clear();
-      navigate('/catalogue');
+      navigate('/collections');
     }
   }, [timeLeft.total]);
 
