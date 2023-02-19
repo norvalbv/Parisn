@@ -6,10 +6,13 @@ import Form from '../../components/Form';
 import { checkoutSchema } from '../../utils/validation';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
+import useUser from '../../hooks/useUser';
 
 const Checkout = (): ReactElement => {
   const navigate = useNavigate();
   const { productInfo } = useProduct();
+
+  const { user } = useUser();
 
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
 
@@ -36,9 +39,21 @@ const Checkout = (): ReactElement => {
             <div className="flex-1 pl-5">
               <Form
                 formValues={{
-                  firstName: { initialValue: '', type: 'text', label: 'First Name' },
-                  lastName: { initialValue: '', type: 'text', label: 'Last Name' },
-                  email: { initialValue: '', type: 'email', label: 'Email' },
+                  firstName: {
+                    initialValue: user.userInfo?.firstName || '',
+                    type: 'text',
+                    label: 'First Name',
+                  },
+                  lastName: {
+                    initialValue: user.userInfo?.lastName || '',
+                    type: 'text',
+                    label: 'Last Name',
+                  },
+                  email: {
+                    initialValue: user.userInfo?.email || '',
+                    type: 'email',
+                    label: 'Email',
+                  },
                   firstLineOfAddress: {
                     initialValue: '',
                     type: 'text',
