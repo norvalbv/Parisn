@@ -55,13 +55,7 @@ Resources:
                   - ec2:DescribeSubnets
                   - ec2:DescribeVpcs
                   - kms:ListAliases
-                  - iam:GetPolicy
-                  - iam:GetPolicyVersion
-                  - iam:GetRole
-                  - iam:GetRolePolicy
-                  - iam:ListAttachedRolePolicies
-                  - iam:ListRolePolicies
-                  - iam:ListRoles
+                  - iam:*
                   - lambda:*
                   - logs:DescribeLogGroups
                   - states:DescribeStateMachine
