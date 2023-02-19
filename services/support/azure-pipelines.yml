@@ -6,6 +6,8 @@ trigger:
     include:
       - services/support/*
 
+      #add comment to test
+
 pool:
   vmImage: ubuntu-latest
 
