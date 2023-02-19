@@ -6,42 +6,55 @@ trigger:
     include:
       - services/support/*
 
-parameters:
-
 pool:
   vmImage: ubuntu-latest
+
+variables:
+  - name: servicename
+    value: support
 
 jobs:
   - job: build_test_package
     displayName: 'Build, test, package'
     steps:
-      # # lambda: warning-resolver
-      # - template: ${{variables['System.DefaultWorkingDirectory']}}/deployment/pipeline-templates/build-lambda-with-poetry.yml
-      #   parameters:
-      #     serviceName: $(servicename)
-      #     lambdaName: warning_resolver
-      #     mainFileName: lambda.py
-      #     aws_service_connection: aws.boston.dev # Run the tests in dev
-      #     aws_deploy_region: $(Deployment.AWS.Region)
-
-      # BUILD AND TEST COMPLETE - NOW UPLOAD ARTIFACTS
-      - task: S3Upload@1
-        displayName: 'Upload all Lambda code zips'
-        inputs:
-          awsCredentials: 'AWS'
-          regionName: 'eu-west-2'
-          bucketName: 'parisn-bucket'
-          globExpressions: '**'
-
       - task: S3Upload@1
         name: upload_cloudformation
         inputs:
           awsCredentials: 'AWS'
           regionName: 'eu-west-2'
-          sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/'
           bucketName: 'parisn-bucket'
+          createBucket: true
+          logRequest: true
+          sourceFolder: $(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/
+          targetFolder: $(servicename)/cloudformation
+          logResponse: true
           globExpressions: |
             *.yaml
-            *.json
             **/*.yaml
-            **/*.json
+
+      - task: CloudFormationCreateOrUpdateStack@1
+        inputs:
+          awsCredentials: 'AWS'
+          regionName: 'eu-west-2'
+          stackName: '$(servicename)'
+          templateSource: 's3'
+          s3BucketName: 'parisn-bucket'
+          s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
+
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: '$(Build.BinariesDirectory)'
+          includeRootFolder: true
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+          replaceExistingArchive: true
+
+    #   - task: S3Upload@1
+    #     displayName: 'Upload all Lambda code zips'
+    #     inputs:
+    #       awsCredentials: 'AWS'
+    #       regionName: 'eu-west-2'
+    #       bucketName: 'parisn-bucket'
+    #       globExpressions: '**'
+    #       createBucket: true
+    #       sourceFolder: '$(System.DefaultWorkingDirectory)/test2/cloudformation/'
