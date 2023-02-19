@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Counter = () => {
-  const [timeLeft, setTimeLeft] = useState({ total: 0, minutes: 0, seconds: 0 });
+  const [timeLeft, setTimeLeft] = useState({ total: 600000, minutes: 10, seconds: 0 });
 
   const navigate = useNavigate();
 
@@ -43,14 +43,14 @@ const Counter = () => {
   return (
     <div className="text-secondary-blue/90 mt-4 italic tracking-wide">
       Item held in basket for:&nbsp;
-      <span className="countdown font-mono text-3xl">
+      <span className="text-3xl">
         <span>{timeLeft.minutes}</span>
       </span>
-      min&nbsp;
-      <span className="countdown font-mono text-3xl">
+      {timeLeft.minutes > 1 ? 'minutes' : 'minute'}&nbsp;
+      <span className="text-3xl">
         <span>{timeLeft.seconds}</span>
       </span>
-      sec
+      {timeLeft.seconds > 1 ? 'seconds' : 'minute'}
     </div>
   );
 };

@@ -108,9 +108,11 @@ const Form = ({
                 type="checkbox"
                 id="newsletterSignUp"
                 name="newsletterSignUp"
-                className="mr-2"
+                className="mr-2 cursor-pointer"
               />
-              <label htmlFor="newsletterSignUp">Sign up to our newsletter</label>
+              <label htmlFor="newsletterSignUp" className="cursor-pointer">
+                Sign up to our newsletter
+              </label>
             </div>
           )}
           {footerLink?.active ? (
