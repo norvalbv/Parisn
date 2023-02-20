@@ -17,6 +17,7 @@ jobs:
   - job: build_test_package
     displayName: 'Build, test, package'
     steps:
+      # Uploads cloud formation
       - task: S3Upload@1
         name: upload_cloudformation
         inputs:
@@ -32,6 +33,7 @@ jobs:
             *.yaml
             **/*.yaml
 
+      # Updates stack using new cloudformation
       - task: CloudFormationCreateOrUpdateStack@1
         inputs:
           awsCredentials: 'AWS'
@@ -41,20 +43,23 @@ jobs:
           s3BucketName: 'parisn-bucket'
           s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
 
+      # Archives / zips folder
       - task: ArchiveFiles@2
+        displayName: Zip Files
         inputs:
-          rootFolderOrFile: '$(Build.BinariesDirectory)'
-          includeRootFolder: true
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename))'
+          includeRootFolder: false
           archiveType: 'zip'
-          archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+          archiveFile: '$(servicename).zip'
           replaceExistingArchive: true
 
-    #   - task: S3Upload@1
-    #     displayName: 'Upload all Lambda code zips'
-    #     inputs:
-    #       awsCredentials: 'AWS'
-    #       regionName: 'eu-west-2'
-    #       bucketName: 'parisn-bucket'
-    #       globExpressions: '**'
-    #       createBucket: true
-    #       sourceFolder: '$(System.DefaultWorkingDirectory)/test2/cloudformation/'
+      # Uploads that zip to S3
+      - task: S3Upload@1
+        displayName: 'Upload lambda zips'
+        inputs:
+          awsCredentials: 'AWS'
+          regionName: 'eu-west-2'
+          bucketName: 'parisn-bucket'
+          globExpressions: '**'
+          createBucket: true
+          sourceFolder: '$(System.DefaultWorkingDirectory)/test2/cloudformation/'
