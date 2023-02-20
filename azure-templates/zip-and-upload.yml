@@ -1,0 +1,66 @@
+steps:
+  # Uploads cloud formation
+  - task: S3Upload@1
+    name: upload_cloudformation
+    inputs:
+      awsCredentials: 'AWS'
+      regionName: 'eu-west-2'
+      bucketName: 'parisn-bucket'
+      createBucket: true
+      logRequest: true
+      sourceFolder: $(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/
+      targetFolder: $(servicename)/cloudformation
+      logResponse: true
+      globExpressions: |
+        *.yaml
+        **/*.yaml
+
+  # Archives / zips folder
+  - task: ArchiveFiles@2
+    displayName: Zip Files
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
+      includeRootFolder: true
+      archiveType: 'zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)/$(servicename).zip'
+      replaceExistingArchive: true
+
+  # Debug, check zip archive is there
+  - task: Bash@3
+    displayName: Listed directories
+    inputs:
+      targetType: 'inline'
+      script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicename)'
+
+  # Uploads that zip to S3
+  - task: S3Upload@1
+    displayName: 'Upload lambda zips'
+    inputs:
+      awsCredentials: 'AWS'
+      regionName: 'eu-west-2'
+      bucketName: 'parisn-bucket'
+      globExpressions: '**/*.zip'
+      createBucket: true
+      logRequest: true
+      sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
+      targetFolder: '$(servicename)'
+      
+    
+  # Updates stack using new cloudformation
+  - task: CloudFormationCreateOrUpdateStack@1
+    displayName: Upload cloud formation
+    inputs:
+      awsCredentials: 'AWS'
+      regionName: 'eu-west-2'
+      stackName: '$(servicename)'
+      templateSource: 's3'
+      s3BucketName: 'parisn-bucket'
+      s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
+      templateParametersSource: inline
+      templateParameters: |
+        [
+          {
+            "ParameterKey":"ServiceName",
+            "ParameterValue":"$(servicename)"
+          }
+        ]
