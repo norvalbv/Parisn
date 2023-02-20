@@ -73,7 +73,6 @@ Resources:
                   - logs:FilterLogEvents
                 Resource: arn:aws:logs:*:*:log-group:/aws/lambda/*
 
-  # ! Should I create one bucket per cloud formation / lambda? How does it work?
   # The AWS::Lambda::Function resource creates a Lambda function.
   # To create a function, you need a deployment package and an execution role.
   SupportLambdaFunction:

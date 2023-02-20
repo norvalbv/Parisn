@@ -50,7 +50,7 @@ jobs:
           awsCredentials: 'AWS'
           regionName: 'eu-west-2'
           bucketName: 'parisn-bucket'
-          globExpressions: '**'
+          globExpressions: '**/*.zip'
           createBucket: true
           logRequest: true
           sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
