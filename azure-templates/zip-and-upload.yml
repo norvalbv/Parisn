@@ -1,6 +1,6 @@
 parameters:
   - name: servicename
-    Type: String
+    type: string
 
 steps:
   # Uploads cloud formation
