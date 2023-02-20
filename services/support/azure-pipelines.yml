@@ -38,7 +38,7 @@ jobs:
         displayName: Zip Files
         inputs:
           rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
-          includeRootFolder: false
+          includeRootFolder: true
           archiveType: 'zip'
           archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename).zip'
           replaceExistingArchive: true
