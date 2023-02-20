@@ -40,7 +40,7 @@ jobs:
           rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
           includeRootFolder: true
           archiveType: 'zip'
-          archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename).zip'
+          archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)/$(servicename).zip'
           replaceExistingArchive: true
 
       - task: Bash@3
