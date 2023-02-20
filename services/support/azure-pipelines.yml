@@ -17,4 +17,4 @@ jobs:
   - job: Zip_and_Upload
     displayName: 'Zip and Upload'
     steps:
-    - template: $(System.DefaultWorkingDirectory)/azure-templates/zip-and-upload.yml
+    - template: ${{variables['System.DefaultWorkingDirectory']}}/azure-templates/zip-and-upload.yml
