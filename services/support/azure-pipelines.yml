@@ -62,4 +62,6 @@ jobs:
           bucketName: 'parisn-bucket'
           globExpressions: '**'
           createBucket: true
-          sourceFolder: '$(System.DefaultWorkingDirectory)/test2/cloudformation/'
+          logRequest: true
+          sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
+          targetFolder: '$(servicename)'
