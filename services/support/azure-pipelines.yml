@@ -43,15 +43,11 @@ jobs:
           archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)/$(servicename).zip'
           replaceExistingArchive: true
 
+      # Debug, check zip archive is there
       - task: Bash@3
         inputs:
           targetType: 'inline'
           script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicename)'
-      
-      - task: Bash@3
-        inputs:
-          targetType: 'inline'
-          script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicename)/**/*.zip'
 
       # Uploads that zip to S3
       - task: S3Upload@1
