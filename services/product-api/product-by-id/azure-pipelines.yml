@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+      - main
+  paths:
+    include:
+      - services/products-api/product-by-id/*
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+  - name: servicename
+    value: product-by-id
+
+jobs:
+  - job: Zip_and_Upload
+    displayName: 'Zip and Upload'
+    steps:
+      - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
+        parameters:
+          servicename: $(servicename)
