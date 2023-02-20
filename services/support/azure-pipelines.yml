@@ -45,6 +45,7 @@ jobs:
 
       # Debug, check zip archive is there
       - task: Bash@3
+        displayName: Listed directories
         inputs:
           targetType: 'inline'
           script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicename)'
