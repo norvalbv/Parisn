@@ -42,11 +42,11 @@ jobs:
           archiveType: 'zip'
           archiveFile: '$(servicename).zip'
           replaceExistingArchive: true
-          verbose: true
 
       # Uploads that zip to S3
       - task: S3Upload@1
         displayName: 'Upload lambda zips'
+        condition: suceeded()
         inputs:
           awsCredentials: 'AWS'
           regionName: 'eu-west-2'
@@ -55,7 +55,7 @@ jobs:
           createBucket: true
           logRequest: true
           sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
-          targetFolder: '$(servicename)/zip'
+          targetFolder: '$(servicename)'
         
       # Updates stack using new cloudformation
       - task: CloudFormationCreateOrUpdateStack@1
