@@ -42,6 +42,7 @@ jobs:
           archiveType: 'zip'
           archiveFile: '$(servicename).zip'
           replaceExistingArchive: true
+          verbose: true
 
       # Uploads that zip to S3
       - task: S3Upload@1
@@ -66,3 +67,6 @@ jobs:
           templateSource: 's3'
           s3BucketName: 'parisn-bucket'
           s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
+
+
+          ## How do I know where I am in compared to root path?
