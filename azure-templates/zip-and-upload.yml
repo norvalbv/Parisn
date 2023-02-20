@@ -1,3 +1,7 @@
+parameters:
+  - name: servicename
+    Type: String
+
 steps:
   # Uploads cloud formation
   - task: S3Upload@1
@@ -44,8 +48,7 @@ steps:
       logRequest: true
       sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
       targetFolder: '$(servicename)'
-      
-    
+
   # Updates stack using new cloudformation
   - task: CloudFormationCreateOrUpdateStack@1
     displayName: Upload cloud formation
