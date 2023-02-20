@@ -31,9 +31,6 @@ Resources:
                   - autoscaling:Describe*
                   - cloudwatch:*
                   - sns:*
-                  - iam:GetPolicy
-                  - iam:GetPolicyVersion
-                  - iam:GetRole
                   - oam:ListSinks
                 Resource: '*'
               - Effect: Allow
