@@ -61,6 +61,7 @@ jobs:
           logRequest: true
           sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
           targetFolder: '$(servicename)'
+          
         
       # Updates stack using new cloudformation
       - task: CloudFormationCreateOrUpdateStack@1
@@ -72,6 +73,11 @@ jobs:
           templateSource: 's3'
           s3BucketName: 'parisn-bucket'
           s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
-
-
-          ## How do I know where I am in compared to root path?
+          templateParametersSource: inline
+          templateParameters: |
+            [
+              {
+                "ParameterKey":"ServiceName",
+                "ParameterValue":"$(servicename)"
+              }
+            ]

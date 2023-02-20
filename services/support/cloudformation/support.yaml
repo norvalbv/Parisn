@@ -1,5 +1,10 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Support Cloud Formation Template
+
+Parameters:
+  ServiceName:
+    Type: string 
+
 Resources:
   # Creates a new role for your AWS account.
   SupportRole:
@@ -84,14 +89,14 @@ Resources:
         # Bucket name
         S3Bucket: 'parisn-bucket'
         # File name
-        S3Key: 'support/support.zip'
+        S3Key: !Sub '${ServiceName}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt SupportRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
-      FunctionName: support
+      FunctionName: !Ref ServiceName
       Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
