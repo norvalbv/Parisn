@@ -47,7 +47,7 @@ jobs:
       - task: ArchiveFiles@2
         displayName: Zip Files
         inputs:
-          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename))'
+          rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
           includeRootFolder: false
           archiveType: 'zip'
           archiveFile: '$(servicename).zip'
