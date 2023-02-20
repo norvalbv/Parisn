@@ -3,7 +3,7 @@ Description: Support Cloud Formation Template
 
 Parameters:
   ServiceName:
-    Type: string 
+    Type: String 
 
 Resources:
   # Creates a new role for your AWS account.
