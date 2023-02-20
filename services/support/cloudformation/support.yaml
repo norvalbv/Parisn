@@ -84,7 +84,7 @@ Resources:
         # Bucket name
         S3Bucket: 'parisn-bucket'
         # File name
-        S3Key: 'support.zip'
+        S3Key: 'support/support.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
