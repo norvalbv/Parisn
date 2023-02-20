@@ -4,14 +4,14 @@ trigger:
       - main
   paths:
     include:
-      - services/products-api/checkout/*
+      - services/products-api/collections/*
 
 pool:
   vmImage: ubuntu-latest
 
 variables:
   - name: servicename
-    value: checkout
+    value: product-api/collections
 
 jobs:
   - job: Zip_and_Upload
