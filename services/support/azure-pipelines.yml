@@ -40,13 +40,12 @@ jobs:
           rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
           includeRootFolder: false
           archiveType: 'zip'
-          archiveFile: '$(servicename).zip'
+          archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename).zip'
           replaceExistingArchive: true
 
       # Uploads that zip to S3
       - task: S3Upload@1
         displayName: 'Upload lambda zips'
-        condition: suceeded()
         inputs:
           awsCredentials: 'AWS'
           regionName: 'eu-west-2'
