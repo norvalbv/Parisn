@@ -33,16 +33,6 @@ jobs:
             *.yaml
             **/*.yaml
 
-      # Updates stack using new cloudformation
-      - task: CloudFormationCreateOrUpdateStack@1
-        inputs:
-          awsCredentials: 'AWS'
-          regionName: 'eu-west-2'
-          stackName: '$(servicename)'
-          templateSource: 's3'
-          s3BucketName: 'parisn-bucket'
-          s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
-
       # Archives / zips folder
       - task: ArchiveFiles@2
         displayName: Zip Files
@@ -64,4 +54,15 @@ jobs:
           createBucket: true
           logRequest: true
           sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
-          targetFolder: '$(servicename)'
+          targetFolder: '$(servicename)/zip'
+        
+      # Updates stack using new cloudformation
+      - task: CloudFormationCreateOrUpdateStack@1
+        displayName: Upload cloud formation
+        inputs:
+          awsCredentials: 'AWS'
+          regionName: 'eu-west-2'
+          stackName: '$(servicename)'
+          templateSource: 's3'
+          s3BucketName: 'parisn-bucket'
+          s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
