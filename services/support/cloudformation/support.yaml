@@ -123,11 +123,11 @@ Resources:
   SupportApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     DependsOn:
-      - 'CollectionsApiIntegration'
+      - 'SupportApiIntegration'
     Properties:
       RouteKey: 'GET /support-request'
       ApiId: 'dlnkbdtmp6'
       Target: !Join
         - /
         - - integrations
-          - !Ref CollectionsApiIntegration
+          - !Ref SupportApiIntegration
