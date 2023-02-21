@@ -15,7 +15,7 @@ steps:
       createBucket: true
       logRequest: true
       sourceFolder: $(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/
-      targetFolder: $(servicename)/cloudformation
+      targetFolder: $(servicepath)/cloudformation
       logResponse: true
       globExpressions: |
         *.yaml
