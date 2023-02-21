@@ -28,7 +28,7 @@ steps:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
       includeRootFolder: true
       archiveType: 'zip'
-      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename).zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath).zip'
       replaceExistingArchive: true
 
   # Debug, check zip archive is there

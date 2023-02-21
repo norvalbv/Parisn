@@ -186,8 +186,8 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}.zip'
-      Description: 'A function'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
+      Description: 'Get all collections from DynamoDB'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt CollectionsRole.Arn
