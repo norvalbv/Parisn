@@ -226,4 +226,7 @@ Resources:
     Properties:
       RouteKey: 'GET /collections'
       ApiId: 'dlnkbdtmp6'
-      Target: !Ref CollectionsApiIntegration 
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref CollectionsApiIntegration 
