@@ -208,8 +208,25 @@ Resources:
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
+  # Links the API Route to the lambda
+  ProductByIdApiIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
+    Properties:
+      ApiId: 'dlnkbdtmp6'
+      IntegrationType: 'AWS_PROXY'
+      IntegrationUri: !GetAtt ProductByIdLambdaFunction.Arn
+      PayloadFormatVersion: '2.0'
+      IntegrationMethod: 'GET'
+
+  # The AWS::ApiGatewayV2::Api resource creates an API.
   ProductByIdApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
+    DependsOn:
+      - 'ProductByIdApiIntegration'
     Properties:
       RouteKey: GET /collections/{collection}/{productid}
       ApiId: 'dlnkbdtmp6'
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref ProductByIdApiIntegration
