@@ -1,5 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Checkout Cloud Formation Template
+
+Parameters:
+  ServiceName:
+    Type: String
+  ServicePath:
+    Type: String
+
 Resources:
   # Creates a new role for your AWS account.
   CheckoutRole:
@@ -179,14 +186,14 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: 'checkout.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt CheckoutRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
-      FunctionName: checkout
+      FunctionName: !Ref ServiceName
       # Required when using the deployment packages of S3...
       Handler: index.handler
 

@@ -12,6 +12,8 @@ pool:
 variables:
   - name: servicename
     value: get-collection
+  - name: servicepath
+    value: products-api/get-collection
 
 jobs:
   - job: Zip_and_Upload
@@ -20,3 +22,4 @@ jobs:
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
           servicename: $(servicename)
+          servicepath: $(servicepath)
