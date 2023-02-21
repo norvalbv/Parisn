@@ -26,7 +26,7 @@ steps:
     displayName: Zip Files
     inputs:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
-      includeRootFolder: true
+      includeRootFolder: false
       archiveType: 'zip'
       archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename).zip'
       replaceExistingArchive: true
