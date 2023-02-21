@@ -4,6 +4,8 @@ Description: Support Cloud Formation Template
 Parameters:
   ServiceName:
     Type: String 
+  ServicePath:
+    Type: String
 
 Resources:
   # Creates a new role for your AWS account.
@@ -86,7 +88,7 @@ Resources:
         # Bucket name
         S3Bucket: 'parisn-bucket'
         # File name
-        S3Key: !Sub '${ServiceName}/${ServiceName}.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
