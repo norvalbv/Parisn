@@ -3,7 +3,7 @@ Description: Support Cloud Formation Template
 
 Parameters:
   ServiceName:
-    Type: String 
+    Type: String
   ServicePath:
     Type: String
 
@@ -109,8 +109,25 @@ Resources:
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
+  # Links the API Route to the lambda
+  SupportApiIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
+    Properties:
+      ApiId: 'dlnkbdtmp6'
+      IntegrationType: 'AWS_PROXY'
+      IntegrationUri: !GetAtt SupportLambdaFunction.Arn
+      PayloadFormatVersion: '2.0'
+      IntegrationMethod: 'GET'
+
+  # The AWS::ApiGatewayV2::Api resource creates an API.
   SupportApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
+    DependsOn:
+      - 'CollectionsApiIntegration'
     Properties:
-      RouteKey: GET /support-request
+      RouteKey: 'GET /support-request'
       ApiId: 'dlnkbdtmp6'
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref CollectionsApiIntegration
