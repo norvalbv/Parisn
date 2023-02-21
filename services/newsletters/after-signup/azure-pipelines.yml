@@ -11,6 +11,8 @@ pool:
 
 variables:
   - name: servicename
+    value: after-signup
+  - name: servicepath
     value: newsletters/after-signup
 
 jobs:
@@ -20,3 +22,4 @@ jobs:
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
           servicename: $(servicename)
+          servicepath: $(servicepath)

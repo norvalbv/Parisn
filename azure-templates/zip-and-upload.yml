@@ -1,6 +1,8 @@
 parameters:
   - name: servicename
     type: string
+  - name: servicepath
+    type: string
 
 steps:
   # Uploads cloud formation
@@ -23,10 +25,10 @@ steps:
   - task: ArchiveFiles@2
     displayName: Zip Files
     inputs:
-      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
       includeRootFolder: true
       archiveType: 'zip'
-      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicename)/$(servicename).zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename).zip'
       replaceExistingArchive: true
 
   # Debug, check zip archive is there
@@ -34,7 +36,7 @@ steps:
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicename)'
+      script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicepath)'
 
   # Uploads that zip to S3
   - task: S3Upload@1
@@ -58,7 +60,7 @@ steps:
       stackName: '$(servicename)'
       templateSource: 's3'
       s3BucketName: 'parisn-bucket'
-      s3ObjectKey: '$(servicename)/cloudformation/$(servicename).yaml'
+      s3ObjectKey: '$(servicepath)/cloudformation/$(servicename).yaml'
       templateParametersSource: inline
       templateParameters: |
         [
