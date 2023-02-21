@@ -11,7 +11,7 @@ pool:
 
 variables:
   - name: servicename
-    value: product-by-id
+    value: products-api/product-by-id
 
 jobs:
   - job: Zip_and_Upload
