@@ -100,7 +100,7 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
+        S3Key: !Sub '${ServicePath}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
