@@ -14,7 +14,7 @@ steps:
       bucketName: 'parisn-bucket'
       createBucket: true
       logRequest: true
-      sourceFolder: $(System.DefaultWorkingDirectory)/services/$(servicename)/cloudformation/
+      sourceFolder: $(System.DefaultWorkingDirectory)/services/$(servicepath)/cloudformation/
       targetFolder: $(servicepath)/cloudformation
       logResponse: true
       globExpressions: |
