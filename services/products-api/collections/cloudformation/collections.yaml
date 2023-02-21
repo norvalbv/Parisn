@@ -213,7 +213,7 @@ Resources:
     Type: 'AWS::ApiGatewayV2::Integration'
     Properties:
       ApiId: 'dlnkbdtmp6'
-      IntregrationType: 'AWS'
+      IntegrationType: 'AWS'
       IntegrationUri: !GetAtt CollectionsLambdaFunction.Arn
       IntegrationMethod: 'GET'
 
@@ -225,4 +225,4 @@ Resources:
     Properties:
       RouteKey: 'GET /collections'
       ApiId: 'dlnkbdtmp6'
-      Target: !Ref CollectionsApiIntegration
+      Target: !Ref CollectionsApiIntegrationam 
