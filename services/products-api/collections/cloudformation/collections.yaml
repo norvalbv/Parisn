@@ -215,6 +215,7 @@ Resources:
       ApiId: 'dlnkbdtmp6'
       IntegrationType: 'AWS_PROXY'
       IntegrationUri: !GetAtt CollectionsLambdaFunction.Arn
+      PayloadFormatVersion: '2.0'
       IntegrationMethod: 'GET'
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
