@@ -88,7 +88,7 @@ Resources:
         # Bucket name
         S3Bucket: 'parisn-bucket'
         # File name
-        S3Key: !Sub '${ServiceName}.zip'
+        S3Key: !Sub '${ServicePath}.zip'
       Description: 'Support Lambda function for SES'
       PackageType: Zip
       MemorySize: 256
