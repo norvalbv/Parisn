@@ -1,5 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Newsletter sent after initial sign up.
+
+Parameters:
+  ServiceName:
+    Type: String
+  ServicePath:
+    Type: String
+
 Resources:
   # Creates a new role for your AWS account.
   AfterSignUpRole:
@@ -93,14 +100,14 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: 'after-signup.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt AfterSignUpRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
-      FunctionName: after-signup
+      FunctionName: !Ref ServiceName
       # Required when using the deployment packages of S3...
       Handler: index.handler
 
