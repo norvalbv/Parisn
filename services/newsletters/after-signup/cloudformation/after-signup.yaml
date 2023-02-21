@@ -100,7 +100,7 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
@@ -122,8 +122,25 @@ Resources:
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
-  AfterSignUpRoleApiRoute:
-    Type: 'AWS::ApiGatewayV2::Route'
+  # Links the API Route to the lambda
+  AfterSignUpApiIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
     Properties:
-      RouteKey: Get /newsletter-1
       ApiId: 'dlnkbdtmp6'
+      IntegrationType: 'AWS_PROXY'
+      IntegrationUri: !GetAtt AfterSignUpLambdaFunction.Arn
+      PayloadFormatVersion: '2.0'
+      IntegrationMethod: 'GET'
+
+  # The AWS::ApiGatewayV2::Api resource creates an API.
+  CheckoutApiRoute:
+    Type: 'AWS::ApiGatewayV2::Route'
+    DependsOn:
+      - "AfterSignUpApiIntegration"
+    Properties:
+      RouteKey: 'GET /newsletter-1'
+      ApiId: 'dlnkbdtmp6'
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref AfterSignUpApiIntegration 

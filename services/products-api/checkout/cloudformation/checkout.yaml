@@ -186,7 +186,7 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
@@ -209,7 +209,7 @@ Resources:
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
   # Links the API Route to the lambda
-   CheckoutApiIntegration:
+  CheckoutApiIntegration:
     Type: 'AWS::ApiGatewayV2::Integration'
     Properties:
       ApiId: 'dlnkbdtmp6'
@@ -219,7 +219,7 @@ Resources:
       IntegrationMethod: 'GET'
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
-   CheckoutApiRoute:
+  CheckoutApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     DependsOn:
       - "CheckoutApiIntegration"
