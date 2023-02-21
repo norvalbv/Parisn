@@ -208,8 +208,25 @@ Resources:
       # Without the source too, other accounts could also configure the resources in their account to invoke the lambda.
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
-  CollectionsApiRoute:
-    Type: 'AWS::ApiGatewayV2::Route'
+  # Links the API Route to the lambda
+   CheckoutApiIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
     Properties:
-      RouteKey: POST /checkout
       ApiId: 'dlnkbdtmp6'
+      IntegrationType: 'AWS_PROXY'
+      IntegrationUri: !GetAtt CheckoutLambdaFunction.Arn
+      PayloadFormatVersion: '2.0'
+      IntegrationMethod: 'GET'
+
+  # The AWS::ApiGatewayV2::Api resource creates an API.
+   CheckoutApiRoute:
+    Type: 'AWS::ApiGatewayV2::Route'
+    DependsOn:
+      - "CheckoutApiIntegration"
+    Properties:
+      RouteKey: 'POST /checkout'
+      ApiId: 'dlnkbdtmp6'
+      Target: !Join
+        - /
+        - - integrations
+          - !Ref CheckoutApiIntegration 
