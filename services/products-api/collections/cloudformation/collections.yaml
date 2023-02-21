@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Collection Cloud Formation Template
+Description: Collections Cloud Formation Template
 
 Parameters:
   ServiceName:
@@ -9,7 +9,7 @@ Parameters:
 
 Resources:
   # Creates a new role for your AWS account.
-  CollectionRole:
+  CollectionsRole:
     Type: 'AWS::IAM::Role'
     Properties:
       # The trust policy that is associated with this role. Trust policies define which entities can assume the role.
@@ -24,7 +24,7 @@ Resources:
               - 'sts:AssumeRole'
       Policies:
         # Lambda, DynamoDB & Cloudwatch Full Access
-        - PolicyName: CollectionFunctionPolicy
+        - PolicyName: CollectionsFunctionPolicy
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -179,7 +179,7 @@ Resources:
 
   # The AWS::Lambda::Function resource creates a Lambda function.
   # To create a function, you need a deployment package and an execution role.
-  CollectionLambdaFunction:
+  CollectionsLambdaFunction:
     Type: 'AWS::Lambda::Function'
     Properties:
       Architectures:
@@ -190,7 +190,7 @@ Resources:
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
-      Role: !GetAtt CollectionRole.Arn
+      Role: !GetAtt CollectionsRole.Arn
       Runtime: nodejs18.x
       FunctionName: !Ref ServiceName
       Timeout: 5
@@ -198,10 +198,10 @@ Resources:
       Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
-  CollectionLambdaPermissions:
+  CollectionsLambdaPermissions:
     Type: 'AWS::Lambda::Permission'
     Properties:
-      FunctionName: !Ref CollectionLambdaFunction
+      FunctionName: !Ref CollectionsLambdaFunction
       Action: lambda:InvokeFunction
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
@@ -209,8 +209,17 @@ Resources:
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
-  CollectionApiRoute:
+  CollectionsApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     Properties:
       RouteKey: GET /collections
       ApiId: 'dlnkbdtmp6'
+
+  # Links the API Route to the lambda
+  CollectionsApiIntegration:
+    Type: 'AWS::ApiGatewayV2::Integration'
+    Properties:
+      ApiId: 'dlnkbdtmp6'
+      IntregrationType: 'AWS'
+      IntegrationUri: !GetAtt CollectionsLambdaFunction.Arn
+      IntegrationMethod: 'GET'
