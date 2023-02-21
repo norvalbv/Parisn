@@ -1,5 +1,12 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: Collection Cloud Formation Template
+
+Parameters:
+  ServiceName:
+    Type: String
+  ServicePath:
+    Type: String
+
 Resources:
   # Creates a new role for your AWS account.
   CollectionRole:
@@ -179,13 +186,13 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: 'collections.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt CollectionRole.Arn
       Runtime: nodejs18.x
-      FunctionName: collections
+      FunctionName: !Ref ServiceName
       Timeout: 5
       # Required when using the deployment packages of S3...
       Handler: index.handler

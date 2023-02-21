@@ -69,7 +69,7 @@ steps:
             "ParameterValue":"$(servicename)"
           },
           {
-            "ParameterKey":" ServicePath",
+            "ParameterKey":"ServicePath",
             "ParameterValue":"$(servicepath)"
           }
         ]
