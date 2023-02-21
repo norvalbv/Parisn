@@ -48,8 +48,8 @@ steps:
       globExpressions: '**/*.zip'
       createBucket: true
       logRequest: true
-      sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicename)'
-      targetFolder: '$(servicename)'
+      sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
+      targetFolder: '$(servicepath)'
 
   # Updates stack using new cloudformation
   - task: CloudFormationCreateOrUpdateStack@1
