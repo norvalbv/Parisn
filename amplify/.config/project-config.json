@@ -5,13 +5,11 @@
   "javascript": {
     "framework": "none",
     "config": {
-      "SourceDir": "src",
+      "SourceDir": "webapp/src",
       "DistributionDir": "dist",
-      "BuildCommand": "npm run-script build",
-      "StartCommand": "npm run-script start"
+      "BuildCommand": "yarn run build",
+      "StartCommand": "yarn run start start"
     }
   },
-  "providers": [
-    "awscloudformation"
-  ]
+  "providers": ["awscloudformation"]
 }
