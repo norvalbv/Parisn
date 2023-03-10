@@ -1,20 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-parisn-dev-132922-authRole",
-      "UnauthRoleArn": "arn:aws:iam::604403537484:role/amplify-parisn-dev-132922-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::604403537484:role/amplify-parisn-dev-132922-authRole",
+      "AuthRoleName": "amplify-parisn-dev-212629-authRole",
+      "UnauthRoleArn": "arn:aws:iam::604403537484:role/amplify-parisn-dev-212629-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::604403537484:role/amplify-parisn-dev-212629-authRole",
       "Region": "eu-west-2",
-      "DeploymentBucketName": "amplify-parisn-dev-132922-deployment",
-      "UnauthRoleName": "amplify-parisn-dev-132922-unauthRole",
-      "StackName": "amplify-parisn-dev-132922",
-      "StackId": "arn:aws:cloudformation:eu-west-2:604403537484:stack/amplify-parisn-dev-132922/cd23f560-8c33-11ed-ac18-02b058ecf412",
-      "AmplifyAppId": "d2jm4nma0ws4wh"
+      "DeploymentBucketName": "amplify-parisn-dev-212629-deployment",
+      "UnauthRoleName": "amplify-parisn-dev-212629-unauthRole",
+      "StackName": "amplify-parisn-dev-212629",
+      "StackId": "arn:aws:cloudformation:eu-west-2:604403537484:stack/amplify-parisn-dev-212629/3950ebb0-bf8a-11ed-9a1c-06c4e6e57922",
+      "AmplifyAppId": "d2gwrs11ph7a2r"
     },
     "categories": {
       "auth": {
-        "parisn01094330": {},
-        "Parisn": {}
+        "parisn76eee780": {}
       }
     }
   }

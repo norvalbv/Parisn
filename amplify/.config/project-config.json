@@ -3,13 +3,15 @@
   "version": "3.1",
   "frontend": "javascript",
   "javascript": {
-    "framework": "none",
+    "framework": "react",
     "config": {
       "SourceDir": "webapp/src",
-      "DistributionDir": "dist",
+      "DistributionDir": "webapp/build",
       "BuildCommand": "yarn run build",
-      "StartCommand": "yarn run start start"
+      "StartCommand": "yarn run start"
     }
   },
-  "providers": ["awscloudformation"]
+  "providers": [
+    "awscloudformation"
+  ]
 }
