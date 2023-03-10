@@ -1,6 +1,6 @@
 {
   "auth": {
-    "parisn76eee780": {
+    "Parisn": {
       "customAuth": false,
       "dependsOn": [],
       "frontendAuthConfig": {
@@ -13,10 +13,13 @@
           "passwordPolicyMinLength": 8
         },
         "signupAttributes": [
-          "EMAIL"
+          "EMAIL",
+          "PREFERRED_USERNAME"
         ],
         "socialProviders": [],
-        "usernameAttributes": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "verificationMechanisms": [
           "EMAIL"
         ]
