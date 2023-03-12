@@ -14,6 +14,8 @@ import Loading from '../../../components/Loading';
 import { logScalePrice } from '../../../utils/currentPrice';
 import Gallery from '../../../components/Gallery';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
+import { Progress } from 'flowbite-react';
+import ProgressBar from '../../../components/Progressbar';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -22,7 +24,7 @@ let socket = io('ws://localhost:8000', {
 const ItemView = () => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
-  const [localPrice, setLocalPrice] = useState<number>();
+  const [localPrice, setLocalPrice] = useState<number>(200);
 
   const { user } = useUser();
 
@@ -34,7 +36,7 @@ const ItemView = () => {
     if (!product) return;
     const timer = setInterval(() => {
       const price = logScalePrice(product.StartTime, product.EndTime, product.Price);
-      setLocalPrice(price <= 1 ? 0 : price);
+      // setLocalPrice(price <= 1 ? 0 : price);
     }, 1000);
     return () => clearInterval(timer);
   }, [product]);
@@ -94,22 +96,14 @@ const ItemView = () => {
             {!localPrice && localPrice !== 0 ? (
               <>
                 <p>Price: £{product.Price}</p>
-                <progress
-                  className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
-                  value={100}
-                  max="100"
-                />
+                <ProgressBar value={100} />
               </>
             ) : localPrice <= 1 ? (
               'FREE'
             ) : (
               <>
                 <p>Price: £{localPrice.toFixed(2)}</p>
-                <progress
-                  className="progress progress-accent w-56 rounded-full bg-secondary-blueGreen my-6 outline outline-offset-4 outline-1"
-                  value={localPrice / 10}
-                  max="100"
-                />
+                <ProgressBar value={localPrice / 10} />
               </>
             )}
             <div className="italic underline underline-offset-8 text-sm mb-6">
