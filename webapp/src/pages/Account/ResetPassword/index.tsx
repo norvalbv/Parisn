@@ -1,10 +1,11 @@
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
 import useUser from '../../../hooks/useUser';
 import { ResetPassword as ResetPasswordType } from '../../../types';
 
-const ResetPassword = () => {
+const ResetPassword = (): ReactElement => {
   const { changePassword } = useUser();
   return (
     <CardWrapper cardType="centered">
@@ -37,7 +38,7 @@ const ResetPassword = () => {
           },
         }}
         submitButton={{ label: 'Sign In' }}
-        submitFn={(values) => changePassword(values as ResetPasswordType)}
+        submitFn={(values): void => changePassword(values as ResetPasswordType)}
       />
     </CardWrapper>
   );

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import { useCollections } from '../../../services/DataApiService';
@@ -6,8 +6,8 @@ import { CollectionData } from '../../../types';
 
 const AllCollections = (): ReactElement => {
   const [products, setProducts] = useState<CollectionData[]>();
-  useEffect(() => {
-    (async () => {
+  useEffect((): void => {
+    (async (): Promise<void> => {
       const { data } = await useCollections();
       setProducts(data);
     })();

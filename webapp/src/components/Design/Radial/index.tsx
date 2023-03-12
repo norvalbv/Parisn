@@ -1,9 +1,9 @@
-import { FC, ReactElement } from 'react';
-import { colour } from '../../../types/tailwind';
+import React, { ReactElement } from 'react';
+import { Colour } from '../../../types/tailwind';
 
 export interface RadialProps {
   size?: keyof typeof sizeMap;
-  colour?: colour;
+  colour?: Colour;
   classes?: string;
 }
 

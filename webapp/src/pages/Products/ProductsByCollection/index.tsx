@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useProductsByCollection } from '../../../services/DataApiService';
 import LiveViewers from '../../../components/LiveViewers';

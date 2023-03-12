@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-const HowItWorks = () => {
+const HowItWorks = (): ReactElement => {
   return (
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium fugiat vel doloribus

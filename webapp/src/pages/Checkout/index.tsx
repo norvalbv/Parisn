@@ -1,10 +1,10 @@
-import { ReactElement, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Counter from '../../components/Counter';
 import useProduct from '../../hooks/useProduct';
 import Form from '../../components/Form';
 import { checkoutSchema } from '../../utils/validation';
-import { useNavigate } from 'react-router-dom';
 import Loading from '../../components/Loading';
 import useUser from '../../hooks/useUser';
 
@@ -84,7 +84,10 @@ const Checkout = (): ReactElement => {
                     text: 'Note: If you clear your basket, you will not be able to add anything new for 60 seconds',
                   },
                 }}
-                submitButton={{ label: `Purchase for £${productInfo.price}`, className: 'mt-4' }}
+                submitButton={{
+                  label: `Purchase for £${productInfo.price || 0}`,
+                  className: 'mt-4',
+                }}
                 submitFn={(values) => {
                   console.log('called');
                   console.log(values);

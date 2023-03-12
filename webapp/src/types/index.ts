@@ -5,7 +5,7 @@ export interface Stock {
   ExtraLarge: number;
 }
 export interface ProductData {
-  Category: String;
+  Category: string;
   Description: string;
   EndTime: number;
   ID: string;

@@ -55,7 +55,7 @@ const colourMap = {
   dark: '#888888',
 };
 
-export type colour = keyof typeof colourMap;
+export type Colour = keyof typeof colourMap;
 
 export const animationDurationMap = {
   fast: 'animate-pulse-fast',

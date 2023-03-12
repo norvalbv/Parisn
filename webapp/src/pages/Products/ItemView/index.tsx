@@ -16,14 +16,14 @@ import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 import ProgressBar from '../../../components/Progressbar';
 import Carousel from '../../../components/Carousel';
 
-let socket = io('ws://localhost:8000', {
+const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
 const ItemView = (): ReactElement => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
-  const [localPrice, setLocalPrice] = useState<number>(200);
+  const [localPrice, setLocalPrice] = useState<number>();
 
   const { user } = useUser();
 
@@ -35,7 +35,7 @@ const ItemView = (): ReactElement => {
     if (!product) return;
     const timer = setInterval(() => {
       const price = logScalePrice(product.StartTime, product.EndTime, product.Price);
-      // setLocalPrice(price <= 1 ? 0 : price);
+      setLocalPrice(price <= 1 ? 0 : price);
     }, 1000);
     return () => clearInterval(timer);
   }, [product]);
@@ -47,19 +47,19 @@ const ItemView = (): ReactElement => {
   socket.emit('join room', currentProduct);
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<void> => {
       const data = await useProductById({
         collection: currentProduct.split('/').slice(2)[0],
         productid: currentProduct.split('/').slice(-1)[0],
       });
 
       setproduct(data);
-    })();
-  }, []);
+    })().catch(() => {});
+  }, [currentProduct]);
 
   if (!product) return <Loading />;
 
-  const compareSelectedVals = Object.entries(product.Stock)[
+  const compareSelectedVals: number = Object.entries(product.Stock)[
     Object.entries(product.Stock).findIndex((x) =>
       selectedSize.toLowerCase() === 'xl'
         ? x[0].slice(0, 1).toLowerCase() === 'e'
@@ -128,7 +128,7 @@ const ItemView = (): ReactElement => {
               classes="mb-4"
               selectedSize={selectedSize}
               sizes={product.Stock}
-              onClick={(size) => setselectedSize(size)}
+              onClick={(size): void => setselectedSize(size)}
             />
             <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
               {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}

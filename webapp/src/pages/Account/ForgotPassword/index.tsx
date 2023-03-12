@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
 import useUser from '../../../hooks/useUser';
 import { ForgotPasswordSubmit } from '../../../types';
 
-const ForgotPassword = () => {
+const ForgotPassword = (): ReactElement => {
   const { forgotPassword, forgotPasswordSubmit, stage, resendConfirmationCode, setStage } =
     useUser();
 
@@ -31,8 +31,8 @@ const ForgotPassword = () => {
               },
             }}
             submitButton={{ label: 'Send Confirmation Code' }}
-            submitFn={(values) => {
-              setUsername(values.username as string);
+            submitFn={(values): void => {
+              setUsername(values.username);
               forgotPassword(values as { username: string });
             }}
           />
@@ -41,7 +41,11 @@ const ForgotPassword = () => {
         <>
           <div className="flex items-baseline justify-between">
             <h2 className="text-4xl underline my-6">Reset Password</h2>
-            <button className="hover:underline cursor-pointer" onClick={() => setStage(1)}>
+            <button
+              type="button"
+              className="hover:underline cursor-pointer"
+              onClick={(): void => setStage(1)}
+            >
               Back
             </button>
           </div>
@@ -63,13 +67,17 @@ const ForgotPassword = () => {
               label: 'Resend Confirmation Code',
               onClick: () => resendConfirmationCode(username || 'benjithegreat'),
             }}
-            submitFn={(values) => forgotPasswordSubmit(values as ForgotPasswordSubmit)}
+            submitFn={(values): void => forgotPasswordSubmit(values as ForgotPasswordSubmit)}
           />
         </>
       ) : (
         <>
           <h2 className="text-4xl underline my-6">Your password has been reset.</h2>
-          <Link className="hover:underline cursor-pointer" to="/login" onClick={() => setStage(1)}>
+          <Link
+            className="hover:underline cursor-pointer"
+            to="/login"
+            onClick={(): void => setStage(1)}
+          >
             Login
           </Link>
         </>

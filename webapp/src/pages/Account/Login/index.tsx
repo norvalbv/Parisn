@@ -1,10 +1,11 @@
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from '../../../components/CardWrapper';
 import Form from '../../../components/Form';
 import useUser from '../../../hooks/useUser';
 import { BasicAuth } from '../../../types';
 
-const Login = () => {
+const Login = (): ReactElement => {
   const { signIn } = useUser();
   return (
     <CardWrapper cardType="centered">
@@ -21,7 +22,7 @@ const Login = () => {
         }}
         footerLink={{ active: true, label: 'Forgot your password?', to: '/forgot-password' }}
         submitButton={{ label: 'Sign In' }}
-        submitFn={(values) => signIn(values as BasicAuth)}
+        submitFn={(values): void => signIn(values as BasicAuth)}
       />
     </CardWrapper>
   );

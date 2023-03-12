@@ -1,11 +1,12 @@
-import { Auth, VerifyAccount } from '../../../types';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
+import { Auth, VerifyAccount } from '../../../types';
 import CardWrapper from '../../../components/CardWrapper';
 import ErrorBoundary from '../../../components/ErrorBoundary';
 import Form from '../../../components/Form';
 import useUser from '../../../hooks/useUser';
 
-const SignUp = () => {
+const SignUp = (): ReactElement => {
   const { signUp, error, stage, user, confirmSignUp, setStage } = useUser();
 
   return (
@@ -60,7 +61,7 @@ const SignUp = () => {
                 onClick: () => setStage(1),
               }}
               submitButton={{ label: 'Sign Up' }}
-              submitFn={(values) => confirmSignUp(values as VerifyAccount)}
+              submitFn={(values): void => confirmSignUp(values as VerifyAccount)}
             />
           </CardWrapper>
         )}

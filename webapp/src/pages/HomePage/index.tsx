@@ -1,10 +1,11 @@
+import React, { ReactElement } from 'react';
+import { ParentSize } from '@visx/responsive';
+import { Line } from '@visx/shape';
 import Radial from '../../components/Design/Radial';
 import { DASHBOARD_IMAGE, DASHBOARD_VIDEO } from '../../constants';
 import Button from '../../components/Button';
-import { ParentSize } from '@visx/responsive';
-import { Line } from '@visx/shape';
 
-const HomePage = () => {
+const HomePage = (): ReactElement => {
   return (
     <>
       <div className="flex items-center overflow-hidden">
@@ -62,7 +63,7 @@ const HomePage = () => {
       </div>
       <div className="h-[150vh] relative overflow-hidden">
         <ParentSize>
-          {(parent) => (
+          {(parent): ReactElement => (
             <>
               <svg height={parent.height} width={parent.width} fill="#555555" stroke="#ffffff">
                 <Line
@@ -91,13 +92,13 @@ const HomePage = () => {
                 />
               </svg>
               <p
-                className={`absolute text-primary-light text-center tracking-widest text-lg rotate-[8.85deg]`}
+                className="absolute text-primary-light text-center tracking-widest text-lg rotate-[8.85deg]"
                 style={{ left: parent.width / 2 - 50, top: parent.height / 11.75 }}
               >
                 A new way of shopping
               </p>
               <p
-                className={`absolute text-primary-light text-center tracking-widest text-lg block rotate-[15deg]`}
+                className="absolute text-primary-light text-center tracking-widest text-lg block rotate-[15deg]"
                 style={{
                   left: parent.width / 2 - 50,
                   top: parent.height / 2.05,

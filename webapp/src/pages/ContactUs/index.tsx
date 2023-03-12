@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import useUser from '../../hooks/useUser';
 import { DASHBOARD_IMAGE } from '../../constants';
 import CardWrapper from '../../components/CardWrapper';
@@ -6,7 +6,6 @@ import Form from '../../components/Form';
 import { contactSchema } from '../../utils/validation';
 import { useCustomerSupport } from '../../services/DataApiService';
 import { ContactForm } from '../../types';
-import { toast } from 'react-toastify';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
@@ -47,7 +46,7 @@ const ContactUs = (): ReactElement => {
               },
             }}
             submitButton={{ label: 'Submit Query' }}
-            submitFn={(values) => useCustomerSupport(values as ContactForm)}
+            submitFn={(values): void => useCustomerSupport(values as ContactForm)}
             validationSchema={contactSchema}
             resetFormOnbSubmit
           />

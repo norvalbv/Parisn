@@ -1,6 +1,7 @@
+import React, { ReactElement } from 'react';
 import CardWrapper from '../../../components/CardWrapper';
 
-const TermsAndConditions = () => {
+const TermsAndConditions = (): ReactElement => {
   return (
     <CardWrapper>
       <p className="text-center w-4/5 mx-auto">

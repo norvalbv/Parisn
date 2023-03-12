@@ -1,6 +1,7 @@
+import React, { ReactElement } from 'react';
 import CardWrapper from '../../../components/CardWrapper';
 
-const PrivacyPolicy = () => {
+const PrivacyPolicy = (): ReactElement => {
   return (
     <CardWrapper cardType="centered">
       <p className="text-center w-4/5 mx-auto">

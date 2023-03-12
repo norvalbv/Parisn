@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
 import { v4 as uuidv4 } from 'uuid';
+import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
 
 type ProductByIDProps = {
   collection: string;
@@ -117,7 +117,6 @@ export const useCheckout = ({ user, product }: UseCheckoutProps) => {
         toast.warning(err);
       } else {
         toast.warning('An Error occured. Try again.');
-        console.log(err.message);
       }
     });
 };

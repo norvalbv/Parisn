@@ -1,5 +1,5 @@
+import React, { Dispatch, ReactElement, SetStateAction, useState } from 'react';
 import { useTransition, animated } from '@react-spring/web';
-import { Dispatch, SetStateAction, useState } from 'react';
 import Button from '../../../components/Button';
 import { CloseIcon } from '../../../components/SVG';
 import { PRODUCT_1_IMAGE } from '../../../constants';
@@ -13,7 +13,7 @@ type MyAccountProps = {
   isOpened: { accountOpen: boolean; setAccountOpen: Dispatch<SetStateAction<boolean>> };
 };
 
-const MyAccount = ({ isOpened }: MyAccountProps) => {
+const MyAccount = ({ isOpened }: MyAccountProps): ReactElement => {
   const { user, signOut } = useUser();
 
   const transitions = useTransition(isOpened.accountOpen, {
@@ -39,13 +39,14 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
               width="1.5rem"
               borderRequired="none"
               hoverColorRequired={false}
-              onClick={() => isOpened.setAccountOpen(false)}
+              onClick={(): void => isOpened.setAccountOpen(false)}
               classes="hover:rotate-90 transform-all duration-300"
             />
           </div>
           <div className="h-full grid grid-cols-3 divide-x divide-x-gray">
             <div className="p-4">
               <div className="flex gap-6 items-center border-b pb-4 mb-4">
+                {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
                 <img
                   src={PRODUCT_1_IMAGE}
                   alt="User Profile Picture"
@@ -58,33 +59,33 @@ const MyAccount = ({ isOpened }: MyAccountProps) => {
               <div className="divide-y">
                 <p
                   className="py-2 cursor-pointer hover:underline"
-                  onClick={() => setSelectedTab('myinformation')}
+                  onClick={(): void => setSelectedTab('myinformation')}
                 >
                   My Information
                 </p>
                 <p
                   className="py-2 cursor-pointer hover:underline"
-                  onClick={() => setSelectedTab('myorders')}
+                  onClick={(): void => setSelectedTab('myorders')}
                 >
                   My Orders
                 </p>
                 {!user.cognitoInfo?.email_verified && (
                   <p
                     className="py-2 cursor-pointer hover:underline"
-                    onClick={() => setSelectedTab('verifyaccount')}
+                    onClick={(): void => setSelectedTab('verifyaccount')}
                   >
                     Verify Account
                   </p>
                 )}
                 <p
                   className="py-2 cursor-pointer hover:underline"
-                  onClick={() => setSelectedTab('changepassword')}
+                  onClick={(): void => setSelectedTab('changepassword')}
                 >
                   Change Password
                 </p>
                 <Button
                   text="Log Out"
-                  onClick={() => {
+                  onClick={(): void => {
                     signOut();
                     isOpened.setAccountOpen(false);
                   }}
