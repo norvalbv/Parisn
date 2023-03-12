@@ -12,7 +12,6 @@ import convertToDate from '../../../utils/convertToDate';
 import useUser from '../../../hooks/useUser';
 import Loading from '../../../components/Loading';
 import { logScalePrice } from '../../../utils/currentPrice';
-import Gallery from '../../../components/Gallery';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 import { Progress } from 'flowbite-react';
 import ProgressBar from '../../../components/Progressbar';
@@ -72,15 +71,6 @@ const ItemView = () => {
   return (
     <>
       <div className="w-[40%] h-screen float-left">
-        {/* <Gallery
-          images={[
-            DASHBOARD_IMAGE,
-            PRODUCT_1_IMAGE,
-            product.Image,
-            DASHBOARD_IMAGE,
-            DASHBOARD_IMAGE,
-          ]}
-        /> */}
         <Carousel
           images={[
             DASHBOARD_IMAGE,
