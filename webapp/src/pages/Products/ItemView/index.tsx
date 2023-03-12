@@ -16,6 +16,7 @@ import Gallery from '../../../components/Gallery';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 import { Progress } from 'flowbite-react';
 import ProgressBar from '../../../components/Progressbar';
+import Carousel from '../../../components/Carousel';
 
 let socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -71,7 +72,16 @@ const ItemView = () => {
   return (
     <>
       <div className="w-[40%] h-screen float-left">
-        <Gallery
+        {/* <Gallery
+          images={[
+            DASHBOARD_IMAGE,
+            PRODUCT_1_IMAGE,
+            product.Image,
+            DASHBOARD_IMAGE,
+            DASHBOARD_IMAGE,
+          ]}
+        /> */}
+        <Carousel
           images={[
             DASHBOARD_IMAGE,
             PRODUCT_1_IMAGE,
