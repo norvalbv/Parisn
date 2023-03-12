@@ -19,11 +19,14 @@ const MainLayout = (): ReactElement => {
 
   return (
     <UserInformationProvider>
-      <div className="relative min-h-screen">
-        <NavBar setAccountOpen={setAccountOpen} />
-        <Outlet />
-        <Footer /> <MyAccount isOpened={{ accountOpen, setAccountOpen }} />
-      </div>
+      <>
+        <div className="relative min-h-screen">
+          <NavBar setAccountOpen={setAccountOpen} />
+          <Outlet />
+          <MyAccount isOpened={{ accountOpen, setAccountOpen }} />
+        </div>
+        <Footer />
+      </>
     </UserInformationProvider>
   );
 };
