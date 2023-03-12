@@ -17688,6 +17688,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-scrollbar@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "tailwind-scrollbar@npm:2.1.0"
+  peerDependencies:
+    tailwindcss: 3.x
+  checksum: ef06182dc9316ccd58b446c7ca98296a53cc39a610b9eb2d641c7dd0d5b6e3366f6a126e5ca47ccb844f2665c28012a065a05f5a808e39a385d83a2f07c50da0
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3, tailwindcss@npm:^3.0.2, tailwindcss@npm:^3.2.4":
   version: 3.2.4
   resolution: "tailwindcss@npm:3.2.4"
@@ -18542,6 +18551,7 @@ __metadata:
     react-test-renderer: ^18.2.0
     react-toastify: ^9.1.1
     socket.io-client: ^4.5.4
+    tailwind-scrollbar: ^2.1.0
     tailwindcss: ^3.2.4
     ts-jest: ^29.0.5
     typescript: ^4.9.5

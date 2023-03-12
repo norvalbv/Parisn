@@ -1,4 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { io } from 'socket.io-client';
+import { useLocation } from 'react-router-dom';
 import Button from '../../../components/Button';
 import LiveViewers from '../../../components/LiveViewers';
 import ProductSizes from '../../../components/ProductSizes';
@@ -6,14 +8,11 @@ import { useCheckout, useProductById } from '../../../services/DataApiService';
 import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
-import { io } from 'socket.io-client';
-import { useLocation } from 'react-router-dom';
 import convertToDate from '../../../utils/convertToDate';
 import useUser from '../../../hooks/useUser';
 import Loading from '../../../components/Loading';
 import { logScalePrice } from '../../../utils/currentPrice';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
-import { Progress } from 'flowbite-react';
 import ProgressBar from '../../../components/Progressbar';
 import Carousel from '../../../components/Carousel';
 
@@ -21,7 +20,7 @@ let socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
-const ItemView = () => {
+const ItemView = (): ReactElement => {
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState<number>(200);
@@ -81,7 +80,7 @@ const ItemView = () => {
           ]}
         />
       </div>
-      <div className="w-[60%] h-screen float-right overflow-auto scroll-smooth">
+      <div className="w-[60%] h-screen float-right overflow-auto scroll-smooth scrollbar-none">
         <div className="flex relative">
           <div
             id="product-overview"
@@ -114,7 +113,7 @@ const ItemView = () => {
               hoveredText={`Buy at £${(localPrice || product.Price).toFixed(2)}`}
               rounded="lg"
               navigateTo="/checkout"
-              onClick={() => {
+              onClick={(): void => {
                 setProductInfo({
                   product,
                   price: Number((localPrice || product.Price).toFixed(2)),
@@ -139,7 +138,7 @@ const ItemView = () => {
 
           {chatOpen ? (
             <Chat
-              onclick={() => setChatOpen(!chatOpen)}
+              onclick={(): void => setChatOpen(!chatOpen)}
               pageParams={currentProduct}
               isOpen={chatOpen}
             />
@@ -150,7 +149,7 @@ const ItemView = () => {
               size="xs"
               borderRequired="none"
               hoverColorRequired={false}
-              onClick={() => setChatOpen(!chatOpen)}
+              onClick={(): void => setChatOpen(!chatOpen)}
               classes="hover:scale-105 transition-all -rotate-90 right-0 top-1/2 z-40 underline underline-offset-8"
               positioning="absolute"
             />
