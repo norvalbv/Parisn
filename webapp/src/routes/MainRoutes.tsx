@@ -17,6 +17,7 @@ import SignUp from '../pages/Account/SignUp';
 import ResetPassword from '../pages/Account/ResetPassword';
 import ForgotPassword from '../pages/Account/ForgotPassword';
 import HomePage from '../layout/HomePage/HomePage';
+import PurchaseSuccessful from '../pages/PurchaseSuccessful';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -53,6 +54,7 @@ export const router = createBrowserRouter(
         <Route path="login" element={<Login />} />
         <Route path="sign-up" element={<SignUp />} />
         <Route path="about-us" element={<AboutUs />} />
+        <Route path="purchase-successful" element={<PurchaseSuccessful />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Route>
