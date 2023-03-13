@@ -1,4 +1,5 @@
 export const fontSizeMap = {
+  xxs: 'text-xxs',
   xs: 'text-xs',
   sm: 'text-sm',
   md: 'text-base',

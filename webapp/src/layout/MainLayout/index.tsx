@@ -21,7 +21,7 @@ const MainLayout = (): ReactElement => {
   return (
     <UserInformationProvider>
       <>
-        <div className="relative min-h-screen">
+        <div className="relative min-h-screen text-gray-300">
           <NavBar setAccountOpen={setAccountOpen} />
           <Outlet />
           <MyAccount isOpened={{ accountOpen, setAccountOpen }} />

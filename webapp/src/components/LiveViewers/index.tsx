@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { FontSize, fontSizeMap } from '../../types/tailwind';
 
@@ -23,11 +22,11 @@ export interface LiveViewersProps {
 
 const LiveViewers = ({
   classNames,
-  fontSize = 'md',
+  fontSize = 'xs',
   label = 'Live viewers:',
   pageParams,
   params,
-}: LiveViewersProps) => {
+}: LiveViewersProps): ReactElement => {
   const [viewCount, setViewCount] = useState(0);
 
   useEffect(() => {
@@ -40,10 +39,10 @@ const LiveViewers = ({
         return setViewCount(amount);
       });
     }
-  }, []);
+  }, [pageParams, params]);
 
   return (
-    <p className={`${fontSizeMap[fontSize]} ${classNames} z-10`}>
+    <p className={`${fontSizeMap[fontSize]} ${classNames || ''} z-10`}>
       {label} {viewCount}
     </p>
   );

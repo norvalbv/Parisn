@@ -6,6 +6,9 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
+    fontSize: {
+      xxs: ['10px', '12px'],
+    },
     extend: {
       colors: {
         primary: {

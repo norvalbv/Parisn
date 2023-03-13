@@ -86,28 +86,20 @@ const ItemView = (): ReactElement => {
             id="product-overview"
             className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
           >
-            <span className="text-xl drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]">
-              {product.Title}
-            </span>
-            <a className="hover:underline hover:text-secondary-neutral" href="#description">
-              View Description
-            </a>
+            <h2 className="text-3xl underline-offset-8 underline">{product.Title}</h2>
             {!localPrice && localPrice !== 0 ? (
-              <>
+              <div className="my-4">
                 <p>Price: £{product.Price}</p>
                 <ProgressBar value={100} />
-              </>
+              </div>
             ) : localPrice <= 1 ? (
               'FREE'
             ) : (
-              <>
+              <div className="my-4">
                 <p>Price: £{localPrice.toFixed(2)}</p>
                 <ProgressBar value={localPrice / 10} />
-              </>
+              </div>
             )}
-            <div className="italic underline underline-offset-8 text-sm mb-6">
-              End Date: {convertToDate(product.EndTime)}
-            </div>
             <Button
               text="Buy Now"
               hoveredText={`Buy at £${(localPrice || product.Price).toFixed(2)}`}
@@ -133,27 +125,45 @@ const ItemView = (): ReactElement => {
             <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
               {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
             </p>
-            <LiveViewers pageParams={currentProduct} />
+            <a className="hover:underline text-xs hover:text-secondary-neutral" href="#description">
+              View Description
+            </a>
+            <div
+              className="absolute bottom-0 w-full grid max-w-xs grid-cols-3 text-xxs gap-1 p-1 mx-auto my-2 rounded bg-gray-700"
+              role="group"
+            >
+              <button
+                type="button"
+                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+              >
+                <LiveViewers pageParams={currentProduct} />
+              </button>
+              <button
+                type="button"
+                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+              >
+                End: {convertToDate(product.EndTime, false, { type: 'short' })}
+              </button>
+              <button
+                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+                type="button"
+                data-drawer-target="item-chat"
+                data-drawer-show="item-chat"
+                data-drawer-placement="right"
+                aria-controls="item-chat"
+              >
+                Open chat
+              </button>
+            </div>
           </div>
 
-          {chatOpen ? (
-            <Chat
-              onclick={(): void => setChatOpen(!chatOpen)}
-              pageParams={currentProduct}
-              isOpen={chatOpen}
-            />
-          ) : (
-            <Button
-              text="Open Chat"
-              width="8rem"
-              size="xs"
-              borderRequired="none"
-              hoverColorRequired={false}
-              onClick={(): void => setChatOpen(!chatOpen)}
-              classes="hover:scale-105 transition-all -rotate-90 right-0 top-1/2 z-40 underline underline-offset-8"
-              positioning="absolute"
-            />
-          )}
+          {/* {chatOpen && ( */}
+          <Chat
+            onclick={(): void => setChatOpen(!chatOpen)}
+            pageParams={currentProduct}
+            isOpen={chatOpen}
+          />
+          {/* )} */}
         </div>
         <div
           id="description"
