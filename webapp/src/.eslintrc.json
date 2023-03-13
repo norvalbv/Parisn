@@ -6,7 +6,7 @@
   "env": {
     "node": true
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "airbnb",
     "airbnb-typescript",
