@@ -1,11 +1,11 @@
-import { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction } from 'react';
 import { Link } from 'react-router-dom';
 
 type MyOrdersProps = {
   setAccountOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const MyOrders = ({ setAccountOpen }: MyOrdersProps) => {
+const MyOrders = ({ setAccountOpen }: MyOrdersProps): ReactElement => {
   return (
     <div className="w-full">
       <h4 className="underline"> My Information</h4>
@@ -13,7 +13,7 @@ const MyOrders = ({ setAccountOpen }: MyOrdersProps) => {
         You have yet to order from us 😟
         <Link
           to="/collections"
-          onClick={() => setAccountOpen(false)}
+          onClick={(): void => setAccountOpen(false)}
           className="inline-block mt-2 underline"
         >
           Be sure to check out our collections

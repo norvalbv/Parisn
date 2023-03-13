@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TermsAndConditions from '../';
+import TermsAndConditions from '..';
 
 describe('<TermsAndConditions />', () => {
   test('TermsAndConditions props with mandatory props', () => {

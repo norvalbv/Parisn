@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { UserInformationProvider } from '../../context/UserContext';
 import MyAccount from '../../pages/Account/MyAccount';
@@ -14,6 +14,7 @@ const HomePage = (): ReactElement => {
 
   useEffect(() => {
     if (location.pathname === '/') navigate('home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (

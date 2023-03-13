@@ -1,9 +1,10 @@
+import React, { ReactElement } from 'react';
 import Button from '../../../../components/Button';
 import Form from '../../../../components/Form';
 import useUser from '../../../../hooks/useUser';
 import { VerifyAccount as VerifyAccountType } from '../../../../types';
 
-const VerifyAccount = () => {
+const VerifyAccount = (): ReactElement => {
   const { user, confirmSignUp, resendConfirmationCode } = useUser();
 
   return (
@@ -26,7 +27,7 @@ const VerifyAccount = () => {
           submitFn={(values): void => confirmSignUp(values as VerifyAccountType)}
         />
       </div>
-      <Button onClick={() => resendConfirmationCode()} text="Resend Confirmation Code" />
+      <Button onClick={(): void => resendConfirmationCode()} text="Resend Confirmation Code" />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -15,6 +15,7 @@ const MainLayout = (): ReactElement => {
 
   useEffect(() => {
     if (location.pathname === '/') navigate('home');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (

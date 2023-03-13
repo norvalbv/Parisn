@@ -1,9 +1,10 @@
+import React, { ReactElement } from 'react';
 import Button from '../../../../components/Button';
 import Form from '../../../../components/Form';
 import useUser from '../../../../hooks/useUser';
 import { ResetPassword } from '../../../../types';
 
-const ChangePassword = () => {
+const ChangePassword = (): ReactElement => {
   const { changePassword, resendConfirmationCode } = useUser();
 
   return (
@@ -38,7 +39,7 @@ const ChangePassword = () => {
         />
       </div>
       <Button
-        onClick={() => resendConfirmationCode()}
+        onClick={(): void => resendConfirmationCode()}
         text="Resend Confirmation Code"
         classes="mt-10"
       />

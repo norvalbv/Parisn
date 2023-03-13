@@ -33,7 +33,7 @@ const SignUp = (): ReactElement => {
                 onClick: () => setStage(2),
               }}
               submitButton={{ label: 'Sign Up' }}
-              submitFn={(values) => signUp(values as Auth)}
+              submitFn={(values): void => signUp(values as Auth)}
             />
           </CardWrapper>
         )}

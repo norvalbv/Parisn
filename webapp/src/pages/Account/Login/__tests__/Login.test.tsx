@@ -1,8 +1,9 @@
+import React from 'react';
 import { Amplify, Auth } from 'aws-amplify';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import LoginPage from '../';
+import LoginPage from '..';
 import aws_exports from '../../../../aws-exports';
 import { UserInformationProvider } from '../../../../context/UserContext';
 

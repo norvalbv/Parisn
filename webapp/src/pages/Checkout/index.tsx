@@ -70,7 +70,7 @@ const Checkout = (): ReactElement => {
                 footerButton={{
                   active: true,
                   label: !hovered ? 'Clear shopping basket' : 'Are you sure?',
-                  onClick: () => {
+                  onClick: (): void => {
                     if (!hovered) setHovered(true);
                     else {
                       localStorage.clear();
@@ -88,8 +88,10 @@ const Checkout = (): ReactElement => {
                   label: `Purchase for £${productInfo.price || 0}`,
                   className: 'mt-4',
                 }}
-                submitFn={(values) => {
+                submitFn={(values): void => {
+                  // eslint-disable-next-line no-console
                   console.log('called');
+                  // eslint-disable-next-line no-console
                   console.log(values);
                 }}
                 validationSchema={checkoutSchema}

@@ -1,4 +1,4 @@
-const decayRate = (N0: number, N1: number, t1: number, t0: number) => {
+const decayRate = (N0: number, N1: number, t1: number, t0: number): number => {
   // Should return a positive number.
   return Math.log(N0 / N1) / (t1 - t0);
 };

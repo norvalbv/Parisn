@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
-import ContactUs from '../';
+import ContactUs from '..';
 
 describe('<ContactUs />', () => {
   test('ContactUs props with mandatory props', () => {

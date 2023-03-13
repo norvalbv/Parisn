@@ -1,22 +1,18 @@
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import React, { Dispatch, ReactElement, SetStateAction, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Basket } from '../../components/CustomSVG';
 import { UserIcon, UserLoginIcon } from '../../components/SVG';
 import useUser from '../../hooks/useUser';
-import Login from '../../pages/Account/Login';
 
 type NavBarProps = {
   setAccountOpen: Dispatch<SetStateAction<boolean>>;
 };
 
-const NavBar = ({ setAccountOpen }: NavBarProps) => {
+const NavBar = ({ setAccountOpen }: NavBarProps): ReactElement => {
   const retreviedProductInfo = localStorage.getItem('savedProductInfo');
   const parsedData = JSON.parse(retreviedProductInfo || 'null');
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
   const location = useLocation();
-
-  const [hovered, setHovered] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +20,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps) => {
 
   useEffect(() => {
     if (truthyDataParsed && location.pathname !== '/checkout') navigate('/checkout');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
   return (
@@ -33,7 +30,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps) => {
           {user.userInfo?.id ? (
             <li
               className="px-10 cursor-pointer hover:underline underline-offset-8"
-              onClick={() => setAccountOpen(true)}
+              onClick={(): void => setAccountOpen(true)}
             >
               <UserLoginIcon />
             </li>

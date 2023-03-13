@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
-import AboutUs from '../';
+import AboutUs from '..';
 
 describe('<AboutUs />', () => {
   test('AboutUs props with mandatory props', () => {

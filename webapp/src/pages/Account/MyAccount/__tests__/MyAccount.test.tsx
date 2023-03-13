@@ -1,7 +1,8 @@
+import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import MyAccount from '../';
+import MyAccount from '..';
 import { UserInformationProvider } from '../../../../context/UserContext';
 
 describe('<MyAccount />', () => {

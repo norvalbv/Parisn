@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React from 'react';
 import renderer from 'react-test-renderer';
 
-import HowItWorks from '../';
+import HowItWorks from '..';
 
 describe('<HowItWorks />', () => {
   test('HowItWorks props with mandatory props', () => {
