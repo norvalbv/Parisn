@@ -16,7 +16,7 @@ type LocationState = {
   payment_intent_id: string;
 };
 
-if (!process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY) throw new Error('Invalid Stripe Key.');
+// if (!process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY) throw new Error('Invalid Stripe Key.');
 
 // Kept outside of the function to prevent it being reloaded is render / mounting from React.
 const stripePromise = loadStripe('pk_test_qblFNYngBkEdjEZ16jxxoWSM');
@@ -25,7 +25,10 @@ const Checkout = (): ReactElement => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { client_secret: clientSecret } = location.state as LocationState;
+  const locationState = location.state as LocationState;
+  const clientSecret = locationState?.client_secret || '';
+
+  if (!clientSecret) navigate('/');
 
   const { productInfo } = useProduct();
 

@@ -1,4 +1,4 @@
-import { SVGAttributes } from 'react';
+import React, { ReactElement, SVGAttributes } from 'react';
 
 interface IconProps extends Omit<SVGAttributes<SVGElement>, 'color'> {
   colour?: string;
@@ -9,7 +9,12 @@ interface CloseIconsProps extends IconProps {
   renderCircle?: boolean;
 }
 
-export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: CloseIconsProps) => (
+export const CloseIcon = ({
+  strokeWidth = 1,
+  renderCircle = true,
+  size = 34,
+  colour,
+}: CloseIconsProps): ReactElement => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-circle-x"
@@ -17,7 +22,7 @@ export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: C
     height={size}
     viewBox="0 0 24 24"
     strokeWidth={strokeWidth}
-    stroke="#ffffff"
+    stroke={colour || '#ffffff'}
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -27,14 +32,14 @@ export const CloseIcon = ({ strokeWidth = 1, renderCircle = true, size = 34 }: C
   </svg>
 );
 
-export const UserIcon = ({ viewBox = '0 0 24 14' }) => (
+export const UserIcon = ({ viewBox = '0 0 24 14', size = 34, colour }: IconProps): ReactElement => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-user"
-    width="34"
-    height="44"
+    width={size || '34'}
+    height={size || '44'}
     viewBox={viewBox}
-    stroke="#ffffff"
+    stroke={colour || '#ffffff'}
     fill="none"
     strokeLinecap="round"
     strokeLinejoin="round"
@@ -45,7 +50,7 @@ export const UserIcon = ({ viewBox = '0 0 24 14' }) => (
   </svg>
 );
 
-export const UserLoginIcon = () => (
+export const UserLoginIcon = (): ReactElement => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-user-check"

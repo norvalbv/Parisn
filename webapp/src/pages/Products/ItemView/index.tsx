@@ -148,23 +148,18 @@ const ItemView = (): ReactElement => {
               <button
                 className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
                 type="button"
-                data-drawer-target="item-chat"
-                data-drawer-show="item-chat"
-                data-drawer-placement="right"
-                aria-controls="item-chat"
+                onClick={(): void => setChatOpen(!chatOpen)}
               >
                 Open chat
               </button>
             </div>
           </div>
 
-          {/* {chatOpen && ( */}
           <Chat
             onclick={(): void => setChatOpen(!chatOpen)}
             pageParams={currentProduct}
             isOpen={chatOpen}
           />
-          {/* )} */}
         </div>
         <div
           id="description"
