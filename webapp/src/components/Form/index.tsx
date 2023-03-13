@@ -1,7 +1,7 @@
-import { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react';
-import Button from '../Button';
+import React, { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react';
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
+import Button from '../Button';
 import Popup from '../Popup';
 
 type FormProps = {
@@ -44,7 +44,7 @@ const Form = ({
   resetFormOnbSubmit = false,
   newsletterSignUp = false,
 }: FormProps): ReactElement => {
-  let initalValues: { [key: string]: string } = {};
+  const initalValues: { [key: string]: string } = {};
 
   Object.entries(formValues).forEach(([label, value]) => {
     initalValues[label] = value.initialValue;
@@ -57,7 +57,7 @@ const Form = ({
       initialValues={initalValues}
       validateOnChange={false}
       validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }) => {
+      onSubmit={(values, { resetForm }): void => {
         submitFn(values);
         if (resetFormOnbSubmit) resetForm();
       }}
@@ -80,7 +80,7 @@ const Form = ({
                 name={id}
                 placeholder={values.placeholder}
                 type={type}
-                className="w-full bg-transparent outline-none border-b -mb-4 -mt-8"
+                className="-mb-4 -mt-8 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-black border-gray-600 placeholder-gray-400"
                 disabled={values.disabled}
                 autoComplete={values.disableAutocomplete}
               />
@@ -88,7 +88,9 @@ const Form = ({
                 <button
                   type="button"
                   className="text-sm text-left italic underline m-0"
-                  onClick={() => (type === 'password' ? setType('text') : setType('password'))}
+                  onClick={(): void =>
+                    type === 'password' ? setType('text') : setType('password')
+                  }
                 >
                   {type === 'password' ? 'Show Password' : 'Hide Password'}
                 </button>
@@ -104,13 +106,9 @@ const Form = ({
         >
           {newsletterSignUp && (
             <div>
-              <input
-                type="checkbox"
-                id="newsletterSignUp"
-                name="newsletterSignUp"
-                className="mr-2 cursor-pointer"
-              />
-              <label htmlFor="newsletterSignUp" className="cursor-pointer">
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label className="cursor-pointer">
+                <input type="checkbox" id="newsletterSignUp" className="mr-2 cursor-pointer" />
                 Sign up to our newsletter
               </label>
             </div>
@@ -123,14 +121,14 @@ const Form = ({
             <button
               type="button"
               className="hover:underline cursor-pointer relative w-48 text-end"
-              onClick={() => {
+              onClick={(): void => {
                 if (footerButton.onClick) footerButton.onClick();
               }}
-              onMouseLeave={() => {
+              onMouseLeave={(): void => {
                 if (footerButton.onMouseLeave) footerButton.onMouseLeave();
                 setHovered(false);
               }}
-              onMouseEnter={() => setHovered(true)}
+              onMouseEnter={(): void => setHovered(true)}
             >
               {footerButton.showPopup?.text && hovered && (
                 <Popup text={footerButton.showPopup?.text} />
@@ -145,7 +143,7 @@ const Form = ({
         <Button
           text={submitButton.label}
           type="submit"
-          classes={`${submitButton.className} -mt-4`}
+          classes={`${submitButton.className || ''} -mt-4`}
         />
       </FormikForm>
     </Formik>

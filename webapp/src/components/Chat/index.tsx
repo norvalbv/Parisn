@@ -119,7 +119,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
         <span className="sr-only">Close menu</span>
       </button>
       <div className="py-4 overflow-y-auto w-full">
-        <div className="break-words overflow-y-scroll h-full bg-fuchsia-500">
+        <div className="break-words overflow-y-scroll h-full">
           {messages?.map((message) => (
             <div key={message.id} className="grid group">
               <div
@@ -128,7 +128,7 @@ const Chat = ({ onclick, pageParams, isOpen }: ChatProps): ReactElement => {
                 }`}
               >
                 <span className="text-xs block">{message.user}:</span>
-                <span className="text-xs italic hidden group-hover:block">
+                <span className="text-xxs italic hidden group-hover:block">
                   {convertToDate(message.time)}
                 </span>
                 <span
