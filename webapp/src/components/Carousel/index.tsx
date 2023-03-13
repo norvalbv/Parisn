@@ -22,14 +22,15 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
         {images.map((image, idx) => (
           <div
             className="px-1"
-            onMouseEnter={() => setHovered(idx)}
-            onMouseLeave={() => setHovered(null)}
+            onMouseEnter={(): void => setHovered(idx)}
+            onMouseLeave={(): void => setHovered(null)}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${image}_${idx}`}
           >
             <img
               src={image}
               alt={image}
-              key={idx}
-              onClick={() => setSelected(idx)}
+              onClick={(): void => setSelected(idx)}
               className={`border rounded cursor-pointer select-none ${
                 hovered === idx || (hovered === null && selected === idx)
                   ? 'w-[60px] h-[80px]'
@@ -43,7 +44,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       <button
         type="button"
         className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        onClick={() =>
+        onClick={(): void =>
           setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1))
         }
       >
@@ -69,7 +70,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       <button
         type="button"
         className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-        onClick={() =>
+        onClick={(): void =>
           setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
         }
       >

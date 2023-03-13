@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 
 export interface CardWrapperProps {
   backgroundColor?: keyof typeof backgroundColorMap;
@@ -19,7 +19,7 @@ const CardWrapper = ({
       className={`${cardTypeMap[cardType].outer} ${backgroundColorMap[backgroundColor]}`}
       role={role}
     >
-      <div className={`${cardTypeMap[cardType].inner} ${className}`}>{children}</div>
+      <div className={`${cardTypeMap[cardType].inner} ${className || ''}`}>{children}</div>
     </div>
   );
 };

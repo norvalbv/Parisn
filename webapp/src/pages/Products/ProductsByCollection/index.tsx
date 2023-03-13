@@ -19,11 +19,11 @@ const Catalogue = (): ReactElement => {
   const collection = location.pathname.split('/').slice(-1).toString();
 
   useEffect(() => {
-    (async () => {
+    (async (): Promise<void> => {
       const { data } = await useProductsByCollection(collection);
       setProducts(data);
-    })();
-  }, []);
+    })().catch(() => {});
+  }, [collection]);
 
   useEffect(() => {
     const interval = setInterval(() => {

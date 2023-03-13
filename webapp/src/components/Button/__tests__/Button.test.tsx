@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import Button, { ButtonProps } from '../';
+import Button, { ButtonProps } from '..';
 
 const ButtonWithRequiredProps: FC<Required<ButtonProps>> = Button;
 
@@ -48,6 +48,7 @@ describe('<Button />', () => {
             positioning="relative"
             textOrientation=""
             hoveredAnimation
+            navigationState={{ test: 'Test 1' }}
           />
         </BrowserRouter>
       )

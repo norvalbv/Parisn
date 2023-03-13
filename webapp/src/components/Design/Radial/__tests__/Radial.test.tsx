@@ -1,7 +1,7 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import renderer from 'react-test-renderer';
 
-import Radial, { RadialProps } from '../';
+import Radial, { RadialProps } from '..';
 
 const RadialWithRequiredProps: FC<Required<RadialProps>> = Radial;
 

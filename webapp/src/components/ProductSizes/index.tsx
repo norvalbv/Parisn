@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { Stock } from '../../types';
 import Button from '../Button';
 
@@ -9,10 +9,15 @@ export interface ProductSizesProps {
   selectedSize?: string;
 }
 
-const ProductSizes = ({ sizes, classes, onClick, selectedSize }: ProductSizesProps) => {
+const ProductSizes = ({
+  sizes,
+  classes,
+  onClick,
+  selectedSize,
+}: ProductSizesProps): ReactElement => {
   const [selected, setSelected] = useState<null | string>(null);
 
-  const handleClick = (size: string) => {
+  const handleClick = (size: string): ((arg: string) => void) | void => {
     if (onClick) return onClick(size);
     setSelected(size);
   };
@@ -24,7 +29,7 @@ const ProductSizes = ({ sizes, classes, onClick, selectedSize }: ProductSizesPro
   );
 
   return (
-    <div className={`flex gap-4 ${classes}`}>
+    <div className={`flex gap-4 ${classes || ''}`}>
       {sortedList.map((size, i) => {
         const productSize =
           size[0].slice(0, 1).toLowerCase() === 'e' ? 'xl' : size[0].slice(0, 1).toLowerCase();
@@ -44,7 +49,7 @@ const ProductSizes = ({ sizes, classes, onClick, selectedSize }: ProductSizesPro
                 ? 'scale-125 border-b-pink-500'
                 : ''
             }`}
-            onClick={() => handleClick(productSize)}
+            onClick={(): void | ((arg: string) => void) => handleClick(productSize)}
           />
         );
       })}

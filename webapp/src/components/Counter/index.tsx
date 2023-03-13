@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Counter = () => {
+const Counter = (): ReactElement => {
   const [timeLeft, setTimeLeft] = useState({ total: 600000, minutes: 10, seconds: 0 });
 
   const navigate = useNavigate();

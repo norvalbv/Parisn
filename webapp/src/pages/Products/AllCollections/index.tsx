@@ -10,7 +10,7 @@ const AllCollections = (): ReactElement => {
     (async (): Promise<void> => {
       const { data } = await useCollections();
       setProducts(data);
-    })();
+    })().catch(() => {});
   }, []);
 
   if (!products) return <Loading />;

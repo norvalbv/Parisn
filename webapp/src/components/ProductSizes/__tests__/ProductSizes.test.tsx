@@ -1,8 +1,8 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import ProductSizes, { ProductSizesProps } from '../';
+import ProductSizes, { ProductSizesProps } from '..';
 
 const ProductSizesWithRequiredProps: FC<Required<ProductSizesProps>> = ProductSizes;
 

@@ -1,4 +1,4 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { FontSize, fontSizeMap, FontWeight, fontWeightMap } from '../../types/tailwind';
 
 // This is not a table as react-table cannot be converted into a horizontal table without some serious inner refactoring.

@@ -1,13 +1,13 @@
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import LiveViewers, { LiveViewersProps } from '../';
+import LiveViewers, { LiveViewersProps } from '..';
 
 const LiveViewersWithRequiredProps: FC<Required<LiveViewersProps>> = LiveViewers;
 
 describe('<Radial />', () => {
-  test('Radial props with mandatory props', async () => {
+  test('Radial props with mandatory props', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
@@ -18,7 +18,7 @@ describe('<Radial />', () => {
     expect(tree).toMatchSnapshot();
   });
 
-  test('Radial props with all props as required', async () => {
+  test('Radial props with all props as required', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
