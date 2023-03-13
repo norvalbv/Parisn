@@ -105,6 +105,7 @@ const ItemView = (): ReactElement => {
               hoveredText={`Buy at £${(localPrice || product.Price).toFixed(2)}`}
               rounded="lg"
               navigateTo="/checkout"
+              navigationState={product.ID}
               onClick={(): void => {
                 setProductInfo({
                   product,

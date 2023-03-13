@@ -111,6 +111,10 @@ export interface ButtonProps {
    * Scale animation on hover
    */
   hoveredAnimation?: boolean;
+  /**
+   * Navigation State
+   */
+  navigationState?: unknown;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -141,6 +145,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       upperCase = true,
       width = '25rem',
       textOrientation = 'justify-center',
+      navigationState,
     },
     ref
   ): ReactElement => {
@@ -154,14 +159,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
       if (onClick) onClick();
 
-      if (navigateTo) navigate(navigateTo);
+      if (navigateTo) {
+        if (navigationState) {
+          navigate(navigateTo, { state: navigationState });
+        } else {
+          navigate(navigateTo);
+        }
+      }
     };
 
     return (
       <button
+        // eslint-disable-next-line react/button-has-type
         type={type}
         className={`${positioning} inline-flex items-center ${textOrientation} ${
-          hoverColorRequired && 'hover:bg-buttons-hover transition-colors duration-200'
+          hoverColorRequired ? 'hover:bg-buttons-hover transition-colors duration-200' : ''
         } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
           buttonSizeMap[size]
         } ${classes} ${borderRequiredMap[borderRequired]} py-4 ${
@@ -174,8 +186,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-testid={dataAtt}
         disabled={disabled}
         ref={ref}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => {
+        onMouseEnter={(): void => setHovered(true)}
+        onMouseLeave={(): void => {
           setHovered(false);
           if (onMouseLeave) onMouseLeave();
         }}
