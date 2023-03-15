@@ -11,12 +11,7 @@ describe('<MyAccount />', () => {
       .create(
         <UserInformationProvider>
           <BrowserRouter>
-            <MyAccount
-              isOpened={{
-                accountOpen: false,
-                setAccountOpen: jest.fn(),
-              }}
-            />
+            <MyAccount />
           </BrowserRouter>
         </UserInformationProvider>
       )

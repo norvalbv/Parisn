@@ -37,6 +37,7 @@ const Counter = (): ReactElement => {
       localStorage.clear();
       navigate('/collections');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft.total]);
 
   return (

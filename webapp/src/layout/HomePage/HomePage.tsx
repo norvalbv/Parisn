@@ -7,8 +7,6 @@ import NavBar from './NavBar';
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const HomePage = (): ReactElement => {
-  const [accountOpen, setAccountOpen] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,9 +18,9 @@ const HomePage = (): ReactElement => {
   return (
     <UserInformationProvider>
       <div className="relative min-h-screen">
-        <NavBar setAccountOpen={setAccountOpen} />
+        <NavBar />
         <Outlet />
-        <MyAccount isOpened={{ accountOpen, setAccountOpen }} />
+        <MyAccount />
       </div>
     </UserInformationProvider>
   );

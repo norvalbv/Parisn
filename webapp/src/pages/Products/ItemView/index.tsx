@@ -15,19 +15,19 @@ import { logScalePrice } from '../../../utils/currentPrice';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 import ProgressBar from '../../../components/Progressbar';
 import Carousel from '../../../components/Carousel';
+import { useDrawer } from '../../../hooks/useDrawer';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
 const ItemView = (): ReactElement => {
+  const { openDrawer } = useDrawer();
   const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState<number>();
 
   const { user } = useUser();
-
-  const [chatOpen, setChatOpen] = useState(false);
 
   const { setProductInfo } = useProduct();
 
@@ -148,18 +148,14 @@ const ItemView = (): ReactElement => {
               <button
                 className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
                 type="button"
-                onClick={(): void => setChatOpen(!chatOpen)}
+                onClick={(): void => openDrawer('Chat')}
               >
                 Open chat
               </button>
             </div>
           </div>
 
-          <Chat
-            onclick={(): void => setChatOpen(!chatOpen)}
-            pageParams={currentProduct}
-            isOpen={chatOpen}
-          />
+          <Chat pageParams={currentProduct} />
         </div>
         <div
           id="description"

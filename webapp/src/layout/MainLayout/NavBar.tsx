@@ -1,13 +1,12 @@
-import React, { Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Basket } from '../../components/CustomSVG';
+import { useDrawer } from '../../hooks/useDrawer';
 import useUser from '../../hooks/useUser';
 
-type NavBarProps = {
-  setAccountOpen: Dispatch<SetStateAction<boolean>>;
-};
+const NavBar = (): ReactElement => {
+  const { openDrawer } = useDrawer();
 
-const NavBar = ({ setAccountOpen }: NavBarProps): ReactElement => {
   const retreviedProductInfo = localStorage.getItem('savedProductInfo');
   const parsedData = JSON.parse(retreviedProductInfo || 'null');
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
@@ -52,7 +51,7 @@ const NavBar = ({ setAccountOpen }: NavBarProps): ReactElement => {
           {user.userInfo?.id ? (
             <li
               className="px-10 cursor-pointer hover:underline underline-offset-8"
-              onClick={(): void => setAccountOpen(true)}
+              onClick={(): void => openDrawer('Account')}
             >
               My Account
             </li>

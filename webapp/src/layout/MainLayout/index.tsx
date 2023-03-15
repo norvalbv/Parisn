@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import NavBar from './NavBar';
 import Footer from './Footer';
@@ -8,8 +8,6 @@ import MyAccount from '../../pages/Account/MyAccount';
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = (): ReactElement => {
-  const [accountOpen, setAccountOpen] = useState(false);
-
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -22,9 +20,9 @@ const MainLayout = (): ReactElement => {
     <UserInformationProvider>
       <>
         <div className="relative min-h-screen text-gray-300">
-          <NavBar setAccountOpen={setAccountOpen} />
+          <NavBar />
           <Outlet />
-          <MyAccount isOpened={{ accountOpen, setAccountOpen }} />
+          <MyAccount />
         </div>
         <Footer />
       </>
