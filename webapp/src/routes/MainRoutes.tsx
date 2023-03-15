@@ -18,14 +18,29 @@ import ResetPassword from '../pages/Account/ResetPassword';
 import ForgotPassword from '../pages/Account/ForgotPassword';
 import HomePage from '../layout/HomePage/HomePage';
 import PurchaseSuccessful from '../pages/PurchaseSuccessful';
+import { DrawerProvider } from '../context/DrawerContext';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
-      <Route path="/" element={<HomePage />}>
+      <Route
+        path="/"
+        element={
+          <DrawerProvider>
+            <HomePage />
+          </DrawerProvider>
+        }
+      >
         <Route path="home" element={<Dashboard />} />
       </Route>
-      <Route path="/" element={<MainLayout />}>
+      <Route
+        path="/"
+        element={
+          <DrawerProvider>
+            <MainLayout />
+          </DrawerProvider>
+        }
+      >
         <Route path="about" element={<AboutUs />} />
         <Route path="how-it-works" element={<HowItWorks />} />
         <Route path="collections" element={<AllCollections />} />

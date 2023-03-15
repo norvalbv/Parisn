@@ -1,6 +1,7 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { UserInformationProvider } from '../../context/UserContext';
+import { useDrawer } from '../../hooks/useDrawer';
 import MyAccount from '../../pages/Account/MyAccount';
 import NavBar from './NavBar';
 
@@ -10,8 +11,11 @@ const HomePage = (): ReactElement => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { closeDrawer } = useDrawer();
+
   useEffect(() => {
     if (location.pathname === '/') navigate('home');
+    closeDrawer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 

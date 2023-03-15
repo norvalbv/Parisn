@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Footer from './Footer';
 import { UserInformationProvider } from '../../context/UserContext';
 import MyAccount from '../../pages/Account/MyAccount';
+import { useDrawer } from '../../hooks/useDrawer';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -11,8 +12,11 @@ const MainLayout = (): ReactElement => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const { closeDrawer } = useDrawer();
+
   useEffect(() => {
     if (location.pathname === '/') navigate('home');
+    closeDrawer();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 
