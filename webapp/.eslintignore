@@ -1,0 +1,4 @@
+**/node_modules
+**/cypress/plugins/index.js
+**/vite-env.d.ts
+**/vite.config.ts
