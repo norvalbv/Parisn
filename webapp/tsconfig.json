@@ -2,7 +2,7 @@
   "compilerOptions": {
     // Language and environment
     "lib": ["dom", "dom.iterable", "esnext"],
-    "target": "es6",
+    "target": "ESNext",
     "jsx": "react-jsx",
 
     // Type checking
@@ -29,5 +29,6 @@
     // Outputting format
     "noErrorTruncation": true
   },
+  "include": ["src"],
   "exclude": ["./cypress.config.ts", "cypress"]
 }

@@ -16,7 +16,7 @@ type LocationState = {
   payment_intent_id: string;
 };
 
-// if (!process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY) throw new Error('Invalid Stripe Key.');
+// if (!import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY) throw new Error('Invalid Stripe Key.');
 
 // Kept outside of the function to prevent it being reloaded is render / mounting from React.
 const stripePromise = loadStripe('pk_test_qblFNYngBkEdjEZ16jxxoWSM');
