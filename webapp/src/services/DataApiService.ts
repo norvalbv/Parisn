@@ -1,6 +1,7 @@
-import axios from 'axios';
+import { ApiResponse } from 'types/api';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
+import useRequest from '../hooks/useRequest';
 import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
 
 type ProductByIDProps = {
@@ -8,55 +9,72 @@ type ProductByIDProps = {
   productid: string;
 };
 
+type ProductApiResponse = ApiResponse<ProductData>;
 /**
  * Get individual products
  */
-export const useProductById = async ({
-  collection,
-  productid,
-}: ProductByIDProps): Promise<ProductData> => {
-  const response = await axios(
-    `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`
-  )
-    .then((response) => response.data.Item)
-    .catch((err) => console.log(err));
+export const useProductById = ({ collection, productid }: ProductByIDProps): ProductApiResponse => {
+  const uri = `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`;
 
-  return response;
+  return useRequest<ProductData>({ uri });
 };
 
+// This is temporary until API gets fixed.
 type UseCollectionsReturnType = {
-  data: CollectionData[];
+  $metadata: { [key: string]: string };
+  Items: CollectionData[];
+  Count: number;
+  ScannedCount: number;
 };
+
+type CollectionsApiResponse = ApiResponse<CollectionData[]>;
 
 /**
  * Get all collections
  */
-export const useCollections = async (): Promise<UseCollectionsReturnType> => {
-  const response = await axios('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections')
-    .then((r) => r.data.Items)
-    .catch((err) => console.log(err));
+export const useCollections = (): CollectionsApiResponse => {
+  const uri = 'https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections';
 
-  const data: CollectionData[] = Object.values(response);
+  const {
+    data: unprocessedData,
+    error,
+    isLoading,
+    isValidating,
+  } = useRequest<UseCollectionsReturnType>({ uri });
 
-  return { data };
+  // This is temporary until API gets fixed.
+  const data: CollectionData[] = Object.values(unprocessedData?.Items || []);
+
+  return { data, error, isLoading, isValidating };
 };
 
+// This is temporary until API gets fixed.
 type UseProductsReturn = {
-  data: ProductData[];
+  $metadata: { [key: string]: string };
+  Items: ProductData[];
+  Count: number;
+  ScannedCount: number;
 };
+
+type ProductsApiResponse = ApiResponse<ProductData[]>;
 
 /**
  * Get certain collection
  */
-export const useProductsByCollection = async (collection: string): Promise<UseProductsReturn> => {
-  const response = await axios(
-    `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}`
-  )
-    .then((r) => r.data.Items)
-    .catch((err) => console.log(err));
-  const data: ProductData[] = Object.values(response);
+export const useProductsByCollection = (collection: string): ProductsApiResponse => {
+  const uri = `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}`;
 
-  return { data };
+  const {
+    data: unprocessedData,
+    error,
+    isLoading,
+    isValidating,
+  } = useRequest<UseProductsReturn>({ uri });
+
+  // This is temporary until API gets fixed.
+  const data: ProductData[] = Object.values(unprocessedData?.Items || []);
+
+  return { data, error, isLoading, isValidating };
 };
 
 /**

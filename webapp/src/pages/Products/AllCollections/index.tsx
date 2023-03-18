@@ -1,23 +1,18 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import Loading from '../../../components/Loading';
 import { useCollections } from '../../../services/DataApiService';
-import { CollectionData } from '../../../types';
 
 const AllCollections = (): ReactElement => {
-  const [collections, setCollections] = useState<CollectionData[]>();
-  useEffect((): void => {
-    (async (): Promise<void> => {
-      const { data } = await useCollections();
-      setCollections(data);
-    })().catch(() => {});
-  }, []);
+  const { data } = useCollections();
 
-  if (!collections) return <Loading />;
+  console.log(data);
+
+  if (!data) return <Loading />;
 
   return (
     <div className="grid grid-cols-3 h-screen">
-      {collections.map((collection) => (
+      {data.map((collection) => (
         <div
           key={collection.collections}
           className="flex flex-col flex-wrap justify-center items-center pt-10"
