@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
 import externals from 'rollup-plugin-node-externals';
 
+import path from 'path';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
@@ -14,6 +16,11 @@ export default defineConfig({
         '@aws-sdk/credential-provider-cognito-identity',
       ],
       plugins: [externals()],
+    },
+  },
+  resolve: {
+    alias: {
+      'aws-amplify': path.resolve(__dirname, './node_modules/aws-amplify/lib/index.js'),
     },
   },
   define: {
