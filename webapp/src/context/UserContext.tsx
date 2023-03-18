@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, {
   createContext,
   useState,
@@ -11,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import jwtDecode from 'jwt-decode';
+import { CognitoUser } from 'amazon-cognito-identity-js';
 import {
   Auth as AuthType,
   BasicAuth,
@@ -231,8 +233,8 @@ export const UserInformationProvider = ({
     const passwordMatch = newPassword === confirmPassword;
     if (!passwordMatch) return false;
     try {
-      const user = await Auth.currentAuthenticatedUser();
-      Auth.changePassword(user, oldPassword, newPassword);
+      const user = (await Auth.currentAuthenticatedUser()) as CognitoUser;
+      await Auth.changePassword(user, oldPassword, newPassword);
       toast('Password has been changed!');
     } catch (error) {
       toast.warning((error as { message: string }).message);

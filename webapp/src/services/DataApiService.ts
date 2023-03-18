@@ -105,29 +105,37 @@ export const useProductsByCollection = (collection: string): ProductsApiResponse
   return { data: processedData, error, isLoading, isValidating };
 };
 
+type CustomerSupportResponse = {
+  sendSupportEmail: (arg: ContactForm) => void;
+};
+
 /**
  * Customer Support Emails
  */
-export const useCustomerSupport = (values: ContactForm): void => {
-  const { firstName, lastName, email, orderNumber, message } = values;
-  axios
-    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/support-request', {
-      firstName,
-      lastName,
-      email,
-      orderNumber,
-      message,
-    })
-    .then(() => {
-      toast.success('Message sent!');
-    })
-    .catch((err) => {
-      if (typeof err === 'string') {
-        toast.warning(err);
-      } else {
-        toast.warning('An Error occured. Try again.');
-      }
-    });
+export const useCustomerSupport = (): CustomerSupportResponse => {
+  const sendSupportEmail = (values: ContactForm): void => {
+    const { firstName, lastName, email, orderNumber, message } = values;
+    axios
+      .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/support-request', {
+        firstName,
+        lastName,
+        email,
+        orderNumber,
+        message,
+      })
+      .then(() => {
+        toast.success('Message sent!');
+      })
+      .catch((err) => {
+        if (typeof err === 'string') {
+          toast.warning(err);
+        } else {
+          toast.warning('An Error occured. Try again.');
+        }
+      });
+  };
+
+  return { sendSupportEmail };
 };
 
 interface FullProductData extends ProductData {
@@ -139,30 +147,38 @@ type UseCheckoutProps = {
   product: FullProductData;
 };
 
+type CheckoutResponse = {
+  sendCheckout: (props: UseCheckoutProps) => void;
+};
+
 /**
  * Send Checkout Confirmation
  */
-export const useCheckout = ({ user, product }: UseCheckoutProps): void => {
-  const { ID, Category, selectedSize } = product;
-  const checkoutid = uuidv4()
-    .substring(0, 8)
-    .split(' ')
-    .filter((d) => d !== '-')
-    .join('')
-    .toString();
-  axios
-    .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
-      productid: ID,
-      collection: Category,
-      selectedsize: selectedSize,
-      checkoutid,
-      user: user?.userInfo?.email,
-    })
-    .catch((err) => {
-      if (typeof err === 'string') {
-        toast.warning(err);
-      } else {
-        toast.warning('An Error occured. Try again.');
-      }
-    });
+export const useCheckout = (): CheckoutResponse => {
+  const sendCheckout = ({ user, product }: UseCheckoutProps): void => {
+    const { ID, Category, selectedSize } = product;
+    const checkoutid = uuidv4()
+      .substring(0, 8)
+      .split(' ')
+      .filter((d) => d !== '-')
+      .join('')
+      .toString();
+    axios
+      .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
+        productid: ID,
+        collection: Category,
+        selectedsize: selectedSize,
+        checkoutid,
+        user: user?.userInfo?.email,
+      })
+      .catch((err) => {
+        if (typeof err === 'string') {
+          toast.warning(err);
+        } else {
+          toast.warning('An Error occured. Try again.');
+        }
+      });
+  };
+
+  return { sendCheckout };
 };

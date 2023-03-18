@@ -10,6 +10,8 @@ import { ContactForm } from '../../types';
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
 
+  const { sendSupportEmail } = useCustomerSupport();
+
   return (
     <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
@@ -46,7 +48,7 @@ const ContactUs = (): ReactElement => {
               },
             }}
             submitButton={{ label: 'Submit Query' }}
-            submitFn={(values): void => useCustomerSupport(values as ContactForm)}
+            submitFn={(values): void => sendSupportEmail(values as ContactForm)}
             validationSchema={contactSchema}
             resetFormOnbSubmit
           />

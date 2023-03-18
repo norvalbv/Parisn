@@ -29,6 +29,8 @@ const ItemView = (): ReactElement => {
 
   const { setProductInfo } = useProduct();
 
+  const { sendCheckout } = useCheckout();
+
   const location = useLocation();
   const currentProduct = location.pathname;
 
@@ -51,8 +53,9 @@ const ItemView = (): ReactElement => {
 
   if (!data) return <Loading />;
 
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const compareSelectedVals: number = Object.entries(data.Stock)[
-    Object.entries(data.Stock).findIndex((x) =>
+    Object.entries(data.Stock).findIndex((x: [string, number]) =>
       selectedSize.toLowerCase() === 'xl'
         ? x[0].slice(0, 1).toLowerCase() === 'e'
         : x[0].slice(0, 1).toLowerCase() === selectedSize.toLowerCase()
@@ -100,7 +103,7 @@ const ItemView = (): ReactElement => {
                 });
 
                 const processedProduct = { ...data, selectedSize };
-                useCheckout({ user, product: processedProduct });
+                sendCheckout({ user, product: processedProduct });
               }}
             />
             <ProductSizes

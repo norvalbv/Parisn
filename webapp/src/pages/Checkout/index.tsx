@@ -55,7 +55,11 @@ const Checkout = (): ReactElement => {
             <div className="flex justify-around items-center w-4/5 mx-auto">
               <div className="flex-1 flex flex-col items-center gap-5 pr-5">
                 <p className="underline underline-offset-2">Purchase Information:</p>
-                <img src={productInfo.product?.Image} className="mx-8 flex-1 rounded-lg w-96" />
+                <img
+                  src={productInfo.product?.Image}
+                  alt={productInfo.product?.Title}
+                  className="mx-8 flex-1 rounded-lg w-96"
+                />
                 <div className="flex text-sm divide-x">
                   <p className="px-2">£{productInfo.price}</p>
                   <p className="px-2">{productInfo.product?.Title}</p>

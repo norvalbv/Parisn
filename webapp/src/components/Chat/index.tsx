@@ -10,7 +10,7 @@ import convertToDate from '../../utils/convertToDate';
 import { chatSchema } from '../../utils/validation';
 import Drawer from '../Drawer';
 
-let socket = io('ws://localhost:8000', {
+const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
@@ -57,7 +57,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
   useEffect(() => {
     const sessionMessages = sessionStorage.getItem('messages');
     if (sessionMessages) {
-      const parsed = JSON.parse(sessionMessages);
+      const parsed = JSON.parse(sessionMessages) as Message[];
       setMessages(parsed);
     }
   }, []);

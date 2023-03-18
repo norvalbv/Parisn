@@ -64,6 +64,7 @@ const Form = ({
     >
       <FormikForm className="flex flex-col gap-8">
         {Object.entries(formValues).map(([id, values]) => {
+          // eslint-disable-next-line react-hooks/rules-of-hooks
           const [type, setType] = useState(values.type);
           return (
             <Fragment key={id}>
