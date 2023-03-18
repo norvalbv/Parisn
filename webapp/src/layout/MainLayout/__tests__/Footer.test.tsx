@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
-import Footer from 'Footer';
+import Footer from '../Footer';
 
 describe('<Footer />', () => {
   it('should render correctly', () => {

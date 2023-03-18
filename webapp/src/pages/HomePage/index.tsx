@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { ParentSize } from '@visx/responsive';
 import { Line } from '@visx/shape';
 import Radial from 'components/Design/Radial';
-import { DASHBOARD_IMAGE, DASHBOARD_VIDEO } from 'constants';
 import Button from 'components/Button';
+import { DASHBOARD_IMAGE, DASHBOARD_VIDEO } from '../../constants';
 
 const HomePage = (): ReactElement => {
   return (

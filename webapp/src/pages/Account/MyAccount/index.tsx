@@ -1,12 +1,12 @@
 import React, { ReactElement, useState } from 'react';
 import Button from 'components/Button';
-import { PRODUCT_1_IMAGE } from 'constants';
 import useUser from 'hooks/useUser';
+import Drawer from 'components/Drawer';
 import ChangePassword from './TabPages/ChangePassword';
 import MyInformation from './TabPages/MyInformation';
 import MyOrders from './TabPages/MyOrders';
 import VerifyAccount from './TabPages/VerifyAccount';
-import Drawer from 'components/Drawer';
+import { PRODUCT_1_IMAGE } from '../../../constants';
 
 const MyAccount = (): ReactElement => {
   const { user, signOut } = useUser();

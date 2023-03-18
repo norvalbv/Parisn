@@ -11,10 +11,10 @@ import convertToDate from 'utils/convertToDate';
 import useUser from 'hooks/useUser';
 import Loading from 'components/Loading';
 import { logScalePrice } from 'utils/currentPrice';
-import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants';
 import ProgressBar from 'components/Progressbar';
 import Carousel from 'components/Carousel';
 import { useDrawer } from 'hooks/useDrawer';
+import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -97,7 +97,7 @@ const ItemView = (): ReactElement => {
               navigationState={data.ID}
               onClick={(): void => {
                 setProductInfo({
-                  data,
+                  product: data,
                   price: Number((localPrice || data.Price).toFixed(2)),
                   selectedSize,
                 });

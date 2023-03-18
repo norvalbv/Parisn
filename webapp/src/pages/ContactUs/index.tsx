@@ -1,11 +1,11 @@
 import React, { ReactElement } from 'react';
 import useUser from 'hooks/useUser';
-import { DASHBOARD_IMAGE } from 'constants';
 import CardWrapper from 'components/CardWrapper';
 import Form from 'components/Form';
 import { contactSchema } from 'utils/validation';
 import { useCustomerSupport } from 'services/DataApiService';
 import { ContactForm } from 'types';
+import { DASHBOARD_IMAGE } from '../../constants';
 
 const ContactUs = (): ReactElement => {
   const { user } = useUser();
