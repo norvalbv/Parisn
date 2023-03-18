@@ -2,3 +2,4 @@
 **/cypress/plugins/index.js
 **/vite-env.d.ts
 **/vite.config.ts
+**/aws-exports.*

@@ -3,12 +3,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Basket } from '../../components/CustomSVG';
 import { useDrawer } from '../../hooks/useDrawer';
 import useUser from '../../hooks/useUser';
+import { ProductData } from '../../types';
 
 const NavBar = (): ReactElement => {
   const { openDrawer } = useDrawer();
 
-  const retreviedProductInfo = localStorage.getItem('savedProductInfo');
-  const parsedData = JSON.parse(retreviedProductInfo || 'null');
+  const retreviedProductInfo = localStorage.getItem('savedProductInfo') || 'null';
+  const parsedData = JSON.parse(retreviedProductInfo) as ProductData;
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
   const location = useLocation();

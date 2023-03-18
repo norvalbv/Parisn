@@ -93,9 +93,9 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
       <div className="py-4 overflow-y-auto w-full">
         <div className="break-words overflow-y-scroll h-full">
           {messages?.map((message) => (
-            <div key={message.id} className="grid group">
+            <div key={message.id} className="flex flex-col group bg-fuchsia-400">
               <div
-                className={`relative w-4/5 my-0.5 ${
+                className={`relative w-4/5 my-0.5 bg-fuchsia-800 ${
                   message.user === user.userInfo?.username ? 'justify-self-end' : ''
                 }`}
               >

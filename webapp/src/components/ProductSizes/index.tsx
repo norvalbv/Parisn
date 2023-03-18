@@ -30,13 +30,13 @@ const ProductSizes = ({
 
   return (
     <div className={`flex gap-4 ${classes || ''}`}>
-      {sortedList.map((size, i) => {
+      {sortedList.map((size) => {
         const productSize =
           size[0].slice(0, 1).toLowerCase() === 'e' ? 'xl' : size[0].slice(0, 1).toLowerCase();
         const stockCount = Number(size[1]);
         return (
           <Button
-            key={i}
+            key={size[0]}
             text={productSize}
             size="xs"
             width="1.5rem"

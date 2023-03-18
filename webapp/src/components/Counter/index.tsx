@@ -7,8 +7,8 @@ const Counter = (): ReactElement => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getTimeLeft = localStorage.getItem('timeLeft');
-    const parsed: number = JSON.parse(getTimeLeft || '0');
+    const getTimeLeft = localStorage.getItem('timeLeft') || '0';
+    const parsed = JSON.parse(getTimeLeft) as number;
 
     let initialValue = parsed !== 0 ? parsed : 600000;
 
