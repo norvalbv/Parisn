@@ -5,7 +5,6 @@ import Button from '../../../components/Button';
 import LiveViewers from '../../../components/LiveViewers';
 import ProductSizes from '../../../components/ProductSizes';
 import { useCheckout, useProductById } from '../../../services/DataApiService';
-import { ProductData } from '../../../types';
 import useProduct from '../../../hooks/useProduct';
 import Chat from '../../../components/Chat';
 import convertToDate from '../../../utils/convertToDate';
@@ -23,7 +22,6 @@ const socket = io('ws://localhost:8000', {
 
 const ItemView = (): ReactElement => {
   const { openDrawer } = useDrawer();
-  const [product, setproduct] = useState<ProductData>();
   const [selectedSize, setselectedSize] = useState('M');
   const [localPrice, setLocalPrice] = useState<number>();
 
@@ -31,36 +29,30 @@ const ItemView = (): ReactElement => {
 
   const { setProductInfo } = useProduct();
 
+  const location = useLocation();
+  const currentProduct = location.pathname;
+
+  const { data } = useProductById({
+    collection: currentProduct.split('/').slice(2)[0],
+    productid: currentProduct.split('/').slice(-1)[0],
+  });
+
   useEffect(() => {
-    if (!product) return;
+    if (!data) return;
     const timer = setInterval(() => {
-      const price = logScalePrice(product.StartTime, product.EndTime, product.Price);
+      const price = logScalePrice(data.StartTime, data.EndTime, data.Price);
       setLocalPrice(price <= 1 ? 0 : price);
     }, 1000);
     return () => clearInterval(timer);
-  }, [product]);
-
-  const location = useLocation();
-  const currentProduct = location.pathname;
+  }, [data]);
 
   // join room
   socket.emit('join room', currentProduct);
 
-  useEffect(() => {
-    (async (): Promise<void> => {
-      const data = await useProductById({
-        collection: currentProduct.split('/').slice(2)[0],
-        productid: currentProduct.split('/').slice(-1)[0],
-      });
+  if (!data) return <Loading />;
 
-      setproduct(data);
-    })().catch(() => {});
-  }, [currentProduct]);
-
-  if (!product) return <Loading />;
-
-  const compareSelectedVals: number = Object.entries(product.Stock)[
-    Object.entries(product.Stock).findIndex((x) =>
+  const compareSelectedVals: number = Object.entries(data.Stock)[
+    Object.entries(data.Stock).findIndex((x) =>
       selectedSize.toLowerCase() === 'xl'
         ? x[0].slice(0, 1).toLowerCase() === 'e'
         : x[0].slice(0, 1).toLowerCase() === selectedSize.toLowerCase()
@@ -71,13 +63,7 @@ const ItemView = (): ReactElement => {
     <>
       <div className="w-[40%] h-screen float-left">
         <Carousel
-          images={[
-            DASHBOARD_IMAGE,
-            PRODUCT_1_IMAGE,
-            product.Image,
-            DASHBOARD_IMAGE,
-            DASHBOARD_IMAGE,
-          ]}
+          images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.Image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
         />
       </div>
       <div className="w-[60%] h-screen float-right overflow-auto scroll-smooth scrollbar-none">
@@ -86,10 +72,10 @@ const ItemView = (): ReactElement => {
             id="product-overview"
             className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
           >
-            <h2 className="text-3xl underline-offset-8 underline">{product.Title}</h2>
+            <h2 className="text-3xl underline-offset-8 underline">{data.Title}</h2>
             {!localPrice && localPrice !== 0 ? (
               <div className="my-4">
-                <p>Price: £{product.Price}</p>
+                <p>Price: £{data.Price}</p>
                 <ProgressBar value={100} />
               </div>
             ) : localPrice <= 1 ? (
@@ -102,25 +88,25 @@ const ItemView = (): ReactElement => {
             )}
             <Button
               text="Buy Now"
-              hoveredText={`Buy at £${(localPrice || product.Price).toFixed(2)}`}
+              hoveredText={`Buy at £${(localPrice || data.Price).toFixed(2)}`}
               rounded="lg"
               navigateTo="/checkout"
-              navigationState={product.ID}
+              navigationState={data.ID}
               onClick={(): void => {
                 setProductInfo({
-                  product,
-                  price: Number((localPrice || product.Price).toFixed(2)),
+                  data,
+                  price: Number((localPrice || data.Price).toFixed(2)),
                   selectedSize,
                 });
 
-                const processedProduct = { ...product, selectedSize };
+                const processedProduct = { ...data, selectedSize };
                 useCheckout({ user, product: processedProduct });
               }}
             />
             <ProductSizes
               classes="mb-4"
               selectedSize={selectedSize}
-              sizes={product.Stock}
+              sizes={data.Stock}
               onClick={(size): void => setselectedSize(size)}
             />
             <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
@@ -143,7 +129,7 @@ const ItemView = (): ReactElement => {
                 type="button"
                 className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
               >
-                End: {convertToDate(product.EndTime, false, { type: 'short' })}
+                End: {convertToDate(data.EndTime, false, { type: 'short' })}
               </button>
               <button
                 className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
@@ -162,7 +148,7 @@ const ItemView = (): ReactElement => {
           className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{product.Description}</p>
+          <p className="my-6 font-light">{data.Description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>

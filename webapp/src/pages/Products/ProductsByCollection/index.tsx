@@ -2,34 +2,27 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useProductsByCollection } from '../../../services/DataApiService';
 import LiveViewers from '../../../components/LiveViewers';
-import { ProductData } from '../../../types';
 import Loading from '../../../components/Loading';
 import { UserIcon } from '../../../components/SVG';
 import { logScalePrice } from '../../../utils/currentPrice';
 
-interface ProductDataWithPrices extends ProductData {
-  CurrentPrice?: number;
-}
+// interface ProductDataWithPrices extends ProductData {
+//   CurrentPrice?: number;
+// }
 
 const Catalogue = (): ReactElement => {
-  const [products, setProducts] = useState<ProductDataWithPrices[]>();
   const [currentPrices, setCurrentPrices] = useState<{ [key: string]: number }>({});
 
   const location = useLocation();
   const collection = location.pathname.split('/').slice(-1).toString();
 
-  useEffect(() => {
-    (async (): Promise<void> => {
-      const { data } = await useProductsByCollection(collection);
-      setProducts(data);
-    })().catch(() => {});
-  }, [collection]);
+  const { data } = useProductsByCollection(collection);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if (products) {
+      if (data) {
         const updatedCurrentPrices: { [key: string]: number } = {};
-        products.forEach((product) => {
+        data.forEach((product) => {
           updatedCurrentPrices[product.ID] = logScalePrice(
             product.StartTime,
             product.EndTime,
@@ -41,13 +34,13 @@ const Catalogue = (): ReactElement => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [products]);
+  }, [data]);
 
-  if (!products) return <Loading />;
+  if (!data) return <Loading />;
 
   return (
     <div className="grid grid-cols-3 min-h-screen pb-10">
-      {products.map((product) => (
+      {data.map((product) => (
         <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
           <Link to={`${product.ID}`} className="flex justify-center items-center my-4">
             <img

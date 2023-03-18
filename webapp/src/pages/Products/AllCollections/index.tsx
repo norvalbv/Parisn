@@ -6,8 +6,6 @@ import { useCollections } from '../../../services/DataApiService';
 const AllCollections = (): ReactElement => {
   const { data } = useCollections();
 
-  console.log(data);
-
   if (!data) return <Loading />;
 
   return (

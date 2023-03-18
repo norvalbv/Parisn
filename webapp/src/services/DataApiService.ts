@@ -1,12 +1,25 @@
-import { ApiResponse } from 'types/api';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import useRequest from '../hooks/useRequest';
-import { CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
+import {
+  ApiResponse,
+  CollectionData,
+  ContactForm,
+  FullUserInformation,
+  ProductData,
+} from '../types';
 
 type ProductByIDProps = {
   collection: string;
   productid: string;
+};
+
+type UseProductReturn = {
+  $metadata: { [key: string]: string };
+  Item: ProductData;
+  Count: number;
+  ScannedCount: number;
 };
 
 type ProductApiResponse = ApiResponse<ProductData>;
@@ -16,7 +29,16 @@ type ProductApiResponse = ApiResponse<ProductData>;
 export const useProductById = ({ collection, productid }: ProductByIDProps): ProductApiResponse => {
   const uri = `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`;
 
-  return useRequest<ProductData>({ uri });
+  const {
+    data: unprocessedData,
+    error,
+    isLoading,
+    isValidating,
+  } = useRequest<UseProductReturn>({ uri });
+
+  const processedData = unprocessedData?.Item;
+
+  return { data: processedData, error, isLoading, isValidating };
 };
 
 // This is temporary until API gets fixed.
@@ -43,9 +65,12 @@ export const useCollections = (): CollectionsApiResponse => {
   } = useRequest<UseCollectionsReturnType>({ uri });
 
   // This is temporary until API gets fixed.
+  // TODO: Fix.
   const data: CollectionData[] = Object.values(unprocessedData?.Items || []);
 
-  return { data, error, isLoading, isValidating };
+  const processedData = data.length === 0 ? undefined : data;
+
+  return { data: processedData, error, isLoading, isValidating };
 };
 
 // This is temporary until API gets fixed.
@@ -72,15 +97,18 @@ export const useProductsByCollection = (collection: string): ProductsApiResponse
   } = useRequest<UseProductsReturn>({ uri });
 
   // This is temporary until API gets fixed.
+  // TODO: Fix
   const data: ProductData[] = Object.values(unprocessedData?.Items || []);
 
-  return { data, error, isLoading, isValidating };
+  const processedData = data.length === 0 ? undefined : data;
+
+  return { data: processedData, error, isLoading, isValidating };
 };
 
 /**
  * Customer Support Emails
  */
-export const useCustomerSupport = (values: ContactForm) => {
+export const useCustomerSupport = (values: ContactForm): void => {
   const { firstName, lastName, email, orderNumber, message } = values;
   axios
     .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/support-request', {
@@ -114,7 +142,7 @@ type UseCheckoutProps = {
 /**
  * Send Checkout Confirmation
  */
-export const useCheckout = ({ user, product }: UseCheckoutProps) => {
+export const useCheckout = ({ user, product }: UseCheckoutProps): void => {
   const { ID, Category, selectedSize } = product;
   const checkoutid = uuidv4()
     .substring(0, 8)
