@@ -10,7 +10,8 @@
   "scripts": {
     "format:check": "prettier --check webapp/src",
     "format:fix": "prettier --write webapp/src",
-    "postinstall": "husky install ./.husky"
+    "postinstall": "husky install ./.husky",
+    "lint": "eslint src"
   },
   "husky": {
     "hooks": {
@@ -19,7 +20,8 @@
   },
   "lint-staged": {
     "webapp/src/**/*.{ts,tsx,json,css,scss,md}": [
-      "yarn format:fix"
+      "yarn format:fix",
+      "yarn lint"
     ]
   },
   "packageManager": "yarn@3.2.1"

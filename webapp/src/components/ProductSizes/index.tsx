@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import { Stock } from 'types';
-import Button from 'Button';
+import Button from 'components/Button';
 
 export interface ProductSizesProps {
   sizes: Stock;

@@ -8,7 +8,7 @@ import {
   Rounded,
   roundedMap,
 } from 'types/tailwind';
-import { Spinner } from 'CustomSVG';
+import { Spinner } from 'components/CustomSVG';
 
 export interface ButtonProps {
   /**

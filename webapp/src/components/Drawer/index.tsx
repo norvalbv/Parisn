@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { CloseIcon } from 'SVG';
+import { CloseIcon } from 'components/SVG';
 import { useDrawer } from 'hooks/useDrawer';
 
 type DrawerProps = {

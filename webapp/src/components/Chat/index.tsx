@@ -3,12 +3,12 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { io } from 'socket.io-client';
 import { v5 as uuidv5 } from 'uuid';
 import { Message } from 'types';
-import Button from 'Button';
-import LiveViewers from 'LiveViewers';
+import Button from 'components/Button';
+import LiveViewers from 'components/LiveViewers';
 import useUser from 'hooks/useUser';
 import convertToDate from 'utils/convertToDate';
 import { chatSchema } from 'utils/validation';
-import Drawer from 'Drawer';
+import Drawer from 'components/Drawer';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
