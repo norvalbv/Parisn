@@ -3,7 +3,7 @@ import React, { ReactElement, useMemo } from 'react';
 import { ErrorBoundary as ErrorBounds } from 'react-error-boundary';
 
 export interface ErrorBoundaryProps {
-  children: JSX.Element;
+  children?: JSX.Element;
   errorMessage?: string;
   // Typically used for resetting state or to re-fetch data.
   onClick?: () => void;
@@ -46,7 +46,7 @@ const ErrorBoundary = ({
     [className, errorMessage, onClick]
   );
 
-  return (
+  return children ? (
     <ErrorBounds
       fallbackRender={(): JSX.Element => memoizedFallback}
       resetKeys={reset?.resetKeys}
@@ -54,6 +54,8 @@ const ErrorBoundary = ({
     >
       {children}
     </ErrorBounds>
+  ) : (
+    memoizedFallback
   );
 };
 

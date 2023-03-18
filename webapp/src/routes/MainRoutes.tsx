@@ -19,10 +19,11 @@ import ForgotPassword from 'pages/Account/ForgotPassword';
 import HomePage from 'layout/HomePage/HomePage';
 import PurchaseSuccessful from 'pages/PurchaseSuccessful';
 import { DrawerProvider } from 'context/DrawerContext';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route>
       <Route
         path="/"
         element={
@@ -31,7 +32,7 @@ export const router = createBrowserRouter(
           </DrawerProvider>
         }
       >
-        <Route path="home" element={<Dashboard />} />
+        <Route path="home" element={<Dashboard />} errorElement={<ErrorBoundary />} />
       </Route>
       <Route
         path="/"
@@ -41,10 +42,14 @@ export const router = createBrowserRouter(
           </DrawerProvider>
         }
       >
-        <Route path="about" element={<AboutUs />} />
-        <Route path="how-it-works" element={<HowItWorks />} />
-        <Route path="collections" element={<AllCollections />} />
-        <Route path="collections/:category" element={<ProductsByCollection />} />
+        <Route path="about" element={<AboutUs />} errorElement={<ErrorBoundary />} />
+        <Route path="how-it-works" element={<HowItWorks />} errorElement={<ErrorBoundary />} />
+        <Route path="collections" element={<AllCollections />} errorElement={<ErrorBoundary />} />
+        <Route
+          path="collections/:category"
+          element={<ProductsByCollection />}
+          errorElement={<ErrorBoundary />}
+        />
         <Route
           path="/collections/:category/:product"
           element={
@@ -52,6 +57,7 @@ export const router = createBrowserRouter(
               <ItemView />
             </ProductContextProvider>
           }
+          errorElement={<ErrorBoundary />}
         />
         <Route
           path="checkout"
@@ -60,17 +66,30 @@ export const router = createBrowserRouter(
               <Checkout />
             </ProductContextProvider>
           }
+          errorElement={<ErrorBoundary />}
         />
-        <Route path="contact-us" element={<ContactUs />} />
-        <Route path="reset-password" element={<ResetPassword />} />
-        <Route path="forgot-password" element={<ForgotPassword />} />
-        <Route path="privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="terms-and-conditions" element={<TermsAndConditions />} />
-        <Route path="login" element={<Login />} />
-        <Route path="sign-up" element={<SignUp />} />
-        <Route path="about-us" element={<AboutUs />} />
-        <Route path="purchase-successful" element={<PurchaseSuccessful />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="contact-us" element={<ContactUs />} errorElement={<ErrorBoundary />} />
+        <Route path="reset-password" element={<ResetPassword />} errorElement={<ErrorBoundary />} />
+        <Route
+          path="forgot-password"
+          element={<ForgotPassword />}
+          errorElement={<ErrorBoundary />}
+        />
+        <Route path="privacy-policy" element={<PrivacyPolicy />} errorElement={<ErrorBoundary />} />
+        <Route
+          path="terms-and-conditions"
+          element={<TermsAndConditions />}
+          errorElement={<ErrorBoundary />}
+        />
+        <Route path="login" element={<Login />} errorElement={<ErrorBoundary />} />
+        <Route path="sign-up" element={<SignUp />} errorElement={<ErrorBoundary />} />
+        <Route path="about-us" element={<AboutUs />} errorElement={<ErrorBoundary />} />
+        <Route
+          path="purchase-successful"
+          element={<PurchaseSuccessful />}
+          errorElement={<ErrorBoundary />}
+        />
+        <Route path="*" element={<NotFound />} errorElement={<ErrorBoundary />} />
       </Route>
     </Route>
   )
