@@ -10719,6 +10719,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"rollup-plugin-node-externals@npm:^5.1.2":
+  version: 5.1.2
+  resolution: "rollup-plugin-node-externals@npm:5.1.2"
+  peerDependencies:
+    rollup: ^2.60.0 || ^3.0.0
+  checksum: 5bad7e81994cfe072723b0a92da17aba3fb330af8ad729825f23a80b2d46b2e088a02738c51b08169ac24817ce24aecbd1849a27e70351c93f35e8f5e18ccdb6
+  languageName: node
+  linkType: hard
+
 "rollup@npm:^3.18.0":
   version: 3.19.1
   resolution: "rollup@npm:3.19.1"
@@ -11862,6 +11871,7 @@ __metadata:
     react-router-dom: ^6.4.3
     react-test-renderer: ^18.2.0
     react-toastify: ^9.1.1
+    rollup-plugin-node-externals: ^5.1.2
     socket.io-client: ^4.5.4
     swr: ^2.1.0
     tailwind-scrollbar: ^2.1.0
