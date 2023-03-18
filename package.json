@@ -11,7 +11,7 @@
     "format:check": "prettier --check webapp/src",
     "format:fix": "prettier --write webapp/src",
     "postinstall": "husky install ./.husky",
-    "lint": "eslint src"
+    "lint": "eslint webapp/src"
   },
   "husky": {
     "hooks": {
