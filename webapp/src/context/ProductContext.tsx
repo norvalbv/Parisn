@@ -1,5 +1,5 @@
 import React, { createContext, useState, useMemo, useEffect, ReactElement } from 'react';
-import { ProductContextData, ProductInfoValues } from '../types';
+import { ProductContextData, ProductInfoValues } from 'types';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;

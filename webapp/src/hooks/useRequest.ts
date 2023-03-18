@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import useSWR, { SWRConfiguration } from 'swr';
-import { ApiError, ApiResponse } from '../types';
+import { ApiError, ApiResponse } from 'types';
 import useFetcher, { FetcherOptions } from './useFetcher';
 
 type UseRequestParameters<T> = {

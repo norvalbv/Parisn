@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Basket } from '../../components/CustomSVG';
-import { useDrawer } from '../../hooks/useDrawer';
-import useUser from '../../hooks/useUser';
-import { ProductData } from '../../types';
+import { Basket } from 'components/CustomSVG';
+import { useDrawer } from 'hooks/useDrawer';
+import useUser from 'hooks/useUser';
+import { ProductData } from 'types';
 
 const NavBar = (): ReactElement => {
   const { openDrawer } = useDrawer();

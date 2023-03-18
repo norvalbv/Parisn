@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
-import { FontSize, fontSizeMap } from '../../types/tailwind';
+import { FontSize, fontSizeMap } from 'types/tailwind';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,

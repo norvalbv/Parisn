@@ -3,7 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import MyAccount from '..';
-import { UserInformationProvider } from '../../../../context/UserContext';
+import { UserInformationProvider } from 'context/UserContext';
 
 describe('<MyAccount />', () => {
   test('should render correctly', () => {

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import HorizontalTable from '../../components/HorizontalTable';
-import convertToDate from '../../utils/convertToDate';
+import HorizontalTable from 'components/HorizontalTable';
+import convertToDate from 'utils/convertToDate';
 
 const PurchaseSuccessful = (): ReactElement => {
   const location = useLocation();

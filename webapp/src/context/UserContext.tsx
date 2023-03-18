@@ -23,7 +23,7 @@ import {
   UserContextInformation,
   UserInformation,
   VerifyAccount,
-} from '../types';
+} from 'types';
 
 type ProductContextProviderProps = {
   children?: JSX.Element;

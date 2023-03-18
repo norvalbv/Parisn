@@ -1,24 +1,24 @@
 import React, { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
-import MainLayout from '../layout/MainLayout';
-import AboutUs from '../pages/AboutUs';
-import ProductsByCollection from '../pages/Products/ProductsByCollection';
-import ContactUs from '../pages/ContactUs';
-import Dashboard from '../pages/HomePage';
-import HowItWorks from '../pages/HowItWorks';
-import ItemView from '../pages/Products/ItemView';
-import PrivacyPolicy from '../pages/Legal/PrivacyPolicy';
-import TermsAndConditions from '../pages/Legal/TermsAndConditions';
-import Checkout from '../pages/Checkout';
-import NotFound from '../pages/NotFound';
-import { ProductContextProvider } from '../context/ProductContext';
-import Login from '../pages/Account/Login';
-import AllCollections from '../pages/Products/AllCollections';
-import SignUp from '../pages/Account/SignUp';
-import ResetPassword from '../pages/Account/ResetPassword';
-import ForgotPassword from '../pages/Account/ForgotPassword';
-import HomePage from '../layout/HomePage/HomePage';
-import PurchaseSuccessful from '../pages/PurchaseSuccessful';
-import { DrawerProvider } from '../context/DrawerContext';
+import MainLayout from 'layout/MainLayout';
+import AboutUs from 'pages/AboutUs';
+import ProductsByCollection from 'pages/Products/ProductsByCollection';
+import ContactUs from 'pages/ContactUs';
+import Dashboard from 'pages/HomePage';
+import HowItWorks from 'pages/HowItWorks';
+import ItemView from 'pages/Products/ItemView';
+import PrivacyPolicy from 'pages/Legal/PrivacyPolicy';
+import TermsAndConditions from 'pages/Legal/TermsAndConditions';
+import Checkout from 'pages/Checkout';
+import NotFound from 'pages/NotFound';
+import { ProductContextProvider } from 'context/ProductContext';
+import Login from 'pages/Account/Login';
+import AllCollections from 'pages/Products/AllCollections';
+import SignUp from 'pages/Account/SignUp';
+import ResetPassword from 'pages/Account/ResetPassword';
+import ForgotPassword from 'pages/Account/ForgotPassword';
+import HomePage from 'layout/HomePage/HomePage';
+import PurchaseSuccessful from 'pages/PurchaseSuccessful';
+import { DrawerProvider } from 'context/DrawerContext';
 
 export const router = createBrowserRouter(
   createRoutesFromElements(

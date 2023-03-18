@@ -27,7 +27,10 @@
     "skipLibCheck": true,
 
     // Outputting format
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+
+    // Misc
+    "baseUrl": "./src"
   },
   "include": ["src"],
   "exclude": ["./cypress.config.ts", "cypress"]

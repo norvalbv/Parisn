@@ -1,8 +1,8 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { UserInformationProvider } from '../../context/UserContext';
-import { useDrawer } from '../../hooks/useDrawer';
-import MyAccount from '../../pages/Account/MyAccount';
+import { UserInformationProvider } from 'context/UserContext';
+import { useDrawer } from 'hooks/useDrawer';
+import MyAccount from 'pages/Account/MyAccount';
 import NavBar from './NavBar';
 
 // ==============================|| MAIN LAYOUT ||============================== //

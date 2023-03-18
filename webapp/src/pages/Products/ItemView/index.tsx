@@ -1,20 +1,20 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';
-import Button from '../../../components/Button';
-import LiveViewers from '../../../components/LiveViewers';
-import ProductSizes from '../../../components/ProductSizes';
-import { useCheckout, useProductById } from '../../../services/DataApiService';
-import useProduct from '../../../hooks/useProduct';
-import Chat from '../../../components/Chat';
-import convertToDate from '../../../utils/convertToDate';
-import useUser from '../../../hooks/useUser';
-import Loading from '../../../components/Loading';
-import { logScalePrice } from '../../../utils/currentPrice';
-import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
-import ProgressBar from '../../../components/Progressbar';
-import Carousel from '../../../components/Carousel';
-import { useDrawer } from '../../../hooks/useDrawer';
+import Button from 'components/Button';
+import LiveViewers from 'components/LiveViewers';
+import ProductSizes from 'components/ProductSizes';
+import { useCheckout, useProductById } from 'services/DataApiService';
+import useProduct from 'hooks/useProduct';
+import Chat from 'components/Chat';
+import convertToDate from 'utils/convertToDate';
+import useUser from 'hooks/useUser';
+import Loading from 'components/Loading';
+import { logScalePrice } from 'utils/currentPrice';
+import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants';
+import ProgressBar from 'components/Progressbar';
+import Carousel from 'components/Carousel';
+import { useDrawer } from 'hooks/useDrawer';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,

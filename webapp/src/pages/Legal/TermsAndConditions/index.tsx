@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import CardWrapper from '../../../components/CardWrapper';
+import CardWrapper from 'components/CardWrapper';
 
 const TermsAndConditions = (): ReactElement => {
   return (

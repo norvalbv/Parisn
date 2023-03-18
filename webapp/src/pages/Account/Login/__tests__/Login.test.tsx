@@ -4,8 +4,8 @@ import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
 import LoginPage from '..';
-import aws_exports from '../../../../aws-exports';
-import { UserInformationProvider } from '../../../../context/UserContext';
+import aws_exports from 'aws-exports';
+import { UserInformationProvider } from 'context/UserContext';
 
 jest.mock('aws-amplify');
 Amplify.configure(aws_exports);

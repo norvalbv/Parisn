@@ -7,8 +7,8 @@ import {
   fontWeightMap,
   Rounded,
   roundedMap,
-} from '../../types/tailwind';
-import { Spinner } from '../CustomSVG';
+} from 'types/tailwind';
+import { Spinner } from 'CustomSVG';
 
 export interface ButtonProps {
   /**

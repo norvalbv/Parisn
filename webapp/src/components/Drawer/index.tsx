@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
-import { CloseIcon } from '../SVG';
-import { useDrawer } from '../../hooks/useDrawer';
+import { CloseIcon } from 'SVG';
+import { useDrawer } from 'hooks/useDrawer';
 
 type DrawerProps = {
   children: JSX.Element | JSX.Element[];

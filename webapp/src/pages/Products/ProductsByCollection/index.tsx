@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useProductsByCollection } from '../../../services/DataApiService';
-import LiveViewers from '../../../components/LiveViewers';
-import Loading from '../../../components/Loading';
-import { UserIcon } from '../../../components/SVG';
-import { logScalePrice } from '../../../utils/currentPrice';
+import { useProductsByCollection } from 'services/DataApiService';
+import LiveViewers from 'components/LiveViewers';
+import Loading from 'components/Loading';
+import { UserIcon } from 'components/SVG';
+import { logScalePrice } from 'utils/currentPrice';
 
 // interface ProductDataWithPrices extends ProductData {
 //   CurrentPrice?: number;

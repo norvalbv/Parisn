@@ -1,9 +1,9 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import CardWrapper from '../../../components/CardWrapper';
-import Form from '../../../components/Form';
-import useUser from '../../../hooks/useUser';
-import { BasicAuth } from '../../../types';
+import CardWrapper from 'components/CardWrapper';
+import Form from 'components/Form';
+import useUser from 'hooks/useUser';
+import { BasicAuth } from 'types';
 
 const Login = (): ReactElement => {
   const { signIn } = useUser();

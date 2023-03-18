@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from '../../../components/Loading';
-import { useCollections } from '../../../services/DataApiService';
+import Loading from 'components/Loading';
+import { useCollections } from 'services/DataApiService';
 
 const AllCollections = (): ReactElement => {
   const { data } = useCollections();

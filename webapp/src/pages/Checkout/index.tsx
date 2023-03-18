@@ -2,13 +2,13 @@ import React, { ReactElement, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import Button from '../../components/Button';
-import Counter from '../../components/Counter';
-import useProduct from '../../hooks/useProduct';
-import Form from '../../components/Form';
-import { checkoutSchema } from '../../utils/validation';
-import Loading from '../../components/Loading';
-import useUser from '../../hooks/useUser';
+import Button from 'components/Button';
+import Counter from 'components/Counter';
+import useProduct from 'hooks/useProduct';
+import Form from 'components/Form';
+import { checkoutSchema } from 'utils/validation';
+import Loading from 'components/Loading';
+import useUser from 'hooks/useUser';
 import PaymentsForm from './PaymentsForm';
 
 type LocationState = {

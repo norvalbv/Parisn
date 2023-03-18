@@ -1,8 +1,8 @@
 import React, { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react';
 import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
 import { Link } from 'react-router-dom';
-import Button from '../Button';
-import Popup from '../Popup';
+import Button from 'Button';
+import Popup from 'Popup';
 
 type FormProps = {
   footerButton?: {

@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { InstagramLogo } from '../../components/CustomSVG';
+import { InstagramLogo } from 'components/CustomSVG';
 
 const Footer = (): ReactElement => {
   return (

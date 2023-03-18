@@ -2,13 +2,13 @@ import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { io } from 'socket.io-client';
 import { v5 as uuidv5 } from 'uuid';
-import { Message } from '../../types';
-import Button from '../Button';
-import LiveViewers from '../LiveViewers';
-import useUser from '../../hooks/useUser';
-import convertToDate from '../../utils/convertToDate';
-import { chatSchema } from '../../utils/validation';
-import Drawer from '../Drawer';
+import { Message } from 'types';
+import Button from 'Button';
+import LiveViewers from 'LiveViewers';
+import useUser from 'hooks/useUser';
+import convertToDate from 'utils/convertToDate';
+import { chatSchema } from 'utils/validation';
+import Drawer from 'Drawer';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,

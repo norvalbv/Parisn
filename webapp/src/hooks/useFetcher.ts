@@ -1,5 +1,5 @@
 import axios, { AxiosError, RawAxiosRequestHeaders } from 'axios';
-import { ApiError } from '../types';
+import { ApiError } from 'types';
 
 export type FetcherOptions = {
   cache?: boolean;

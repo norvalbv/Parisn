@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import Button from '../../components/Button';
+import Button from 'components/Button';
 
 const NotFound = (): ReactElement => {
   return (
