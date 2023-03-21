@@ -1,10 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    './node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     fontSize: {
       xxs: ['10px', '12px'],
@@ -53,5 +49,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwind-scrollbar'), require('daisyui'), require('flowbite/plugin')],
+  plugins: [require('tailwind-scrollbar'), require('daisyui')],
 };
