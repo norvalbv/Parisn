@@ -1,25 +1,30 @@
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import viteTsconfigPaths from 'vite-tsconfig-paths';
-import externals from 'rollup-plugin-node-externals';
-
+import react from '@vitejs/plugin-react';
+import rollupNodePolyFill from 'rollup-plugin-node-polyfills';
+// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), viteTsconfigPaths()],
-  build: {
-    rollupOptions: {
-      external: [
-        'aws-amplify',
-        '@aws-sdk/client-cognito-identity',
-        '@aws-sdk/credential-provider-cognito-identity',
-      ],
-      plugins: [externals()],
+  optimizeDeps: {
+    esbuildOptions: {
+      // Node.js global to browser globalThis
+      define: {
+        global: 'globalThis', //<-- AWS SDK
+      },
     },
   },
-  optimizeDeps: {
-    exclude: ['aws-amplify'],
+  build: {
+    rollupOptions: {
+      plugins: [
+        // Enable rollup polyfills plugin
+        // used during production bundling
+        rollupNodePolyFill(),
+      ],
+    },
   },
-  define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    global: 'window',
+  resolve: {
+    alias: {
+      './runtimeConfig': './runtimeConfig.browser', // <-- Fix from above
+    },
   },
 });
