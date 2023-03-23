@@ -2,9 +2,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { UpdateCommand, DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
-import { SchedulerClient, CreateScheduleCommand } from '@aws-sdk/client-scheduler';
 
-const client = new SchedulerClient({ region: 'us-east-1' });
 const ddbClient = new DynamoDBClient({ region: 'eu-west-2' });
 
 // Create the DynamoDB document client.
@@ -16,13 +14,14 @@ const capitalizeFirstLetter = (string) => {
 
 export const handler = async (event) => {
   await CloudWatch(event);
-
   const body = JSON.parse(event.body);
 
+  /*
+   * Calcualte current price
+   */
   const decayRate = (N0, N1, t1, t0) => {
     return Math.log(N0 / N1) / (t1 - t0);
   };
-
   const logScalePrice = (startTime, endTime, price) => {
     /**
      *  N(t) = N0 * e^(-λ*(t-t0))
@@ -45,6 +44,9 @@ export const handler = async (event) => {
     return Number(value.toFixed(2));
   };
 
+  /**
+   * Get DB details
+   */
   const data = await dynamoDb.send(
     new GetCommand({
       TableName: 'Products',
@@ -61,6 +63,9 @@ export const handler = async (event) => {
 
   await CloudWatch(price);
 
+  /**
+   * Update DB with checkout details
+   */
   const params = {
     TableName: 'Products',
     Key: {
@@ -78,9 +83,6 @@ export const handler = async (event) => {
       },
     },
   };
-
-  const command = new CreateScheduleCommand(input);
-  const response = await client.send(command);
 
   try {
     const data = await dynamoDb.send(new UpdateCommand(params));

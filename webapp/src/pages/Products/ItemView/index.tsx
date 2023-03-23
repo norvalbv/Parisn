@@ -29,7 +29,7 @@ const ItemView = (): ReactElement => {
 
   const { setProductInfo } = useProduct();
 
-  const { sendCheckout } = useCheckout();
+  const { startCheckout } = useCheckout();
 
   const location = useLocation();
   const currentProduct = location.pathname;
@@ -103,7 +103,7 @@ const ItemView = (): ReactElement => {
                 });
 
                 const processedProduct = { ...data, selectedSize };
-                sendCheckout({ user, product: processedProduct });
+                startCheckout({ user, product: processedProduct });
               }}
             />
             <ProductSizes

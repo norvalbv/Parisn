@@ -1,4 +1,5 @@
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import useRequest from 'hooks/useRequest';
@@ -136,20 +137,26 @@ interface FullProductData extends ProductData {
   selectedSize: string;
 }
 
-type UseCheckoutProps = {
+type StartCheckoutProps = {
   user: FullUserInformation | null;
   product: FullProductData;
 };
 
-type CheckoutResponse = {
-  sendCheckout: (props: UseCheckoutProps) => void;
+type UseCheckoutResponse = {
+  startCheckout: (props: StartCheckoutProps) => void;
+};
+
+type StartCheckoutApiResponse = {
+  payment_intent_id: string;
+  client_secret: string;
 };
 
 /**
  * Send Checkout Confirmation
  */
-export const useCheckout = (): CheckoutResponse => {
-  const sendCheckout = ({ user, product }: UseCheckoutProps): void => {
+export const useCheckout = (): UseCheckoutResponse => {
+  const navigate = useNavigate();
+  const startCheckout = ({ user, product }: StartCheckoutProps): void => {
     const { ID, Category, selectedSize } = product;
     const checkoutid = uuidv4()
       .substring(0, 8)
@@ -165,6 +172,11 @@ export const useCheckout = (): CheckoutResponse => {
         checkoutid,
         user: user?.userInfo?.email,
       })
+      // .then((res: AxiosResponse) => {
+      //   navigate(`${props.productId}?capture_method=${props.captureMethod.toLowerCase()}`, {
+      //     state: res.data as StartCheckoutApiResponse,
+      //   });
+      // })
       .catch((err) => {
         if (typeof err === 'string') {
           toast.warning(err);
@@ -174,5 +186,5 @@ export const useCheckout = (): CheckoutResponse => {
       });
   };
 
-  return { sendCheckout };
+  return { startCheckout };
 };

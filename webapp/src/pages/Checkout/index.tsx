@@ -51,7 +51,6 @@ const Checkout = (): ReactElement => {
         stage === 1 ? (
           <>
             <h2 className="text-4xl pt-10 mb-10 border-b w-min mx-auto">Checkout</h2>
-
             <div className="flex justify-around items-center w-4/5 mx-auto">
               <div className="flex-1 flex flex-col items-center gap-5 pr-5">
                 <p className="underline underline-offset-2">Purchase Information:</p>
