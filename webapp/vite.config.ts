@@ -28,4 +28,7 @@ export default defineConfig({
       './runtimeConfig': './runtimeConfig.browser',
     },
   },
+  server: {
+    port: 5001,
+  },
 });
