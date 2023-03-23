@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Checkout Cloud Formation Template
+Description: Initiate Checkout Cloud Formation Template
 
 Parameters:
   ServiceName:
@@ -9,7 +9,7 @@ Parameters:
 
 Resources:
   # Creates a new role for your AWS account.
-  CheckoutRole:
+  InitiateCheckoutRole:
     Type: 'AWS::IAM::Role'
     Properties:
       # The trust policy that is associated with this role. Trust policies define which entities can assume the role.
@@ -24,7 +24,7 @@ Resources:
               - 'sts:AssumeRole'
       Policies:
         # Lambda, DynamoDB & Cloudwatch Full Access
-        - PolicyName: CheckoutFunctionPolicy
+        - PolicyName: InitiateCheckoutFunctionPolicy
           PolicyDocument:
             Version: '2012-10-17'
             Statement:
@@ -179,7 +179,7 @@ Resources:
 
   # The AWS::Lambda::Function resource creates a Lambda function.
   # To create a function, you need a deployment package and an execution role.
-  CheckoutLambdaFunction:
+  InitiateCheckoutLambdaFunction:
     Type: 'AWS::Lambda::Function'
     Properties:
       Architectures:
@@ -190,7 +190,7 @@ Resources:
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
-      Role: !GetAtt CheckoutRole.Arn
+      Role: !GetAtt InitiateCheckoutRole.Arn
       Runtime: nodejs18.x
       Timeout: 5
       FunctionName: !Ref ServiceName
@@ -198,10 +198,10 @@ Resources:
       Handler: index.handler
 
   # The AWS::Lambda::Permission resource grants an AWS service or another account permission to use a function
-  CheckoutLambdaPermissions:
+  InitiateCheckoutLambdaPermissions:
     Type: 'AWS::Lambda::Permission'
     Properties:
-      FunctionName: !Ref CheckoutLambdaFunction
+      FunctionName: !Ref InitiateCheckoutLambdaFunction
       Action: lambda:InvokeFunction
       # The principal allows you to choose which service that can invoke the lambda
       Principal: apigateway.amazonaws.com
@@ -209,24 +209,24 @@ Resources:
       SourceArn: !Sub 'arn:aws:apigateway:${AWS::Region}:${AWS::AccountId}:apis/dlnkbdtmp6'
 
   # Links the API Route to the lambda
-  CheckoutApiIntegration:
+  InitiateCheckoutApiIntegration:
     Type: 'AWS::ApiGatewayV2::Integration'
     Properties:
       ApiId: 'dlnkbdtmp6'
       IntegrationType: 'AWS_PROXY'
-      IntegrationUri: !GetAtt CheckoutLambdaFunction.Arn
+      IntegrationUri: !GetAtt InitiateCheckoutLambdaFunction.Arn
       PayloadFormatVersion: '2.0'
       IntegrationMethod: 'GET'
 
   # The AWS::ApiGatewayV2::Api resource creates an API.
-  CheckoutApiRoute:
+  InitiateCheckoutApiRoute:
     Type: 'AWS::ApiGatewayV2::Route'
     DependsOn:
-      - "CheckoutApiIntegration"
+      - 'InitiateCheckoutApiIntegration'
     Properties:
       RouteKey: 'POST /checkout'
       ApiId: 'dlnkbdtmp6'
       Target: !Join
         - /
         - - integrations
-          - !Ref CheckoutApiIntegration 
+          - !Ref InitiateCheckoutApiIntegration

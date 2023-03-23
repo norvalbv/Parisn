@@ -2,6 +2,7 @@ import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 import { UpdateCommand, DynamoDBDocumentClient, GetCommand } from '@aws-sdk/lib-dynamodb';
 import { CloudWatch } from './cloudwatch.mjs';
 import { translateConfig } from './dynamo-options.mjs';
+import Stripe from 'stripe';
 
 const ddbClient = new DynamoDBClient({ region: 'eu-west-2' });
 
@@ -43,6 +44,10 @@ export const handler = async (event) => {
     const value = price * Math.exp(-lambda * timeElapsed);
     return Number(value.toFixed(2));
   };
+
+  /**
+   * Stripe
+   */
 
   /**
    * Get DB details
