@@ -66,7 +66,7 @@ export const handler = async (event) => {
    * Stripe
    */
 
-  const stripe = new Stripe('sk_test_...');
+  const stripe = new Stripe(process.env.stripe_sk);
 
   /**
    * Update DB with checkout details
