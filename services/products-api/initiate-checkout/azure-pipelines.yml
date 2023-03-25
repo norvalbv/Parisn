@@ -30,3 +30,4 @@ jobs:
           servicename: $(servicename)
           servicepath: $(servicepath)
           gitcommit:  $(short_hash)
+      - bash: echo $(short_hash)
