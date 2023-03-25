@@ -14,21 +14,19 @@ variables:
     value: initiate-checkout
   - name: servicepath
     value: products-api/initiate-checkout
-  - name: gitcommit
-    value: ''
 
 jobs:
   - job: get_short_git_hash
     displayName: 'Get short git hash'
     steps:
-      - checkout: self
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/source-version.yml
 
   - job: Zip_and_Upload
     displayName: 'Zip and Upload'
+    dependsOn: get_short_git_hash
     steps:
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
           servicename: $(servicename)
           servicepath: $(servicepath)
-          gitcommit:  $(gitcommit)
+          gitcommit:  $(short_hash)
