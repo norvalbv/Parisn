@@ -22,3 +22,5 @@ jobs:
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
           servicename: $(servicename)
+          servicepath: $(servicepath)
+
