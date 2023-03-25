@@ -12,7 +12,7 @@ pool:
 variables:
   - name: servicename
     value: initiate-checkout
-  - name: servicepame
+  - name: servicepath
     value: product-api/initiate-checkout
 
 jobs:
