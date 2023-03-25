@@ -63,14 +63,7 @@ Resources:
                   - iam:ListRoles
                   - kms:DescribeKey
                   - kms:ListAliases
-                  - sns:CreateTopic
-                  - sns:DeleteTopic
-                  - sns:ListSubscriptions
-                  - sns:ListSubscriptionsByTopic
-                  - sns:ListTopics
-                  - sns:Subscribe
-                  - sns:Unsubscribe
-                  - sns:SetTopicAttributes
+                  - sns:*
                   - lambda:CreateFunction
                   - lambda:ListFunctions
                   - lambda:ListEventSourceMappings
