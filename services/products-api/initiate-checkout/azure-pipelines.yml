@@ -13,7 +13,7 @@ variables:
   - name: servicename
     value: initiate-checkout
   - name: servicepath
-    value: product-api/initiate-checkout
+    value: products-api/initiate-checkout
 
 jobs:
   - job: Zip_and_Upload
