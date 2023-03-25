@@ -6,6 +6,8 @@ Parameters:
     Type: String
   ServicePath:
     Type: String
+  GitCommit:
+    Type: String
 
 Resources:
   # Creates a new role for your AWS account.
@@ -186,7 +188,7 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}/${ServiceName}.zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}_$(GitCommit).zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256

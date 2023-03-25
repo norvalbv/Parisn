@@ -3,6 +3,8 @@ parameters:
     type: string
   - name: servicepath
     type: string
+  - name: gitcommit
+    type: string
 
 steps:
   # Uploads cloud formation
@@ -28,7 +30,7 @@ steps:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename).zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename)_$(gitcommit).zip'
       replaceExistingArchive: true
 
   # Debug, check zip archive is there
@@ -71,5 +73,9 @@ steps:
           {
             "ParameterKey":"ServicePath",
             "ParameterValue":"$(servicepath)"
-          }
+          },
+          {
+            "ParameterKey":"GitCommit",
+            "ParameterValue":"$(gitcommit)"
+          },
         ]

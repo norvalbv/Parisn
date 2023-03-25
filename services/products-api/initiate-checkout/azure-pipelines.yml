@@ -23,4 +23,9 @@ jobs:
         parameters:
           servicename: $(servicename)
           servicepath: $(servicepath)
+          gitcommit: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/source-version.yml
+  - job:
+    displayName: 'Log'
+    steps:
+      - bash: echo ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/source-version.yml
 
