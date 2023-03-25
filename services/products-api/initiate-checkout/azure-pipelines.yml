@@ -11,6 +11,8 @@ pool:
 
 variables:
   - name: servicename
+    value: initiate-checkout
+  - name: servicepame
     value: product-api/initiate-checkout
 
 jobs:
