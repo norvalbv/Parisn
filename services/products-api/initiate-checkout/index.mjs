@@ -46,10 +46,6 @@ export const handler = async (event) => {
   };
 
   /**
-   * Stripe
-   */
-
-  /**
    * Get DB details
    */
   const data = await dynamoDb.send(
@@ -62,11 +58,15 @@ export const handler = async (event) => {
     })
   );
 
-  await CloudWatch(data);
-
   const price = logScalePrice(data.Item.StartTime, data.Item.EndTime, data.Item.Price);
 
   await CloudWatch(price);
+
+  /**
+   * Stripe
+   */
+
+  const stripe = new Stripe('sk_test_...');
 
   /**
    * Update DB with checkout details
@@ -90,12 +90,20 @@ export const handler = async (event) => {
   };
 
   try {
-    const data = await dynamoDb.send(new UpdateCommand(params));
+    await dynamoDb.send(new UpdateCommand(params));
+
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount: price, // price is in pence, so 1000 is £10.00
+      currency: 'gbp',
+      automatic_payment_methods: { enabled: true },
+    });
+
+    await CloudWatch(paymentIntent);
 
     return {
       statusCode: 200,
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(paymentIntent),
     };
   } catch (error) {
     return {

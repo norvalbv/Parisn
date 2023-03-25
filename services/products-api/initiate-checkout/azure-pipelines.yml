@@ -4,7 +4,7 @@ trigger:
       - main
   paths:
     include:
-      - services/products-api/checkout/*
+      - services/products-api/initiate-checkout/*
 
 pool:
   vmImage: ubuntu-latest

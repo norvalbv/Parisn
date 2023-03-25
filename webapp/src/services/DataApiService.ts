@@ -172,11 +172,11 @@ export const useCheckout = (): UseCheckoutResponse => {
         checkoutid,
         user: user?.userInfo?.email,
       })
-      // .then((res: AxiosResponse) => {
-      //   navigate(`${props.productId}?capture_method=${props.captureMethod.toLowerCase()}`, {
-      //     state: res.data as StartCheckoutApiResponse,
-      //   });
-      // })
+      .then((res: AxiosResponse) => {
+        navigate('/checkout', {
+          state: res.data as StartCheckoutApiResponse,
+        });
+      })
       .catch((err) => {
         if (typeof err === 'string') {
           toast.warning(err);
