@@ -37,7 +37,7 @@ steps:
       rootFolderOrFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
       includeRootFolder: false
       archiveType: 'zip'
-      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename)_$(gitcommit).zip'
+      archiveFile: '$(System.DefaultWorkingDirectory)/services/$(servicepath)/$(servicename)_123.zip'
       replaceExistingArchive: true
 
   # Debug, check zip archive is there

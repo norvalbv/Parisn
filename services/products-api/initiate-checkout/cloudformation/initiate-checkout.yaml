@@ -9,16 +9,6 @@ Parameters:
   GitCommit:
     Type: String
 
-Metadata:
-  AWS::CloudFormation::Init:
-    config:
-      files:
-        /tmp/config.txt:
-          content: !Sub |
-            GitCommit: ${GitCommit}
-            ServiceName: ${ServiceName}
-            ServicePath: ${ServicePath}
-
 Resources:
   # Creates a new role for your AWS account.
   InitiateCheckoutRole:
@@ -191,12 +181,12 @@ Resources:
         - 'arm64'
       Code:
         S3Bucket: 'parisn-bucket'
-        S3Key: !Sub '${ServicePath}/${ServiceName}_$(GitCommit).zip'
+        S3Key: !Sub '${ServicePath}/${ServiceName}_123.zip'
       Description: 'A function'
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt InitiateCheckoutRole.Arn
-      Runtime: nodejs18.x
+      Runtime: nodejs18.xe
       Timeout: 5
       FunctionName: !Ref ServiceName
       # Required when using the deployment packages of S3...
