@@ -2,7 +2,6 @@ steps:
   - task: Bash@3
     displayName: Get short git hash
     inputs:
-      id: get_short_git_hash
       targetType: 'inline'
       script: |
         short_hash=`git rev-parse --short=7 HEAD`
@@ -18,3 +17,4 @@ steps:
         echo "--> Hashes match. Storing short hash for subsequent steps."
         ## Store variable for subsequent steps
         echo "##vso[task.setvariable variable=short_hash;isreadonly=true;isoutput=true]$short_hash"
+    id: get_short_hash
