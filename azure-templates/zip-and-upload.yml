@@ -28,7 +28,9 @@ steps:
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: echo $(gitcommit)
+      script: |
+        echo $(gitcommit)
+        echo $(servicename)
 
   # Archives / zips folder
   - task: ArchiveFiles@2
