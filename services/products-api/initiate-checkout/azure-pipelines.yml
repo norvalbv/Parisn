@@ -29,8 +29,6 @@ jobs:
     steps:
       - bash: echo $(short_hash)
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
-        variables: 
-          gitcommit: $(short_hash)
         parameters:
           servicename: $(servicename)
           servicepath: $(servicepath)
