@@ -1,8 +1,8 @@
 steps:
   - task: Bash@3
     displayName: Get short git hash
-    id: get_short_git_hash
     inputs:
+      id: get_short_git_hash
       targetType: 'inline'
       script: |
         short_hash=`git rev-parse --short=7 HEAD`
