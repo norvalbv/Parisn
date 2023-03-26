@@ -28,14 +28,14 @@ steps:
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: echo '$(gitcommit)'
+      script: echo env
 
     # Debug, check git commit
   - task: Bash@3
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: echo $(servicename)
+      script: env
 
   # Archives / zips folder
   - task: ArchiveFiles@2
