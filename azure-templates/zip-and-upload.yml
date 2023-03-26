@@ -3,8 +3,6 @@ parameters:
     type: string
   - name: servicepath
     type: string
-
-variables:
   - name: gitcommit
     type: string
 
