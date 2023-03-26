@@ -27,6 +27,7 @@ jobs:
     variables: 
       short_hash: $[ dependencies.get_short_git_hash.outputs['short_hash'] ]
     steps:
+      - bash: echo $(short_hash)
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
           servicename: $(servicename)
