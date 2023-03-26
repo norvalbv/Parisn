@@ -23,14 +23,7 @@ steps:
         *.yaml
         **/*.yaml
 
-    # Debug, check git commit
-  - task: Bash@3
-    displayName: Listed directories
-    inputs:
-      targetType: 'inline'
-      script: echo $(gitcommit)
-
-    # Debug, check git commit
+  # Debug, check environment
   - task: Bash@3
     displayName: Listed directories
     inputs:

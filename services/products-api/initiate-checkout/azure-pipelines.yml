@@ -27,7 +27,6 @@ jobs:
     variables:
       - name: gitcommit
         value: $[ dependencies.get_short_git_hash.outputs['get_short_hash.short_hash'] ]
-      
     steps:
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
         parameters:
