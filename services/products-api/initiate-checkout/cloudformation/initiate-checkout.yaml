@@ -186,7 +186,7 @@ Resources:
       PackageType: Zip
       MemorySize: 256
       Role: !GetAtt InitiateCheckoutRole.Arn
-      Runtime: nodejs18.xe
+      Runtime: nodejs18.x
       Timeout: 5
       FunctionName: !Ref ServiceName
       # Required when using the deployment packages of S3...
