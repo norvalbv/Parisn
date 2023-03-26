@@ -15,4 +15,4 @@
       fi
       echo "--> Hashes match. Storing short hash for subsequent steps."
       ## Store variable for subsequent steps
-      echo "##vso[task.setvariable variable=short_hash;isreadonly=true]$short_hash"
+      echo "##vso[task.setvariable variable=short_hash;isreadonly=true;isoutput=true]$short_hash"
