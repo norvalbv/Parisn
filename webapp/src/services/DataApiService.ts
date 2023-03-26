@@ -165,7 +165,7 @@ export const useCheckout = (): UseCheckoutResponse => {
       .join('')
       .toString();
     axios
-      .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/checkout', {
+      .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/initiate-checkout', {
         productid: ID,
         collection: Category,
         selectedsize: selectedSize,
