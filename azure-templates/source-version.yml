@@ -17,4 +17,4 @@ steps:
         echo "--> Hashes match. Storing short hash for subsequent steps."
         ## Store variable for subsequent steps
         echo "##vso[task.setvariable variable=short_hash;isreadonly=true;isoutput=true]$short_hash"
-    id: get_short_hash
+      name: get_short_hash
