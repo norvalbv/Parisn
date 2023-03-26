@@ -219,7 +219,7 @@ Resources:
     DependsOn:
       - 'InitiateCheckoutApiIntegration'
     Properties:
-      RouteKey: 'POST /checkout'
+      RouteKey: 'POST /initiate-checkout'
       ApiId: 'dlnkbdtmp6'
       Target: !Join
         - /
