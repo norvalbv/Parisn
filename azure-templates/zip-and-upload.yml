@@ -23,6 +23,13 @@ steps:
         *.yaml
         **/*.yaml
 
+    # Debug, check git commit
+  - task: Bash@3
+    displayName: Listed directories
+    inputs:
+      targetType: 'inline'
+      script: echo $(gitcommit)
+
   # Archives / zips folder
   - task: ArchiveFiles@2
     displayName: Zip Files
@@ -38,9 +45,7 @@ steps:
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: |
-        'ls $(System.DefaultWorkingDirectory)/services/$(servicepath)'
-        echo $(gitcommit)
+      script: 'ls $(System.DefaultWorkingDirectory)/services/$(servicepath)'
 
   # Uploads that zip to S3
   - task: S3Upload@1
