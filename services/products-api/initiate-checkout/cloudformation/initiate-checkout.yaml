@@ -9,6 +9,16 @@ Parameters:
   GitCommit:
     Type: String
 
+Metadata:
+  AWS::CloudFormation::Init:
+    config:
+      files:
+        /tmp/config.txt:
+          content: !Sub |
+            GitCommit: ${GitCommit}
+            ServiceName: ${ServiceName}
+            ServicePath: ${ServicePath}
+
 Resources:
   # Creates a new role for your AWS account.
   InitiateCheckoutRole:
