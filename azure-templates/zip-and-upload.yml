@@ -52,11 +52,12 @@ steps:
     displayName: 'Upload lambda zips'
     inputs:
       awsCredentials: 'AWS'
-      regionName: 'eu-west-2'
       bucketName: 'parisn-bucket'
-      globExpressions: '**/*.zip'
+      encryptionAlgorithm: AES256
       createBucket: true
+      globExpressions: '**/*.zip'
       logRequest: true
+      regionName: 'eu-west-2'
       sourceFolder: '$(System.DefaultWorkingDirectory)/services/$(servicepath)'
       targetFolder: '$(servicepath)'
 
