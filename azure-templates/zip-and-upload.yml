@@ -28,7 +28,7 @@ steps:
     displayName: Listed directories
     inputs:
       targetType: 'inline'
-      script: echo "$(gitcommit)"
+      script: echo '$(gitcommit)'
 
     # Debug, check git commit
   - task: Bash@3
