@@ -1,6 +1,7 @@
 steps:
   - task: Bash@3
     displayName: Get short git hash
+    id: get_short_git_hash
     inputs:
       targetType: 'inline'
       script: |

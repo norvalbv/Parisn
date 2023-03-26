@@ -25,7 +25,7 @@ jobs:
     displayName: 'Zip and Upload'
     dependsOn: get_short_git_hash
     variables: 
-      short_hash: $[ dependencies.get_short_git_hash.outputs['short_hash'] ]
+      short_hash: $[ dependencies.get_short_git_hash.outputs['get_short_git_hash.short_hash'] ]
     steps:
       - bash: echo $(short_hash)
       - template: ${{ variables['System.DefaultWorkingDirectory'] }}/azure-templates/zip-and-upload.yml
