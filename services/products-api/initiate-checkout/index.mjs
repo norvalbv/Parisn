@@ -15,10 +15,7 @@ const capitalizeFirstLetter = (string) => {
 
 export const handler = async (event) => {
   await CloudWatch(event);
-
-  const body = event.body;
-
-  await CloudWatch(body.collection);
+  const body = JSON.parse(event.body);
 
   /*
    * Calcualte current price
@@ -102,7 +99,7 @@ export const handler = async (event) => {
           currency: 'gbp',
           automatic_payment_methods: { enabled: true },
         })
-      : null;
+      : 'no price';
 
     await CloudWatch(paymentIntent);
 

@@ -28,8 +28,6 @@ const Checkout = (): ReactElement => {
   const locationState = location.state as LocationState;
   const clientSecret = locationState?.client_secret || '';
 
-  console.log(locationState);
-
   const { productInfo } = useProduct();
 
   const { user } = useUser();

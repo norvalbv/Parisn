@@ -181,13 +181,12 @@ export const useCheckout = (): UseCheckoutResponse => {
         user: user?.userInfo?.email,
       })
       .then((res: AxiosResponse) => {
-        console.log(res.data, 'data');
-        if ('client_secret' in res.data) {
+        if (typeof res.data === 'object' && 'client_secret' in res.data) {
           navigate('/checkout', {
             state: res.data as StartCheckoutApiResponse,
             replace: true,
           });
-        } else if ('no price' in res.data) {
+        } else if ('no price') {
           navigate('/checkout', {
             replace: true,
           });
