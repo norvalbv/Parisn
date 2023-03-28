@@ -183,14 +183,14 @@ export const useCheckout = (): UseCheckoutResponse => {
       .then((res: AxiosResponse) => {
         console.log(res.data, 'data');
         if ('client_secret' in res.data) {
-          // navigate('/checkout', {
-          //   state: res.data as StartCheckoutApiResponse,
-          //   replace: true,
-          // });
+          navigate('/checkout', {
+            state: res.data as StartCheckoutApiResponse,
+            replace: true,
+          });
         } else if ('no price' in res.data) {
-          // navigate('/checkout', {
-          //   replace: true,
-          // });
+          navigate('/checkout', {
+            replace: true,
+          });
         } else {
           throw new Error('Client secret nor no price found in res.data');
         }
