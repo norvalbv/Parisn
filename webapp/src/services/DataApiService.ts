@@ -173,11 +173,14 @@ export const useCheckout = (): UseCheckoutResponse => {
         user: user?.userInfo?.email,
       })
       .then((res: AxiosResponse) => {
-        navigate('/checkout', {
-          state: res.data as StartCheckoutApiResponse,
-        });
+        console.log(res.data, 'data');
+        // navigate('/checkout', {
+        //   state: res.data as StartCheckoutApiResponse,
+        //   replace: true,
+        // });
       })
       .catch((err) => {
+        console.log(err);
         if (typeof err === 'string') {
           toast.warning(err);
         } else {

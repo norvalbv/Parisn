@@ -93,8 +93,6 @@ const ItemView = (): ReactElement => {
               text="Buy Now"
               hoveredText={`Buy at £${(localPrice || data.Price).toFixed(2)}`}
               rounded="lg"
-              navigateTo="/checkout"
-              navigationState={data.ID}
               onClick={(): void => {
                 setProductInfo({
                   product: data,

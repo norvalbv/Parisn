@@ -28,7 +28,9 @@ const Checkout = (): ReactElement => {
   const locationState = location.state as LocationState;
   const clientSecret = locationState?.client_secret || '';
 
-  if (!clientSecret) navigate('/');
+  if (!clientSecret) console.log('No client secret');
+
+  console.log(locationState);
 
   const { productInfo } = useProduct();
 
@@ -37,7 +39,7 @@ const Checkout = (): ReactElement => {
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
 
   const [hovered, setHovered] = useState(false);
-  const [stage, setStage] = useState(2);
+  const [stage, setStage] = useState(1);
 
   if (!productInfo) return <Loading />;
 
@@ -132,9 +134,10 @@ const Checkout = (): ReactElement => {
             </div>
           </>
         ) : (
-          <Elements stripe={stripePromise} options={options}>
-            <PaymentsForm productId={productInfo.product?.ID || ''} setStage={setStage} />
-          </Elements>
+          // <Elements stripe={stripePromise} options={options}>
+          //   <PaymentsForm productId={productInfo.product?.ID || ''} setStage={setStage} />
+          // </Elements>
+          <>hello</>
         )
       ) : (
         <div className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl">
