@@ -164,6 +164,14 @@ export const useCheckout = (): UseCheckoutResponse => {
       .filter((d) => d !== '-')
       .join('')
       .toString();
+
+    console.log({
+      productid: ID,
+      collection: Category,
+      selectedsize: selectedSize,
+      checkoutid,
+      user: user?.userInfo?.email,
+    });
     axios
       .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/initiate-checkout', {
         productid: ID,
@@ -174,10 +182,18 @@ export const useCheckout = (): UseCheckoutResponse => {
       })
       .then((res: AxiosResponse) => {
         console.log(res.data, 'data');
-        // navigate('/checkout', {
-        //   state: res.data as StartCheckoutApiResponse,
-        //   replace: true,
-        // });
+        if ('client_secret' in res.data) {
+          // navigate('/checkout', {
+          //   state: res.data as StartCheckoutApiResponse,
+          //   replace: true,
+          // });
+        } else if ('no price' in res.data) {
+          // navigate('/checkout', {
+          //   replace: true,
+          // });
+        } else {
+          throw new Error('Client secret nor no price found in res.data');
+        }
       })
       .catch((err) => {
         console.log(err);

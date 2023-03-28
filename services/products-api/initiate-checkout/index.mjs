@@ -15,7 +15,10 @@ const capitalizeFirstLetter = (string) => {
 
 export const handler = async (event) => {
   await CloudWatch(event);
-  const body = JSON.parse(event.body);
+
+  const body = event.body;
+
+  await CloudWatch(body.collection);
 
   /*
    * Calcualte current price
@@ -92,11 +95,14 @@ export const handler = async (event) => {
   try {
     await dynamoDb.send(new UpdateCommand(params));
 
-    const paymentIntent = await stripe.paymentIntents.create({
-      amount: price, // price is in pence, so 1000 is £10.00
-      currency: 'gbp',
-      automatic_payment_methods: { enabled: true },
-    });
+    // If price is below minimum, no payment is required and therefore, don't launch a payment intent.
+    const paymentIntent = price
+      ? await stripe.paymentIntents.create({
+          amount: price, // price is in pence, so 1000 is £10.00
+          currency: 'gbp',
+          automatic_payment_methods: { enabled: true },
+        })
+      : null;
 
     await CloudWatch(paymentIntent);
 

@@ -28,8 +28,6 @@ const Checkout = (): ReactElement => {
   const locationState = location.state as LocationState;
   const clientSecret = locationState?.client_secret || '';
 
-  if (!clientSecret) console.log('No client secret');
-
   console.log(locationState);
 
   const { productInfo } = useProduct();
@@ -42,10 +40,6 @@ const Checkout = (): ReactElement => {
   const [stage, setStage] = useState(1);
 
   if (!productInfo) return <Loading />;
-
-  const options = {
-    clientSecret,
-  };
 
   return (
     <>
@@ -133,11 +127,12 @@ const Checkout = (): ReactElement => {
               </div>
             </div>
           </>
+        ) : clientSecret ? (
+          <Elements stripe={stripePromise} options={{ clientSecret }}>
+            <PaymentsForm productId={productInfo.product?.ID || ''} setStage={setStage} />
+          </Elements>
         ) : (
-          // <Elements stripe={stripePromise} options={options}>
-          //   <PaymentsForm productId={productInfo.product?.ID || ''} setStage={setStage} />
-          // </Elements>
-          <>hello</>
+          <>Thanks for your purchase!</>
         )
       ) : (
         <div className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl">
