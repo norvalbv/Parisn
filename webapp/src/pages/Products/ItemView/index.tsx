@@ -76,19 +76,21 @@ const ItemView = (): ReactElement => {
             className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
           >
             <h2 className="text-3xl underline-offset-8 underline">{data.Title}</h2>
-            {!localPrice && localPrice !== 0 ? (
-              <div className="my-4">
-                <p>Price: £{data.Price}</p>
-                <ProgressBar value={100} />
-              </div>
-            ) : localPrice <= 1 ? (
-              'FREE'
-            ) : (
-              <div className="my-4">
-                <p>Price: £{localPrice.toFixed(2)}</p>
-                <ProgressBar value={localPrice / 10} />
-              </div>
-            )}
+            <div className="my-4 w-full text-center">
+              {!localPrice && localPrice !== 0 ? (
+                <>
+                  <p>Price: £{data.Price}</p>
+                  <ProgressBar value={100} />
+                </>
+              ) : localPrice <= 1 ? (
+                'FREE'
+              ) : (
+                <>
+                  <p>Price: £{localPrice.toFixed(2)}</p>
+                  <ProgressBar value={localPrice / 10} />
+                </>
+              )}
+            </div>
             <Button
               text="Buy Now"
               hoveredText={`Buy at £${(localPrice || data.Price).toFixed(2)}`}

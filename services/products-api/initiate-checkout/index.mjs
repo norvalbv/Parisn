@@ -42,7 +42,7 @@ export const handler = async (event) => {
     const lambda = decayRate(price, endPrice, endTime, startTime);
     const timeElapsed = currentTime - startTime;
     const value = price * Math.exp(-lambda * timeElapsed);
-    return Number(value.toFixed(2));
+    return Number(value.toFixed(2).replace('.', ''));
   };
 
   /**

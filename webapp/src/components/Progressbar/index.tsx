@@ -9,7 +9,7 @@ type ProgressBarProps = {
 
 const ProgressBar = ({ value }: ProgressBarProps): ReactElement => {
   return (
-    <div className="w-full bg-gray-400/20 rounded-full h-2.5 my-4 dark:bg-gray-700/20">
+    <div className="w-full bg-gray-400/40 rounded-full h-2.5 my-4">
       <div className="bg-blue-600 h-2.5 rounded-full" style={{ width: `${value}%` }} />
     </div>
   );
