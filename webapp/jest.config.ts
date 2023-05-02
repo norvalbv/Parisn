@@ -1,5 +1,7 @@
 import type { Config } from 'jest';
 
+const esModules = ['@aws-amplify', '@aws-crypto', '@aws-sdk', 'aws-amplify', 'uuid'].join('|');
+
 export default (): Config => {
   return {
     clearMocks: true,
@@ -20,6 +22,8 @@ export default (): Config => {
     moduleNameMapper: {
       '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
       axios: '<rootDir>/node_modules/axios/dist/axios.min.js',
+      '^@aws-sdk': '<rootDir>/node_modules/@aws-sdk',
+      '^@aws-amplify': '<rootDir>/node_modules/@aws-amplify',
     },
     preset: 'ts-jest',
     testEnvironment: 'jsdom',
@@ -27,7 +31,7 @@ export default (): Config => {
       '^.+\\.tsx?$': 'ts-jest',
     },
     setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
-    transformIgnorePatterns: ['/node_modules/(?!@aws-amplify|@aws-crypto|@aws-sdk|aws-amplify)'],
+    transformIgnorePatterns: [`node_modules/(?!${esModules})`],
     watchPathIgnorePatterns: ['<rootDir>/src/cypress/'],
     moduleDirectories: ['node_modules', 'src'],
   };
