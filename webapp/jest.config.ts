@@ -18,18 +18,16 @@ export default (): Config => {
       },
     },
     moduleNameMapper: {
-      '\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-        '<rootDir>/src/__mocks__/fileMock.js',
       '\\.(css|less|sass|scss)$': 'identity-obj-proxy',
       axios: '<rootDir>/node_modules/axios/dist/axios.min.js',
-      '^d3-(.*)$': '<rootDir>/node_modules/d3-$1/dist/d3-$1.js',
     },
     preset: 'ts-jest',
-    setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
     testEnvironment: 'jsdom',
     transform: {
       '^.+\\.tsx?$': 'ts-jest',
     },
+    setupFilesAfterEnv: ['<rootDir>/src/setupTests.ts'],
+    transformIgnorePatterns: ['/node_modules/(?!@aws-amplify|@aws-crypto|@aws-sdk|aws-amplify)'],
     watchPathIgnorePatterns: ['<rootDir>/src/cypress/'],
     moduleDirectories: ['node_modules', 'src'],
   };
