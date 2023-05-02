@@ -5,7 +5,7 @@ exports[`<TermsAndConditions /> TermsAndConditions props with mandatory props 1`
   className=" bg-black text-primary-light"
 >
   <div
-    className="max-w-[2000px] mx-auto undefined"
+    className="max-w-[2000px] mx-auto "
   >
     <p
       className="text-center w-4/5 mx-auto"

@@ -12,7 +12,7 @@ exports[`<Radial /> Radial props with all props as required 1`] = `
 
 exports[`<Radial /> Radial props with mandatory props 1`] = `
 <p
-  className="text-base undefined z-10"
+  className="text-xs  z-10"
 >
   Live viewers:
    

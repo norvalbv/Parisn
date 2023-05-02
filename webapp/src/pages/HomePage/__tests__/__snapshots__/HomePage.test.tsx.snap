@@ -31,7 +31,7 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
           <span
             className="text-[3rem] drop-shadow-[0_0_16px_rgba(255,255,255,0.7)]"
           >
-            PARISN
+            DEMO SITE
           </span>
           <span
             className="drop-shadow-[0_0_16px_rgba(255,255,255,0.5)]"
@@ -48,7 +48,7 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
           className="mt-20 flex gap-10 items-center justify-center"
         >
           <button
-            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            className="relative inline-flex items-center justify-center  uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -69,7 +69,7 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
             </span>
           </button>
           <button
-            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            className="relative inline-flex items-center justify-center  uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -90,7 +90,7 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
             </span>
           </button>
           <button
-            className="relative inline-flex items-center justify-center false uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
+            className="relative inline-flex items-center justify-center  uppercase  px-8 py-2.5 text-base w-full  none py-4 hover:scale-110 transition-all"
             onClick={[Function]}
             onMouseEnter={[Function]}
             onMouseLeave={[Function]}
@@ -234,9 +234,9 @@ exports[`<HomePage /> HomePage props with mandatory props 1`] = `
       Launched in 2022 allows you to choose the price you pay for your items in a reverse bidding strategy technique. Starting at £10,000 per item, over time the price of the item drops to £0.
     </p>
     <img
-      alt="http://localhost:3001/images/dashboard-image.jpg"
+      alt="http://127.0.0.1:6001/images/dashboard-image.jpg"
       className="h-screen w-[42.5%]"
-      src="http://localhost:3001/images/dashboard-image.jpg"
+      src="http://127.0.0.1:6001/images/dashboard-image.jpg"
     />
   </div>,
 ]

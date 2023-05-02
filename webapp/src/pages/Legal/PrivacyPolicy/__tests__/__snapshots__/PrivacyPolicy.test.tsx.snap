@@ -5,7 +5,7 @@ exports[`<PrivacyPolicy /> PrivacyPolicy props with mandatory props 1`] = `
   className="h-screen w-full grid place-items-center bg-black text-primary-light"
 >
   <div
-    className=" undefined"
+    className=" "
   >
     <p
       className="text-center w-4/5 mx-auto"
