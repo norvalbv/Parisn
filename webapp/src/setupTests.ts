@@ -33,13 +33,6 @@ jest.mock('react', () => ({
 }));
 
 /**
- * Mock the `useMountTransition` hook so the components which uses it will always rendered
- */
-jest.mock('./hooks/useMountTransition', () => {
-  return (): boolean => true;
-});
-
-/**
  * Mock system time to ensure all tests are consistent
  */
 jest.useFakeTimers().setSystemTime(new Date('2022-02-18'));
@@ -48,14 +41,3 @@ jest.useFakeTimers().setSystemTime(new Date('2022-02-18'));
  * Mock Math.random()
  */
 global.Math.random = (): number => 0.314159265358979;
-
-/**
- * Mock the Analytics service
- */
-jest.mock('./services/AnalyticsService', () => {
-  return {
-    AsInitialize: jest.fn(),
-    AsSetUser: jest.fn(),
-    AsTrack: jest.fn(),
-  };
-});
