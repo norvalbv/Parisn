@@ -28,6 +28,8 @@ const Checkout = (): ReactElement => {
   const locationState = location.state as LocationState;
   const clientSecret = locationState?.client_secret || '';
 
+  console.log(clientSecret, locationState);
+
   const { productInfo } = useProduct();
 
   const { user } = useUser();
@@ -35,7 +37,7 @@ const Checkout = (): ReactElement => {
   const truthyDataParsed = productInfo && Object.values(productInfo || '').every((item) => item);
 
   const [hovered, setHovered] = useState(false);
-  const [stage, setStage] = useState(1);
+  const [stage, setStage] = useState(2);
 
   if (!productInfo) return <Loading />;
 

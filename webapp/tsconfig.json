@@ -32,6 +32,5 @@
     // Misc
     "baseUrl": "./src"
   },
-  "include": ["src"],
-  "exclude": ["./cypress.config.ts", "cypress"]
+  "include": ["src", "./cypress.config.ts", "./vite.config.ts", "./jest.config.ts"]
 }

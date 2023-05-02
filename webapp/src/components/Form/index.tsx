@@ -58,6 +58,7 @@ const Form = ({
       validateOnChange={false}
       validationSchema={validationSchema}
       onSubmit={(values, { resetForm }): void => {
+        console.log(values);
         submitFn(values);
         if (resetFormOnbSubmit) resetForm();
       }}

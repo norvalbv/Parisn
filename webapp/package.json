@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite --port 5001",
+    "start": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview --port 5050",
     "lint": "eslint src",

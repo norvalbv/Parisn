@@ -23,6 +23,22 @@
     }
   },
   "rules": {
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": [
+          "src/globals.d.ts",
+          "jest.config.ts", // jest config
+          "src/setupTests.ts", // jest setup
+          "src/utils/testUtils.tsx", // jest utils
+          "vite.config.ts", // vite config
+          "**/*.test.{js,jsx,ts,tsx}", // tests where the extension or filename suffix denotes that it is a test
+          "src/cypress/**/*.{js,ts}", // cypress
+          "cypress.config.ts" // cypress config
+        ],
+        "optionalDependencies": false
+      }
+    ],
     "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/no-unused-vars": ["error"],
     "@typescript-eslint/unbound-method": "error",
