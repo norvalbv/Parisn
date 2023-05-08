@@ -28,7 +28,6 @@
     "react-error-boundary": "^3.1.4",
     "react-router-dom": "^6.4.3",
     "react-toastify": "^9.1.1",
-    "rollup-plugin-node-polyfills": "^0.2.1",
     "socket.io-client": "^4.5.4",
     "swr": "^2.1.0",
     "uuid": "^9.0.0",
