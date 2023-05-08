@@ -10,7 +10,7 @@ export const CloudWatch = async (event) => {
         timestamp: new Date().getTime(),
       },
     ],
-    logGroupName: 'Parisn',
+    logGroupName: 'parisn',
     logStreamName: 'support',
   };
 
