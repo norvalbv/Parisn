@@ -24,9 +24,11 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <>
+    <div className="flex items-center justify-between">
+      <span>menu</span>
+      <span>PARISN.COM</span>
       {location.pathname !== '/checkout' && (
-        <ul className="absolute right-0 flex text-white items-center pr-8 py-6 z-30 divide-x">
+        <ul className="flex text-white items-center">
           {user.userInfo?.id ? (
             <li
               className="px-10 cursor-pointer hover:underline underline-offset-8"
@@ -41,7 +43,7 @@ const NavBar = (): ReactElement => {
           )}
         </ul>
       )}
-    </>
+    </div>
   );
 };
 

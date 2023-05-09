@@ -24,7 +24,7 @@ const HomePage = (): ReactElement => {
       <div className="relative min-h-screen">
         <NavBar />
         <Outlet />
-        <MyAccount />
+        {/* <MyAccount /> */}
       </div>
     </UserInformationProvider>
   );

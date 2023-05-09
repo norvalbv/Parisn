@@ -6,6 +6,9 @@ module.exports = {
       xxs: ['10px', '12px'],
     },
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
       colors: {
         primary: {
           dark: '#000000',
@@ -48,6 +51,20 @@ module.exports = {
         'spin-slow': 'spin 3s linear infinite',
       },
     },
+  },
+  daisyui: {
+    themes: [
+      {
+        parisn: {
+          primary: '#9E00FF',
+          secondary: '#006400',
+          accent: '#FF0000',
+          neutral: '#CCCCCC',
+          'base-100': '#3E3E3E',
+          'base-300': '#1E1E1E',
+        },
+      },
+    ],
   },
   plugins: [require('tailwind-scrollbar'), require('daisyui')],
 };

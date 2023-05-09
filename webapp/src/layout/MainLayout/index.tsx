@@ -1,10 +1,10 @@
 import React, { ReactElement, useEffect } from 'react';
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
-import NavBar from './NavBar';
-import Footer from './Footer';
 import { UserInformationProvider } from 'context/UserContext';
 import MyAccount from 'pages/Account/MyAccount';
 import { useDrawer } from 'hooks/useDrawer';
+import Footer from './Footer';
+import NavBar from './NavBar';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
