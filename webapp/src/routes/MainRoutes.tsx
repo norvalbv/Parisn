@@ -16,7 +16,6 @@ import AllCollections from 'pages/Products/AllCollections';
 import SignUp from 'pages/Account/SignUp';
 import ResetPassword from 'pages/Account/ResetPassword';
 import ForgotPassword from 'pages/Account/ForgotPassword';
-import HomePage from 'layout/HomePage/HomePage';
 import PurchaseSuccessful from 'pages/PurchaseSuccessful';
 import { DrawerProvider } from 'context/DrawerContext';
 import ErrorBoundary from 'components/ErrorBoundary';
@@ -28,20 +27,11 @@ export const router = createBrowserRouter(
         path="/"
         element={
           <DrawerProvider>
-            <HomePage />
-          </DrawerProvider>
-        }
-      >
-        <Route path="home" element={<Dashboard />} errorElement={<ErrorBoundary />} />
-      </Route>
-      <Route
-        path="/"
-        element={
-          <DrawerProvider>
             <MainLayout />
           </DrawerProvider>
         }
       >
+        <Route path="home" element={<Dashboard />} errorElement={<ErrorBoundary />} />
         <Route path="about" element={<AboutUs />} errorElement={<ErrorBoundary />} />
         <Route path="how-it-works" element={<HowItWorks />} errorElement={<ErrorBoundary />} />
         <Route path="collections" element={<AllCollections />} errorElement={<ErrorBoundary />} />
