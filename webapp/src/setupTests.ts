@@ -4,16 +4,8 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
 import '@testing-library/jest-dom/extend-expect';
-import { ResizeObserver } from '@juggle/resize-observer';
 import ReactDOM from 'react-dom';
 import { ReactNode, ReactPortal } from 'react';
-
-/**
- * This jest does not support ResizeObserver out of the box.
- * The `useTooltipInPortal` from `@visx/tooltip` used the `ResizeObserver` dependency.
- * Add polyfill for ResizeObserver.
- */
-global.ResizeObserver = ResizeObserver;
 
 /**
  * `react-test-renderer` does not provide a proper way to test components that are using `React.Portal`.
