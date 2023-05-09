@@ -5,6 +5,7 @@ import MyAccount from 'pages/Account/MyAccount';
 import { useDrawer } from 'hooks/useDrawer';
 import Footer from './Footer';
 import NavBar from './NavBar';
+import Nav from './NavBarHomePage';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
@@ -24,7 +25,7 @@ const MainLayout = (): ReactElement => {
     <UserInformationProvider>
       <>
         <div className="relative min-h-screen text-gray-300">
-          <NavBar />
+          {location.pathname !== '/home' ? <NavBar /> : <Nav />}
           <Outlet />
           <MyAccount />
         </div>
