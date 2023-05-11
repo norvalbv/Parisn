@@ -65,3 +65,5 @@ export const UserLoginIcon = (): ReactElement => (
 export { default as SearchIcon } from './SearchIcon';
 export { default as BasketIcon } from './BasketIcon';
 export { default as UserIcon } from './UserIcon';
+export { default as LeftIcon } from './LeftIcon';
+export { default as RightIcon } from './RightIcon';

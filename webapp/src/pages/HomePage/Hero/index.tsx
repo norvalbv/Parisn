@@ -1,13 +1,21 @@
-import Button from 'components/Button';
 import React, { ReactElement } from 'react';
+import Button from 'components/Button';
+import Carousel from './Carousel';
 
 const Hero = (): ReactElement => {
   return (
-    <div className="h-screen pt-[3.125rem]">
-      <span>Unlock the Essence of Urban Luxury with Refined Shopping Redefined by</span>
-      <span>PARISN</span>
-      <span>Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding</span>
-      <Button text="Shop Now" />
+    <div className="h-screen pt-[3.125rem] px-32 flex justify-between">
+      <div className="w-[23.8125rem] mt-28">
+        <h2 className="text-h2">
+          Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
+        </h2>
+        <h1 className="text-h1">PARISN</h1>
+        <h3 className="text-h3">
+          Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
+        </h3>
+        <Button text="Shop Now" />
+      </div>
+      <Carousel />
     </div>
   );
 };
