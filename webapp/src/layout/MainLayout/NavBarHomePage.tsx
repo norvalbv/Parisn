@@ -24,8 +24,8 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <div className="flex items-center justify-between">
-      <span>menu</span>
+    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem]">
+      <span>MENU</span>
       <span>PARISN.COM</span>
       {location.pathname !== '/checkout' && (
         <ul className="flex text-white items-center">
