@@ -9,7 +9,7 @@ import Newsletter from './NewsLetter';
 
 const HomePage = (): ReactElement => {
   return (
-    <>
+    <div className="bg-primary-dark">
       <Hero />
       <Synopsis />
       <HowItWorks />
@@ -17,7 +17,7 @@ const HomePage = (): ReactElement => {
       <PickedProducts />
       <AboutUs />
       <Newsletter />
-    </>
+    </div>
   );
 };
 

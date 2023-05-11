@@ -9,6 +9,41 @@ module.exports = {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
+      fontSize: {
+        h1: [
+          '3.375rem', // 54px
+          {
+            lineHeight: '4.0625rem', // 65px
+            letterSpacing: '0.08rem',
+            fontWeight: 400,
+          },
+        ],
+        h2: [
+          '2.625rem', // 42px
+          {
+            lineHeight: '3.125rem', // 50px
+            letterSpacing: '0.08rem',
+            fontWeight: 400,
+          },
+        ],
+        h3: [
+          '1.25rem', // 20px
+          {
+            lineHeight: '2.4375rem', // 39px
+            letterSpacing: '0.08rem',
+            fontWeight: 600,
+          },
+        ],
+        body: [
+          '1rem', // 16px
+          {
+            lineHeight: '1.625rem', // 26px or 160%
+            letterSpacing: '0.16rem',
+            fontWeight: 100,
+            transform: 'uppercase',
+          },
+        ],
+      },
       colors: {
         primary: {
           dark: '#020202',
@@ -51,20 +86,6 @@ module.exports = {
         'spin-slow': 'spin 3s linear infinite',
       },
     },
-  },
-  daisyui: {
-    themes: [
-      {
-        parisn: {
-          primary: '#9E00FF',
-          secondary: '#006400',
-          accent: '#FF0000',
-          neutral: '#CCCCCC',
-          'base-100': '#3E3E3E',
-          'base-300': '#1E1E1E',
-        },
-      },
-    ],
   },
   plugins: [require('tailwind-scrollbar'), require('daisyui')],
 };
