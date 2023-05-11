@@ -24,7 +24,7 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem] fixed w-full bg-primary-dark/60">
+    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem] z-50 fixed w-full bg-primary-dark/60">
       <span className="w-full">MENU</span>
       <span className="w-full text-center">PARISN.COM</span>
       <div className="flex w-full items-center gap-11 justify-end">

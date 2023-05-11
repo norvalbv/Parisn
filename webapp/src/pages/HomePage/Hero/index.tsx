@@ -4,8 +4,8 @@ import Carousel from './Carousel';
 
 const Hero = (): ReactElement => {
   return (
-    <div className="h-screen pt-[3.125rem] px-32 flex justify-between">
-      <div className="w-[23.8125rem] mt-28">
+    <div className="h-screen pt-[10.125rem] px-32 flex justify-between">
+      <div className="w-[23.8125rem]">
         <h2 className="text-h2">
           Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
         </h2>
