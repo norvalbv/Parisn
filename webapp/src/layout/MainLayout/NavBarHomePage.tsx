@@ -1,9 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { UserIcon, UserLoginIcon } from 'components/SVG';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useDrawer } from 'hooks/useDrawer';
 import useUser from 'hooks/useUser';
 import { ProductData } from 'types';
+import SearchIcon from 'components/SVG/SearchIcon';
+import BasketIcon from 'components/SVG/BasketIcon';
+import UserIcon from 'components/SVG/UserIcon';
 
 const NavBar = (): ReactElement => {
   const { openDrawer } = useDrawer();
@@ -24,25 +26,18 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem]">
-      <span>MENU</span>
-      <span>PARISN.COM</span>
-      {location.pathname !== '/checkout' && (
-        <ul className="flex text-white items-center">
-          {user.userInfo?.id ? (
-            <li
-              className="px-10 cursor-pointer hover:underline underline-offset-8"
-              onClick={(): void => openDrawer('Account')}
-            >
-              <UserLoginIcon />
-            </li>
-          ) : (
-            <Link to="/login">
-              <UserIcon />
-            </Link>
-          )}
-        </ul>
-      )}
+    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem] fixed w-full bg-primary-dark/60">
+      <span className="w-full">MENU</span>
+      <span className="w-full text-center">PARISN.COM</span>
+      <div className="flex w-full items-center gap-11 justify-end">
+        <SearchIcon className="cursor-pointer" />
+        <BasketIcon className="cursor-pointer" />
+        {!user.userInfo?.id ? (
+          <UserIcon onClick={(): void => openDrawer('Account')} className="cursor-pointer" />
+        ) : (
+          <UserIcon onClick={(): void => navigate('/login')} className="cursor-pointer" />
+        )}
+      </div>
     </div>
   );
 };
