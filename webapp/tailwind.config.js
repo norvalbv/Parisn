@@ -53,7 +53,7 @@ module.exports = {
         secondary: {
           blueGreen: '#004B6E',
           darkPurple: '#120E44',
-          purple: '#8948DC',
+          purple: '#9E00FF',
           green: '#00BA92',
           blue: '#1BC5DC',
           neutral: '#C0D1D9',

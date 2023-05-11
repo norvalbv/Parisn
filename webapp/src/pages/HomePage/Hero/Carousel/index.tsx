@@ -1,10 +1,12 @@
 import React, { ReactElement } from 'react';
 import { LeftIcon, RightIcon } from 'components/SVG';
+import Radial from 'components/Design/Radial';
 import Shoes from '../shoes';
 
 const Carousel = (): ReactElement => {
   return (
     <div className="flex relative w-7/12 justify-between">
+      <Radial />
       <div className="top-10 relative">
         <Shoes />
       </div>

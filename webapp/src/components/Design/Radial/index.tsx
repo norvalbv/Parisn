@@ -1,36 +1,14 @@
 import React, { ReactElement } from 'react';
-import { Colour } from 'types/tailwind';
-import classNames from 'utils/classNames';
 
-export interface RadialProps {
-  size?: keyof typeof sizeMap;
-  colour?: Colour;
-  className?: string;
-}
-
-const Radial = ({
-  size = 'xl',
-  colour = 'darkpurple',
-  className = '',
-}: RadialProps): ReactElement => {
+const Radial = (): ReactElement => {
   return (
     <svg
-      className={classNames('absolute rounded-full opacity-20 blur-3xl z-0', className)}
+      className="absolute w-[25.875rem] z-0 h-[62.5rem] -top-32 rotate-[-80deg] blur-[150px]"
       style={{
-        backgroundColor: colour,
-        width: sizeMap[size],
-        height: sizeMap[size],
+        backgroundColor: '#9E00FF25',
       }}
     />
   );
 };
 
 export default Radial;
-
-const sizeMap = {
-  sm: '15rem',
-  md: '25rem',
-  lg: '35rem',
-  xl: '40rem',
-  '2xl': '45rem',
-};

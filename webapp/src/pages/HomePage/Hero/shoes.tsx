@@ -9,6 +9,7 @@ const Shoes = (): ReactElement => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
+      className="z-40"
     >
       <rect width="612" height="372.903" fill="url(#pattern0)" />
       <defs>
