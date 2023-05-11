@@ -1,15 +1,9 @@
-import React, { ReactElement, SVGProps } from 'react';
+import React, { ReactElement } from 'react';
+import SVGIcon, { SVGIconProps } from './SVGIcon';
 
-const UserIcon = (props: SVGProps<SVGSVGElement>): ReactElement => {
+const UserIcon = (props: SVGIconProps): ReactElement => {
   return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}
-    >
+    <SVGIcon width={16} height={16} viewBox="0 0 16 16" fill="none" {...props}>
       <path
         d="M7.99993 9.07694C9.48685 9.07694 10.6922 7.87155 10.6922 6.38463C10.6922 4.89771 9.48685 3.69232 7.99993 3.69232C6.513 3.69232 5.30762 4.89771 5.30762 6.38463C5.30762 7.87155 6.513 9.07694 7.99993 9.07694Z"
         stroke="white"
@@ -28,7 +22,7 @@ const UserIcon = (props: SVGProps<SVGSVGElement>): ReactElement => {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </SVGIcon>
   );
 };
 

@@ -21,7 +21,11 @@ export const CloseIcon = (): ReactElement => (
   </svg>
 );
 
-export const UserIcon = ({ viewBox = '0 0 24 14', size = 34, colour }: IconProps): ReactElement => (
+export const UserIconOld = ({
+  viewBox = '0 0 24 14',
+  size = 34,
+  colour,
+}: IconProps): ReactElement => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     className="icon icon-tabler icon-tabler-user"
@@ -57,3 +61,7 @@ export const UserLoginIcon = (): ReactElement => (
     <path d="M16 11l2 2l4 -4" />
   </svg>
 );
+
+export { default as SearchIcon } from './SearchIcon';
+export { default as BasketIcon } from './BasketIcon';
+export { default as UserIcon } from './UserIcon';

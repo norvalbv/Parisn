@@ -3,9 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useDrawer } from 'hooks/useDrawer';
 import useUser from 'hooks/useUser';
 import { ProductData } from 'types';
-import SearchIcon from 'components/SVG/SearchIcon';
-import BasketIcon from 'components/SVG/BasketIcon';
-import UserIcon from 'components/SVG/UserIcon';
+import { SearchIcon, BasketIcon, UserIcon } from 'components/SVG';
 
 const NavBar = (): ReactElement => {
   const { openDrawer } = useDrawer();
