@@ -1,20 +1,21 @@
 import React, { ReactElement } from 'react';
 import { Colour } from 'types/tailwind';
+import classNames from 'utils/classNames';
 
 export interface RadialProps {
   size?: keyof typeof sizeMap;
   colour?: Colour;
-  classes?: string;
+  className?: string;
 }
 
 const Radial = ({
   size = 'xl',
   colour = 'darkpurple',
-  classes = '',
+  className = '',
 }: RadialProps): ReactElement => {
   return (
     <svg
-      className={`absolute rounded-full opacity-20 blur-3xl z-0 ${classes}`}
+      className={classNames('absolute rounded-full opacity-20 blur-3xl z-0', className)}
       style={{
         backgroundColor: colour,
         width: sizeMap[size],
