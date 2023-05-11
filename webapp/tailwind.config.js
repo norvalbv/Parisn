@@ -9,41 +9,6 @@ module.exports = {
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },
-      fontSize: {
-        h1: [
-          '3.375rem', // 54px
-          {
-            lineHeight: '4.0625rem', // 65px
-            letterSpacing: '0.08rem',
-            fontWeight: 400,
-          },
-        ],
-        h2: [
-          '2.625rem', // 42px
-          {
-            lineHeight: '3.125rem', // 50px
-            letterSpacing: '0.08rem',
-            fontWeight: 400,
-          },
-        ],
-        h3: [
-          '1.25rem', // 20px
-          {
-            lineHeight: '2.4375rem', // 39px
-            letterSpacing: '0.08rem',
-            fontWeight: 600,
-          },
-        ],
-        body: [
-          '1rem', // 16px
-          {
-            lineHeight: '1.625rem', // 26px or 160%
-            letterSpacing: '0.16rem',
-            fontWeight: 100,
-            transform: 'uppercase',
-          },
-        ],
-      },
       colors: {
         primary: {
           dark: '#020202',

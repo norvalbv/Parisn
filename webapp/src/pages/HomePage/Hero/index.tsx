@@ -9,7 +9,7 @@ const Hero = (): ReactElement => {
         <h2 className="text-h2">
           Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
         </h2>
-        <h1 className="text-h1">PARISN</h1>
+        <h1>PARISN</h1>
         <h3 className="text-h3">
           Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
         </h3>

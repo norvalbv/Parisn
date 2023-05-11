@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  h1 {
+    @apply text-[3.375rem] /* 54px */ leading-[4.0625rem] /* 65px */ tracking-[0.08rem] font-normal;
+  }
+  h2 {
+    @apply text-[2.625rem] /* 42px */ leading-[3.125rem] /* 50px */ tracking-[0.08rem] font-normal;
+  }
+  h3 {
+    @apply text-[1.25rem] /* 20px */ leading-[2.4375rem] /* 39px */ tracking-[0.08rem] font-semibold;
+  }
+  body {
+    @apply text-[1rem] /* 16px */ leading-[1.625rem] /* 26px */ tracking-[0.16rem] font-thin;
+  }
+}

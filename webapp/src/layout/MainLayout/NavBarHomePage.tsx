@@ -1,5 +1,5 @@
 import React, { ReactElement, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDrawer } from 'hooks/useDrawer';
 import useUser from 'hooks/useUser';
 import { ProductData } from 'types';
@@ -25,7 +25,10 @@ const NavBar = (): ReactElement => {
 
   return (
     <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem] z-50 fixed w-full bg-primary-dark/60">
-      <span className="w-full">MENU</span>
+      <div className="w-full flex gap-11">
+        <Link to="/collections">Collections</Link>
+        <Link to="/contact-us">Contact Us</Link>
+      </div>
       <span className="w-full text-center">PARISN.COM</span>
       <div className="flex w-full items-center gap-11 justify-end">
         <SearchIcon className="cursor-pointer" />
