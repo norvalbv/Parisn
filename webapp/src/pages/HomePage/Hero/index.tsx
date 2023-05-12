@@ -6,14 +6,14 @@ const Hero = (): ReactElement => {
   return (
     <div className="h-screen pt-[10.125rem] px-32 flex justify-between">
       <div className="w-[23.8125rem]">
-        <h2 className="text-h2">
+        <span className="text-[1.5rem]">
           Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
-        </h2>
-        <h1>PARISN</h1>
-        <h3 className="text-h3">
+        </span>
+        <h2 className="mt-1 mb-3">PARISN</h2>
+        <span className="text-[14px] text-primary-neutral">
           Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
-        </h3>
-        <Button text="Shop Now" />
+        </span>
+        <Button text="Shop Now" classes="mt-[3.75rem]" />
       </div>
       <Carousel />
     </div>
