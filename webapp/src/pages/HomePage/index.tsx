@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import HowItWorks from 'pages/HowItWorks';
+import HowItWorks from './HowItWorks';
 import Categories from './Categories';
 import Hero from './Hero';
 import PickedProducts from './PickedProducts';
@@ -9,7 +9,7 @@ import Newsletter from './NewsLetter';
 
 const HomePage = (): ReactElement => {
   return (
-    <div className="bg-primary-dark">
+    <div className="px-[7.5rem]">
       <Hero />
       <Synopsis />
       <HowItWorks />

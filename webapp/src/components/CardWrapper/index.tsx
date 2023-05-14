@@ -26,7 +26,7 @@ const CardWrapper = ({
 
 const backgroundColorMap = {
   white: 'bg-white text-black',
-  black: 'bg-base-300 text-primary-light',
+  black: 'bg-primary-dark text-primary-light',
 };
 
 const cardTypeMap = {
