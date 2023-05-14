@@ -13,6 +13,7 @@ const indexFromSelected: { [key: number]: string } = {
 };
 
 const Carousel = (): ReactElement => {
+  // temp
   const images = [
     <Shoes key="1" />,
     <Shoes key="2" />,
