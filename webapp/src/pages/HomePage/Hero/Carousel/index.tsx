@@ -1,7 +1,8 @@
 import React, { Fragment, ReactElement, useState } from 'react';
 import { LeftIcon, RightIcon } from 'components/SVG';
-import Radial from 'components/Design/Radial';
+import Radial from 'components/SVG/Design';
 import classNames from 'utils/classNames';
+import useInterval from 'hooks/useInterval';
 import Shoes from '../shoes';
 
 const indexFromSelected: { [key: number]: string } = {
@@ -24,9 +25,13 @@ const Carousel = (): ReactElement => {
 
   const [selected, setSelected] = useState(0);
 
+  useInterval(() => {
+    setSelected((selected) => (selected >= images.length - 1 ? 0 : selected + 1));
+  }, 7500);
+
   return (
     <div className="flex relative w-7/12 justify-between">
-      <Radial />
+      <Radial backgroundColor={selected % 2 ? 'purple' : 'green'} />
       <div className="top-10 relative">{images[selected]}</div>
       <div className="flex flex-col gap-3 items-end">
         {images.map((image, idx) => (
