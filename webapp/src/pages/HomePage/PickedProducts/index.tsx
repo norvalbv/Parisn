@@ -50,8 +50,8 @@ const PickedProducts = (): ReactElement => {
             <div className="absolute top-[0.6875rem] right-3">
               <Badge type={idx % 2 ? 'limited' : 'new'} />
             </div>
-            <img src={category} alt="p" className="h-[23.625rem] w-full" />
-            <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10">
+            <img src={category} alt="p" className="h-[18.5rem] w-full" />
+            <div className="h-[13.375rem] bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10">
               <div className="flex">
                 <span>Limited Size Sneakers</span>
                 <section>
@@ -65,7 +65,7 @@ const PickedProducts = (): ReactElement => {
                 consequatur magnam.
               </p>
               <div className="flex">
-                <Button text="Make A Bid" />
+                <Button text="Make A Bid" theme="ghost" />
                 <Button text="Buy Now" theme="light" />
               </div>
             </div>

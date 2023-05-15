@@ -25,11 +25,6 @@ module.exports = {
           neutral: '#C0D1D9',
           red: '#FF0000',
         },
-        buttons: {
-          active: '#000000',
-          hover: '#061D28',
-          disabled: '#D1D5DB',
-        },
         utility: {
           warning: {
             main: '#FF3A38',

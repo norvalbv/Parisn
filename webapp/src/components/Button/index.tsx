@@ -18,7 +18,6 @@ export interface ButtonProps {
   onMouseLeave?: () => void;
   id?: string;
   testId?: string;
-  uppercase?: boolean;
   className?: string;
   theme?: keyof typeof themeMap;
   type?: 'button' | 'submit';
@@ -49,7 +48,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       text,
       type = 'button',
       theme = 'dark',
-      uppercase = true,
       width,
       navigationState,
     },
@@ -81,15 +79,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         className={classNames(
           buttonSizeMap[size],
           themeMap[theme],
-          uppercase,
           borderRequiredMap[borderRequired],
           className,
-          'items-center',
+          'items-center rounded uppercase',
           { 'transition-all hover:scale-110': hoveredAnimation },
-          {
-            'transition-colors duration-200 hover:bg-buttons-hover':
-              hoverColorRequired && !disabled && !loading,
-          },
+          hoverColorRequired &&
+            !disabled &&
+            !loading &&
+            `transition-colors duration-200 hover:bg-primary-neutral/${
+              theme === 'light' ? '80' : '20'
+            }`,
           {
             'cursor-default border-primary-neutral bg-primary-neutral/60 text-primary-dark':
               disabled || loading,
@@ -130,6 +129,7 @@ Button.displayName = 'Button';
 const themeMap = {
   light: 'text-primary-dark bg-primary-light',
   dark: 'text-primary-light bg-primary-dark',
+  ghost: 'text-primary-light bg-transparent',
 };
 
 const buttonSizeMap = {
