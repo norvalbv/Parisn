@@ -9,111 +9,34 @@ import {
   roundedMap,
 } from 'types/tailwind';
 import { Spinner } from 'components/CustomSVG';
+import classNames from 'utils/classNames';
 
 export interface ButtonProps {
-  /**
-   * Text or label of button
-   */
   text: string | JSX.Element;
-  /**
-   * Text or label for when hovered
-   */
   hoveredText?: string;
-  /**
-   * How big the button is
-   */
   size?: keyof typeof buttonSizeMap;
-  /**
-   * How big the border radius
-   */
   rounded?: Rounded;
-  /**
-   * Set button width manually
-   */
   width?: string;
-  /**
-   * Overwrite text color
-   */
   color?: string;
-  /**
-   * Overwrite background color
-   */
   backgroundColor?: string;
-  /**
-   * Require a hover colour?
-   */
   hoverColorRequired?: boolean;
-  /**
-   * Is button disabled
-   */
   disabled?: boolean;
-  /**
-   * Loading state
-   */
   loading?: boolean;
-  /**
-   * Icon for button
-   */
   icon?: JSX.Element;
-  /**
-   * Icon position
-   */
   iconPosition?: 'left' | 'right';
-  /**
-   * Optional click event
-   */
   onClick?: (arg1?: unknown) => void;
-  /**
-   * Optional mouse event
-   */
   onMouseLeave?: () => void;
-  /**
-   * id to identify button on dom
-   */
   id?: string;
-  /*
-   * Data attribute for testing with cypress
-   */
-  dataAtt?: string;
-  /**
-   * Text case
-   */
+  testId?: string;
   upperCase?: boolean;
-  /**
-   * Additional classes
-   */
-  classes?: string;
-  /**
-   * Positioning of button
-   */
+  className?: string;
   positioning?: 'relative' | 'absolute';
-  /**
-   * Font weight for text
-   */
   fontWeight?: FontWeight;
-  /**
-   * Type of button
-   */
   type?: 'button' | 'submit';
-  /**
-   * Navigate to another page within the app
-   */
   navigateTo?: string;
-  /**
-   * Require boarders?
-   */
   borderRequired?: BorderRequired;
-  /**
-   * Positioning of text
-   */
   textOrientation?: string;
-  /**
-   * Scale animation on hover
-   */
   hoveredAnimation?: boolean;
-  /**
-   * Navigation State
-   */
   navigationState?: unknown;
 }
 
@@ -122,9 +45,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     {
       backgroundColor,
       borderRequired = 'all',
-      classes = '',
+      className = '',
       color,
-      dataAtt,
+      testId,
       disabled,
       fontWeight = 'semibold',
       hoverColorRequired = true,
@@ -172,18 +95,30 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         // eslint-disable-next-line react/button-has-type
         type={type}
-        className={`${positioning} inline-flex items-center ${textOrientation} ${
-          hoverColorRequired ? 'hover:bg-buttons-hover transition-colors duration-200' : ''
-        } ${upperCase ? 'uppercase' : ''} ${roundedMap[rounded]} ${
-          buttonSizeMap[size]
-        } ${classes} ${borderRequiredMap[borderRequired]} py-4 ${
-          hoveredAnimation ? 'hover:scale-110 transition-all' : ''
-        }`}
+        className={classNames(
+          positioning,
+          textOrientation,
+          roundedMap[rounded],
+          buttonSizeMap[size],
+          borderRequiredMap[borderRequired],
+          className,
+          'py-4 inline-flex items-center',
+          { 'hover:scale-110 transition-all': hoveredAnimation },
+          {
+            'hover:bg-buttons-hover transition-colors duration-200':
+              hoverColorRequired && !disabled && !loading,
+          },
+          { uppercase: upperCase },
+          {
+            'bg-primary-neutral/60 text-primary-dark border-primary-neutral cursor-default':
+              disabled || loading,
+          }
+        )}
         style={{ width, color, backgroundColor }}
         onClick={(): void => clickHandle()}
         role="button"
         id={id}
-        data-testid={dataAtt}
+        data-testid={testId}
         disabled={disabled}
         ref={ref}
         onMouseEnter={(): void => setHovered(true)}
@@ -198,12 +133,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {loading && (
-          <div className="absolute top-0 left-0 h-full w-full bg-white opacity-50">
-            {text}
-            <span className="float-right mt-3">
-              <Spinner />
-            </span>
-          </div>
+          <span className="absolute top-3 right-3 h-full">
+            <Spinner />
+          </span>
         )}
         {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
         <span className={`inline-block ${fontWeightMap[fontWeight]}`}>
