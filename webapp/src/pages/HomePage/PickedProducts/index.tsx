@@ -1,15 +1,18 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useState } from 'react';
 import Button from 'components/Button';
 import ClockIcon from 'components/SVG/ClockIcon';
 import Badge from 'components/Badge';
+import NavigationArrows from 'components/NavigationArrows';
 
 const PickedProducts = (): ReactElement => {
-  const t = [
+  const images = [
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
   ];
+
+  const [indexedImageInCenter, setIndexedImageInCenter] = useState(1);
   return (
     <div className="my-10">
       <div className="flex items-center justify-between">
@@ -17,9 +20,27 @@ const PickedProducts = (): ReactElement => {
           <span className="block">Dive into Our Handpicked Selection</span>
           <span>Featured Products with Unmatched Style and Exciting Bidding Opportunities</span>
         </div>
+        <NavigationArrows
+          leftArrow={{
+            className: indexedImageInCenter === 1 ? '' : 'cursor-pointer',
+            fill: indexedImageInCenter === 1 ? '#B0B0B0' : 'white',
+            onClick: (): void => {
+              if (indexedImageInCenter === 1) return;
+              setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter - 1);
+            },
+          }}
+          rightArrow={{
+            className: indexedImageInCenter === images.length - 2 ? '' : 'cursor-pointer',
+            fill: indexedImageInCenter === images.length - 2 ? '#B0B0B0' : 'white',
+            onClick: (): void => {
+              if (indexedImageInCenter === images.length - 2) return;
+              setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter + 1);
+            },
+          }}
+        />
       </div>
       <div className="flex items-center gap-[3.75rem]">
-        {t.map((category, idx) => (
+        {images.map((category, idx) => (
           // eslint-disable-next-line react/no-array-index-key
           <section className="h-[31.875rem] w-[19.625rem] relative rounded-lg" key={idx}>
             <div className="flex items-center gap-2.5 absolute top-[0.6875rem] left-3">

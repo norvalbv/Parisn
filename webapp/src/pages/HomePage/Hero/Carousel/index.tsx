@@ -1,8 +1,8 @@
 import React, { Fragment, ReactElement, useState } from 'react';
-import { LeftIcon, RightIcon } from 'components/SVG';
 import Radial from 'components/SVG/Design';
 import classNames from 'utils/classNames';
 import useInterval from 'hooks/useInterval';
+import NavigationArrows from 'components/NavigationArrows';
 import Shoes from '../shoes';
 
 const indexFromSelected: { [key: number]: string } = {
@@ -48,21 +48,23 @@ const Carousel = (): ReactElement => {
           </Fragment>
         ))}
       </div>
-      <div className="absolute bottom-40 right-[3.25rem] flex gap-10">
-        <LeftIcon
-          className={selected === 0 ? '' : 'cursor-pointer'}
-          fill={selected === 0 ? '#B0B0B0' : 'white'}
-          onClick={(): void => {
-            if (selected === 0) return;
-            setSelected((selected) => selected - 1);
+      <div className="absolute bottom-40 right-[3.25rem]">
+        <NavigationArrows
+          leftArrow={{
+            className: selected === 0 ? '' : 'cursor-pointer',
+            fill: selected === 0 ? '#B0B0B0' : 'white',
+            onClick: (): void => {
+              if (selected === 0) return;
+              setSelected((selected) => selected - 1);
+            },
           }}
-        />
-        <RightIcon
-          className={selected === images.length - 1 ? '' : 'cursor-pointer'}
-          fill={selected === images.length - 1 ? '#B0B0B0' : 'white'}
-          onClick={(): void => {
-            if (selected === images.length - 1) return;
-            setSelected((selected) => selected + 1);
+          rightArrow={{
+            className: selected === images.length - 1 ? '' : 'cursor-pointer',
+            fill: selected === images.length - 1 ? '#B0B0B0' : 'white',
+            onClick: (): void => {
+              if (selected === images.length - 1) return;
+              setSelected((selected) => selected + 1);
+            },
           }}
         />
       </div>
