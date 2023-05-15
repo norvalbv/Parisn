@@ -30,13 +30,13 @@ const Carousel = (): ReactElement => {
   }, 7500);
 
   return (
-    <div className="flex relative w-7/12 justify-between">
+    <div className="relative flex w-7/12 justify-between">
       <Radial colour={selected % 2 ? 'purple' : 'green'} />
-      <div className="top-10 relative">{images[selected]}</div>
-      <div className="flex flex-col gap-3 items-end">
+      <div className="relative top-10">{images[selected]}</div>
+      <div className="flex flex-col items-end gap-3">
         {images.map((image, idx) => (
           <Fragment key={image.toString()}>
-            <div className="flex gap-[0.6875rem] items-center font-thin tracking-wider">
+            <div className="flex items-center gap-[0.6875rem] font-thin tracking-wider">
               {selected === idx ? <span className="text-end">Limited Sneakers</span> : null}
               <div
                 className={classNames(

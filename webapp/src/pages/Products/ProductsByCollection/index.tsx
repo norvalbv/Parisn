@@ -35,19 +35,19 @@ const Catalogue = (): ReactElement => {
   if (!data) return <Loading />;
 
   return (
-    <div className="grid grid-cols-3 min-h-screen pb-10">
+    <div className="grid min-h-screen grid-cols-3 pb-10">
       {data.map((product) => (
-        <div key={product.ID} className="flex flex-col flex-wrap justify-center items-center pt-10">
-          <Link to={`${product.ID}`} className="flex justify-center items-center my-4">
+        <div key={product.ID} className="flex flex-col flex-wrap items-center justify-center pt-10">
+          <Link to={`${product.ID}`} className="my-4 flex items-center justify-center">
             <img
               src={product.Image}
               alt={product.Title}
-              className="w-[24rem] h-[34rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
+              className="h-[34rem] w-[24rem] cursor-pointer rounded-xl transition-all hover:scale-110"
             />
           </Link>
-          <div className="flex justify-between w-[24rem] items-center">
+          <div className="flex w-[24rem] items-center justify-between">
             <p className="text-sm">{product.Title}</p>
-            <div className="flex gap-2 items-center justify-center text-sm">
+            <div className="text-sm flex items-center justify-center gap-2">
               {typeof currentPrices[product.ID] === 'number' ? (
                 <p>
                   {currentPrices[product.ID] <= 1

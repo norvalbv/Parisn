@@ -46,16 +46,16 @@ const Checkout = (): ReactElement => {
       {truthyDataParsed ? (
         stage === 1 ? (
           <>
-            <h2 className="text-4xl pt-10 mb-10 border-b w-min mx-auto">Checkout</h2>
-            <div className="flex justify-around items-center w-4/5 mx-auto">
-              <div className="flex-1 flex flex-col items-center gap-5 pr-5">
+            <h2 className="text-4xl mx-auto mb-10 w-min border-b pt-10">Checkout</h2>
+            <div className="mx-auto flex w-4/5 items-center justify-around">
+              <div className="flex flex-1 flex-col items-center gap-5 pr-5">
                 <p className="underline underline-offset-2">Purchase Information:</p>
                 <img
                   src={productInfo.product?.Image}
                   alt={productInfo.product?.Title}
-                  className="mx-8 flex-1 rounded-lg w-96"
+                  className="mx-8 w-96 flex-1 rounded-lg"
                 />
-                <div className="flex text-sm divide-x">
+                <div className="text-sm flex divide-x">
                   <p className="px-2">£{productInfo.price}</p>
                   <p className="px-2">{productInfo.product?.Title}</p>
                   <p className="px-2">{productInfo.product?.Title}</p>
@@ -135,7 +135,7 @@ const Checkout = (): ReactElement => {
           <>Thanks for your purchase!</>
         )
       ) : (
-        <div className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl">
+        <div className="text-xl flex h-screen w-full flex-col items-center justify-center gap-4">
           Basket Empty
           <Button text="Continue Shopping" navigateTo="/collections" />
         </div>

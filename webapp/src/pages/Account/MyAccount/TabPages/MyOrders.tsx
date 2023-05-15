@@ -12,7 +12,7 @@ const MyOrders = (): ReactElement => {
         <Link
           to="/collections"
           onClick={(): void => closeDrawer()}
-          className="inline-block mt-2 underline"
+          className="mt-2 inline-block underline"
         >
           Be sure to check out our collections
         </Link>

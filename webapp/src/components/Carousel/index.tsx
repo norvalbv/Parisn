@@ -13,12 +13,12 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       <div className="duration-700 ease-in-out" data-carousel-item>
         <img
           src={hovered ? images[hovered] : images[selected]}
-          className="h-screen w-full pointer-events-none select-none"
+          className="pointer-events-none h-screen w-full select-none"
           alt={images[selected]}
         />
       </div>
       {/* <!-- Slider indicators --> */}
-      <div className="absolute z-30 flex space-x-2 items-baseline justify-end -translate-x-1/2 bottom-0 left-1/2">
+      <div className="absolute bottom-0 left-1/2 z-30 flex -translate-x-1/2 items-baseline justify-end space-x-2">
         {images.map((image, idx) => (
           <div
             className="px-1"
@@ -31,10 +31,10 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
               src={image}
               alt={image}
               onClick={(): void => setSelected(idx)}
-              className={`border rounded cursor-pointer select-none ${
+              className={`cursor-pointer select-none rounded border ${
                 hovered === idx || (hovered === null && selected === idx)
-                  ? 'w-[60px] h-[80px]'
-                  : 'w-[40px] h-[60px]'
+                  ? 'h-[80px] w-[60px]'
+                  : 'h-[60px] w-[40px]'
               } transition-all duration-200`}
             />
           </div>
@@ -43,15 +43,15 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       {/* <!-- Slider controls --> */}
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="group absolute top-0 left-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         onClick={(): void =>
           setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1))
         }
       >
-        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full sm:w-7 sm:h-7 bg-white/20 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:outline-none">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 sm:h-7 sm:w-7">
           <svg
             aria-hidden="true"
-            className="w-3 h-3 text-white dark:text-gray-800"
+            className="h-3 w-3 text-white dark:text-gray-800"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -69,15 +69,15 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="group absolute top-0 right-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         onClick={(): void =>
           setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
         }
       >
-        <span className="inline-flex items-center justify-center w-5 h-5 rounded-full sm:w-7 sm:h-7 bg-white/20 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:outline-none">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 sm:h-7 sm:w-7">
           <svg
             aria-hidden="true"
-            className="w-3 h-3 text-white dark:text-gray-800"
+            className="h-3 w-3 text-white dark:text-gray-800"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"

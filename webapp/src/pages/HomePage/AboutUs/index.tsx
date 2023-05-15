@@ -4,7 +4,7 @@ import PersonHoldingPhone from 'TempSVGImages/PersonHoldingPhone';
 
 const AboutUs = (): ReactElement => {
   return (
-    <div className="flex relative items-center w-1/2 mx-auto gap-8">
+    <div className="relative mx-auto flex w-1/2 items-center gap-8">
       <Radial />
       <div>
         <span className="mb-8 inline-block uppercase">Parisn.com</span>

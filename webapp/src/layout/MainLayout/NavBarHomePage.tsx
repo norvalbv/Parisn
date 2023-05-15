@@ -24,13 +24,13 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <div className="flex items-center justify-between h-[3.125rem] px-[7.5rem] z-50 fixed w-full bg-primary-dark/60">
-      <div className="w-full flex gap-11">
+    <div className="fixed z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
+      <div className="flex w-full gap-11">
         <Link to="/collections">Collections</Link>
         <Link to="/contact-us">Contact Us</Link>
       </div>
       <span className="w-full text-center">PARISN.COM</span>
-      <div className="flex w-full items-center gap-11 justify-end">
+      <div className="flex w-full items-center justify-end gap-11">
         <SearchIcon className="cursor-pointer" />
         <BasketIcon className="cursor-pointer" />
         {!user.userInfo?.id ? (

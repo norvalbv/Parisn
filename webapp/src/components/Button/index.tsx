@@ -85,13 +85,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           borderRequiredMap[borderRequired],
           className,
           'items-center',
-          { 'hover:scale-110 transition-all': hoveredAnimation },
+          { 'transition-all hover:scale-110': hoveredAnimation },
           {
-            'hover:bg-buttons-hover transition-colors duration-200':
+            'transition-colors duration-200 hover:bg-buttons-hover':
               hoverColorRequired && !disabled && !loading,
           },
           {
-            'bg-primary-neutral/60 text-primary-dark border-primary-neutral cursor-default':
+            'cursor-default border-primary-neutral bg-primary-neutral/60 text-primary-dark':
               disabled || loading,
           }
         )}

@@ -41,7 +41,7 @@ const Counter = (): ReactElement => {
   }, [timeLeft.total]);
 
   return (
-    <div className="text-secondary-blue/90 mt-4 italic tracking-wide">
+    <div className="mt-4 italic tracking-wide text-secondary-blue/90">
       Item held in basket for:&nbsp;
       <span className="text-3xl">
         <span>{timeLeft.minutes}</span>

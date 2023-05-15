@@ -4,12 +4,12 @@ import { InstagramLogo } from 'components/CustomSVG';
 
 const Footer = (): ReactElement => {
   return (
-    <footer className="p-4 rounded-lg shadow md:px-6 md:py-8 text-[14px]">
+    <footer className="rounded-lg p-4 text-[14px] shadow md:px-6 md:py-8">
       <div className="sm:flex sm:items-center sm:justify-between">
-        <a href="https://parisn.com/" className="flex items-center mb-4 sm:mb-0">
-          <span className="self-center text-2xl font-semibold whitespace-nowrap">PARISN.COM</span>
+        <a href="https://parisn.com/" className="mb-4 flex items-center sm:mb-0">
+          <span className="text-2xl self-center whitespace-nowrap font-semibold">PARISN.COM</span>
         </a>
-        <ul className="flex flex-wrap items-center mb-6 text-sm sm:mb-0">
+        <ul className="text-sm mb-6 flex flex-wrap items-center sm:mb-0">
           <li>
             <Link to="/how-it-works" className="mr-2 hover:underline md:mr-4">
               How It Works
@@ -33,7 +33,7 @@ const Footer = (): ReactElement => {
         </ul>
       </div>
       <hr className="my-6 border-gray-500 sm:mx-auto lg:my-8" />
-      <div className="text-sm flex items-center justify-center my-6">
+      <div className="text-sm my-6 flex items-center justify-center">
         <a
           href="https://www.instagram.com"
           target="_blank"

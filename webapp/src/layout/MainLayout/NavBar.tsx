@@ -28,15 +28,15 @@ const NavBar = (): ReactElement => {
   return (
     <>
       {location.pathname !== '/checkout' && (
-        <ul className="absolute right-0 flex text-white items-center pr-8 py-6 z-30 divide-x">
+        <ul className="absolute right-0 z-30 flex items-center divide-x py-6 pr-8 text-white">
           <Link to="/home">
-            <li className="px-10 cursor-pointer hover:underline underline-offset-8">Home</li>
+            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Home</li>
           </Link>
           <Link to="/collections" data-testid="Collections Nav Link">
-            <li className="px-10 cursor-pointer hover:underline underline-offset-8">Collections</li>
+            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Collections</li>
           </Link>
           <Link to="/contact-us">
-            <li className="px-10 cursor-pointer hover:underline underline-offset-8">Contact</li>
+            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Contact</li>
           </Link>
           {truthyDataParsed && (
             <Link
@@ -51,14 +51,14 @@ const NavBar = (): ReactElement => {
 
           {user.userInfo?.id ? (
             <li
-              className="px-10 cursor-pointer hover:underline underline-offset-8"
+              className="cursor-pointer px-10 underline-offset-8 hover:underline"
               onClick={(): void => openDrawer('Account')}
             >
               My Account
             </li>
           ) : (
             <Link to="/login">
-              <li className="px-10 cursor-pointer hover:underline underline-offset-8">Login</li>
+              <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Login</li>
             </Link>
           )}
         </ul>

@@ -15,21 +15,21 @@ const Drawer = ({ children, size = 'base', title, id }: DrawerProps): ReactEleme
   return (
     <div
       id="item-chat"
-      className={`fixed top-0 right-0 z-40 h-screen p-4 overflow-y-auto duration-500 transition-transform ${
+      className={`fixed top-0 right-0 z-40 h-screen overflow-y-auto p-4 transition-transform duration-500 ${
         openedId === id ? '' : 'translate-x-full'
       } ${sizeMap[size]} bg-gray-900`}
       tabIndex={-1}
     >
-      <h5 className="text-base font-semibold text-gray-500 uppercase">{title}</h5>
+      <h5 className="text-base font-semibold uppercase text-gray-500">{title}</h5>
       <button
         type="button"
         onClick={(): void => closeDrawer()}
-        className="text-gray-400 bg-transparent border border-gray-400 hover:rotate-90 transform-all duration-300 p-1.5 rounded-full text-xxs absolute top-2.5 right-2.5 inline-flex items-center"
+        className="transform-all absolute top-2.5 right-2.5 inline-flex items-center rounded-full border border-gray-400 bg-transparent p-1.5 text-xxs text-gray-400 duration-300 hover:rotate-90"
       >
         <CloseIcon />
         <span className="sr-only">Close</span>
       </button>
-      <div className="border-t mt-4 pt-4">{children}</div>
+      <div className="mt-4 border-t pt-4">{children}</div>
     </div>
   );
 };

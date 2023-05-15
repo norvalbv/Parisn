@@ -6,7 +6,7 @@ type PopupProps = {
 
 const Popup = ({ text }: PopupProps): ReactElement => {
   return (
-    <div className="absolute px-3 py-2 rounded-xl shadow-lg shadow-[#777777] text-[13px] bg-secondary-darkPurple opacity-75 border border-white w-52 text-center -top-24 -right-6">
+    <div className="absolute -top-24 -right-6 w-52 rounded-xl border border-white bg-secondary-darkPurple px-3 py-2 text-center text-[13px] opacity-75 shadow-lg shadow-[#777777]">
       {text}
     </div>
   );

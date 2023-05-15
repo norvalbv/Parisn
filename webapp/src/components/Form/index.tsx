@@ -74,7 +74,7 @@ const Form = ({
                 <ErrorMessage
                   name={id}
                   component="div"
-                  className="font-normal text-red-500 text-sm"
+                  className="text-sm font-normal text-red-500"
                 />
               </div>
               <Field
@@ -82,14 +82,14 @@ const Form = ({
                 name={id}
                 placeholder={values.placeholder}
                 type={type}
-                className="-mb-4 -mt-8 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 bg-black border-gray-600 placeholder-gray-400"
+                className="text-sm -mb-4 -mt-8 block w-full rounded-lg border border-gray-600 bg-black p-2.5 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 disabled={values.disabled}
                 autoComplete={values.disableAutocomplete}
               />
               {values.id === 'password' && (
                 <button
                   type="button"
-                  className="text-sm text-left italic underline m-0"
+                  className="text-sm m-0 text-left italic underline"
                   onClick={(): void =>
                     type === 'password' ? setType('text') : setType('password')
                   }
@@ -102,7 +102,7 @@ const Form = ({
           );
         })}
         <div
-          className={`flex justify-between items-baseline ${
+          className={`flex items-baseline justify-between ${
             newsletterSignUp ? '' : 'flex-row-reverse'
           }`}
         >
@@ -116,13 +116,13 @@ const Form = ({
             </div>
           )}
           {footerLink?.active ? (
-            <Link className="hover:underline cursor-pointer" to={footerLink.to}>
+            <Link className="cursor-pointer hover:underline" to={footerLink.to}>
               {footerLink.label}
             </Link>
           ) : footerButton?.active ? (
             <button
               type="button"
-              className="hover:underline cursor-pointer relative w-48 text-end"
+              className="relative w-48 cursor-pointer text-end hover:underline"
               onClick={(): void => {
                 if (footerButton.onClick) footerButton.onClick();
               }}
@@ -139,7 +139,7 @@ const Form = ({
             </button>
           ) : null}
           {formError && (
-            <div className="text-utility-warning-main mt-2 font-semibold">{formError}</div>
+            <div className="mt-2 font-semibold text-utility-warning-main">{formError}</div>
           )}
         </div>
         <Button

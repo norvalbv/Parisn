@@ -15,8 +15,8 @@ const SignUp = (): ReactElement => {
         {stage === 1 && (
           <CardWrapper cardType="centered">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-4xl underline my-6">Sign Up</h2>
-              <Link className="hover:underline cursor-pointer" to="/login">
+              <h2 className="text-4xl my-6 underline">Sign Up</h2>
+              <Link className="cursor-pointer hover:underline" to="/login">
                 Already have an account?
               </Link>
             </div>
@@ -39,7 +39,7 @@ const SignUp = (): ReactElement => {
         )}
         {stage === 2 && (
           <CardWrapper cardType="centered">
-            <h2 className="text-4xl underline my-6">Enter confirmation code</h2>
+            <h2 className="text-4xl my-6 underline">Enter confirmation code</h2>
             <Form
               formValues={{
                 username: {

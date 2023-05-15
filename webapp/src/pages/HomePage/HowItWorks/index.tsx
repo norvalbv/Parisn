@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
-import StyledLink from 'components/StyledLink/intex';
+import StyledLink from 'components/StyledLink';
 import Radial from 'components/SVG/Design';
 import Phone from '../../../TempSVGImages/phone';
 
 const HowItWorks = (): ReactElement => {
   return (
-    <div className="my-10 px-20 relative">
-      <div className="flex w-4/5 gap-4 items-center">
+    <div className="relative my-10 px-20">
+      <div className="flex w-4/5 items-center gap-4">
         <Phone />
         <div>
           <span>1st Choose Your Item</span>
@@ -18,15 +18,15 @@ const HowItWorks = (): ReactElement => {
         </div>
       </div>
       <Radial />
-      <div className="flex flex-row-reverse w-4/5 gap-4 items-center relative">
+      <div className="relative flex w-4/5 flex-row-reverse items-center gap-4">
         <div className="text-[32px]">
-          <div className="opacity-40 ml-14">
+          <div className="ml-14 opacity-40">
             <span className="mr-8 text-[44px] font-normal">£</span>1,000.00
           </div>
-          <div className="bg-secondary-dark rounded-3xl border border-neutral my-10 py-6 pl-10 w-96">
+          <div className="my-10 w-96 rounded-3xl border border-neutral bg-secondary-dark py-6 pl-10">
             <span className="mr-8 text-[44px] font-normal">£</span>500.00
           </div>
-          <div className="opacity-40 ml-14">
+          <div className="ml-14 opacity-40">
             <span className="mr-8 text-[44px] font-normal">£</span>200.00
           </div>
         </div>
@@ -39,7 +39,7 @@ const HowItWorks = (): ReactElement => {
           <StyledLink to="/" />
         </div>
       </div>
-      <div className="flex w-4/5 gap-4 items-center">
+      <div className="flex w-4/5 items-center gap-4">
         <Phone />
         <div>
           <span>3rd Win Or Wait</span>

@@ -10,7 +10,7 @@ const Badge = ({ type }: BadgeProps): ReactElement => {
     <div
       className={classNames(
         type === 'limited' ? 'bg-secondary-purple' : 'bg-secondary-red',
-        'rounded-sm h-[1.375rem] font-medium text-[12px] uppercase tracking-normal leading-[0.875rem] px-2 flex items-center'
+        'flex h-[1.375rem] items-center rounded-sm px-2 text-[12px] font-medium uppercase leading-[0.875rem] tracking-normal'
       )}
     >
       {type === 'limited' ? 'Limited' : 'New Drop'}

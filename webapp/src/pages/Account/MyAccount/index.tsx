@@ -15,14 +15,14 @@ const MyAccount = (): ReactElement => {
 
   return (
     <Drawer title="My Account" size="lg" id="Account">
-      <div className="h-full grid grid-cols-3 divide-x divide-x-gray">
+      <div className="divide-x-gray grid h-full grid-cols-3 divide-x">
         <div className="p-4">
-          <div className="flex gap-6 items-center border-b pb-4 mb-4">
+          <div className="mb-4 flex items-center gap-6 border-b pb-4">
             {/* eslint-disable-next-line jsx-a11y/img-redundant-alt */}
             <img
               src={PRODUCT_1_IMAGE}
               alt="User Profile Picture"
-              className="rounded-full h-14 w-14 border-2"
+              className="h-14 w-14 rounded-full border-2"
             />
             <h3 className="text-2xl capitalize">
               Hello, {user.userInfo?.firstName || user.userInfo?.username}!
@@ -30,27 +30,27 @@ const MyAccount = (): ReactElement => {
           </div>
           <div className="divide-y">
             <p
-              className="py-2 cursor-pointer hover:underline"
+              className="cursor-pointer py-2 hover:underline"
               onClick={(): void => setSelectedTab('myinformation')}
             >
               My Information
             </p>
             <p
-              className="py-2 cursor-pointer hover:underline"
+              className="cursor-pointer py-2 hover:underline"
               onClick={(): void => setSelectedTab('myorders')}
             >
               My Orders
             </p>
             {!user.cognitoInfo?.email_verified && (
               <p
-                className="py-2 cursor-pointer hover:underline"
+                className="cursor-pointer py-2 hover:underline"
                 onClick={(): void => setSelectedTab('verifyaccount')}
               >
                 Verify Account
               </p>
             )}
             <p
-              className="py-2 cursor-pointer hover:underline"
+              className="cursor-pointer py-2 hover:underline"
               onClick={(): void => setSelectedTab('changepassword')}
             >
               Change Password
@@ -72,7 +72,7 @@ const MyAccount = (): ReactElement => {
             />
           </div>
         </div>
-        <div className="p-4 w-80">
+        <div className="w-80 p-4">
           {selectedTab === 'myinformation' ? (
             <MyInformation />
           ) : selectedTab === 'myorders' ? (

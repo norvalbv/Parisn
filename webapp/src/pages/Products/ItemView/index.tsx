@@ -64,18 +64,18 @@ const ItemView = (): ReactElement => {
 
   return (
     <>
-      <div className="w-[40%] h-screen float-left">
+      <div className="float-left h-screen w-[40%]">
         <Carousel
           images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.Image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
         />
       </div>
-      <div className="w-[60%] h-screen float-right overflow-auto scroll-smooth scrollbar-none">
-        <div className="flex relative">
+      <div className="float-right h-screen w-[60%] overflow-auto scroll-smooth scrollbar-none">
+        <div className="relative flex">
           <div
             id="product-overview"
-            className="h-screen flex flex-col justify-center items-center mx-auto gap-4 tracking-wider"
+            className="mx-auto flex h-screen flex-col items-center justify-center gap-4 tracking-wider"
           >
-            <h2 className="text-3xl underline-offset-8 underline">{data.Title}</h2>
+            <h2 className="text-3xl underline underline-offset-8">{data.Title}</h2>
             <div className="my-4 w-full text-center">
               {!localPrice && localPrice !== 0 ? (
                 <>
@@ -115,27 +115,27 @@ const ItemView = (): ReactElement => {
             <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
               {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
             </p>
-            <a className="hover:underline text-xs hover:text-secondary-neutral" href="#description">
+            <a className="text-xs hover:text-secondary-neutral hover:underline" href="#description">
               View Description
             </a>
             <div
-              className="absolute bottom-0 w-full grid max-w-xs grid-cols-3 text-xxs gap-1 p-1 mx-auto my-2 rounded bg-gray-700"
+              className="absolute bottom-0 mx-auto my-2 grid w-full max-w-xs grid-cols-3 gap-1 rounded bg-gray-700 p-1 text-xxs"
               role="group"
             >
               <button
                 type="button"
-                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
               >
                 <LiveViewers pageParams={currentProduct} />
               </button>
               <button
                 type="button"
-                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
               >
                 End: {convertToDate(data.EndTime, false, { type: 'short' })}
               </button>
               <button
-                className="px-5 py-1.5 font-medium hover:bg-gray-500 rounded-lg"
+                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
                 type="button"
                 onClick={(): void => openDrawer('Chat')}
               >
@@ -148,7 +148,7 @@ const ItemView = (): ReactElement => {
         </div>
         <div
           id="description"
-          className="flex flex-col justify-center items-center mx-auto gap-4 tracking-wider text-center w-3/5 leading-10 h-screen"
+          className="mx-auto flex h-screen w-3/5 flex-col items-center justify-center gap-4 text-center leading-10 tracking-wider"
         >
           <p className="underline">Product Description</p>
           <p className="my-6 font-light">{data.Description}</p>

@@ -42,8 +42,8 @@ const PickedProducts = (): ReactElement => {
       <div className="flex items-center gap-[3.75rem]">
         {images.map((category, idx) => (
           // eslint-disable-next-line react/no-array-index-key
-          <section className="h-[31.875rem] w-[19.625rem] relative rounded-lg" key={idx}>
-            <div className="flex items-center gap-2.5 absolute top-[0.6875rem] left-3">
+          <section className="relative h-[31.875rem] w-[19.625rem] rounded-lg" key={idx}>
+            <div className="absolute top-[0.6875rem] left-3 flex items-center gap-2.5">
               <ClockIcon />
               <span>1hr 14mins</span>
             </div>
@@ -51,7 +51,7 @@ const PickedProducts = (): ReactElement => {
               <Badge type={idx % 2 ? 'limited' : 'new'} />
             </div>
             <img src={category} alt="p" className="h-[23.625rem] w-full" />
-            <div className="h-[8.25rem] bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 absolute z-10 bottom-0 w-full flex flex-col items-center justify-center gap-6">
+            <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10">
               <div className="flex">
                 <span>Limited Size Sneakers</span>
                 <section>

@@ -9,21 +9,21 @@ const AllCollections = (): ReactElement => {
   if (!data) return <Loading />;
 
   return (
-    <div className="grid grid-cols-3 h-screen">
+    <div className="grid h-screen grid-cols-3">
       {data.map((collection) => (
         <div
           key={collection.collections}
-          className="flex flex-col flex-wrap justify-center items-center pt-10"
+          className="flex flex-col flex-wrap items-center justify-center pt-10"
           data-testid="Shoes"
         >
-          <Link to={collection.collections} className="flex justify-center items-center">
+          <Link to={collection.collections} className="flex items-center justify-center">
             <img
               src={collection.image}
               alt={collection.image}
-              className="w-[20rem] h-[30rem] cursor-pointer hover:scale-110 transition-all rounded-xl"
+              className="h-[30rem] w-[20rem] cursor-pointer rounded-xl transition-all hover:scale-110"
             />
           </Link>
-          <p className="underline mt-10 text-xl uppercase tracking-widest font-thin underline-offset-8">
+          <p className="text-xl mt-10 font-thin uppercase tracking-widest underline underline-offset-8">
             {collection.collections}
           </p>
         </div>

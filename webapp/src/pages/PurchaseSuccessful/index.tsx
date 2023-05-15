@@ -12,7 +12,7 @@ const PurchaseSuccessful = (): ReactElement => {
     <div className="daisy-hero min-h-screen bg-gradient-to-br from-base-100 to-base-300">
       <div className="daisy-hero-content text-center">
         <div className="max-w-md">
-          <span className="block text-3xl">Purchase Successful 😀</span>
+          <span className="text-3xl block">Purchase Successful 😀</span>
           <div className="daisy-divider mt-10 mb-6" />
           <Link to="/transactions" className="daisy-btn-ghost daisy-btn">
             View Transactions

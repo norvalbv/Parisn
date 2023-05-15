@@ -8,7 +8,7 @@ interface IconProps extends Omit<SVGAttributes<SVGElement>, 'color'> {
 export const CloseIcon = (): ReactElement => (
   <svg
     aria-hidden="true"
-    className="w-3 h-3"
+    className="h-3 w-3"
     fill="currentColor"
     viewBox="0 0 20 20"
     xmlns="http://www.w3.org/2000/svg"

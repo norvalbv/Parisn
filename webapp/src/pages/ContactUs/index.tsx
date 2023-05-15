@@ -16,8 +16,8 @@ const ContactUs = (): ReactElement => {
     <div className="flex flex-row-reverse">
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
       <CardWrapper cardType="centered">
-        <div className="flex flex-col text-center gap-4 tracking-wider">
-          <h2 className="text-4xl underline mx-auto relative">Contact Us</h2>
+        <div className="flex flex-col gap-4 text-center tracking-wider">
+          <h2 className="text-4xl relative mx-auto underline">Contact Us</h2>
           <h3 className="my-6">Contact Parisn Customer Support</h3>
           <Form
             formValues={{

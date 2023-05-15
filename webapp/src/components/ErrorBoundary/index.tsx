@@ -26,7 +26,7 @@ const ErrorBoundary = ({
     () => (
       <div
         role="alert"
-        className={`bg-red-400 rounded py-2 px-4 flex items-center gap-4 ${className}`}
+        className={`flex items-center gap-4 rounded bg-red-400 py-2 px-4 ${className}`}
       >
         <b>
           {errorMessage ||
@@ -36,7 +36,7 @@ const ErrorBoundary = ({
           <button
             onClick={(): void => onClick()}
             type="button"
-            className="border border-gray-500 rounded px-4 py-2 hover:underline"
+            className="rounded border border-gray-500 px-4 py-2 hover:underline"
           >
             Try again
           </button>

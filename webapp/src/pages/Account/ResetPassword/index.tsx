@@ -10,8 +10,8 @@ const ResetPassword = (): ReactElement => {
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-4xl underline my-6">Reset Password</h2>
-        <Link className="hover:underline cursor-pointer" to="/sign-up">
+        <h2 className="text-4xl my-6 underline">Reset Password</h2>
+        <Link className="cursor-pointer hover:underline" to="/sign-up">
           Back
         </Link>
       </div>

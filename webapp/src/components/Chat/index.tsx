@@ -90,21 +90,21 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
 
   return (
     <Drawer title="Chat" id="Chat">
-      <div className="py-4 overflow-y-auto w-full">
-        <div className="break-words overflow-y-scroll h-full">
+      <div className="w-full overflow-y-auto py-4">
+        <div className="h-full overflow-y-scroll break-words">
           {messages?.map((message) => (
-            <div key={message.id} className="flex flex-col group bg-fuchsia-400">
+            <div key={message.id} className="group flex flex-col bg-fuchsia-400">
               <div
-                className={`relative w-4/5 my-0.5 bg-fuchsia-800 ${
+                className={`relative my-0.5 w-4/5 bg-fuchsia-800 ${
                   message.user === user.userInfo?.username ? 'justify-self-end' : ''
                 }`}
               >
                 <span className="text-xs block">{message.user}:</span>
-                <span className="text-xxs italic hidden group-hover:block">
+                <span className="hidden text-xxs italic group-hover:block">
                   {convertToDate(message.time)}
                 </span>
                 <span
-                  className={`rounded-xl inline-block py-1 px-2 mt-0.5 ${
+                  className={`mt-0.5 inline-block rounded-xl py-1 px-2 ${
                     message.user === user.userInfo?.username
                       ? 'bg-primary-neutral/20'
                       : 'bg-primary-neutral/40'
@@ -118,7 +118,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
           ))}
         </div>
       </div>
-      <div className="flex flex-row-reverse items-center justify-between absolute bottom-16 right-4">
+      <div className="absolute bottom-16 right-4 flex flex-row-reverse items-center justify-between">
         <LiveViewers fontSize="xxs" label="Active:" pageParams={pageParams} />
         {totalTyping ? <span className="text-xs">{totalTyping} typing...</span> : null}
       </div>
@@ -152,11 +152,11 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
           setIsTyping(false);
         }}
       >
-        <Form className="absolute bottom-0 w-full border-t h-12">
+        <Form className="absolute bottom-0 h-12 w-full border-t">
           <ErrorMessage
             name="userInput"
             component="div"
-            className="font-normal text-xs absolute top-0 ml-2"
+            className="text-xs absolute top-0 ml-2 font-normal"
           />
           <Button
             text="send"
@@ -168,7 +168,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
             type="submit"
           />
           <Field
-            className="w-5/6 bg-transparent text-primary-neutral font-extralight outline-none border-0 h-full ml-7 absolute"
+            className="absolute ml-7 h-full w-5/6 border-0 bg-transparent font-extralight text-primary-neutral outline-none"
             id="userInput"
             name="userInput"
             type="text"

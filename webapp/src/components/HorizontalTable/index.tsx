@@ -37,7 +37,7 @@ const HorizontalTable = ({
   borderBottomRequired = true,
 }: HorizontalTableProps): ReactElement => {
   return (
-    <div className="flex text-xs group">
+    <div className="text-xs group flex">
       <div
         className={`border-r ${
           borderBottomRequired ? 'border-b' : ''
