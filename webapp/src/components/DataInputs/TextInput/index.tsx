@@ -29,15 +29,17 @@ const TextInput = ({
     onchange(e.target.value);
   };
   return (
-    <div className="my-4 flex items-center justify-between gap-8">
-      <span className="w-44 font-semibold">
-        {title}
-        {required && <span className="ml-1 text-red-600">*</span>}
-      </span>
+    <div className="my-4 flex items-center justify-between gap-8 max-w-max mx-auto">
+      {title && (
+        <span className="font-semibold">
+          {title}
+          {required && <span className="ml-1 text-red-600">*</span>}
+        </span>
+      )}
       <div className="flex items-center">
         <div
           className={classNames(
-            'border border-primary-light/40 rounded-l-lg h-[2.875rem] px-[1.625rem] w-[21.25rem] flex items-center focus-within:border-red-500',
+            'border border-primary-light/40 rounded-l h-12 px-6 w-[21.25rem] flex items-center focus-within:border-red-500',
             inputSize
           )}
         >
@@ -51,7 +53,12 @@ const TextInput = ({
           />
           {icon && <div>{icon}</div>}
         </div>
-        <Button text="Subscribe" className="h-[2.875rem] rounded-r-lg" theme="light" />
+        <Button
+          text="Subscribe"
+          className="h-12 rounded-r uppercase font-semibold"
+          theme="light"
+          width="10rem"
+        />
       </div>
     </div>
   );

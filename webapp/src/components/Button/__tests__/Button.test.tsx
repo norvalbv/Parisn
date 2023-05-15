@@ -27,7 +27,6 @@ describe('<Button />', () => {
             text="Test Text"
             hoveredText="Hovered Text"
             size="base"
-            rounded="none"
             width="25rem"
             hoverColorRequired
             disabled
@@ -40,11 +39,9 @@ describe('<Button />', () => {
             testId="Data Attribute"
             uppercase
             className="underline"
-            fontWeight="semibold"
             type="button"
             navigateTo="/"
             borderRequired="all"
-            textOrientation=""
             hoveredAnimation
             navigationState={{ test: 'Test 1' }}
           />

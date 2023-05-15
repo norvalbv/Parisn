@@ -5,7 +5,7 @@ const Newsletter = (): ReactElement => {
   const [email, setEmail] = useState('');
 
   return (
-    <div className="text-center mb-32 mx-auto ">
+    <div className="text-center mb-32 mx-auto">
       <span className="block">
         Join the <span>PARISN</span> Inner Circle
       </span>

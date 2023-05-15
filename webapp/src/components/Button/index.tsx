@@ -1,13 +1,6 @@
 import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {
-  BorderRequired,
-  borderRequiredMap,
-  FontWeight,
-  fontWeightMap,
-  Rounded,
-  roundedMap,
-} from 'types/tailwind';
+import { BorderRequired, borderRequiredMap, FontWeight, Rounded } from 'types/tailwind';
 import { Spinner } from 'components/CustomSVG';
 import classNames from 'utils/classNames';
 
@@ -15,7 +8,6 @@ export interface ButtonProps {
   text: string | JSX.Element;
   hoveredText?: string;
   size?: keyof typeof buttonSizeMap;
-  rounded?: Rounded;
   width?: string;
   hoverColorRequired?: boolean;
   disabled?: boolean;
@@ -28,12 +20,10 @@ export interface ButtonProps {
   testId?: string;
   uppercase?: boolean;
   className?: string;
-  fontWeight?: FontWeight;
   theme?: keyof typeof themeMap;
   type?: 'button' | 'submit';
   navigateTo?: string;
   borderRequired?: BorderRequired;
-  textOrientation?: string;
   hoveredAnimation?: boolean;
   navigationState?: unknown;
 }
@@ -45,7 +35,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       testId,
       disabled,
-      fontWeight = 'semibold',
       hoverColorRequired = true,
       hoveredText,
       hoveredAnimation = false,
@@ -56,14 +45,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       navigateTo,
       onClick,
       onMouseLeave,
-      rounded = 'none',
       size = 'base',
       text,
       type = 'button',
       theme = 'dark',
       uppercase = true,
       width,
-      textOrientation = 'justify-center',
       navigationState,
     },
     ref
@@ -92,14 +79,12 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // eslint-disable-next-line react/button-has-type
         type={type}
         className={classNames(
-          textOrientation,
-          roundedMap[rounded],
           buttonSizeMap[size],
           themeMap[theme],
           uppercase,
           borderRequiredMap[borderRequired],
           className,
-          'py-4 inline-flex items-center',
+          'items-center',
           { 'hover:scale-110 transition-all': hoveredAnimation },
           {
             'hover:bg-buttons-hover transition-colors duration-200':
@@ -133,9 +118,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </span>
         )}
         {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
-        <span className={`inline-block ${fontWeightMap[fontWeight]}`}>
-          {hovered && hoveredText ? hoveredText : text}
-        </span>
+        <span className="inline-block">{hovered && hoveredText ? hoveredText : text}</span>
         {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
     );
@@ -152,8 +135,8 @@ const themeMap = {
 const buttonSizeMap = {
   xs: 'px-1 py-2 text-sm',
   sm: 'px-5 py-2.5 text-sm',
-  base: 'px-6 py-2.5 text-sm w-full',
-  lg: 'px-8 py-2.5 text-base w-full',
+  base: 'px-6 py-2.5 text-sm',
+  lg: 'px-8 py-2.5 text-base',
 };
 
 export default React.memo(Button);
