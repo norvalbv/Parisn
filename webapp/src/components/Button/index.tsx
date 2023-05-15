@@ -17,8 +17,6 @@ export interface ButtonProps {
   size?: keyof typeof buttonSizeMap;
   rounded?: Rounded;
   width?: string;
-  color?: string;
-  backgroundColor?: string;
   hoverColorRequired?: boolean;
   disabled?: boolean;
   loading?: boolean;
@@ -28,10 +26,10 @@ export interface ButtonProps {
   onMouseLeave?: () => void;
   id?: string;
   testId?: string;
-  upperCase?: boolean;
+  uppercase?: boolean;
   className?: string;
-  positioning?: 'relative' | 'absolute';
   fontWeight?: FontWeight;
+  theme?: keyof typeof themeMap;
   type?: 'button' | 'submit';
   navigateTo?: string;
   borderRequired?: BorderRequired;
@@ -43,10 +41,8 @@ export interface ButtonProps {
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      backgroundColor,
       borderRequired = 'all',
       className = '',
-      color,
       testId,
       disabled,
       fontWeight = 'semibold',
@@ -60,13 +56,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       navigateTo,
       onClick,
       onMouseLeave,
-      positioning = 'relative',
       rounded = 'none',
       size = 'base',
       text,
       type = 'button',
-      upperCase = true,
-      width = '25rem',
+      theme = 'dark',
+      uppercase = true,
+      width,
       textOrientation = 'justify-center',
       navigationState,
     },
@@ -96,10 +92,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         // eslint-disable-next-line react/button-has-type
         type={type}
         className={classNames(
-          positioning,
           textOrientation,
           roundedMap[rounded],
           buttonSizeMap[size],
+          themeMap[theme],
+          uppercase,
           borderRequiredMap[borderRequired],
           className,
           'py-4 inline-flex items-center',
@@ -108,15 +105,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
             'hover:bg-buttons-hover transition-colors duration-200':
               hoverColorRequired && !disabled && !loading,
           },
-          { uppercase: upperCase },
           {
             'bg-primary-neutral/60 text-primary-dark border-primary-neutral cursor-default':
               disabled || loading,
           }
         )}
-        style={{ width, color, backgroundColor }}
+        style={{ width }}
         onClick={(): void => clickHandle()}
-        role="button"
         id={id}
         data-testid={testId}
         disabled={disabled}
@@ -148,6 +143,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+
+const themeMap = {
+  light: 'text-primary-dark bg-primary-light',
+  dark: 'text-primary-light bg-primary-dark',
+};
 
 const buttonSizeMap = {
   xs: 'px-1 py-2 text-sm',
