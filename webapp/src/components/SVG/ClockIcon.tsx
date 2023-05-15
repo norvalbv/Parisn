@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import SVGIcon, { SVGIconProps } from './SVGIcon';
 
-const LeftIcon = (props: SVGIconProps): ReactElement => {
+const ClockIcon = (props: SVGIconProps): ReactElement => {
   return (
     <SVGIcon width={16} height={16} viewBox="0 0 16 16" fill="#B0B0B0" {...props}>
       <path
@@ -19,4 +19,4 @@ const LeftIcon = (props: SVGIconProps): ReactElement => {
   );
 };
 
-export default LeftIcon;
+export default ClockIcon;

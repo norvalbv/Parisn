@@ -13,7 +13,7 @@ const Hero = (): ReactElement => {
         <span className="text-[14px] text-primary-neutral">
           Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
         </span>
-        <Button text="Shop Now" classes="mt-[3.75rem]" />
+        <Button text="Shop Now" className="mt-[3.75rem]" />
       </div>
       <Carousel />
     </div>

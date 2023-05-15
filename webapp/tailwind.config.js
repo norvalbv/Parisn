@@ -23,6 +23,7 @@ module.exports = {
           green: '#00BA92',
           blue: '#1BC5DC',
           neutral: '#C0D1D9',
+          red: '#FF0000',
         },
         buttons: {
           active: '#000000',

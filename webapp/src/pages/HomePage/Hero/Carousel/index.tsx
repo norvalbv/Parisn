@@ -31,7 +31,7 @@ const Carousel = (): ReactElement => {
 
   return (
     <div className="flex relative w-7/12 justify-between">
-      <Radial backgroundColor={selected % 2 ? 'purple' : 'green'} />
+      <Radial colour={selected % 2 ? 'purple' : 'green'} />
       <div className="top-10 relative">{images[selected]}</div>
       <div className="flex flex-col gap-3 items-end">
         {images.map((image, idx) => (
