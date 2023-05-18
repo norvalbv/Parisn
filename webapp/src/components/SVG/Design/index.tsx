@@ -7,7 +7,7 @@ type RadialProps = {
 const Radial = ({ colour = 'green' }: RadialProps): ReactElement => {
   return (
     <svg
-      className="absolute w-[25.875rem] h-[62.5rem] -top-40 rotate-[-80deg] blur-[150px]"
+      className="absolute -top-40 z-0 h-[62.5rem] w-[25.875rem] rotate-[-80deg] blur-[150px]"
       style={{
         backgroundColor: colourMap[colour],
       }}

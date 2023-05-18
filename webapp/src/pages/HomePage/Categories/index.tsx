@@ -11,8 +11,10 @@ const Categories = (): ReactElement => {
   return (
     <section className="relative flex flex-col items-center gap-4">
       <Radial colour="purple" />
-      <p className="block">Exceptional Apparel Awaits</p>
-      <p className="block">PARISN&apos;s Fashion Panorama</p>
+      <p className="uppercase">Exceptional Apparel Awaits</p>
+      <p className="mb-[2.5rem] text-[2rem] font-normal">
+        <span className="tracking-[.42rem]">PARISN&apos;s</span>Fashion Panorama
+      </p>
       <div className="flex items-center gap-10">
         {t.map((category, idx) => (
           // eslint-disable-next-line react/no-array-index-key
@@ -25,7 +27,7 @@ const Categories = (): ReactElement => {
           </section>
         ))}
       </div>
-      <div className="flex items-center gap-3">
+      <div className="mt-10 flex items-center gap-3">
         <div className="h-0.5 w-[1.875rem] bg-primary-light" />
         <div className="h-0.5 w-[1.875rem] bg-primary-light/40" />
         <div className="h-0.5 w-[1.875rem] bg-primary-light/40" />
