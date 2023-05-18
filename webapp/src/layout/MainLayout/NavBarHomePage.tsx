@@ -24,12 +24,12 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <div className="fixed z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
+    <nav className="fixed z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
       <div className="flex w-full gap-11">
         <Link to="/collections">Collections</Link>
         <Link to="/contact-us">Contact Us</Link>
       </div>
-      <span className="w-full text-center">PARISN.COM</span>
+      <span className="w-full text-center font-semibold">PARISN.COM</span>
       <div className="flex w-full items-center justify-end gap-11">
         <SearchIcon className="cursor-pointer" />
         <BasketIcon className="cursor-pointer" />
@@ -39,7 +39,7 @@ const NavBar = (): ReactElement => {
           <UserIcon onClick={(): void => navigate('/login')} className="cursor-pointer" />
         )}
       </div>
-    </div>
+    </nav>
   );
 };
 

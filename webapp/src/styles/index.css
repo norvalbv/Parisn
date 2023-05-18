@@ -4,15 +4,19 @@
 
 @layer base {
   h1 {
-    @apply text-[3.375rem] /* 54px */ leading-[4.0625rem] /* 65px */ tracking-[0.08rem] font-normal;
+    /* text - 54px */ /*  leading - 65px */
+    @apply text-[3.375rem] font-normal leading-[4.0625rem] tracking-[0.08rem];
   }
   h2 {
-    @apply text-[2.625rem] /* 42px */ leading-[3.125rem] /* 50px */ tracking-[0.08rem] font-normal;
+    /* text - 42px */ /* leading - 50px */
+    @apply text-[2.625rem] font-normal leading-[3.125rem] tracking-[0.08rem];
   }
   h3 {
-    @apply text-[1.25rem] /* 20px */ leading-[2.4375rem] /* 39px */ tracking-[0.08rem] font-semibold;
+    /* text - 20px */ /* leading - 39px */
+    @apply text-[1.25rem] font-semibold  leading-[2.4375rem] tracking-[0.08rem];
   }
   body {
-    @apply text-[1rem] /* 16px */ leading-[1.625rem] /* 26px */ tracking-[0.16rem] font-thin;
+    /* text - 16px */ /* leading - 26px */
+    @apply text-[1rem] font-thin leading-[1.625rem] tracking-[0.16rem];
   }
 }

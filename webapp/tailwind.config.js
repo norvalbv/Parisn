@@ -2,10 +2,10 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    fontSize: {
-      xxs: ['10px', '12px'],
-    },
     extend: {
+      fontSize: {
+        xxs: ['10px', '12px'],
+      },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],
       },

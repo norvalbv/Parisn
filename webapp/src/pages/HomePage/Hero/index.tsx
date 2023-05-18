@@ -4,19 +4,19 @@ import Carousel from './Carousel';
 
 const Hero = (): ReactElement => {
   return (
-    <div className="flex h-screen justify-between pt-[10.125rem]">
-      <div className="w-[23.8125rem]">
-        <span className="text-[1.5rem]">
+    <header className="flex h-screen justify-between pt-[10.125rem]">
+      <section className="w-[23.8125rem]">
+        <p className="text-[1.5rem]">
           Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
-        </span>
-        <h2 className="mt-1 mb-3">PARISN</h2>
-        <span className="text-[14px] text-primary-neutral">
+        </p>
+        <h1 className="mt-1 mb-3 tracking-[.42rem]">PARISN</h1>
+        <p className="text-sm text-primary-neutral">
           Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
-        </span>
-        <Button text="Shop Now" className="mt-[3.75rem]" />
-      </div>
+        </p>
+        <Button text="Shop Now" className="mt-[3.75rem] w-72" roundedBorders="none" />
+      </section>
       <Carousel />
-    </div>
+    </header>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BorderRequired, borderRequiredMap, FontWeight, Rounded } from 'types/tailwind';
+import { BorderRequired, borderRequiredMap, Rounded } from 'types/tailwind';
 import { Spinner } from 'components/CustomSVG';
 import classNames from 'utils/classNames';
 
@@ -25,6 +25,7 @@ export interface ButtonProps {
   borderRequired?: BorderRequired;
   hoveredAnimation?: boolean;
   navigationState?: unknown;
+  roundedBorders?: Rounded;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -33,6 +34,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       borderRequired = 'all',
       className = '',
       testId,
+      roundedBorders = 'md',
       disabled,
       hoverColorRequired = true,
       hoveredText,
@@ -80,8 +82,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonSizeMap[size],
           themeMap[theme],
           borderRequiredMap[borderRequired],
+          roundedBorders,
           className,
-          'items-center rounded uppercase',
+          'items-center uppercase',
           { 'transition-all hover:scale-110': hoveredAnimation },
           hoverColorRequired &&
             !disabled &&
@@ -117,7 +120,9 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </span>
         )}
         {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
-        <span className="inline-block">{hovered && hoveredText ? hoveredText : text}</span>
+        <span className="inline-block tracking-[0.16rem]">
+          {hovered && hoveredText ? hoveredText : text}
+        </span>
         {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
     );

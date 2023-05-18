@@ -36,9 +36,8 @@ export type BorderRequired = keyof typeof borderRequiredMap;
 
 export const roundedMap = {
   xs: 'rounded-xs',
-  small: 'rounded-small',
-  base: 'rounded',
-  md: 'rounded-md',
+  sm: 'rounded-sm',
+  md: 'rounded',
   lg: 'rounded-lg',
   xl: 'rounded-xl',
   none: '',
