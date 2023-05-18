@@ -1,6 +1,13 @@
 import React, { ReactElement, forwardRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BorderRequired, borderRequiredMap, Rounded } from 'types/tailwind';
+import {
+  BorderRequired,
+  borderRequiredMap,
+  FontWeight,
+  fontWeightMap,
+  Rounded,
+  roundedMap,
+} from 'types/tailwind';
 import { Spinner } from 'components/CustomSVG';
 import classNames from 'utils/classNames';
 
@@ -26,6 +33,7 @@ export interface ButtonProps {
   hoveredAnimation?: boolean;
   navigationState?: unknown;
   roundedBorders?: Rounded;
+  fontWeight?: FontWeight;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -35,6 +43,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       className = '',
       testId,
       roundedBorders = 'md',
+      fontWeight = 'normal',
       disabled,
       hoverColorRequired = true,
       hoveredText,
@@ -46,7 +55,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       navigateTo,
       onClick,
       onMouseLeave,
-      size = 'base',
+      size = 'md',
       text,
       type = 'button',
       theme = 'dark',
@@ -82,7 +91,8 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           buttonSizeMap[size],
           themeMap[theme],
           borderRequiredMap[borderRequired],
-          roundedBorders,
+          roundedMap[roundedBorders],
+          fontWeightMap[fontWeight],
           className,
           'items-center uppercase',
           { 'transition-all hover:scale-110': hoveredAnimation },
@@ -140,8 +150,9 @@ const themeMap = {
 const buttonSizeMap = {
   xs: 'px-1 py-2 text-sm',
   sm: 'px-5 py-2.5 text-sm',
-  base: 'px-6 py-2.5 text-sm',
+  md: 'px-6 py-2.5 text-sm',
   lg: 'px-8 py-2.5 text-base',
+  custom: '',
 };
 
 export default React.memo(Button);
