@@ -1,6 +1,6 @@
+import React, { ReactElement } from 'react';
 import StyledLink from 'components/StyledLink';
 import Radial from 'components/SVG/Design';
-import React, { ReactElement } from 'react';
 
 const Categories = (): ReactElement => {
   const t = [
@@ -9,10 +9,10 @@ const Categories = (): ReactElement => {
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
   ];
   return (
-    <div className="relative flex flex-col items-center gap-4">
+    <section className="relative flex flex-col items-center gap-4">
       <Radial colour="purple" />
-      <span className="block">Exceptional Apparel Awaits</span>
-      <span className="block">PARISN&apos;s Fashion Panorama</span>
+      <p className="block">Exceptional Apparel Awaits</p>
+      <p className="block">PARISN&apos;s Fashion Panorama</p>
       <div className="flex items-center gap-10">
         {t.map((category, idx) => (
           // eslint-disable-next-line react/no-array-index-key
@@ -32,7 +32,7 @@ const Categories = (): ReactElement => {
         <div className="h-0.5 w-[1.875rem] bg-primary-light/40" />
         <div className="h-0.5 w-[1.875rem] bg-primary-light/40" />
       </div>
-    </div>
+    </section>
   );
 };
 

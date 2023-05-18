@@ -1,5 +1,5 @@
-import { RightIcon } from 'components/SVG';
 import React, { ReactElement } from 'react';
+import { RightIcon } from 'components/SVG';
 import { useNavigate } from 'react-router-dom';
 
 type StyledLinkProps = {
@@ -11,11 +11,13 @@ const StyledLink = ({ text = 'LEARN MORE', to }: StyledLinkProps): ReactElement 
   const navigate = useNavigate();
   return (
     <div
-      className="flex cursor-pointer items-center gap-3 font-semibold"
+      className="group flex max-w-max cursor-pointer items-center gap-3 font-semibold"
       onClick={(): void => navigate(to)}
     >
       {text}
-      <RightIcon />
+      <div className="duration-300 group-hover:translate-x-2">
+        <RightIcon />
+      </div>
     </div>
   );
 };

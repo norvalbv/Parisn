@@ -1,6 +1,5 @@
 import Radial from 'components/SVG/Design';
 import React, { ReactElement } from 'react';
-import PersonHoldingPhone from 'TempSVGImages/PersonHoldingPhone';
 
 const AboutUs = (): ReactElement => {
   return (
@@ -14,7 +13,6 @@ const AboutUs = (): ReactElement => {
           drops to £0.
         </p>
       </div>
-      <PersonHoldingPhone />
     </div>
   );
 };
