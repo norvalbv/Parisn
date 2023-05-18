@@ -79,6 +79,7 @@
     "@typescript-eslint/no-shadow": "off",
     "no-nested-ternary": "off",
     "jsx-a11y/no-noninteractive-element-interactions": "off",
-    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }]
+    "react/jsx-no-useless-fragment": ["error", { "allowExpressions": true }],
+    "custom-rules/no-px-in-tailwind": "warn"
   }
 }
