@@ -3,11 +3,11 @@ import React, { ReactElement } from 'react';
 const Synopsis = (): ReactElement => {
   return (
     <section className="px-[17rem] text-center">
-      <span className="inline-block">the Power of Reverse Bidding in 3 Simple Stepss</span>
-      <span className="inline-block text-[28px] font-semibold leading-9">
+      <p className="mb-4 uppercase">The Power of Reverse Bidding in 3 Simple Steps</p>
+      <p className="text-[1.75rem] font-normal leading-[2.125rem]">
         Master the Art of Smart Shopping at
-        <span className="block text-[42px] font-semibold">PARISN</span>
-      </span>
+        <h2 className="font-semibold tracking-[1rem]">PARISN</h2>
+      </p>
     </section>
   );
 };
