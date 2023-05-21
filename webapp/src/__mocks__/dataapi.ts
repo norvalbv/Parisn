@@ -12,7 +12,17 @@ export const product: ProductData = {
   title: '',
 };
 
-export const collection: CollectionData = {
-  collections: '',
-  image: '',
-};
+export const collection: CollectionData[] = [
+  {
+    collections: '',
+    image: '',
+  },
+  {
+    collections: '',
+    image: '',
+  },
+  {
+    collections: '',
+    image: '',
+  },
+];

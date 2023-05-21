@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { AnimationDuration, animationDurationMap } from 'types/tailwind';
+import { AnimationDuration, animationDurationMap } from 'types';
 
 export interface SkeletonProps {
   /**

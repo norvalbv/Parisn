@@ -1,14 +1,4 @@
-export type Message = {
-  message: string;
-  user: string;
-  id: string;
-  time: number;
-};
-
-export type ContactForm = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  orderNumber?: string;
-  message: string;
-};
+export * from './User';
+export * from './Tailwind';
+export * from './Misc';
+export * from './DataAPI';

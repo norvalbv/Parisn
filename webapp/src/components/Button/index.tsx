@@ -7,7 +7,7 @@ import {
   fontWeightMap,
   Rounded,
   roundedMap,
-} from 'types/tailwind';
+} from 'types';
 import { Spinner } from 'components/CustomSVG';
 import classNames from 'utils/classNames';
 

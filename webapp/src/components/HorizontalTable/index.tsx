@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { FontSize, fontSizeMap, FontWeight, fontWeightMap } from 'types/tailwind';
+import { FontSize, fontSizeMap, FontWeight, fontWeightMap } from 'types';
 
 // This is not a table as react-table cannot be converted into a horizontal table without some serious inner refactoring.
 // Read more: https://github.com/TanStack/table/issues/49
@@ -37,7 +37,7 @@ const HorizontalTable = ({
   borderBottomRequired = true,
 }: HorizontalTableProps): ReactElement => {
   return (
-    <div className="text-xs group flex">
+    <div className="group flex text-xs">
       <div
         className={`border-r ${
           borderBottomRequired ? 'border-b' : ''
