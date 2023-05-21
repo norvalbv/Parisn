@@ -157,7 +157,7 @@ type StartCheckoutApiResponse = {
 export const useCheckout = (): UseCheckoutResponse => {
   const navigate = useNavigate();
   const startCheckout = ({ user, product }: StartCheckoutProps): void => {
-    const { id, Category, selectedSize } = product;
+    const { id, collection, selectedSize } = product;
     const checkoutid = uuidv4()
       .substring(0, 8)
       .split(' ')
@@ -167,7 +167,7 @@ export const useCheckout = (): UseCheckoutResponse => {
 
     console.log({
       productid: id,
-      collection: Category,
+      collection,
       selectedsize: selectedSize,
       checkoutid,
       user: user?.userInfo?.email,
@@ -175,7 +175,7 @@ export const useCheckout = (): UseCheckoutResponse => {
     axios
       .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/initiate-checkout', {
         productid: id,
-        collection: Category,
+        collection,
         selectedsize: selectedSize,
         checkoutid,
         user: user?.userInfo?.email,

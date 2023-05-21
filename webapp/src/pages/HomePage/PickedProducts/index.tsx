@@ -44,7 +44,7 @@ const PickedProducts = (): ReactElement => {
         />
       </div>
       <div className="flex min-w-min items-center gap-[3.75rem] overflow-hidden">
-        {images.map((category, idx) => (
+        {images.map((collection, idx) => (
           // eslint-disable-next-line react/no-array-index-key
           <section className="relative h-[31.875rem] w-[19.625rem] rounded" key={idx}>
             <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
@@ -54,7 +54,7 @@ const PickedProducts = (): ReactElement => {
               </div>
               <Badge type={idx % 2 ? 'limited' : 'new'} />
             </div>
-            <img src={category} alt="p" className="h-[18.5rem] w-full rounded-t" />
+            <img src={collection} alt="p" className="h-[18.5rem] w-full rounded-t" />
             <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
               <div className="flex items-center justify-between">
                 <span className="inline-block text-lg font-normal uppercase">metropo chic</span>

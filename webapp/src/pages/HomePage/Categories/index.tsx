@@ -16,10 +16,10 @@ const Categories = (): ReactElement => {
         <span className="tracking-[.42rem]">PARISN&apos;s</span>Fashion Panorama
       </p>
       <div className="flex items-center gap-10">
-        {t.map((category, idx) => (
+        {t.map((collection, idx) => (
           // eslint-disable-next-line react/no-array-index-key
           <div className="relative h-[31.875rem] w-[19.625rem] rounded" key={idx}>
-            <img src={category} alt="p" className="h-full rounded" />
+            <img src={collection} alt="p" className="h-full rounded" />
             <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
               <span>Limited Size Sneakers</span>
               <StyledLink to="/" text="View All" />

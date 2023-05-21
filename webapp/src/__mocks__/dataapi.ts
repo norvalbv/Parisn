@@ -1,7 +1,7 @@
-import { ProductData } from 'types';
+import { CollectionData, ProductData } from 'types';
 
 export const product: ProductData = {
-  category: '',
+  collection: '',
   description: '',
   endTime: 0,
   id: '',
@@ -10,4 +10,9 @@ export const product: ProductData = {
   startTime: 0,
   stock: { small: 1, medium: 3, large: 0, extraLarge: 2 },
   title: '',
+};
+
+export const collection: CollectionData = {
+  collections: '',
+  image: '',
 };

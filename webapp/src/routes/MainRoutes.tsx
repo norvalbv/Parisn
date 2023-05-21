@@ -36,12 +36,12 @@ export const router = createBrowserRouter(
         <Route path="how-it-works" element={<HowItWorks />} errorElement={<ErrorBoundary />} />
         <Route path="collections" element={<AllCollections />} errorElement={<ErrorBoundary />} />
         <Route
-          path="collections/:category"
+          path="collections/:collection"
           element={<ProductsByCollection />}
           errorElement={<ErrorBoundary />}
         />
         <Route
-          path="/collections/:category/:product"
+          path="/collections/:collection/:product"
           element={
             <ProductContextProvider>
               <ItemView />
