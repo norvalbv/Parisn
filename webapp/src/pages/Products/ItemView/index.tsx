@@ -42,7 +42,7 @@ const ItemView = (): ReactElement => {
   useEffect(() => {
     if (!data) return;
     const timer = setInterval(() => {
-      const price = logScalePrice(data.StartTime, data.EndTime, data.Price);
+      const price = logScalePrice(data.startTime, data.endTime, data.price);
       setLocalPrice(price <= 1 ? 0 : price);
     }, 1000);
     return () => clearInterval(timer);
@@ -54,8 +54,8 @@ const ItemView = (): ReactElement => {
   if (!data) return <Loading />;
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const compareSelectedVals: number = Object.entries(data.Stock)[
-    Object.entries(data.Stock).findIndex((x: [string, number]) =>
+  const compareSelectedVals: number = Object.entries(data.stock)[
+    Object.entries(data.stock).findIndex((x: [string, number]) =>
       selectedSize.toLowerCase() === 'xl'
         ? x[0].slice(0, 1).toLowerCase() === 'e'
         : x[0].slice(0, 1).toLowerCase() === selectedSize.toLowerCase()
@@ -66,7 +66,7 @@ const ItemView = (): ReactElement => {
     <>
       <div className="float-left h-screen w-[40%]">
         <Carousel
-          images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.Image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
+          images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
         />
       </div>
       <div className="float-right h-screen w-[60%] overflow-auto scroll-smooth scrollbar-none">
@@ -75,30 +75,30 @@ const ItemView = (): ReactElement => {
             id="product-overview"
             className="mx-auto flex h-screen flex-col items-center justify-center gap-4 tracking-wider"
           >
-            <h2 className="text-3xl underline underline-offset-8">{data.Title}</h2>
+            <h2 className="text-3xl underline underline-offset-8">{data.title}</h2>
             <div className="my-4 w-full text-center">
               {!localPrice && localPrice !== 0 ? (
                 <>
-                  <p>Price: £{data.Price}</p>
+                  <p>price: £{data.price}</p>
                   <ProgressBar value={100} />
                 </>
               ) : localPrice <= 1 ? (
                 'FREE'
               ) : (
                 <>
-                  <p>Price: £{localPrice.toFixed(2)}</p>
+                  <p>price: £{localPrice.toFixed(2)}</p>
                   <ProgressBar value={localPrice / 10} />
                 </>
               )}
             </div>
             <Button
               text="Buy Now"
-              hoveredText={`Buy at £${(localPrice || data.Price).toFixed(2)}`}
+              hoveredText={`Buy at £${(localPrice || data.price).toFixed(2)}`}
               rounded="lg"
               onClick={(): void => {
                 setProductInfo({
                   product: data,
-                  price: Number((localPrice || data.Price).toFixed(2)),
+                  price: Number((localPrice || data.price).toFixed(2)),
                   selectedSize,
                 });
 
@@ -109,7 +109,7 @@ const ItemView = (): ReactElement => {
             <ProductSizes
               classes="mb-4"
               selectedSize={selectedSize}
-              sizes={data.Stock}
+              sizes={data.stock}
               onClick={(size): void => setselectedSize(size)}
             />
             <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
@@ -132,7 +132,7 @@ const ItemView = (): ReactElement => {
                 type="button"
                 className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
               >
-                End: {convertToDate(data.EndTime, false, { type: 'short' })}
+                End: {convertToDate(data.endTime, false, { type: 'short' })}
               </button>
               <button
                 className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"

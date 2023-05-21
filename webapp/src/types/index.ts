@@ -1,19 +1,19 @@
 export interface Stock {
-  Small: number;
-  Medium: number;
-  Large: number;
-  ExtraLarge: number;
+  small: number;
+  medium: number;
+  large: number;
+  extraLarge: number;
 }
 export interface ProductData {
-  Category: string;
-  Description: string;
-  EndTime: number;
-  ID: string;
-  Image: string;
-  Price: number;
-  StartTime: number;
-  Stock: Stock;
-  Title: string;
+  category: string;
+  description: string;
+  endTime: number;
+  id: string;
+  image: string;
+  price: number;
+  startTime: number;
+  stock: Stock;
+  title: string;
 }
 
 export interface CollectionData {

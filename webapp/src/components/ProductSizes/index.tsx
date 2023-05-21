@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
-import { Stock } from 'types';
+import { stock } from 'types';
 import Button from 'components/Button';
 
 export interface ProductSizesProps {
-  sizes: Stock;
+  sizes: stock;
   classes?: string;
   onClick?: (arg: string) => void;
   selectedSize?: string;
@@ -22,7 +22,7 @@ const ProductSizes = ({
     setSelected(size);
   };
 
-  const priority = ['Small', 'Medium', 'Large', 'ExtraLarge'];
+  const priority = ['small', 'medium', 'large', 'extraLarge'];
 
   const sortedList = Object.entries(sizes).sort(
     (a, b) => priority.indexOf(a[0]) - priority.indexOf(b[0])

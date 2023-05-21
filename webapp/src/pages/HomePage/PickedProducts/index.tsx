@@ -60,7 +60,7 @@ const PickedProducts = (): ReactElement => {
                 <span className="inline-block text-lg font-normal uppercase">metropo chic</span>
                 <section className="w-min">
                   <span className="inline-block text-xs font-normal text-primary-neutral">
-                    Current&nbsp;Price
+                    Current&nbsp;price
                   </span>
                   <span className="inline-block font-normal">£ 550.00</span>
                 </section>

@@ -19,10 +19,10 @@ const Catalogue = (): ReactElement => {
       if (data) {
         const updatedCurrentPrices: { [key: string]: number } = {};
         data.forEach((product) => {
-          updatedCurrentPrices[product.ID] = logScalePrice(
-            product.StartTime,
-            product.EndTime,
-            product.Price
+          updatedCurrentPrices[product.id] = logScalePrice(
+            product.startTime,
+            product.endTime,
+            product.price
           );
         });
         setCurrentPrices(updatedCurrentPrices);
@@ -37,28 +37,28 @@ const Catalogue = (): ReactElement => {
   return (
     <div className="grid min-h-screen grid-cols-3 pb-10">
       {data.map((product) => (
-        <div key={product.ID} className="flex flex-col flex-wrap items-center justify-center pt-10">
-          <Link to={`${product.ID}`} className="my-4 flex items-center justify-center">
+        <div key={product.id} className="flex flex-col flex-wrap items-center justify-center pt-10">
+          <Link to={`${product.id}`} className="my-4 flex items-center justify-center">
             <img
-              src={product.Image}
-              alt={product.Title}
+              src={product.image}
+              alt={product.title}
               className="h-[34rem] w-[24rem] cursor-pointer rounded-xl transition-all hover:scale-110"
             />
           </Link>
           <div className="flex w-[24rem] items-center justify-between">
-            <p className="text-sm">{product.Title}</p>
-            <div className="text-sm flex items-center justify-center gap-2">
-              {typeof currentPrices[product.ID] === 'number' ? (
+            <p className="text-sm">{product.title}</p>
+            <div className="flex items-center justify-center gap-2 text-sm">
+              {typeof currentPrices[product.id] === 'number' ? (
                 <p>
-                  {currentPrices[product.ID] <= 1
+                  {currentPrices[product.id] <= 1
                     ? 'FREE'
-                    : `£${currentPrices[product.ID].toFixed(2)}`}
+                    : `£${currentPrices[product.id].toFixed(2)}`}
                 </p>
               ) : (
-                <p>£{product.Price}</p>
+                <p>£{product.price}</p>
               )}
               <LiveViewers
-                params={product.ID}
+                params={product.id}
                 label={<UserIcon viewBox="-10 0 34 24" />}
                 classNames="flex items-center"
                 fontSize="sm"

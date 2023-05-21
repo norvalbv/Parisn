@@ -15,7 +15,7 @@ export interface LiveViewersProps {
    */
   pageParams?: string;
   /**
-   * Other params, i.e, product ID.
+   * Other params, i.e, product id.
    */
   params?: string;
 }

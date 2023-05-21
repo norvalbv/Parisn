@@ -31,7 +31,7 @@ const HowItWorks = (): ReactElement => {
           </div>
         </div>
         <div>
-          <span className="text-lg font-normal leading-[1.375rem]">2nd Set Your Price</span>
+          <span className="text-lg font-normal leading-[1.375rem]">2nd Set Your price</span>
           <p className="mb-6 mt-2 w-4/5 text-sm text-primary-neutral">
             Set your desired price point, empowering you to take control of your shopping
             experience.

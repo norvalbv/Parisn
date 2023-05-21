@@ -46,19 +46,19 @@ const Checkout = (): ReactElement => {
       {truthyDataParsed ? (
         stage === 1 ? (
           <>
-            <h2 className="text-4xl mx-auto mb-10 w-min border-b pt-10">Checkout</h2>
+            <h2 className="mx-auto mb-10 w-min border-b pt-10 text-4xl">Checkout</h2>
             <div className="mx-auto flex w-4/5 items-center justify-around">
               <div className="flex flex-1 flex-col items-center gap-5 pr-5">
                 <p className="underline underline-offset-2">Purchase Information:</p>
                 <img
-                  src={productInfo.product?.Image}
-                  alt={productInfo.product?.Title}
+                  src={productInfo.product?.image}
+                  alt={productInfo.product?.title}
                   className="mx-8 w-96 flex-1 rounded-lg"
                 />
-                <div className="text-sm flex divide-x">
+                <div className="flex divide-x text-sm">
                   <p className="px-2">£{productInfo.price}</p>
-                  <p className="px-2">{productInfo.product?.Title}</p>
-                  <p className="px-2">{productInfo.product?.Title}</p>
+                  <p className="px-2">{productInfo.product?.title}</p>
+                  <p className="px-2">{productInfo.product?.title}</p>
                 </div>
               </div>
               <div className="flex-1 pl-5">
@@ -129,13 +129,13 @@ const Checkout = (): ReactElement => {
           </>
         ) : clientSecret ? (
           <Elements stripe={stripePromise} options={{ clientSecret }}>
-            <PaymentsForm productId={productInfo.product?.ID || ''} setStage={setStage} />
+            <PaymentsForm productId={productInfo.product?.id || ''} setStage={setStage} />
           </Elements>
         ) : (
           <>Thanks for your purchase!</>
         )
       ) : (
-        <div className="text-xl flex h-screen w-full flex-col items-center justify-center gap-4">
+        <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-xl">
           Basket Empty
           <Button text="Continue Shopping" navigateTo="/collections" />
         </div>

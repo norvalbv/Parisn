@@ -1,18 +1,27 @@
-import Radial from 'components/SVG/Design';
 import React, { ReactElement } from 'react';
+import Radial from 'components/SVG/Design';
+import { DASHBOARD_IMAGE } from 'constants';
 
 const AboutUs = (): ReactElement => {
   return (
-    <div className="relative mx-auto flex w-1/2 items-center gap-8">
+    <div className="relative mx-auto mb-40 flex w-9/12 items-center gap-16">
       <Radial />
       <div>
-        <span className="mb-8 inline-block uppercase">Parisn.com</span>
-        <p>
+        <span className="mb-8 inline-block text-lg font-semibold uppercase tracking-[.42rem]">
+          Parisn.com
+        </span>
+        <p className="text-sm">
           Launched in 2021 allows you to choose the price you pay for your items in a reverse
           bidding strategy technique. Starting at £1,000 per item, over time the price of the item
           drops to £0.
         </p>
       </div>
+      <div
+        className="absolute h-full w-full"
+        style={{
+          backgroundImage: `url(${DASHBOARD_IMAGE})`,
+        }}
+      />
     </div>
   );
 };
