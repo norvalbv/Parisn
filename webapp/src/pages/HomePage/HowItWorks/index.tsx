@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import StyledLink from 'components/StyledLink';
 import Radial from 'components/SVG/Design';
-import { PRODUCT_1_IMAGE } from 'constants';
+import { PRODUCT_1_IMAGE } from 'constants/index';
 
 const HowItWorks = (): ReactElement => {
   return (

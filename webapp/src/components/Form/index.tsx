@@ -82,14 +82,14 @@ const Form = ({
                 name={id}
                 placeholder={values.placeholder}
                 type={type}
-                className="text-sm -mb-4 -mt-8 block w-full rounded-lg border border-gray-600 bg-black p-2.5 placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+                className="-mb-4 -mt-8 block w-full rounded-lg border border-gray-600 bg-black p-2.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
                 disabled={values.disabled}
                 autoComplete={values.disableAutocomplete}
               />
               {values.id === 'password' && (
                 <button
                   type="button"
-                  className="text-sm m-0 text-left italic underline"
+                  className="m-0 text-left text-sm italic underline"
                   onClick={(): void =>
                     type === 'password' ? setType('text') : setType('password')
                   }
@@ -145,7 +145,7 @@ const Form = ({
         <Button
           text={submitButton.label}
           type="submit"
-          classes={`${submitButton.className || ''} -mt-4`}
+          className={`${submitButton.className || ''} -mt-4`}
         />
       </FormikForm>
     </Formik>

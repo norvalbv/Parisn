@@ -43,7 +43,7 @@ const ProductSizes = ({
             borderRequired="bottom"
             hoverColorRequired={false}
             disabled={Boolean(!size[1])}
-            classes={`${size[1] ? 'hover:border-b-pink-500 hover:scale-125' : ''} ${
+            className={`${size[1] ? 'hover:scale-125 hover:border-b-pink-500' : ''} ${
               (selectedSize?.toLowerCase() === productSize && stockCount > 0) ||
               (selected === productSize && stockCount > 0)
                 ? 'scale-125 border-b-pink-500'

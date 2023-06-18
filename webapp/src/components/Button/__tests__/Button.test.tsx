@@ -26,7 +26,7 @@ describe('<Button />', () => {
             theme="dark"
             text="Test Text"
             hoveredText="Hovered Text"
-            size="base"
+            size="md"
             width="25rem"
             hoverColorRequired
             disabled
@@ -37,13 +37,14 @@ describe('<Button />', () => {
             onMouseLeave={jest.fn()}
             id="Test Id"
             testId="Data Attribute"
-            uppercase
             className="underline"
             type="button"
             navigateTo="/"
             borderRequired="all"
             hoveredAnimation
             navigationState={{ test: 'Test 1' }}
+            roundedBorders="xs"
+            fontWeight="bold"
           />
         </BrowserRouter>
       )

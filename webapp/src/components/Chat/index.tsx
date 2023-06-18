@@ -99,7 +99,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
                   message.user === user.userInfo?.username ? 'justify-self-end' : ''
                 }`}
               >
-                <span className="text-xs block">{message.user}:</span>
+                <span className="block text-xs">{message.user}:</span>
                 <span className="hidden text-xxs italic group-hover:block">
                   {convertToDate(message.time)}
                 </span>
@@ -156,7 +156,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
           <ErrorMessage
             name="userInput"
             component="div"
-            className="text-xs absolute top-0 ml-2 font-normal"
+            className="absolute top-0 ml-2 text-xs font-normal"
           />
           <Button
             text="send"
@@ -164,7 +164,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
             width="1.5rem"
             borderRequired="none"
             hoverColorRequired={false}
-            classes="h-full left-4"
+            className="left-4 h-full"
             type="submit"
           />
           <Field

@@ -41,7 +41,7 @@ const ChangePassword = (): ReactElement => {
       <Button
         onClick={(): void => resendConfirmationCode()}
         text="Resend Confirmation Code"
-        classes="mt-10"
+        className="mt-10"
       />
     </div>
   );

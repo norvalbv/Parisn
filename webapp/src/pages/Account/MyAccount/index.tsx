@@ -61,14 +61,12 @@ const MyAccount = (): ReactElement => {
                 signOut();
               }}
               navigateTo="/"
-              classes="text-left px-0 hover:underline"
-              upperCase={false}
+              className="px-0 text-left hover:underline"
               width="100%"
               borderRequired="bottom"
               fontWeight="normal"
               size="lg"
               hoverColorRequired={false}
-              textOrientation="text-left"
             />
           </div>
         </div>

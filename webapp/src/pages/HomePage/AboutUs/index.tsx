@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import Radial from 'components/SVG/Design';
-import { DASHBOARD_IMAGE } from 'constants';
+import { DASHBOARD_IMAGE } from 'constants/index';
 
 const AboutUs = (): ReactElement => {
   return (

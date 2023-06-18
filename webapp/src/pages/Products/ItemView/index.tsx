@@ -94,7 +94,7 @@ const ItemView = (): ReactElement => {
             <Button
               text="Buy Now"
               hoveredText={`Buy at £${(localPrice || data.price).toFixed(2)}`}
-              rounded="lg"
+              roundedBorders="lg"
               onClick={(): void => {
                 setProductInfo({
                   product: data,
@@ -151,7 +151,7 @@ const ItemView = (): ReactElement => {
           className="mx-auto flex h-screen w-3/5 flex-col items-center justify-center gap-4 text-center leading-10 tracking-wider"
         >
           <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{data.Description}</p>
+          <p className="my-6 font-light">{data.description}</p>
           <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
             Back
           </a>
