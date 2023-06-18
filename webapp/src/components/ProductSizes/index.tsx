@@ -1,9 +1,9 @@
 import React, { ReactElement, useState } from 'react';
-import { stock } from 'types';
+import { Stock } from 'types';
 import Button from 'components/Button';
 
 export interface ProductSizesProps {
-  sizes: stock;
+  sizes: Stock;
   classes?: string;
   onClick?: (arg: string) => void;
   selectedSize?: string;
