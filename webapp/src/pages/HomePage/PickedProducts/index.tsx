@@ -1,8 +1,9 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useRef, useState } from 'react';
 import Button from 'components/Button';
 import ClockIcon from 'components/SVG/ClockIcon';
 import Badge from 'components/Badge';
 import NavigationArrows from 'components/NavigationArrows';
+import classNames from 'utils/classNames';
 
 const PickedProducts = (): ReactElement => {
   const images = [
@@ -12,7 +13,10 @@ const PickedProducts = (): ReactElement => {
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
   ];
 
-  const [indexedImageInCenter, setIndexedImageInCenter] = useState(1);
+  const ref = useRef<HTMLDivElement>(null);
+  const containerWidth = ref.current?.offsetWidth || 0;
+
+  const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
   return (
     <section className="my-40">
       <div className="flex items-center justify-between">
@@ -26,27 +30,38 @@ const PickedProducts = (): ReactElement => {
         </div>
         <NavigationArrows
           leftArrow={{
-            className: indexedImageInCenter === 1 ? '' : 'cursor-pointer',
-            fill: indexedImageInCenter === 1 ? '#B0B0B0' : 'white',
+            className: !indexedImageInCenter ? '' : 'cursor-pointer',
+            fill: !indexedImageInCenter ? '#B0B0B0' : 'white',
             onClick: (): void => {
-              if (indexedImageInCenter === 1) return;
+              if (!indexedImageInCenter) return;
               setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter - 1);
             },
           }}
           rightArrow={{
-            className: indexedImageInCenter === images.length - 2 ? '' : 'cursor-pointer',
-            fill: indexedImageInCenter === images.length - 2 ? '#B0B0B0' : 'white',
+            className: indexedImageInCenter === images.length - 3 ? '' : 'cursor-pointer',
+            fill: indexedImageInCenter === images.length - 3 ? '#B0B0B0' : 'white',
             onClick: (): void => {
-              if (indexedImageInCenter === images.length - 2) return;
+              if (indexedImageInCenter === images.length - 3) return;
               setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter + 1);
             },
           }}
         />
       </div>
-      <div className="flex min-w-min items-center gap-[3.75rem] overflow-hidden">
+      <div
+        className={classNames(
+          'relative flex min-w-min items-center gap-[3.75rem] overflow-hidden transition-all duration-500'
+        )}
+        style={{
+          left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
+        }}
+      >
         {images.map((collection, idx) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <section className="relative h-[31.875rem] w-[19.625rem] rounded" key={idx}>
+          <section
+            className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
+            // eslint-disable-next-line react/no-array-index-key
+            key={`${collection}_${idx}`}
+            ref={ref}
+          >
             <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
               <div className="flex items-center gap-2">
                 <ClockIcon />
@@ -65,7 +80,7 @@ const PickedProducts = (): ReactElement => {
                   <span className="inline-block font-normal">£ 550.00</span>
                 </section>
               </div>
-              <p className="mt-3 mb-6 text-xs text-white/60">
+              <p className="mb-6 mt-3 text-xs text-white/60">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, consectetur.
               </p>
               <div className="flex gap-4">
