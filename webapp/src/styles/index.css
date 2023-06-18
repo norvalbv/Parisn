@@ -38,10 +38,10 @@
     /* text - 32px */ /* line height - 38px */
     @apply text-[2rem] font-semibold leading-[2.375rem] tracking-[0.42rem];
   }
-  .logo-text-large {
-    /* text - 42px */ /* line height - 50px */
+  /* text - 42px */ /* line height - 50px */
+  /* .logo-text-large {
     @apply text-[2.625rem] font-medium leading-[3.125rem] tracking-[0.42rem];
-  }
+  } */
   .cta-small {
     /* text - 12px */ /* line height - 19px */
     @apply text-[0.75rem] font-semibold leading-[1.1875rem] tracking-[0.16rem];
