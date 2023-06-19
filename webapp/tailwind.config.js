@@ -4,6 +4,14 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
+        xs: [
+          '0.75rem', // 12px
+          {
+            lineHeight: '0.875rem', // 14px
+            letterSpacing: '0.08rem',
+            fontWeight: 400,
+          },
+        ],
         xxs: ['10px', '12px'],
       },
       fontFamily: {

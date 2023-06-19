@@ -21,7 +21,7 @@ const Categories = (): ReactElement => {
           <div className="relative h-[31.875rem] w-[19.625rem] rounded" key={idx}>
             <img src={collection} alt="p" className="h-full rounded" />
             <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
-              <span>Limited Size Sneakers</span>
+              <h4 className="font-thin leading-[1.8125rem]">Limited Size Sneakers</h4>
               <StyledLink to="/" text="View All" />
             </div>
           </div>

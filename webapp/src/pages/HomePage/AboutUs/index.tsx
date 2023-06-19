@@ -10,18 +10,18 @@ const AboutUs = (): ReactElement => {
         <span className="mb-8 inline-block text-lg font-semibold uppercase tracking-[.42rem]">
           Parisn.com
         </span>
-        <p className="text-sm">
+        <p>
           Launched in 2021 allows you to choose the price you pay for your items in a reverse
           bidding strategy technique. Starting at £1,000 per item, over time the price of the item
           drops to £0.
         </p>
       </div>
-      <div
+       <div
         className="absolute h-full w-full"
         style={{
           backgroundImage: `url(${DASHBOARD_IMAGE})`,
         }}
-      />
+      /> 
     </div>
   );
 };

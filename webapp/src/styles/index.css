@@ -50,24 +50,4 @@
     /* text - 16px */ /* line height - 19px */
     @apply text-[1rem] font-thin uppercase leading-[1.1875rem] tracking-[0.08rem];
   }
-  .card-texts-title-1 {
-    /* text - 18px */ /* line height - 29px */
-    @apply text-[1.125rem] font-thin capitalize leading-[1.8125rem] tracking-[0.08rem];
-  }
-  .card-texts-title-2 {
-    /* text - 18px */ /* line height - 22x */
-    @apply text-[1.125rem] font-normal uppercase leading-[1.375rem] tracking-[0.08rem];
-  }
-  .card-texts-label {
-    /* text - 12px */ /* line height - 14px */
-    @apply text-[0.75rem] font-normal leading-[0.875rem] tracking-[0.08rem];
-  }
-  .card-texts-price {
-    /* text - 16px */ /* line height - 19px */
-    @apply text-[1rem] font-medium uppercase leading-[1.1875rem] tracking-[0.08rem];
-  }
-  .card-texts-description {
-    /* text - 12px */ /* line height - 19px */
-    @apply text-[0.75rem] font-thin leading-[1.1875rem] tracking-[0.08rem];
-  }
 }

@@ -21,10 +21,8 @@ const PickedProducts = (): ReactElement => {
     <section className="my-40">
       <div className="flex items-center justify-between">
         <div className="mb-10">
-          <p className="text-[1.75rem] font-normal leading-[2.125rem]">
-            Dive into Our Handpicked Selection
-          </p>
-          <p className="text-sm uppercase">
+          <h3>Dive into Our Handpicked Selection</h3>
+          <p className="uppercase">
             Featured Products with Unmatched Style and Exciting Bidding Opportunities
           </p>
         </div>
@@ -72,15 +70,15 @@ const PickedProducts = (): ReactElement => {
             <img src={collection} alt="p" className="h-[18.5rem] w-full rounded-t" />
             <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
               <div className="flex items-center justify-between">
-                <span className="inline-block text-lg font-normal uppercase">metropo chic</span>
+                <h4 className="uppercase">metropo chic</h4>
                 <section className="w-min">
-                  <span className="inline-block text-xs font-normal text-primary-neutral">
-                    Current&nbsp;price
+                  <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
+                  <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
+                    £ 550.00
                   </span>
-                  <span className="inline-block font-normal">£ 550.00</span>
                 </section>
               </div>
-              <p className="mb-6 mt-3 text-xs text-white/60">
+              <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60">
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, consectetur.
               </p>
               <div className="flex gap-4">
