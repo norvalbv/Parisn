@@ -4,14 +4,14 @@ import ClockIcon from 'components/SVG/ClockIcon';
 import Badge from 'components/Badge';
 import NavigationArrows from 'components/NavigationArrows';
 import classNames from 'utils/classNames';
+import { products } from '__mocks__/dataApiMock';
+import Loading from 'components/Loading';
+import { timeLeft } from 'utils/timeLeft';
 
 const PickedProducts = (): ReactElement => {
-  const images = [
-    'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
-    'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
-    'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
-    'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
-  ];
+  const data = products;
+
+  if (!data) return <Loading />;
 
   const ref = useRef<HTMLDivElement>(null);
   const containerWidth = ref.current?.offsetWidth || 0;
@@ -36,10 +36,10 @@ const PickedProducts = (): ReactElement => {
             },
           }}
           rightArrow={{
-            className: indexedImageInCenter === images.length - 3 ? '' : 'cursor-pointer',
-            fill: indexedImageInCenter === images.length - 3 ? '#B0B0B0' : 'white',
+            className: indexedImageInCenter === data.length - 3 ? '' : 'cursor-pointer',
+            fill: indexedImageInCenter === data.length - 3 ? '#B0B0B0' : 'white',
             onClick: (): void => {
-              if (indexedImageInCenter === images.length - 3) return;
+              if (indexedImageInCenter === data.length - 3) return;
               setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter + 1);
             },
           }}
@@ -53,33 +53,40 @@ const PickedProducts = (): ReactElement => {
           left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
         }}
       >
-        {images.map((collection, idx) => (
+        {data.map((product, idx) => (
           <section
             className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
-            // eslint-disable-next-line react/no-array-index-key
-            key={`${collection}_${idx}`}
+            key={product.id}
             ref={ref}
           >
             <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
               <div className="flex items-center gap-2">
                 <ClockIcon />
-                <span className="text-xxs font-normal">1hr 14mins</span>
+                {/* <span className="text-xxs font-normal">1hr 14mins</span> */}
+                <span className="text-xxs font-normal">
+                  {timeLeft({ start: product.startTime, end: product.endTime })}
+                </span>
               </div>
               <Badge type={idx % 2 ? 'limited' : 'new'} />
             </div>
-            <img src={collection} alt="p" className="h-[18.5rem] w-full rounded-t" />
+            <img
+              src={product.image}
+              alt={product.id}
+              className="h-[18.5rem] w-full rounded-t object-cover"
+            />
             <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
               <div className="flex items-center justify-between">
-                <h4 className="uppercase">metropo chic</h4>
+                <h4 className="uppercase">{product.title}</h4>
                 <section className="w-min">
                   <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
                   <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
-                    £ 550.00
+                    £&nbsp;{product.price}
                   </span>
                 </section>
               </div>
               <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestiae, consectetur.
+                {product.description.slice(0, 68)}&nbsp;
+                {product.description.length > 68 && '...'}
               </p>
               <div className="flex gap-4">
                 <Button
