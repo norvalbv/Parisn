@@ -104,7 +104,7 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
                   {convertToDate(message.time)}
                 </span>
                 <span
-                  className={`mt-0.5 inline-block rounded-xl py-1 px-2 ${
+                  className={`mt-0.5 inline-block rounded-xl px-2 py-1 ${
                     message.user === user.userInfo?.username
                       ? 'bg-primary-neutral/20'
                       : 'bg-primary-neutral/40'

@@ -3,7 +3,7 @@ import Button from 'components/Button';
 
 const NotFound = (): ReactElement => {
   return (
-    <div className="text-xl flex h-screen w-full flex-col items-center justify-center gap-4">
+    <div className="flex h-screen w-full flex-col items-center justify-center gap-4 text-xl">
       Page Not Found :(
       <Button text="Go Home" navigateTo="/" />
     </div>

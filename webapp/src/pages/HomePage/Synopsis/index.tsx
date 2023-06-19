@@ -6,7 +6,9 @@ const Synopsis = (): ReactElement => {
       <p className="uppercase">The Power of Reverse Bidding in 3 Simple Steps</p>
       <h3>
         Master the Art of Smart Shopping at
-        <span className="block text-[2.625rem] font-normal leading-[3.125rem] tracking-[0.08rem];">PARISN</span>
+        <span className="tracking-[0.08rem]; block text-[2.625rem] font-normal leading-[3.125rem]">
+          PARISN
+        </span>
       </h3>
     </section>
   );

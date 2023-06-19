@@ -125,7 +125,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {loading && (
-          <span className="absolute top-3 right-3 h-full">
+          <span className="absolute right-3 top-3 h-full">
             <Spinner />
           </span>
         )}

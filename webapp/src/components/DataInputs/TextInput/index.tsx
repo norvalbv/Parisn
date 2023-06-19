@@ -29,7 +29,7 @@ const TextInput = ({
     onchange(e.target.value);
   };
   return (
-    <div className="my-4 mx-auto flex max-w-max items-center justify-between gap-8">
+    <div className="mx-auto my-4 flex max-w-max items-center justify-between gap-8">
       {title && (
         <span className="font-semibold">
           {title}
@@ -44,7 +44,7 @@ const TextInput = ({
           )}
         >
           <input
-            className="text-grey-darker text-sm placeholder:text-sm w-full appearance-none border-none bg-transparent leading-5 placeholder:text-gray-400 focus:outline-0 focus:ring-transparent"
+            className="text-grey-darker w-full appearance-none border-none bg-transparent text-sm leading-5 placeholder:text-sm placeholder:text-gray-400 focus:outline-0 focus:ring-transparent"
             onChange={handleChange}
             placeholder={placeholder}
             type="text"

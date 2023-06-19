@@ -26,7 +26,7 @@ const ErrorBoundary = ({
     () => (
       <div
         role="alert"
-        className={`flex items-center gap-4 rounded bg-red-400 py-2 px-4 ${className}`}
+        className={`flex items-center gap-4 rounded bg-red-400 px-4 py-2 ${className}`}
       >
         <b>
           {errorMessage ||

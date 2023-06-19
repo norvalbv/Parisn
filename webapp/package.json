@@ -10,7 +10,7 @@
     "test": "jest --watch --resetMocks -o",
     "testall": "jest --watchAll --resetMocks -o",
     "cypress:open": "cypress open",
-    "format:fix": "prettier --write"
+    "format:fix": "prettier --write ./src"
   },
   "dependencies": {
     "@react-spring/web": "^9.7.2",

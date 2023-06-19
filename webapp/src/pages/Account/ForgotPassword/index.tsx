@@ -16,7 +16,7 @@ const ForgotPassword = (): ReactElement => {
       {stage === 1 ? (
         <>
           <div className="flex items-baseline justify-between">
-            <h2 className="text-4xl my-6 underline">Reset Password</h2>
+            <h2 className="my-6 text-4xl underline">Reset Password</h2>
             <Link className="cursor-pointer hover:underline" to="/login">
               Back
             </Link>
@@ -40,7 +40,7 @@ const ForgotPassword = (): ReactElement => {
       ) : stage === 2 ? (
         <>
           <div className="flex items-baseline justify-between">
-            <h2 className="text-4xl my-6 underline">Reset Password</h2>
+            <h2 className="my-6 text-4xl underline">Reset Password</h2>
             <button
               type="button"
               className="cursor-pointer hover:underline"
@@ -72,7 +72,7 @@ const ForgotPassword = (): ReactElement => {
         </>
       ) : (
         <>
-          <h2 className="text-4xl my-6 underline">Your password has been reset.</h2>
+          <h2 className="my-6 text-4xl underline">Your password has been reset.</h2>
           <Link
             className="cursor-pointer hover:underline"
             to="/login"

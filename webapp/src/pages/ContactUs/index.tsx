@@ -17,7 +17,7 @@ const ContactUs = (): ReactElement => {
       <img src={DASHBOARD_IMAGE} alt={DASHBOARD_IMAGE} className="h-screen w-[42.5%]" />
       <CardWrapper cardType="centered">
         <div className="flex flex-col gap-4 text-center tracking-wider">
-          <h2 className="text-4xl relative mx-auto underline">Contact Us</h2>
+          <h2 className="relative mx-auto text-4xl underline">Contact Us</h2>
           <h3 className="my-6">Contact Parisn Customer Support</h3>
           <Form
             formValues={{

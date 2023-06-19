@@ -36,7 +36,7 @@ describe('<ErrorBoundary />', () => {
     const tree = renderer
       .create(
         <ErrorBoundaryWithAllProps
-          className="p-4 m-4 font-light"
+          className="m-4 p-4 font-light"
           onClick={jest.fn()}
           errorMessage="Error Message!"
           reset={{ onReset: jest.fn(), resetKeys: ['Reset Key'] }}

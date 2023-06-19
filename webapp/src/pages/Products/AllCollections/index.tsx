@@ -23,7 +23,7 @@ const AllCollections = (): ReactElement => {
               className="h-[30rem] w-[20rem] cursor-pointer rounded-xl transition-all hover:scale-110"
             />
           </Link>
-          <p className="text-xl mt-10 font-thin uppercase tracking-widest underline underline-offset-8">
+          <p className="mt-10 text-xl font-thin uppercase tracking-widest underline underline-offset-8">
             {collection.collections}
           </p>
         </div>

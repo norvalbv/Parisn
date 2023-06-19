@@ -112,7 +112,7 @@ const ItemView = (): ReactElement => {
               sizes={data.stock}
               onClick={(size): void => setselectedSize(size)}
             />
-            <p className={`text-sm ${compareSelectedVals ? '-mt-2 -mb-1' : 'my-1'}`}>
+            <p className={`text-sm ${compareSelectedVals ? '-mb-1 -mt-2' : 'my-1'}`}>
               {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
             </p>
             <a className="text-xs hover:text-secondary-neutral hover:underline" href="#description">

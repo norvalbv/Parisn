@@ -10,7 +10,7 @@ const Login = (): ReactElement => {
   return (
     <CardWrapper cardType="centered">
       <div className="flex items-baseline justify-between">
-        <h2 className="text-4xl my-6 underline">Login</h2>
+        <h2 className="my-6 text-4xl underline">Login</h2>
         <Link className="cursor-pointer hover:underline" to="/sign-up">
           Need an account?
         </Link>
