@@ -1,7 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 import StyledLink from 'components/StyledLink';
 import Radial from 'components/SVG/Design';
-import { useCollections } from 'services/DataApiService';
+// import { useCollections } from 'services/DataApiService';
 import Loading from 'components/Loading';
 import { collections } from '__mocks__/dataApiMock';
 import PageIndicators from 'components/PageIndicators';
@@ -31,7 +31,11 @@ const Categories = (): ReactElement => {
             className="relative h-[31.875rem] w-[19.625rem] rounded"
             key={collection.collections}
           >
-            <img src={collection.image} alt="p" className="h-full rounded brightness-[.65]" />
+            <img
+              src={collection.image}
+              alt={`${collection.collections} collection cover`}
+              className="h-full rounded brightness-[.65]"
+            />
             <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
               <h4 className="font-thin leading-[1.8125rem]">{collection.collections}</h4>
               <StyledLink to="/" text="View All" />
