@@ -16,12 +16,12 @@ const AboutUs = (): ReactElement => {
           drops to £0.
         </p>
       </div>
-       <div
+      <div
         className="absolute h-full w-full"
         style={{
           backgroundImage: `url(${DASHBOARD_IMAGE})`,
         }}
-      /> 
+      />
     </div>
   );
 };
