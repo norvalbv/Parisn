@@ -9,12 +9,12 @@ const Categories = (): ReactElement => {
     'https://i.ibb.co/X3fyBCp/ryan-grice-VKDzcs8k-D8-E-unsplash.webp',
   ];
   return (
-    <section className="relative flex flex-col items-center gap-4">
+    <section className="relative flex flex-col items-center">
       <Radial colour="purple" />
       <p className="uppercase">Exceptional Apparel Awaits</p>
-      <p className="mb-[2.5rem] text-[2rem] font-normal">
-        <span className="tracking-[.42rem]">PARISN&apos;s</span>Fashion Panorama
-      </p>
+      <h3 className="mb-[2.5rem]">
+        <span className="logo-text-medium">PARISN</span>&apos;s Fashion Panorama
+      </h3>
       <div className="flex items-center gap-10">
         {t.map((collection, idx) => (
           // eslint-disable-next-line react/no-array-index-key
