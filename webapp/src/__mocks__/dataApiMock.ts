@@ -13,6 +13,25 @@ export const product: ProductData = {
   title: 'Parisn Official Trainers',
 };
 
+export const collections: CollectionData[] = [
+  {
+    collections: 'Shoes',
+    image: '',
+  },
+  {
+    collections: 'Tshirts',
+    image: '',
+  },
+  {
+    collections: 'Jackets',
+    image: '',
+  },
+  {
+    collections: 'Joggers',
+    image: '',
+  },
+];
+
 export const products: ProductData[] = [
   {
     collection: 'Tshirts',
@@ -124,16 +143,5 @@ export const products: ProductData[] = [
     startTime: 1685570000000,
     stock: { small: 2, medium: 0, large: 1, extraLarge: 3 },
     title: 'Parisn Official Shoes',
-  },
-];
-
-export const collection: CollectionData[] = [
-  {
-    collections: 'Shoes',
-    image: '',
-  },
-  {
-    collections: 'Tshirts',
-    image: '',
   },
 ];
