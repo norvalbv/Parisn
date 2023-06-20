@@ -14,7 +14,7 @@ const HowItWorks = (): ReactElement => {
             Dive into our excliusive, time-limited products. Each item will decrease in price over a
             period of time, ultimately going to 0.
           </p>
-          <StyledLink to="/" />
+          <StyledLink to="/how-it-works#step-one" />
         </div>
       </div>
       <Radial />
@@ -31,12 +31,12 @@ const HowItWorks = (): ReactElement => {
           </div>
         </div>
         <div>
-          <h4>2nd Set Your price</h4>
+          <h4>2nd Set Your Price</h4>
           <p className="mb-6 mt-2 w-4/5 text-primary-neutral">
             Set your desired price point, empowering you to take control of your shopping
             experience.
           </p>
-          <StyledLink to="/" />
+          <StyledLink to="/how-it-works#step-two" />
         </div>
       </div>
       <div className="flex w-4/5 items-center gap-4 self-center">
@@ -47,7 +47,7 @@ const HowItWorks = (): ReactElement => {
             Secure your purchase at the products current price or hold out for a potentially better
             deal as prices continue to fall and risk it becoming out of stock.
           </p>
-          <StyledLink to="/" />
+          <StyledLink to="/how-it-works#step-three" />
         </div>
       </div>
     </section>

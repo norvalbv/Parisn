@@ -1,13 +1,18 @@
 import React, { ReactElement } from 'react';
+import classNames from 'utils/classNames';
 
 type RadialProps = {
   colour?: keyof typeof colourMap;
+  className?: string;
 };
 
-const Radial = ({ colour = 'green' }: RadialProps): ReactElement => {
+const Radial = ({ colour = 'green', className }: RadialProps): ReactElement => {
   return (
     <svg
-      className="absolute -top-40 z-0 h-[62.5rem] w-[25.875rem] rotate-[-80deg] blur-[150px]"
+      className={classNames(
+        'absolute -top-10 -z-10 h-[62.5rem] w-[25.875rem] rotate-[-80deg] blur-[9rem]',
+        className
+      )}
       style={{
         backgroundColor: colourMap[colour],
       }}

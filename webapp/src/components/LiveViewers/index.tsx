@@ -1,13 +1,14 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
 import { FontSize, fontSizeMap } from 'types';
+import classNames from 'utils/classNames';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
 export type LiveViewersProps = {
-  classNames?: string;
+  className?: string;
   fontSize?: FontSize;
   label?: string | JSX.Element;
   /**
@@ -21,7 +22,7 @@ export type LiveViewersProps = {
 };
 
 const LiveViewers = ({
-  classNames,
+  className,
   fontSize = 'xs',
   label = 'Live viewers:',
   pageParams,
@@ -42,7 +43,7 @@ const LiveViewers = ({
   }, [pageParams, params]);
 
   return (
-    <p className={`${fontSizeMap[fontSize]} ${classNames || ''} z-10`}>
+    <p className={classNames(fontSizeMap[fontSize], className)}>
       {label} {viewCount}
     </p>
   );

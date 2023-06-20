@@ -94,7 +94,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedMap[roundedBorders],
           fontWeightMap[fontWeight],
           className,
-          'items-center uppercase relative',
+          'relative items-center uppercase',
           { 'transition-all hover:scale-110': hoveredAnimation },
           hoverColorRequired &&
             !disabled &&
@@ -120,7 +120,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
       >
         {disabled && (
-          <svg width="100%" height="100%" className="absolute top-0 left-0">
+          <svg width="100%" height="100%" className="absolute left-0 top-0">
             <line x2="100%" y2="100%" stroke="darkRed" strokeWidth={2.25} />
           </svg>
         )}

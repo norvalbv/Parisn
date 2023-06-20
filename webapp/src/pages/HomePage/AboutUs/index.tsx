@@ -5,7 +5,7 @@ import { DASHBOARD_IMAGE } from 'constants/index';
 const AboutUs = (): ReactElement => {
   return (
     <div className="relative mx-auto mb-40 flex w-9/12 items-center gap-16">
-      <Radial />
+      <Radial className="right-1/4" />
       <div>
         <span className="mb-8 inline-block text-lg font-semibold uppercase tracking-[.42rem]">
           Parisn.com

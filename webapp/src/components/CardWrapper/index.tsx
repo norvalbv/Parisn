@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import classNames from 'utils/classNames';
 
 export type CardWrapperProps = {
   backgroundColor?: keyof typeof backgroundColorMap;
@@ -16,10 +17,10 @@ const CardWrapper = ({
 }: CardWrapperProps): ReactElement => {
   return (
     <div
-      className={`${cardTypeMap[cardType].outer} ${backgroundColorMap[backgroundColor]}`}
+      className={classNames(cardTypeMap[cardType].outer, backgroundColorMap[backgroundColor])}
       role={role}
     >
-      <div className={`${cardTypeMap[cardType].inner} ${className || ''}`}>{children}</div>
+      <div className={classNames(cardTypeMap[cardType].inner, className)}>{children}</div>
     </div>
   );
 };
@@ -30,8 +31,8 @@ const backgroundColorMap = {
 };
 
 const cardTypeMap = {
-  default: { outer: '', inner: 'max-w-[2000px] mx-auto' },
-  centered: { outer: 'h-screen w-full grid place-items-center', inner: '' },
+  default: { outer: 'relative z-10', inner: 'max-w-[2000px] mx-auto' },
+  centered: { outer: 'h-screen w-full grid place-items-center relative', inner: '' },
 };
 
 export default CardWrapper;

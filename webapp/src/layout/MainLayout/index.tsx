@@ -23,7 +23,7 @@ const MainLayout = (): ReactElement => {
   return (
     <UserInformationProvider>
       <>
-        <div className="relative min-h-screen">
+        <div className="min-h-screen">
           <NavBar />
           <Outlet />
           <MyAccount />

@@ -57,7 +57,7 @@ const Collection = (): ReactElement => {
               <LiveViewers
                 params={product.id}
                 label={<UserIcon viewBox="-10 0 34 24" />}
-                classNames="flex items-center"
+                className="flex items-center"
                 fontSize="sm"
               />
             </div>

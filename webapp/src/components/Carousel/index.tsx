@@ -18,7 +18,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
         />
       </div>
       {/* <!-- Slider indicators --> */}
-      <div className="absolute bottom-0 left-1/2 z-30 flex -translate-x-1/2 items-baseline justify-end space-x-2">
+      <div className="absolute bottom-0 left-1/2 flex -translate-x-1/2 items-baseline justify-end space-x-2">
         {images.map((image, idx) => (
           <div
             className="px-1"
@@ -43,7 +43,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       {/* <!-- Slider controls --> */}
       <button
         type="button"
-        className="group absolute left-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        className="group absolute left-0 top-0 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         onClick={(): void =>
           setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1))
         }
@@ -69,7 +69,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
       </button>
       <button
         type="button"
-        className="group absolute right-0 top-0 z-30 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
+        className="group absolute right-0 top-0 flex h-full cursor-pointer items-center justify-center px-4 focus:outline-none"
         onClick={(): void =>
           setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
         }

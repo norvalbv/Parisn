@@ -36,7 +36,7 @@ const Categories = (): ReactElement => {
               alt={`${collection.collections} collection cover`}
               className="h-full rounded brightness-[.65]"
             />
-            <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
+            <div className="absolute bottom-0 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
               <h4 className="font-thin leading-[1.8125rem]">{collection.collections}</h4>
               <StyledLink to={`/collections/${collection.collections}`} text="View All" />
             </div>
