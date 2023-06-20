@@ -24,7 +24,7 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <nav className="fixed z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
+    <nav className="sticky top-0 z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
       <div className="flex w-full gap-11">
         {location.pathname !== '/home' && <Link to="/home">Home</Link>}
         <Link to="/collections">Collections</Link>

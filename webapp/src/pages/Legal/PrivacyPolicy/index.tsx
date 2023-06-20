@@ -3,8 +3,8 @@ import CardWrapper from 'components/CardWrapper';
 
 const PrivacyPolicy = (): ReactElement => {
   return (
-    <CardWrapper cardType="centered">
-      <p className="mx-auto w-4/5 text-center">
+    <CardWrapper cardType="centered" className="w-1/2">
+      <p className="text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore illum eveniet error dolorem.
         Illo voluptate maxime nihil numquam molestiae aliquam, ullam, harum excepturi eligendi
         soluta laborum non, eos cumque porro dolore nostrum cum reprehenderit praesentium dolores

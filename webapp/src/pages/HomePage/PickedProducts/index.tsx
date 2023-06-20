@@ -10,10 +10,12 @@ import { timeLeft } from 'utils/timeLeft';
 import { logScalePrice } from 'utils/currentPrice';
 import useProduct from 'hooks/useProduct';
 import useInterval from 'hooks/useInterval';
+import { useNavigate } from 'react-router-dom';
 // import { useCheckout } from 'services/DataApiService';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
+  const navigate = useNavigate();
 
   const { setProductInfo } = useProduct();
   // const { startCheckout } = useCheckout();
@@ -129,18 +131,21 @@ const PickedProducts = (): ReactElement => {
                 </p>
                 <div className="flex gap-4">
                   <Button
-                    text="Make A Bid"
+                    text="View Product"
                     theme="ghost"
                     roundedBorders="md"
-                    className="h-12 w-32 text-xs"
+                    className="h-12 w-44 text-xs"
                     size="custom"
                     fontWeight="semibold"
+                    onClick={(): void =>
+                      navigate(`/collections/${product.collection}/${product.id}`)
+                    }
                   />
                   <Button
                     text="Buy Now"
                     theme="light"
                     roundedBorders="md"
-                    className="h-12 w-44 text-xs"
+                    className="h-12 w-32 text-xs"
                     size="custom"
                     fontWeight="semibold"
                     onClick={(): void => {
