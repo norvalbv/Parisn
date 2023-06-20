@@ -23,7 +23,7 @@ const MainLayout = (): ReactElement => {
   return (
     <UserInformationProvider>
       <>
-        <div className="relative min-h-screen text-gray-300">
+        <div className="relative min-h-screen">
           <NavBar />
           <Outlet />
           <MyAccount />

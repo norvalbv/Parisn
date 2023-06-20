@@ -9,7 +9,7 @@ const Collections = (): ReactElement => {
   if (!data) return <Loader />;
 
   return (
-    <div className="grid h-screen grid-cols-3">
+    <div className="grid grid-cols-3">
       {data.map((collection) => (
         <div
           key={collection.collections}
