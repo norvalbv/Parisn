@@ -2,72 +2,69 @@
 
 exports[`<Footer /> should render correctly 1`] = `
 <footer
-  className="p-4 rounded-lg shadow md:px-6 md:py-8"
+  className="rounded-lg p-4 shadow md:px-6 md:py-8"
 >
   <div
     className="sm:flex sm:items-center sm:justify-between"
   >
     <a
-      className="flex items-center mb-4 sm:mb-0"
+      className="mb-4 flex items-center sm:mb-0"
       href="https://parisn.com/"
     >
       <span
-        className="self-center text-2xl font-semibold whitespace-nowrap"
+        className="font-normal"
       >
-        Parisn
+        PARISN.COM
       </span>
     </a>
-    <ul
-      className="flex flex-wrap items-center mb-6 text-sm sm:mb-0"
-    >
-      <li>
-        <a
-          className="mr-4 hover:underline md:mr-6"
-          href="/how-it-works"
-          onClick={[Function]}
-        >
-          How It Works
-        </a>
-      </li>
-      <li>
-        <a
-          className="mr-4 hover:underline md:mr-6"
-          href="/terms-and-conditions"
-          onClick={[Function]}
-        >
-          Terms and Conditions
-        </a>
-      </li>
-      <li>
-        <a
-          className="mr-4 hover:underline md:mr-6 "
-          href="/about-us"
-          onClick={[Function]}
-        >
-          About Us
-        </a>
-      </li>
-      <li>
-        <a
-          className="hover:underline"
-          href="/privacy-policy"
-          onClick={[Function]}
-        >
-          Privacy Policy
-        </a>
-      </li>
-    </ul>
+    <nav>
+      <ul
+        className="mb-6 flex flex-wrap items-center sm:mb-0"
+      >
+        <li>
+          <a
+            className="mr-2 hover:underline md:mr-4"
+            href="/how-it-works"
+            onClick={[Function]}
+          >
+            How It Works
+          </a>
+        </li>
+        <li>
+          <a
+            className="mr-2 hover:underline md:mr-4"
+            href="/terms-and-conditions"
+            onClick={[Function]}
+          >
+            Terms and Conditions
+          </a>
+        </li>
+        <li>
+          <a
+            className="mr-2 hover:underline md:mr-4"
+            href="/about-us"
+            onClick={[Function]}
+          >
+            About Us
+          </a>
+        </li>
+        <li>
+          <a
+            className="hover:underline"
+            href="/privacy-policy"
+            onClick={[Function]}
+          >
+            Privacy Policy
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
   <hr
     className="my-6 border-gray-500 sm:mx-auto lg:my-8"
   />
-  <span
-    className="block text-sm sm:text-center"
-  >
-    Parisn™ 2023 - All Rights Reserved.
-  </span>
   <div
-    className="text-sm flex items-center justify-center my-6"
+    className="my-6 flex items-center justify-center"
   >
     <a
       className="cursor-pointer"
@@ -91,5 +88,10 @@ exports[`<Footer /> should render correctly 1`] = `
       </svg>
     </a>
   </div>
+  <small
+    className="block sm:text-center"
+  >
+    Parisn™ 2023 - All Rights Reserved.
+  </small>
 </footer>
 `;

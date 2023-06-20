@@ -1,7 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<HowItWorks /> HowItWorks props with mandatory props 1`] = `
-<p>
-  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium fugiat vel doloribus nesciunt! Non odit reprehenderit placeat sint tempore fugit animi nemo porro quod ipsa, nisi provident quibusdam ipsum a ratione? Assumenda perspiciatis officia sed, hic vero maxime, vel dolor facilis asperiores tempora ratione ipsam fuga numquam aut deserunt odio!
-</p>
+<div
+  className="h-screen w-full grid place-items-center bg-primary-dark text-primary-light"
+>
+  <div
+    className=" w-1/2"
+  >
+    <p
+      className="text-center"
+    >
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Accusantium fugiat vel doloribus nesciunt! Non odit reprehenderit placeat sint tempore fugit animi nemo porro quod ipsa, nisi provident quibusdam ipsum a ratione? Assumenda perspiciatis officia sed, hic vero maxime, vel dolor facilis asperiores tempora ratione ipsam fuga numquam aut deserunt odio!
+    </p>
+  </div>
+</div>
 `;

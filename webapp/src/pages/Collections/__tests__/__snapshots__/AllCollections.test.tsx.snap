@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<Categories /> Categories props with mandatory props 1`] = `
-<div
-  className="h-screen w-screen grid place-items-center animate-spin-slow text-xl tracking-side"
->
-  PARISN.com
-</div>
-`;

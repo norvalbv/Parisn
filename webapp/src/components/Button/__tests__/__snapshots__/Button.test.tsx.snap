@@ -2,18 +2,15 @@
 
 exports[`<Button /> Button props with all props as required 1`] = `
 <button
-  className="relative inline-flex items-center  hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full underline border py-4 hover:scale-110 transition-all"
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded-xs font-bold underline items-center uppercase transition-all hover:scale-110 cursor-default border-primary-neutral bg-primary-neutral/60 text-primary-dark"
   data-testid="Data Attribute"
   disabled={true}
   id="Test Id"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  role="button"
   style={
     {
-      "backgroundColor": "bg-red-200",
-      "color": "text-red-500",
       "width": "25rem",
     }
   }
@@ -39,7 +36,7 @@ exports[`<Button /> Button props with all props as required 1`] = `
     </div>
   </span>
   <span
-    className="inline-block font-semibold"
+    className="inline-block tracking-[0.16rem]"
   >
     Test Text
   </span>
@@ -48,22 +45,19 @@ exports[`<Button /> Button props with all props as required 1`] = `
 
 exports[`<Button /> Button props with mandatory props 1`] = `
 <button
-  className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4 "
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}
-  role="button"
   style={
     {
-      "backgroundColor": undefined,
-      "color": undefined,
-      "width": "25rem",
+      "width": undefined,
     }
   }
   type="button"
 >
   <span
-    className="inline-block font-semibold"
+    className="inline-block tracking-[0.16rem]"
   >
     Test Text
   </span>

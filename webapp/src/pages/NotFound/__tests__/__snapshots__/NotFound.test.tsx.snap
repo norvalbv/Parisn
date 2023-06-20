@@ -2,26 +2,23 @@
 
 exports[`<NotFound /> Should render correctly 1`] = `
 <div
-  className="h-screen w-full flex flex-col gap-4 justify-center items-center text-xl"
+  className="flex h-screen w-full flex-col items-center justify-center gap-4 text-xl"
 >
   Page Not Found :(
   <button
-    className="relative inline-flex items-center justify-center hover:bg-buttons-hover transition-colors duration-200 uppercase  px-6 py-2.5 text-sm w-full  border py-4 "
+    className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
-    role="button"
     style={
       {
-        "backgroundColor": undefined,
-        "color": undefined,
-        "width": "25rem",
+        "width": undefined,
       }
     }
     type="button"
   >
     <span
-      className="inline-block font-semibold"
+      className="inline-block tracking-[0.16rem]"
     >
       Go Home
     </span>

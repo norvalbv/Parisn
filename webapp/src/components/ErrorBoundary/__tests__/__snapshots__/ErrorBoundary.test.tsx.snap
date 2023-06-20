@@ -8,14 +8,14 @@ exports[`<ErrorBoundary /> should not render, the div inside should throw an err
 
 exports[`<ErrorBoundary /> should render if error is thrown from child 1`] = `
 <div
-  className="bg-red-400 rounded py-2 px-4 flex items-center gap-4 "
+  className="flex items-center gap-4 rounded bg-red-400 px-4 py-2 "
   role="alert"
 >
   <b>
     An error occured! Please try again or contact support if the error persists
   </b>
   <button
-    className="border border-gray-500 rounded px-4 py-2 hover:underline"
+    className="rounded border border-gray-500 px-4 py-2 hover:underline"
     onClick={[Function]}
     type="button"
   >
@@ -26,14 +26,14 @@ exports[`<ErrorBoundary /> should render if error is thrown from child 1`] = `
 
 exports[`<ErrorBoundary /> should render with all props 1`] = `
 <div
-  className="bg-red-400 rounded py-2 px-4 flex items-center gap-4 p-4 m-4 font-light"
+  className="flex items-center gap-4 rounded bg-red-400 px-4 py-2 m-4 p-4 font-light"
   role="alert"
 >
   <b>
     Error Message!
   </b>
   <button
-    className="border border-gray-500 rounded px-4 py-2 hover:underline"
+    className="rounded border border-gray-500 px-4 py-2 hover:underline"
     onClick={[Function]}
     type="button"
   >

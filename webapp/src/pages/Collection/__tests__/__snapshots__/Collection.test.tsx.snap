@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Collection /> Collection with only desired props 1`] = `
+<div
+  className="tracking-side grid h-screen w-screen animate-spin-slow place-items-center text-xl"
+>
+  PARISN.com
+</div>
+`;
