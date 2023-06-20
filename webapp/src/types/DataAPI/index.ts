@@ -1,9 +1,9 @@
-export interface ApiError {
+export type ApiError = {
   status: number;
   message: { detail: string };
-}
+};
 
-export interface ApiResponse<T> {
+export type ApiResponse<T> = {
   data?: T;
   error?: ApiError;
   /**
@@ -14,14 +14,14 @@ export interface ApiResponse<T> {
    * If there's a request loading.
    */
   isLoading: boolean;
-}
+};
 
-export interface Stock {
+export type Stock = {
   small: number;
   medium: number;
   large: number;
   extraLarge: number;
-}
+};
 export interface ProductData {
   collection: string;
   description: string;
@@ -38,10 +38,10 @@ export interface ProductData {
   };
 }
 
-export interface CollectionData {
+export type CollectionData = {
   collections: string;
   image: string;
-}
+};
 
 export type ProductSizes = 's' | 'm' | 'l' | 'xl';
 

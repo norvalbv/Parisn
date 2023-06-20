@@ -1,12 +1,12 @@
 import React, { ReactElement } from 'react';
 
-export interface CardWrapperProps {
+export type CardWrapperProps = {
   backgroundColor?: keyof typeof backgroundColorMap;
   cardType?: keyof typeof cardTypeMap;
   children: JSX.Element | JSX.Element[];
   className?: string;
   role?: string;
-}
+};
 const CardWrapper = ({
   backgroundColor = 'black',
   cardType = 'default',

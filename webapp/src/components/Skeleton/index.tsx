@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { AnimationDuration, animationDurationMap } from 'types';
 
-export interface SkeletonProps {
+export type SkeletonProps = {
   /**
    * Skeleton width.
    */
@@ -26,7 +26,7 @@ export interface SkeletonProps {
    * Animation duration/frequency
    */
   animationDuration?: AnimationDuration;
-}
+};
 
 const Skeleton = ({
   width,

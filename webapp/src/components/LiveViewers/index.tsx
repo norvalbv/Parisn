@@ -6,7 +6,7 @@ const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
-export interface LiveViewersProps {
+export type LiveViewersProps = {
   classNames?: string;
   fontSize?: FontSize;
   label?: string | JSX.Element;
@@ -18,7 +18,7 @@ export interface LiveViewersProps {
    * Other params, i.e, product id.
    */
   params?: string;
-}
+};
 
 const LiveViewers = ({
   classNames,

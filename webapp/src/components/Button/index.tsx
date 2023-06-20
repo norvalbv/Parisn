@@ -11,7 +11,7 @@ import {
 import { Spinner } from 'components/CustomSVG';
 import classNames from 'utils/classNames';
 
-export interface ButtonProps {
+export type ButtonProps = {
   text: string | JSX.Element;
   hoveredText?: string;
   size?: keyof typeof buttonSizeMap;
@@ -34,7 +34,7 @@ export interface ButtonProps {
   navigationState?: unknown;
   roundedBorders?: Rounded;
   fontWeight?: FontWeight;
-}
+};
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (

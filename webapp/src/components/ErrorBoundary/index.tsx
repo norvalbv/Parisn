@@ -2,7 +2,7 @@ import React, { ReactElement, useMemo } from 'react';
 // React error boundaries do not work with functional components out of the box - hence the use of the package below.
 import { ErrorBoundary as ErrorBounds } from 'react-error-boundary';
 
-export interface ErrorBoundaryProps {
+export type ErrorBoundaryProps = {
   children?: JSX.Element;
   errorMessage?: string;
   // Typically used for resetting state or to re-fetch data.
@@ -13,7 +13,7 @@ export interface ErrorBoundaryProps {
     resetKeys: string[];
     onReset: () => void;
   };
-}
+};
 
 const ErrorBoundary = ({
   children,
