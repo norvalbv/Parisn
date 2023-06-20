@@ -22,7 +22,7 @@ const socket = io('ws://localhost:8000', {
   withCredentials: true,
 });
 
-const ItemView = (): ReactElement => {
+const Product = (): ReactElement => {
   const { openDrawer } = useDrawer();
   const [selectedSize, setselectedSize] = useState<ProductSizesType>('m');
   const [localPrice, setLocalPrice] = useState<number>();
@@ -160,4 +160,4 @@ const ItemView = (): ReactElement => {
   );
 };
 
-export default React.memo(ItemView);
+export default Product

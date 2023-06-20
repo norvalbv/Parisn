@@ -6,7 +6,7 @@ import Loading from 'components/Loading';
 import { UserIcon } from 'components/SVG';
 import { logScalePrice } from 'utils/currentPrice';
 
-const Catalogue = (): ReactElement => {
+const Collection = (): ReactElement => {
   const [currentPrices, setCurrentPrices] = useState<{ [key: string]: number }>({});
 
   const location = useLocation();
@@ -71,4 +71,4 @@ const Catalogue = (): ReactElement => {
   );
 };
 
-export default Catalogue;
+export default Collection;

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Loading from 'components/Loading';
 import { useCollections } from 'services/DataApiService';
 
-const AllCollections = (): ReactElement => {
+const Collections = (): ReactElement => {
   const { data } = useCollections();
 
   if (!data) return <Loading />;
@@ -32,4 +32,4 @@ const AllCollections = (): ReactElement => {
   );
 };
 
-export default AllCollections;
+export default Collections;

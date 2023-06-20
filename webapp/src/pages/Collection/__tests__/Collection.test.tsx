@@ -2,17 +2,14 @@ import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import renderer from 'react-test-renderer';
 
-import ItemView from '..';
-import { ProductContextProvider } from 'context/ProductContext';
+import Collection from '..';
 
-describe('<ItemView />', () => {
-  test('ItemView props with mandatory props', () => {
+describe('<Collection />', () => {
+  test('Collection with only desired props', () => {
     const tree = renderer
       .create(
         <BrowserRouter>
-          <ProductContextProvider>
-            <ItemView />
-          </ProductContextProvider>
+          <Collection />
         </BrowserRouter>
       )
       .toJSON();

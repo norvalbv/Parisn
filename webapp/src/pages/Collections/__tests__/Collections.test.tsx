@@ -1,11 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import Categories from '..';
+import Collections from '..';
 
-describe('<Categories />', () => {
+describe('<Collections />', () => {
   test('Categories props with mandatory props', () => {
-    const tree = renderer.create(<Categories />).toJSON();
+    const tree = renderer.create(<Collections />).toJSON();
     expect(tree).toMatchSnapshot();
   });
 });
