@@ -5,7 +5,7 @@ import Badge from 'components/Badge';
 import NavigationArrows from 'components/NavigationArrows';
 import classNames from 'utils/classNames';
 import { products } from '__mocks__/dataApiMock';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
 import { logScalePrice } from 'utils/currentPrice';
 import useProduct from 'hooks/useProduct';

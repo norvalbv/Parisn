@@ -2,7 +2,7 @@ import React, { ReactElement, useState } from 'react';
 import StyledLink from 'components/StyledLink';
 import Radial from 'components/SVG/Design';
 // import { useCollections } from 'services/DataApiService';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import { collections } from '__mocks__/dataApiMock';
 import PageIndicators from 'components/PageIndicators';
 

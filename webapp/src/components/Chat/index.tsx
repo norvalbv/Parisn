@@ -9,6 +9,7 @@ import useUser from 'hooks/useUser';
 import convertToDate from 'utils/convertToDate';
 import { chatSchema } from 'utils/validation';
 import Drawer from 'components/Drawer';
+import classNames from 'utils/classNames';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -93,22 +94,24 @@ const Chat = ({ pageParams }: ChatProps): ReactElement => {
       <div className="w-full overflow-y-auto py-4">
         <div className="h-full overflow-y-scroll break-words">
           {messages?.map((message) => (
-            <div key={message.id} className="group flex flex-col bg-fuchsia-400">
+            <div key={message.id} className="group flex flex-col">
               <div
-                className={`relative my-0.5 w-4/5 bg-fuchsia-800 ${
+                className={classNames(
+                  'relative my-0.5 w-4/5',
                   message.user === user.userInfo?.username ? 'justify-self-end' : ''
-                }`}
+                )}
               >
                 <span className="block text-xs">{message.user}:</span>
                 <span className="hidden text-xxs italic group-hover:block">
                   {convertToDate(message.time)}
                 </span>
                 <span
-                  className={`mt-0.5 inline-block rounded-xl px-2 py-1 ${
+                  className={classNames(
+                    'mt-0.5 inline-block rounded-xl px-2 py-1',
                     message.user === user.userInfo?.username
                       ? 'bg-primary-neutral/20'
                       : 'bg-primary-neutral/40'
-                  }`}
+                  )}
                   ref={ref}
                 >
                   {message.message}

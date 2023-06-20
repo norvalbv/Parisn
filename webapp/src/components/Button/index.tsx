@@ -94,7 +94,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedMap[roundedBorders],
           fontWeightMap[fontWeight],
           className,
-          'items-center uppercase',
+          'items-center uppercase relative',
           { 'transition-all hover:scale-110': hoveredAnimation },
           hoverColorRequired &&
             !disabled &&
@@ -103,7 +103,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
               theme === 'light' ? '80' : '20'
             }`,
           {
-            'cursor-default border-primary-neutral bg-primary-neutral/60 text-primary-dark':
+            'cursor-default border-primary-neutral bg-primary-neutral/40 text-primary-dark':
               disabled || loading,
           }
         )}
@@ -120,7 +120,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         }}
       >
         {disabled && (
-          <svg width="100%" height="100%" className="absolute">
+          <svg width="100%" height="100%" className="absolute top-0 left-0">
             <line x2="100%" y2="100%" stroke="darkRed" strokeWidth={2.25} />
           </svg>
         )}

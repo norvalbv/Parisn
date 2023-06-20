@@ -7,7 +7,7 @@ import Counter from 'components/Counter';
 import useProduct from 'hooks/useProduct';
 import Form from 'components/Form';
 import { checkoutSchema } from 'utils/validation';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import useUser from 'hooks/useUser';
 import PaymentsForm from './PaymentsForm';
 

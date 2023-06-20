@@ -1,17 +1,18 @@
 import React, { ReactElement, useState } from 'react';
 import { ProductSizes as ProductSizesType, Stock } from 'types';
 import Button from 'components/Button';
+import classNames from 'utils/classNames';
 
 export type ProductSizesProps = {
   sizes: Stock;
-  classes?: string;
+  className?: string;
   onClick?: (arg: ProductSizesType) => void;
   selectedSize?: ProductSizesType;
 };
 
 const ProductSizes = ({
   sizes,
-  classes,
+  className,
   onClick,
   selectedSize,
 }: ProductSizesProps): ReactElement => {
@@ -29,7 +30,7 @@ const ProductSizes = ({
   );
 
   return (
-    <div className={`flex gap-4 ${classes || ''}`}>
+    <div className={classNames('flex gap-4', className)}>
       {sortedList.map((size) => {
         const productSize =
           size[0].slice(0, 1).toLowerCase() === 'e'
@@ -45,12 +46,13 @@ const ProductSizes = ({
             borderRequired="bottom"
             hoverColorRequired={false}
             disabled={Boolean(!size[1])}
-            className={`${size[1] ? 'hover:scale-125 hover:border-b-pink-500' : ''} ${
+            className={classNames(
+              size[1] ? 'hover:scale-125 hover:border-b-pink-500' : '',
               (selectedSize?.toLowerCase() === productSize && stockCount > 0) ||
-              (selected === productSize && stockCount > 0)
+                (selected === productSize && stockCount > 0)
                 ? 'scale-125 border-b-pink-500'
                 : ''
-            }`}
+            )}
             onClick={() => handleClick(productSize)}
           />
         );

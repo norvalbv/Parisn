@@ -9,7 +9,7 @@ import useProduct from 'hooks/useProduct';
 import Chat from 'components/Chat';
 import convertToDate from 'utils/convertToDate';
 import useUser from 'hooks/useUser';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import { logScalePrice } from 'utils/currentPrice';
 import ProgressBar from 'components/Progressbar';
 import Carousel from 'components/Carousel';
@@ -106,7 +106,7 @@ const Product = (): ReactElement => {
               }}
             />
             <ProductSizes
-              classes="mb-4"
+              className="mb-4"
               selectedSize={selectedSize}
               sizes={data.stock}
               onClick={(size): void => setselectedSize(size)}

@@ -85,7 +85,7 @@ export const products: ProductData[] = [
     },
   },
   {
-    collection: 'Shoes',
+    collection: 'Joggers',
     description: 'Saepe non ut voluptatum adipisci architecto earum aperiam.',
     endTime: 1687600000000,
     id: '4',
@@ -93,7 +93,7 @@ export const products: ProductData[] = [
     price: 1000,
     startTime: 1687200000000,
     stock: { small: 0, medium: 1, large: 2, extraLarge: 3 },
-    title: 'Berlin Elegant Shoes',
+    title: 'Berlin Elegant Joggers',
     metaData: {
       newDrop: false,
       limited: false,
@@ -115,7 +115,7 @@ export const products: ProductData[] = [
     },
   },
   {
-    collection: 'Shoes',
+    collection: 'Jackets',
     description: 'Officiis iusto cum voluptate incidunt, inventore culpa.',
     endTime: 1688000000000,
     id: '6',
@@ -123,7 +123,7 @@ export const products: ProductData[] = [
     price: 1000,
     startTime: 1687200000000,
     stock: { small: 2, medium: 2, large: 2, extraLarge: 2 },
-    title: 'Tokyo Sleek Shoes',
+    title: 'Tokyo Sleek Jackets',
     metaData: {
       newDrop: true,
       limited: false,

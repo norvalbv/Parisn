@@ -1,8 +1,10 @@
 import React, { ReactElement } from 'react';
 import Button from 'components/Button';
 import Carousel from './Carousel';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = (): ReactElement => {
+  const navigate = useNavigate();
   return (
     <header className="flex h-screen justify-between pt-[7rem]">
       <section className="w-[23.8125rem]">
@@ -13,7 +15,12 @@ const Hero = (): ReactElement => {
         <p className="text-primary-neutral">
           Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
         </p>
-        <Button text="Shop Now" className="mt-[3.75rem] w-72" roundedBorders="none" />
+        <Button
+          text="Shop Now"
+          className="mt-[3.75rem] w-72"
+          roundedBorders="none"
+          onClick={(): void => navigate('/collections')}
+        />
       </section>
       <Carousel />
     </header>

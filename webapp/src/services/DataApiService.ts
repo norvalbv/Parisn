@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import useRequest from 'hooks/useRequest';
 import { ApiResponse, CollectionData, ContactForm, FullUserInformation, ProductData } from 'types';
-import { products } from '__mocks__/dataApiMock';
+import { collections, products } from '__mocks__/dataApiMock';
 
 type ProductByIDProps = {
   collection: string;
@@ -25,14 +25,19 @@ type ProductApiResponse = ApiResponse<ProductData>;
 export const useProductById = ({ collection, productid }: ProductByIDProps): ProductApiResponse => {
   const uri = `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}/${productid}`;
 
-  const {
-    data: unprocessedData,
-    error,
-    isLoading,
-    isValidating,
-  } = useRequest<UseProductReturn>({ uri });
+  // const {
+  //   data,
+  //   error,
+  //   isLoading,
+  //   isValidating,
+  // } = useRequest<UseProductReturn>({ uri });
 
-  const processedData = unprocessedData?.Item;
+  // const processedData = data?.Item;
+
+  const isValidating = false;
+  const isLoading = false;
+  const error = undefined;
+  const processedData = products.filter((product) => product.id === productid)[0];
 
   return { data: processedData, error, isLoading, isValidating };
 };
@@ -53,18 +58,23 @@ type CollectionsApiResponse = ApiResponse<CollectionData[]>;
 export const useCollections = (): CollectionsApiResponse => {
   const uri = 'https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections';
 
-  const {
-    data: unprocessedData,
-    error,
-    isLoading,
-    isValidating,
-  } = useRequest<UseCollectionsReturnType>({ uri });
+  // const {
+  //   data: unprocessedData,
+  //   error,
+  //   isLoading,
+  //   isValidating,
+  // } = useRequest<UseCollectionsReturnType>({ uri });
 
-  // This is temporary until API gets fixed.
-  // TODO: Fix.
-  const data: CollectionData[] = Object.values(unprocessedData?.Items || []);
+  // // This is temporary until API gets fixed.
+  // // TODO: Fix.
+  // const data: CollectionData[] = Object.values(unprocessedData?.Items || []);
 
-  const processedData = data.length === 0 ? undefined : data;
+  // const processedData = data.length === 0 ? undefined : data;
+
+  const isValidating = false;
+  const isLoading = false;
+  const error = undefined;
+  const processedData = collections;
 
   return { data: processedData, error, isLoading, isValidating };
 };
@@ -102,7 +112,6 @@ export const useCollection = (collection: string): CollectionApiReturn => {
   const isLoading = false;
   const error = undefined;
   const processedData = products.filter((product) => product.collection === collection);
-  console.log(processedData);
 
   return { data: processedData, error, isLoading, isValidating };
 };

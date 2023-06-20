@@ -2,7 +2,7 @@ import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCollection } from 'services/DataApiService';
 import LiveViewers from 'components/LiveViewers';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import { UserIcon } from 'components/SVG';
 import { logScalePrice } from 'utils/currentPrice';
 import useInterval from 'hooks/useInterval';

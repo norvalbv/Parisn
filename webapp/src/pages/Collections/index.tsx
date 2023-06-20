@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import Loading from 'components/Loading';
+import Loader from 'components/Loading';
 import { useCollections } from 'services/DataApiService';
 
 const Collections = (): ReactElement => {

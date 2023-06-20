@@ -15,7 +15,7 @@ const Drawer = ({ children, size = 'base', title, id }: DrawerProps): ReactEleme
   return (
     <div
       id="item-chat"
-      className={`fixed right-0 top-0 z-40 h-screen overflow-y-auto p-4 transition-transform duration-500 ${
+      className={`fixed right-0 top-0 z-50 h-screen overflow-y-auto p-4 transition-transform duration-500 ${
         openedId === id ? '' : 'translate-x-full'
       } ${sizeMap[size]} bg-gray-900`}
       tabIndex={-1}
