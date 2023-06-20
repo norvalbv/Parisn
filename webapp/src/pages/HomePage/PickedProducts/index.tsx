@@ -9,14 +9,16 @@ import Loading from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
 
 const PickedProducts = (): ReactElement => {
-  const data = products;
-
-  if (!data) return <Loading />;
+  const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
   const containerWidth = ref.current?.offsetWidth || 0;
 
-  const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
+  const data = products;
+  if (!data) return <Loading />;
+
+  const processedData = data.filter((product) => Object.values(product.metaData).some(Boolean));
+
   return (
     <section className="my-40">
       <div className="flex items-center justify-between">
@@ -36,10 +38,10 @@ const PickedProducts = (): ReactElement => {
             },
           }}
           rightArrow={{
-            className: indexedImageInCenter === data.length - 3 ? '' : 'cursor-pointer',
-            fill: indexedImageInCenter === data.length - 3 ? '#B0B0B0' : 'white',
+            className: indexedImageInCenter === processedData.length - 3 ? '' : 'cursor-pointer',
+            fill: indexedImageInCenter === processedData.length - 3 ? '#B0B0B0' : 'white',
             onClick: (): void => {
-              if (indexedImageInCenter === data.length - 3) return;
+              if (indexedImageInCenter === processedData.length - 3) return;
               setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter + 1);
             },
           }}
@@ -53,7 +55,7 @@ const PickedProducts = (): ReactElement => {
           left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
         }}
       >
-        {data.map((product, idx) => (
+        {processedData.map((product) => (
           <section
             className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
             key={product.id}
@@ -67,7 +69,7 @@ const PickedProducts = (): ReactElement => {
                   {timeLeft({ start: product.startTime, end: product.endTime })}
                 </span>
               </div>
-              <Badge type={idx % 2 ? 'limited' : 'new'} />
+              <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
             </div>
             <img
               src={product.image}

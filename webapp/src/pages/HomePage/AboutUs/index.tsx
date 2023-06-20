@@ -16,12 +16,9 @@ const AboutUs = (): ReactElement => {
           drops to £0.
         </p>
       </div>
-      <div
-        className="absolute h-full w-full"
-        style={{
-          backgroundImage: `url(${DASHBOARD_IMAGE})`,
-        }}
-      />
+      <div className="h-full w-full opacity-0">
+        <img src={DASHBOARD_IMAGE} alt="p" />
+      </div>
     </div>
   );
 };

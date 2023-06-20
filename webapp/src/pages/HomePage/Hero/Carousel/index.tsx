@@ -53,18 +53,14 @@ const Carousel = (): ReactElement => {
           leftArrow={{
             className: selected === 0 ? '' : 'cursor-pointer',
             fill: selected === 0 ? '#B0B0B0' : 'white',
-            onClick: (): void => {
-              if (selected === 0) return;
-              setSelected((selected) => selected - 1);
-            },
+            onClick: (): void =>
+              setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1)),
           }}
           rightArrow={{
             className: selected === images.length - 1 ? '' : 'cursor-pointer',
             fill: selected === images.length - 1 ? '#B0B0B0' : 'white',
-            onClick: (): void => {
-              if (selected === images.length - 1) return;
-              setSelected((selected) => selected + 1);
-            },
+            onClick: (): void =>
+              setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1)),
           }}
         />
       </div>

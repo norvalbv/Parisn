@@ -32,6 +32,10 @@ export interface ProductData {
   startTime: number;
   stock: Stock;
   title: string;
+  metaData: {
+    limited: boolean;
+    newDrop: boolean;
+  };
 }
 
 export interface CollectionData {

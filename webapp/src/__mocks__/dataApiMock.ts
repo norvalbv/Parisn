@@ -44,6 +44,10 @@ export const products: ProductData[] = [
     startTime: 1684670000000,
     stock: { small: 1, medium: 2, large: 3, extraLarge: 4 },
     title: 'Parisn Official Tshirt',
+    metaData: {
+      newDrop: false,
+      limited: false,
+    },
   },
   {
     collection: 'Shoes',
@@ -55,6 +59,10 @@ export const products: ProductData[] = [
     startTime: 1684770000000,
     stock: { small: 2, medium: 1, large: 0, extraLarge: 2 },
     title: 'London Official Shoes',
+    metaData: {
+      newDrop: false,
+      limited: true,
+    },
   },
   {
     collection: 'Tshirts',
@@ -67,6 +75,10 @@ export const products: ProductData[] = [
     startTime: 1684870000000,
     stock: { small: 3, medium: 2, large: 1, extraLarge: 0 },
     title: 'New York Stylish Tshirt',
+    metaData: {
+      newDrop: false,
+      limited: false,
+    },
   },
   {
     collection: 'Shoes',
@@ -78,6 +90,10 @@ export const products: ProductData[] = [
     startTime: 1684970000000,
     stock: { small: 0, medium: 1, large: 2, extraLarge: 3 },
     title: 'Berlin Elegant Shoes',
+    metaData: {
+      newDrop: false,
+      limited: false,
+    },
   },
   {
     collection: 'Tshirts',
@@ -89,6 +105,10 @@ export const products: ProductData[] = [
     startTime: 1685070000000,
     stock: { small: 1, medium: 1, large: 1, extraLarge: 1 },
     title: 'Parisn Casual Tshirt',
+    metaData: {
+      newDrop: false,
+      limited: false,
+    },
   },
   {
     collection: 'Shoes',
@@ -100,6 +120,10 @@ export const products: ProductData[] = [
     startTime: 1685170000000,
     stock: { small: 2, medium: 2, large: 2, extraLarge: 2 },
     title: 'Tokyo Sleek Shoes',
+    metaData: {
+      newDrop: true,
+      limited: false,
+    },
   },
   {
     collection: 'Tshirts',
@@ -111,6 +135,10 @@ export const products: ProductData[] = [
     startTime: 1685270000000,
     stock: { small: 3, medium: 3, large: 3, extraLarge: 3 },
     title: 'London Trendy Tshirt',
+    metaData: {
+      newDrop: true,
+      limited: true,
+    },
   },
   {
     collection: 'Shoes',
@@ -122,6 +150,10 @@ export const products: ProductData[] = [
     startTime: 1685370000000,
     stock: { small: 4, medium: 4, large: 4, extraLarge: 4 },
     title: 'Sydney Comfy Shoes',
+    metaData: {
+      newDrop: false,
+      limited: false,
+    },
   },
   {
     collection: 'Tshirts',
@@ -133,6 +165,10 @@ export const products: ProductData[] = [
     startTime: 1685470000000,
     stock: { small: 1, medium: 3, large: 0, extraLarge: 2 },
     title: 'Berlin Classic Tshirt',
+    metaData: {
+      newDrop: true,
+      limited: false,
+    },
   },
   {
     collection: 'Shoes',
@@ -144,5 +180,9 @@ export const products: ProductData[] = [
     startTime: 1685570000000,
     stock: { small: 2, medium: 0, large: 1, extraLarge: 3 },
     title: 'Parisn Official Shoes',
+    metaData: {
+      newDrop: true,
+      limited: false,
+    },
   },
 ];
