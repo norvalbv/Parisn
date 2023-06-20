@@ -56,6 +56,7 @@ const TextInput = ({
         <Button
           text="Subscribe"
           className="h-12 rounded-r font-semibold uppercase"
+          roundedBorders='none'
           theme="light"
           width="10rem"
         />
