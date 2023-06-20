@@ -89,7 +89,7 @@ const PickedProducts = (): ReactElement => {
           const productPrice = logScalePrice(product.startTime, product.endTime, product.price);
           return (
             <section
-              className='relative h-[31.875rem] w-[19.625rem] rounded'
+              className="relative h-[31.875rem] w-[19.625rem] rounded"
               key={product.id}
               ref={ref}
             >
@@ -123,7 +123,7 @@ const PickedProducts = (): ReactElement => {
                     </span>
                   </section>
                 </div>
-                <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60 h-[2.375rem]">
+                <p className="mb-6 mt-3 h-[2.375rem] text-xs font-thin leading-[1.1875rem] text-white/60">
                   {product.description.slice(0, 68)}&nbsp;
                   {product.description.length > 68 && '...'}
                 </p>

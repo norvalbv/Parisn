@@ -1,9 +1,9 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Basket } from 'components/CustomSVG';
 import { useDrawer } from 'hooks/useDrawer';
 import useUser from 'hooks/useUser';
 import { ProductData } from 'types';
+import { SearchIcon, BasketIcon, UserIcon } from 'components/SVG';
 
 const NavBar = (): ReactElement => {
   const { openDrawer } = useDrawer();
@@ -13,8 +13,6 @@ const NavBar = (): ReactElement => {
   const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
   const location = useLocation();
-
-  const [hovered, setHovered] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,44 +24,23 @@ const NavBar = (): ReactElement => {
   }, [location.pathname]);
 
   return (
-    <>
-      {location.pathname !== '/checkout' && (
-        <ul className="absolute right-0 z-30 flex items-center divide-x py-6 pr-8 text-white">
-          <Link to="/home">
-            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Home</li>
-          </Link>
-          <Link to="/collections" data-testid="Collections Nav Link">
-            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Collections</li>
-          </Link>
-          <Link to="/contact-us">
-            <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Contact</li>
-          </Link>
-          {truthyDataParsed && (
-            <Link
-              to="/checkout"
-              className="px-10"
-              onMouseEnter={(): void => setHovered(true)}
-              onMouseLeave={(): void => setHovered(false)}
-            >
-              <Basket colour={hovered ? 'pink' : 'white'} />
-            </Link>
-          )}
-
-          {user.userInfo?.id ? (
-            <li
-              className="cursor-pointer px-10 underline-offset-8 hover:underline"
-              onClick={(): void => openDrawer('Account')}
-            >
-              My Account
-            </li>
-          ) : (
-            <Link to="/login">
-              <li className="cursor-pointer px-10 underline-offset-8 hover:underline">Login</li>
-            </Link>
-          )}
-        </ul>
-      )}
-    </>
+    <nav className="fixed z-50 flex h-[3.125rem] w-full items-center justify-between bg-primary-dark/60 px-[7.5rem]">
+      <div className="flex w-full gap-11">
+        {location.pathname !== '/home' && <Link to="/home">Home</Link>}
+        <Link to="/collections">Collections</Link>
+        <Link to="/contact-us">Contact Us</Link>
+      </div>
+      <span className="w-full text-center font-semibold">PARISN.COM</span>
+      <div className="flex w-full items-center justify-end gap-11">
+        <SearchIcon className="cursor-pointer" />
+        <BasketIcon className="cursor-pointer" />
+        {!user.userInfo?.id ? (
+          <UserIcon onClick={(): void => openDrawer('Account')} className="cursor-pointer" />
+        ) : (
+          <UserIcon onClick={(): void => navigate('/login')} className="cursor-pointer" />
+        )}
+      </div>
+    </nav>
   );
 };
 
