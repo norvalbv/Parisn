@@ -3722,10 +3722,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stripe/stripe-js@npm:^1.54.0":
-  version: 1.54.0
-  resolution: "@stripe/stripe-js@npm:1.54.0"
-  checksum: b5108ac03e367212d584fe5fde2fe56909c968eb04f616fcfd983378bcd0903209e40fd37866cbea1337d231ac9291419d600b5146334c6bd49d3b6bb71a84f2
+"@stripe/stripe-js@npm:^1.54.1":
+  version: 1.54.1
+  resolution: "@stripe/stripe-js@npm:1.54.1"
+  checksum: eb54054edea3d3f9a8c18e8442cc05b46f7afbe5bd85863121737f268875d30aab6de16ee84d467853ad9d983bf69f922f45daeee6f13134ca138f7e862c9eb4
   languageName: node
   linkType: hard
 
@@ -10189,14 +10189,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-error-boundary@npm:^3.1.4":
-  version: 3.1.4
-  resolution: "react-error-boundary@npm:3.1.4"
+"react-error-boundary@npm:^4.0.10":
+  version: 4.0.10
+  resolution: "react-error-boundary@npm:4.0.10"
   dependencies:
     "@babel/runtime": ^7.12.5
   peerDependencies:
     react: ">=16.13.1"
-  checksum: f36270a5d775a25c8920f854c0d91649ceea417b15b5bc51e270a959b0476647bb79abb4da3be7dd9a4597b029214e8fe43ea914a7f16fa7543c91f784977f1b
+  checksum: 4ad4864d2a5fc2264a24d03e83176e6a70d7adbe3c1edbdc5b0bd452a695104bc59456e23b5aea1b9729220672fe46614221daa8b3bd59327968d4aa7eb8bc71
   languageName: node
   linkType: hard
 
@@ -11126,12 +11126,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwind-scrollbar@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "tailwind-scrollbar@npm:2.1.0"
+"tailwind-scrollbar@npm:^3.0.4":
+  version: 3.0.4
+  resolution: "tailwind-scrollbar@npm:3.0.4"
   peerDependencies:
     tailwindcss: 3.x
-  checksum: ef06182dc9316ccd58b446c7ca98296a53cc39a610b9eb2d641c7dd0d5b6e3366f6a126e5ca47ccb844f2665c28012a065a05f5a808e39a385d83a2f07c50da0
+  checksum: e708baef1ec640e7bef11338e05951f0074fb7cc680255fa33c8a24b5b545121fbf87b5f36fca069128117d578285a714699aa6e39a54a346e6c67fd42571f43
   languageName: node
   linkType: hard
 
@@ -11526,23 +11526,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.9.5":
-  version: 4.9.5
-  resolution: "typescript@npm:4.9.5"
+"typescript@npm:^5.1.3":
+  version: 5.1.3
+  resolution: "typescript@npm:5.1.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ee000bc26848147ad423b581bd250075662a354d84f0e06eb76d3b892328d8d4440b7487b5a83e851b12b255f55d71835b008a66cbf8f255a11e4400159237db
+  checksum: d9d51862d98efa46534f2800a1071a613751b1585dc78884807d0c179bcd93d6e9d4012a508e276742f5f33c480adefc52ffcafaf9e0e00ab641a14cde9a31c7
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.9.5#~builtin<compat/typescript>":
-  version: 4.9.5
-  resolution: "typescript@patch:typescript@npm%3A4.9.5#~builtin<compat/typescript>::version=4.9.5&hash=23ec76"
+"typescript@patch:typescript@^5.1.3#~builtin<compat/typescript>":
+  version: 5.1.3
+  resolution: "typescript@patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=85af82"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: ab417a2f398380c90a6cf5a5f74badd17866adf57f1165617d6a551f059c3ba0a3e4da0d147b3ac5681db9ac76a303c5876394b13b3de75fdd5b1eaa06181c9d
+  checksum: 32a25b2e128a4616f999d4ee502aabb1525d5647bc8955e6edf05d7fbc53af8aa98252e2f6ba80bcedfc0260c982b885f3c09cfac8bb65d2924f3133ad1e1e62
   languageName: node
   linkType: hard
 
@@ -11872,7 +11872,7 @@ __metadata:
     "@bahmutov/cypress-esbuild-preprocessor": ^2.2.0
     "@react-spring/web": ^9.7.2
     "@stripe/react-stripe-js": ^1.16.5
-    "@stripe/stripe-js": ^1.54.0
+    "@stripe/stripe-js": ^1.54.1
     "@testing-library/jest-dom": ^5.16.5
     "@types/cypress-cucumber-preprocessor": ^4.0.1
     "@types/jest": ^29.5.2
@@ -11908,17 +11908,17 @@ __metadata:
     prettier-plugin-tailwindcss: ^0.3.0
     react: ^18.2.0
     react-dom: ^18.2.0
-    react-error-boundary: ^3.1.4
+    react-error-boundary: ^4.0.10
     react-router-dom: ^6.13.0
     react-test-renderer: ^18.2.0
     react-toastify: ^9.1.3
     socket.io-client: ^4.6.2
     swr: ^2.1.5
-    tailwind-scrollbar: ^2.1.0
+    tailwind-scrollbar: ^3.0.4
     tailwindcss: ^3.3.2
     ts-jest: ^29.1.0
     ts-node: ^10.9.1
-    typescript: ^4.9.5
+    typescript: ^5.1.3
     uuid: ^9.0.0
     vite: ^4.3.9
     vite-plugin-environment: ^1.1.3
