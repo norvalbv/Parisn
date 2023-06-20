@@ -7,6 +7,7 @@ import classNames from 'utils/classNames';
 import { products } from '__mocks__/dataApiMock';
 import Loading from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
+import { logScalePrice } from 'utils/currentPrice';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
@@ -55,62 +56,72 @@ const PickedProducts = (): ReactElement => {
           left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
         }}
       >
-        {processedData.map((product) => (
-          <section
-            className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
-            key={product.id}
-            ref={ref}
-          >
-            <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
-              <div className="flex items-center gap-2">
-                <ClockIcon />
-                {/* <span className="text-xxs font-normal">1hr 14mins</span> */}
-                <span className="text-xxs font-normal">
-                  {timeLeft({ start: product.startTime, end: product.endTime })}
-                </span>
-              </div>
-              <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
-            </div>
-            <img
-              src={product.image}
-              alt={product.id}
-              className="h-[18.5rem] w-full rounded-t object-cover"
-            />
-            <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
-              <div className="flex items-center justify-between">
-                <h4 className="uppercase">{product.title}</h4>
-                <section className="w-min">
-                  <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
-                  <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
-                    £&nbsp;{product.price}
+        {processedData.map((product) => {
+          const productPrice = logScalePrice(product.startTime, product.endTime, product.price);
+          console.log(productPrice);
+          return (
+            <section
+              className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
+              key={product.id}
+              ref={ref}
+            >
+              <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
+                <div className="flex items-center gap-2">
+                  <ClockIcon />
+                  {/* <span className="text-xxs font-normal">1hr 14mins</span> */}
+                  <span className="text-xxs font-normal">
+                    {timeLeft({ start: product.startTime, end: product.endTime })}
                   </span>
-                </section>
+                </div>
+                <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
               </div>
-              <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60">
-                {product.description.slice(0, 68)}&nbsp;
-                {product.description.length > 68 && '...'}
-              </p>
-              <div className="flex gap-4">
-                <Button
-                  text="Make A Bid"
-                  theme="ghost"
-                  roundedBorders="md"
-                  className="h-12 w-32 text-xs"
-                  size="custom"
-                  fontWeight="semibold"
-                />
-                <Button
-                  text="Buy Now"
-                  theme="light"
-                  roundedBorders="md"
-                  className="h-12 w-44 text-xs"
-                  size="custom"
-                  fontWeight="semibold"
-                />
+              <img
+                src={product.image}
+                alt={product.id}
+                className="h-[18.5rem] w-full rounded-t object-cover"
+              />
+              <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="uppercase">{product.title}</h4>
+                  <section className="w-min">
+                    <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
+                    <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
+                      {productPrice < 0.5
+                        ? 'FREE'
+                        : `£&nbsp;${logScalePrice(
+                            product.startTime,
+                            product.endTime,
+                            product.price
+                          )}`}
+                    </span>
+                  </section>
+                </div>
+                <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60">
+                  {product.description.slice(0, 68)}&nbsp;
+                  {product.description.length > 68 && '...'}
+                </p>
+                <div className="flex gap-4">
+                  <Button
+                    text="Make A Bid"
+                    theme="ghost"
+                    roundedBorders="md"
+                    className="h-12 w-32 text-xs"
+                    size="custom"
+                    fontWeight="semibold"
+                  />
+                  <Button
+                    text="Buy Now"
+                    theme="light"
+                    roundedBorders="md"
+                    className="h-12 w-44 text-xs"
+                    size="custom"
+                    fontWeight="semibold"
+                  />
+                </div>
               </div>
-            </div>
-          </section>
-        ))}
+            </section>
+          );
+        })}
       </div>
     </section>
   );

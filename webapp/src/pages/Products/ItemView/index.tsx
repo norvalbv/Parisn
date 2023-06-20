@@ -14,7 +14,7 @@ import { logScalePrice } from 'utils/currentPrice';
 import ProgressBar from 'components/Progressbar';
 import Carousel from 'components/Carousel';
 import { useDrawer } from 'hooks/useDrawer';
-import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from '../../../constants';
+import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants/index';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
