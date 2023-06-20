@@ -6,7 +6,7 @@ import { useCollections } from 'services/DataApiService';
 const Collections = (): ReactElement => {
   const { data } = useCollections();
 
-  if (!data) return <Loading />;
+  if (!data) return <Loader />;
 
   return (
     <div className="grid h-screen grid-cols-3">

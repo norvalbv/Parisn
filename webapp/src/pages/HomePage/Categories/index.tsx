@@ -11,7 +11,7 @@ const Categories = (): ReactElement => {
   const [page, setPage] = useState(0);
   const data = collections;
 
-  if (!data) return <Loading />;
+  if (!data) return <Loader />;
 
   const pageCount = Math.ceil(data.length / 3);
 

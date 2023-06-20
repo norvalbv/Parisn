@@ -39,7 +39,7 @@ const Checkout = (): ReactElement => {
   const [hovered, setHovered] = useState(false);
   const [stage, setStage] = useState(2);
 
-  if (!productInfo) return <Loading />;
+  if (!productInfo) return <Loader />;
 
   return (
     <>

@@ -49,7 +49,7 @@ const PickedProducts = (): ReactElement => {
     );
   }, 1000);
 
-  if (!data) return <Loading />;
+  if (!data) return <Loader />;
 
   return (
     <section className="my-40">

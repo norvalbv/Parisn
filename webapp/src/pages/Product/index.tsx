@@ -50,7 +50,7 @@ const Product = (): ReactElement => {
   // join room
   socket.emit('join room', currentProduct);
 
-  if (!data) return <Loading />;
+  if (!data) return <Loader />;
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const compareSelectedVals: number = Object.entries(data.stock)[
@@ -160,4 +160,4 @@ const Product = (): ReactElement => {
   );
 };
 
-export default Product
+export default Product;

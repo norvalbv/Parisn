@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import useRequest from 'hooks/useRequest';
 import { ApiResponse, CollectionData, ContactForm, FullUserInformation, ProductData } from 'types';
+import { products } from '__mocks__/dataApiMock';
 
 type ProductByIDProps = {
   collection: string;
@@ -69,33 +70,39 @@ export const useCollections = (): CollectionsApiResponse => {
 };
 
 // This is temporary until API gets fixed.
-type UseProductsReturn = {
+type UseCollectionReturn = {
   $metadata: { [key: string]: string };
   Items: ProductData[];
   Count: number;
   ScannedCount: number;
 };
 
-type ProductsApiResponse = ApiResponse<ProductData[]>;
+type CollectionApiReturn = ApiResponse<ProductData[]>;
 
 /**
  * Get certain collection
  */
-export const useProductsByCollection = (collection: string): ProductsApiResponse => {
+export const useCollection = (collection: string): CollectionApiReturn => {
   const uri = `https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/collections/${collection}`;
 
-  const {
-    data: unprocessedData,
-    error,
-    isLoading,
-    isValidating,
-  } = useRequest<UseProductsReturn>({ uri });
+  // const {
+  //   data: unprocessedData,
+  //   error,
+  //   isLoading,
+  //   isValidating,
+  // } = useRequest<UseCollectionReturn>({ uri });
 
-  // This is temporary until API gets fixed.
-  // TODO: Fix
-  const data: ProductData[] = Object.values(unprocessedData?.Items || []);
+  // // This is temporary until API gets fixed.
+  // // TODO: Fix
+  // const data: ProductData[] = Object.values(unprocessedData?.Items || []);
 
-  const processedData = data.length === 0 ? undefined : data;
+  // const processedData = data.length === 0 ? undefined : data;
+
+  const isValidating = false;
+  const isLoading = false;
+  const error = undefined;
+  const processedData = products.filter((product) => product.collection === collection);
+  console.log(processedData);
 
   return { data: processedData, error, isLoading, isValidating };
 };

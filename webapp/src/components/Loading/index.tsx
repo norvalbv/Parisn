@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 
-const Loading = (): ReactElement => {
+const Loader = (): ReactElement => {
   return (
     <div className="tracking-side grid h-screen w-screen animate-spin-slow place-items-center text-xl">
       PARISN.com
@@ -8,4 +8,4 @@ const Loading = (): ReactElement => {
   );
 };
 
-export default Loading;
+export default Loader;

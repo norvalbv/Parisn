@@ -1,10 +1,11 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useProductsByCollection } from 'services/DataApiService';
+import { useCollection } from 'services/DataApiService';
 import LiveViewers from 'components/LiveViewers';
 import Loading from 'components/Loading';
 import { UserIcon } from 'components/SVG';
 import { logScalePrice } from 'utils/currentPrice';
+import useInterval from 'hooks/useInterval';
 
 const Collection = (): ReactElement => {
   const [currentPrices, setCurrentPrices] = useState<{ [key: string]: number }>({});
@@ -12,27 +13,23 @@ const Collection = (): ReactElement => {
   const location = useLocation();
   const collection = location.pathname.split('/').slice(-1).toString();
 
-  const { data } = useProductsByCollection(collection);
+  const { data } = useCollection(collection);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (data) {
-        const updatedCurrentPrices: { [key: string]: number } = {};
-        data.forEach((product) => {
-          updatedCurrentPrices[product.id] = logScalePrice(
-            product.startTime,
-            product.endTime,
-            product.price
-          );
-        });
-        setCurrentPrices(updatedCurrentPrices);
-      }
-    }, 1000);
+  useInterval(() => {
+    if (data) {
+      const updatedCurrentPrices: { [key: string]: number } = {};
+      data.forEach((product) => {
+        updatedCurrentPrices[product.id] = logScalePrice(
+          product.startTime,
+          product.endTime,
+          product.price
+        );
+      });
+      setCurrentPrices(updatedCurrentPrices);
+    }
+  }, 1000);
 
-    return () => clearInterval(interval);
-  }, [data]);
-
-  if (!data) return <Loading />;
+  if (!data) return <Loader />;
 
   return (
     <div className="grid min-h-screen grid-cols-3 pb-10">
