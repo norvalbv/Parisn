@@ -31,7 +31,15 @@ export const router = createBrowserRouter(
           </DrawerProvider>
         }
       >
-        <Route path="home" element={<Dashboard />} errorElement={<ErrorBoundary />} />
+        <Route
+          path="home"
+          element={
+            <ProductContextProvider>
+              <Dashboard />
+            </ProductContextProvider>
+          }
+          errorElement={<ErrorBoundary />}
+        />
         <Route path="about" element={<AboutUs />} errorElement={<ErrorBoundary />} />
         <Route path="how-it-works" element={<HowItWorks />} errorElement={<ErrorBoundary />} />
         <Route path="collections" element={<AllCollections />} errorElement={<ErrorBoundary />} />

@@ -8,9 +8,16 @@ import { products } from '__mocks__/dataApiMock';
 import Loading from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
 import { logScalePrice } from 'utils/currentPrice';
+import { useNavigate } from 'react-router-dom';
+import useProduct from 'hooks/useProduct';
+import { useCheckout } from 'services/DataApiService';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
+  const navigate = useNavigate();
+
+  const { setProductInfo } = useProduct();
+  // const { startCheckout } = useCheckout();
 
   const ref = useRef<HTMLDivElement>(null);
   const containerWidth = ref.current?.offsetWidth || 0;
@@ -58,7 +65,6 @@ const PickedProducts = (): ReactElement => {
       >
         {processedData.map((product) => {
           const productPrice = logScalePrice(product.startTime, product.endTime, product.price);
-          console.log(productPrice);
           return (
             <section
               className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
@@ -116,6 +122,13 @@ const PickedProducts = (): ReactElement => {
                     className="h-12 w-44 text-xs"
                     size="custom"
                     fontWeight="semibold"
+                    onClick={(): void => {
+                      setProductInfo({
+                        product,
+                        price: productPrice,
+                        selectedSize: 'm',
+                      });
+                    }}
                   />
                 </div>
               </div>

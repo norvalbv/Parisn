@@ -46,7 +46,7 @@ export interface CollectionData {
 export type ProductInfoValues = {
   product: ProductData | null;
   price: number | null;
-  selectedSize: string | null;
+  selectedSize: 's' | 'm' | 'l' | 'xl' | null;
 };
 
 export type ProductContextData = {
