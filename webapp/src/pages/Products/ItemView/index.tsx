@@ -15,6 +15,8 @@ import ProgressBar from 'components/Progressbar';
 import Carousel from 'components/Carousel';
 import { useDrawer } from 'hooks/useDrawer';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants/index';
+import useInterval from 'hooks/useInterval';
+import { ProductSizes as ProductSizesType } from 'types';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,
@@ -22,7 +24,7 @@ const socket = io('ws://localhost:8000', {
 
 const ItemView = (): ReactElement => {
   const { openDrawer } = useDrawer();
-  const [selectedSize, setselectedSize] = useState('M');
+  const [selectedSize, setselectedSize] = useState<ProductSizesType>('m');
   const [localPrice, setLocalPrice] = useState<number>();
 
   const { user } = useUser();
@@ -39,14 +41,11 @@ const ItemView = (): ReactElement => {
     productid: currentProduct.split('/').slice(-1)[0],
   });
 
-  useEffect(() => {
+  useInterval(() => {
     if (!data) return;
-    const timer = setInterval(() => {
-      const price = logScalePrice(data.startTime, data.endTime, data.price);
-      setLocalPrice(price <= 1 ? 0 : price);
-    }, 1000);
-    return () => clearInterval(timer);
-  }, [data]);
+    const price = logScalePrice(data.startTime, data.endTime, data.price);
+    setLocalPrice(price <= 1 ? 0 : price);
+  }, 1000);
 
   // join room
   socket.emit('join room', currentProduct);

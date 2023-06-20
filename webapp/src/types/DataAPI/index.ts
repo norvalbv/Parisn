@@ -43,10 +43,12 @@ export interface CollectionData {
   image: string;
 }
 
+export type ProductSizes = 's' | 'm' | 'l' | 'xl';
+
 export type ProductInfoValues = {
   product: ProductData | null;
   price: number | null;
-  selectedSize: 's' | 'm' | 'l' | 'xl' | null;
+  selectedSize: ProductSizes | null;
 };
 
 export type ProductContextData = {

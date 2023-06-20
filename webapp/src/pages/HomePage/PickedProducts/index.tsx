@@ -8,13 +8,11 @@ import { products } from '__mocks__/dataApiMock';
 import Loading from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
 import { logScalePrice } from 'utils/currentPrice';
-import { useNavigate } from 'react-router-dom';
 import useProduct from 'hooks/useProduct';
-import { useCheckout } from 'services/DataApiService';
+// import { useCheckout } from 'services/DataApiService';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
-  const navigate = useNavigate();
 
   const { setProductInfo } = useProduct();
   // const { startCheckout } = useCheckout();
@@ -76,7 +74,7 @@ const PickedProducts = (): ReactElement => {
                   <ClockIcon />
                   {/* <span className="text-xxs font-normal">1hr 14mins</span> */}
                   <span className="text-xxs font-normal">
-                    {timeLeft({ start: product.startTime, end: product.endTime })}
+                    {timeLeft({ startTime: product.startTime, endTime: product.endTime })}
                   </span>
                 </div>
                 <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
@@ -94,11 +92,11 @@ const PickedProducts = (): ReactElement => {
                     <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
                       {productPrice < 0.5
                         ? 'FREE'
-                        : `£&nbsp;${logScalePrice(
+                        : `£ ${logScalePrice(
                             product.startTime,
                             product.endTime,
                             product.price
-                          )}`}
+                          ).toFixed(2)}`}
                     </span>
                   </section>
                 </div>
