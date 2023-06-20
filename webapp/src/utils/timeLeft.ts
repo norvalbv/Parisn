@@ -1,10 +1,9 @@
-type TimeLeftProps = {
-  startTime: number;
-  endTime: number;
-};
+export const timeLeft = (endTime: number): string => {
+  const diffInMilliseconds = endTime - Date.now();
 
-export const timeLeft = ({ startTime, endTime }: TimeLeftProps): string => {
-  const diffInMilliseconds = endTime - startTime;
+  if (diffInMilliseconds < 1) return 'Sale Ended';
+
+  // if (diffInMilliseconds
   const diffInSeconds = diffInMilliseconds / 1000;
 
   // calculate days

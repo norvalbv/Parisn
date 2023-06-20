@@ -30,8 +30,8 @@ const PickedProducts = (): ReactElement => {
     processedData.map((product) => {
       return {
         ...product,
-        timeLeft: timeLeft({ startTime: product.startTime, endTime: product.endTime }),
-        currentPrice: logScalePrice(product.startTime, product.endTime, product.price),
+        timeLeft: timeLeft(product.endTime),
+        currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
       };
     })
   );
@@ -42,8 +42,8 @@ const PickedProducts = (): ReactElement => {
       productsData.map((product) => {
         return {
           ...product,
-          timeLeft: timeLeft({ startTime: product.startTime, endTime: product.endTime }),
-          currentPrice: logScalePrice(product.startTime, product.endTime, product.price),
+          timeLeft: timeLeft(product.endTime),
+          currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
         };
       })
     );
@@ -88,7 +88,6 @@ const PickedProducts = (): ReactElement => {
         }}
       >
         {productsData.map((product) => {
-          const productPrice = logScalePrice(product.startTime, product.endTime, product.price);
           return (
             <section
               className="relative h-[31.875rem] w-[19.625rem] rounded"
@@ -98,9 +97,7 @@ const PickedProducts = (): ReactElement => {
               <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
                 <div className="flex items-center gap-2">
                   <ClockIcon />
-                  <span className="text-xxs font-normal">
-                    {timeLeft({ startTime: product.startTime, endTime: product.endTime })}
-                  </span>
+                  <span className="text-xxs font-normal">{product.timeLeft}</span>
                 </div>
                 <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
               </div>
@@ -115,13 +112,7 @@ const PickedProducts = (): ReactElement => {
                   <section className="w-min">
                     <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
                     <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
-                      {productPrice < 0.5
-                        ? 'FREE'
-                        : `£ ${logScalePrice(
-                            product.startTime,
-                            product.endTime,
-                            product.price
-                          ).toFixed(2)}`}
+                      {Number(product.currentPrice) < 0.5 ? 'FREE' : `£ ${product.currentPrice}`}
                     </span>
                   </section>
                 </div>
@@ -151,7 +142,7 @@ const PickedProducts = (): ReactElement => {
                     onClick={(): void => {
                       setProductInfo({
                         product,
-                        price: productPrice,
+                        price: Number(product.currentPrice),
                         selectedSize: 'm',
                       });
                     }}
