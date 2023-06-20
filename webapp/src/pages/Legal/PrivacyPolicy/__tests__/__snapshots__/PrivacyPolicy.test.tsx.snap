@@ -2,10 +2,10 @@
 
 exports[`<PrivacyPolicy /> PrivacyPolicy props with mandatory props 1`] = `
 <div
-  className="h-screen w-full grid place-items-center bg-primary-dark text-primary-light"
+  className="h-screen w-full grid place-items-center relative bg-primary-dark text-primary-light"
 >
   <div
-    className=" w-1/2"
+    className="w-1/2"
   >
     <p
       className="text-center"

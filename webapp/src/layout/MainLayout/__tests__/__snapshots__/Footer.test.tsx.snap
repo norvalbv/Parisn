@@ -2,10 +2,10 @@
 
 exports[`<Footer /> should render correctly 1`] = `
 <footer
-  className="rounded-lg p-4 shadow md:px-6 md:py-8"
+  className="p-4 md:px-6 md:py-8"
 >
   <div
-    className="sm:flex sm:items-center sm:justify-between"
+    className="w-full sm:flex sm:items-center sm:justify-between"
   >
     <a
       className="mb-4 flex items-center sm:mb-0"

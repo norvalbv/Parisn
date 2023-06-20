@@ -2,7 +2,7 @@
 
 exports[`<Button /> Button props with all props as required 1`] = `
 <button
-  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded-xs font-bold underline items-center uppercase transition-all hover:scale-110 cursor-default border-primary-neutral bg-primary-neutral/60 text-primary-dark"
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded-xs font-bold underline relative items-center uppercase transition-all hover:scale-110 cursor-default border-primary-neutral bg-primary-neutral/40 text-primary-dark"
   data-testid="Data Attribute"
   disabled={true}
   id="Test Id"
@@ -17,7 +17,7 @@ exports[`<Button /> Button props with all props as required 1`] = `
   type="button"
 >
   <svg
-    className="absolute"
+    className="absolute left-0 top-0"
     height="100%"
     width="100%"
   >
@@ -45,7 +45,7 @@ exports[`<Button /> Button props with all props as required 1`] = `
 
 exports[`<Button /> Button props with mandatory props 1`] = `
 <button
-  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal relative items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
   onClick={[Function]}
   onMouseEnter={[Function]}
   onMouseLeave={[Function]}

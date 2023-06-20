@@ -6,7 +6,7 @@ exports[`<NotFound /> Should render correctly 1`] = `
 >
   Page Not Found :(
   <button
-    className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
+    className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal relative items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
     onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}

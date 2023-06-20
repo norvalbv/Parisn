@@ -2,8 +2,6 @@
 
 exports[`<Collection /> Collection with only desired props 1`] = `
 <div
-  className="tracking-side grid h-screen w-screen animate-spin-slow place-items-center text-xl"
->
-  PARISN.com
-</div>
+  className="grid min-h-screen grid-cols-3 pb-10"
+/>
 `;
