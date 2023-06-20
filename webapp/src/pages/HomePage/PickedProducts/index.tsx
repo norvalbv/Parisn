@@ -9,6 +9,7 @@ import Loading from 'components/Loading';
 import { timeLeft } from 'utils/timeLeft';
 import { logScalePrice } from 'utils/currentPrice';
 import useProduct from 'hooks/useProduct';
+import useInterval from 'hooks/useInterval';
 // import { useCheckout } from 'services/DataApiService';
 
 const PickedProducts = (): ReactElement => {
@@ -21,9 +22,32 @@ const PickedProducts = (): ReactElement => {
   const containerWidth = ref.current?.offsetWidth || 0;
 
   const data = products;
-  if (!data) return <Loading />;
-
   const processedData = data.filter((product) => Object.values(product.metaData).some(Boolean));
+
+  const [productsData, setProductsData] = useState(
+    processedData.map((product) => {
+      return {
+        ...product,
+        timeLeft: timeLeft({ startTime: product.startTime, endTime: product.endTime }),
+        currentPrice: logScalePrice(product.startTime, product.endTime, product.price),
+      };
+    })
+  );
+
+  useInterval(() => {
+    if (!processedData.length) return;
+    setProductsData(
+      productsData.map((product) => {
+        return {
+          ...product,
+          timeLeft: timeLeft({ startTime: product.startTime, endTime: product.endTime }),
+          currentPrice: logScalePrice(product.startTime, product.endTime, product.price),
+        };
+      })
+    );
+  }, 1000);
+
+  if (!data) return <Loading />;
 
   return (
     <section className="my-40">
@@ -61,18 +85,17 @@ const PickedProducts = (): ReactElement => {
           left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
         }}
       >
-        {processedData.map((product) => {
+        {productsData.map((product) => {
           const productPrice = logScalePrice(product.startTime, product.endTime, product.price);
           return (
             <section
-              className={classNames('relative h-[31.875rem] w-[19.625rem] rounded')}
+              className='relative h-[31.875rem] w-[19.625rem] rounded'
               key={product.id}
               ref={ref}
             >
               <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
                 <div className="flex items-center gap-2">
                   <ClockIcon />
-                  {/* <span className="text-xxs font-normal">1hr 14mins</span> */}
                   <span className="text-xxs font-normal">
                     {timeLeft({ startTime: product.startTime, endTime: product.endTime })}
                   </span>
@@ -100,7 +123,7 @@ const PickedProducts = (): ReactElement => {
                     </span>
                   </section>
                 </div>
-                <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60">
+                <p className="mb-6 mt-3 text-xs font-thin leading-[1.1875rem] text-white/60 h-[2.375rem]">
                   {product.description.slice(0, 68)}&nbsp;
                   {product.description.length > 68 && '...'}
                 </p>

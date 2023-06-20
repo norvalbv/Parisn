@@ -38,7 +38,7 @@ const Categories = (): ReactElement => {
             />
             <div className="absolute bottom-0 z-10 flex h-[8.25rem] w-full flex-col items-center justify-center gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
               <h4 className="font-thin leading-[1.8125rem]">{collection.collections}</h4>
-              <StyledLink to="/" text="View All" />
+              <StyledLink to={`/collections/${collection.collections}`} text="View All" />
             </div>
           </div>
         ))}
