@@ -5,12 +5,14 @@ import MyAccount from 'pages/Account/MyAccount';
 import { useDrawer } from 'hooks/useDrawer';
 import Footer from './Footer';
 import NavBar from './NavBar';
+import useScrollToTop from 'hooks/useScrollToTop';
 
 // ==============================|| MAIN LAYOUT ||============================== //
 
 const MainLayout = (): ReactElement => {
   const location = useLocation();
   const navigate = useNavigate();
+  useScrollToTop();
 
   const { closeDrawer } = useDrawer();
 

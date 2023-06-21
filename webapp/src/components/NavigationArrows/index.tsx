@@ -9,9 +9,13 @@ type NavigationArrowsProps = {
 const NavigationArrows = ({ leftArrow, rightArrow }: NavigationArrowsProps): ReactElement => {
   return (
     <section className="flex gap-10">
-      <LeftIcon className={leftArrow.className} fill={leftArrow.fill} onClick={leftArrow.onClick} />
+      <LeftIcon
+        className={leftArrow.className || 'cursor-pointer'}
+        fill={leftArrow.fill}
+        onClick={leftArrow.onClick}
+      />
       <RightIcon
-        className={rightArrow.className}
+        className={rightArrow.className || 'cursor-pointer'}
         fill={rightArrow.fill}
         onClick={rightArrow.onClick}
       />

@@ -21,7 +21,7 @@ const PageIndicators = ({
       {Array(pages)
         .fill(null)
         .map((_, i) => (
-          <div onClick={(): void => setCurrentPage(i)} className="h-1 cursor-pointer">
+          <div onClick={(): void => setCurrentPage(i)} className="h-1 cursor-pointer" key={i}>
             <div
               className={classNames(
                 'h-0.5 w-[1.875rem]',

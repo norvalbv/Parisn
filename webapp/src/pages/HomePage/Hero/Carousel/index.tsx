@@ -51,14 +51,12 @@ const Carousel = (): ReactElement => {
       <div className="absolute bottom-40 right-[3.25rem]">
         <NavigationArrows
           leftArrow={{
-            className: selected === 0 ? '' : 'cursor-pointer',
-            fill: selected === 0 ? '#B0B0B0' : 'white',
+            fill: 'white',
             onClick: (): void =>
               setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1)),
           }}
           rightArrow={{
-            className: selected === images.length - 1 ? '' : 'cursor-pointer',
-            fill: selected === images.length - 1 ? '#B0B0B0' : 'white',
+            fill: 'white',
             onClick: (): void =>
               setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1)),
           }}
