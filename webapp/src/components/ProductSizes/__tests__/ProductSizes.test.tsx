@@ -24,9 +24,9 @@ describe('<ProductSizes />', () => {
         <BrowserRouter>
           <ProductSizesWithRequiredProps
             sizes={{ small: 5, medium: 4, large: 3, extraLarge: 2 }}
-            classes="bg-red-500"
+            className="bg-red-500"
             onClick={jest.fn()}
-            selectedSize="medium"
+            selectedSize="m"
           />
         </BrowserRouter>
       )

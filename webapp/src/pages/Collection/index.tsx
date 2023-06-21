@@ -42,7 +42,7 @@ const Collection = (): ReactElement => {
               className="h-[34rem] w-[24rem] cursor-pointer rounded-xl transition-all hover:scale-110"
             />
           </Link>
-          <div className="flex w-[24rem] items-center justify-between">
+          <div className="z-10 flex w-[24rem] items-center justify-between">
             <p className="text-sm">{product.title}</p>
             <div className="flex items-center justify-center gap-2 text-sm">
               {typeof currentPrices[product.id] === 'number' ? (

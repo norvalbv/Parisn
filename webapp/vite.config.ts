@@ -6,12 +6,11 @@ import { createHtmlPlugin } from 'vite-plugin-html';
 
 export default defineConfig({
   plugins: [
-    react(),
+    react({ include: /\.(ts|tsx)$/ }),
     viteTsconfigPaths(),
     EnvironmentPlugin('all'),
     createHtmlPlugin({
       minify: true,
-      entry: 'src/index.tsx',
     }),
   ],
   optimizeDeps: {

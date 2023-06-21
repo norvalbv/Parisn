@@ -49,7 +49,7 @@ export const router = createBrowserRouter(
           errorElement={<ErrorBoundary />}
         />
         <Route
-          path="/collections/:collection/:product"
+          path="collections/:collection/:product"
           element={
             <ProductContextProvider>
               <ItemView />

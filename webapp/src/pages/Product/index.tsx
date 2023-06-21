@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';
 import Button from 'components/Button';
@@ -63,16 +63,16 @@ const Product = (): ReactElement => {
 
   return (
     <>
-      <div className="float-left h-screen w-[40%]">
+      <div className="float-left h-[calc(100vh-3.125rem)] w-[40%]">
         <Carousel
           images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
         />
       </div>
-      <div className="float-right h-screen w-[60%] overflow-auto scroll-smooth scrollbar-none">
+      <div className="float-right h-[calc(100vh-3.125rem)] w-[60%] overflow-auto scroll-smooth scrollbar-none">
         <div className="relative flex">
           <div
             id="product-overview"
-            className="mx-auto flex h-screen flex-col items-center justify-center gap-4 tracking-wider"
+            className="mx-auto flex h-[calc(100vh-3.125rem)] flex-col items-center justify-center gap-4 tracking-wider"
           >
             <h2 className="text-3xl underline underline-offset-8">{data.title}</h2>
             <div className="my-4 w-full text-center">

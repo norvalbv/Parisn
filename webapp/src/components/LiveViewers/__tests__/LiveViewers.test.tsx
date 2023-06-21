@@ -27,7 +27,7 @@ describe('<Radial />', () => {
             fontSize="xl"
             label="Test Label"
             pageParams="/test"
-            classNames="bg-red-500"
+            className="bg-red-500"
           />
         </BrowserRouter>
       )
