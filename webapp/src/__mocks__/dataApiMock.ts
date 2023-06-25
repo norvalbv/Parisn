@@ -177,7 +177,7 @@ export const products: ProductData[] = [
   {
     collection: 'Shoes',
     description: 'Officiis iusto cum voluptate incidunt, inventore culpa saepe non ut.',
-    endTime: 1681000000000,
+    endTime: 1687800000000,
     id: '10',
     image: PRODUCT_1_IMAGE,
     price: 1000,
