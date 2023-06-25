@@ -1,7 +1,7 @@
 export const timeLeft = (endTime: number): string => {
   const diffInMilliseconds = endTime - Date.now();
 
-  if (diffInMilliseconds < 1) return 'Sale Ended';
+  if (diffInMilliseconds < 1) return 'Price Drop Finished';
 
   // if (diffInMilliseconds
   const diffInSeconds = diffInMilliseconds / 1000;

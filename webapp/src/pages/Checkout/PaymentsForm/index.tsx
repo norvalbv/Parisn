@@ -40,7 +40,7 @@ const PaymentsForm = ({ productId, setStage }: PaymentsFormProps): ReactElement 
           <span className="text-xs text-error">{formError}</span>
           <button
             disabled={!stripe}
-            className="daisy-btn-primary daisy-btn mt-10 w-40"
+            className="mt-10 w-40"
             type="submit"
           >
             Submit
