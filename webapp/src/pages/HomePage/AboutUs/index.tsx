@@ -11,9 +11,13 @@ const AboutUs = (): ReactElement => {
           Parisn.com
         </span>
         <p>
-          Launched in 2021 allows you to choose the price you pay for your items in a reverse
-          bidding strategy technique. Starting at £1,000 per item, over time the price of the item
-          drops to £0.
+          PARISN revolutionizes the traditional retail experience by introducing an innovative
+          pricing mechanism. With us, you are empowered to decide the price you pay for your items.
+          Every piece in our exclusive collection starts at a premium, reflecting its rarity and
+          quality. However, as time progresses, the price of each item gracefully descends,
+          eventually reaching the unique possibility of being free. This distinctive model disrupts
+          the norms of conventional shopping, turning every purchase into a thrilling strategic
+          decision and transforming every customer into a savvy shopper
         </p>
       </div>
       <div className="h-full w-full opacity-0">
