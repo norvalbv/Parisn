@@ -33,16 +33,12 @@ const PaymentsForm = ({ productId, setStage }: PaymentsFormProps): ReactElement 
   };
 
   return (
-    <div className="mockup-window mx-auto w-[50rem] rounded-lg border bg-base-300">
-      <div className="flex justify-center bg-base-200 px-4 py-16">
+    <div className="mockup-window bg-base-300 mx-auto w-[50rem] rounded-lg border">
+      <div className="bg-base-200 flex justify-center px-4 py-16">
         <form onSubmit={handleSubmit}>
           <PaymentElement />
-          <span className="text-xs text-error">{formError}</span>
-          <button
-            disabled={!stripe}
-            className="mt-10 w-40"
-            type="submit"
-          >
+          <span className="text-error text-xs">{formError}</span>
+          <button disabled={!stripe} className="mt-10 w-40" type="submit">
             Submit
           </button>
         </form>

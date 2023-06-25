@@ -56,9 +56,7 @@ const PickedProducts = (): ReactElement => {
       <div className="flex items-center justify-between">
         <div className="mb-10">
           <h3>Dive into Our Handpicked Selection</h3>
-          <p className="uppercase">
-            Featured Products with Unmatched Style and Exciting Bidding Opportunities
-          </p>
+          <p className="uppercase">Featured Products with Unmatched Style</p>
         </div>
         <NavigationArrows
           leftArrow={{

@@ -21,9 +21,9 @@ const Categories = (): ReactElement => {
   return (
     <section className="relative flex flex-col items-center">
       <Radial colour="purple" />
-      <p className="uppercase">Exceptional Apparel Awaits</p>
+      <p className="uppercase">Uncover Unparalleled Elegance</p>
       <h3 className="mb-[2.5rem]">
-        <span className="logo-text-medium">PARISN</span>&apos;s Fashion Panorama
+        <span className="logo-text-medium">PARISN</span>&apos;s Exceptional Collections
       </h3>
       <div className="flex items-center gap-10">
         {processedData.map((collection) => (

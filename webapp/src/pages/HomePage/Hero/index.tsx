@@ -8,12 +8,10 @@ const Hero = (): ReactElement => {
   return (
     <header className="flex h-screen justify-between pt-[7rem]">
       <section className="w-[23.8125rem]">
-        <p className="h3-hairline">
-          Unlock the Essence of Urban Luxury with Refined Shopping Redefined by
-        </p>
+        <p className="h3-hairline">Discover a Unique Shopping Landscape Shaped by</p>
         <h2 className="mb-3 mt-1 font-semibold tracking-[.42rem]">PARISN</h2>
         <p className="text-primary-neutral">
-          Limited Editions, Coveted Brands, and the Thrill of Reverse Bidding
+          Exceptional Exclusives, A Dance of Desire and Patience, as Prices Descend Over Time
         </p>
         <Button
           text="Shop Now"

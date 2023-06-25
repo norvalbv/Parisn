@@ -9,7 +9,7 @@ const PurchaseSuccessful = (): ReactElement => {
   const paymentIntent = params.get('payment_intent') as string;
 
   return (
-    <div className="daisy-hero min-h-screen bg-gradient-to-br from-base-100 to-base-300">
+    <div className="daisy-hero from-base-100 to-base-300 min-h-screen bg-gradient-to-br">
       <div className="daisy-hero-content text-center">
         <div className="max-w-md">
           <span className="block text-3xl">Purchase Successful 😀</span>
