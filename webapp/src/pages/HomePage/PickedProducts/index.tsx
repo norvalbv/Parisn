@@ -52,9 +52,9 @@ const PickedProducts = (): ReactElement => {
   if (!data) return <Loader />;
 
   return (
-    <section className="my-40">
-      <div className="flex items-center justify-between">
-        <div className="mb-10">
+    <section className="my-20 md:my-40">
+      <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-10">
+        <div className="text-center md:text-left mb-4 md:mb-0">
           <h3>Dive into Our Handpicked Selection</h3>
           <p className="uppercase">Featured Products with Unmatched Style</p>
         </div>
@@ -79,7 +79,7 @@ const PickedProducts = (): ReactElement => {
       </div>
       <div
         className={classNames(
-          'relative flex min-w-min items-center gap-[3.75rem] overflow-hidden transition-all duration-500'
+          'relative flex flex-col md:flex-row min-w-min items-center gap-6 md:gap-[3.75rem] overflow-hidden transition-all duration-500'
         )}
         style={{
           left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
@@ -88,7 +88,7 @@ const PickedProducts = (): ReactElement => {
         {productsData.map((product) => {
           return (
             <section
-              className="relative h-[31.875rem] w-[19.625rem] rounded"
+              className="relative h-[28rem] md:h-[31.875rem] w-full md:w-[19.625rem] rounded"
               key={product.id}
               ref={ref}
             >
@@ -102,11 +102,11 @@ const PickedProducts = (): ReactElement => {
               <img
                 src={product.image}
                 alt={product.id}
-                className="h-[18.5rem] w-full rounded-t object-cover"
+                className="h-[16rem] md:h-[18.5rem] w-full rounded-t object-cover"
               />
-              <div className="h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
+              <div className="h-[12rem] md:h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
                 <div className="flex items-center justify-between">
-                  <h4 className="uppercase">{product.title}</h4>
+                  <h4 className="uppercase text-sm md:text-base">{product.title}</h4>
                   <section className="w-min">
                     <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
                     <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
@@ -114,16 +114,16 @@ const PickedProducts = (): ReactElement => {
                     </span>
                   </section>
                 </div>
-                <p className="mb-6 mt-3 h-[2.375rem] text-xs font-thin leading-[1.1875rem] text-white/60">
+                <p className="mb-4 md:mb-6 mt-2 md:mt-3 h-[2.375rem] text-xs font-thin leading-[1.1875rem] text-white/60">
                   {product.description.slice(0, 68)}&nbsp;
                   {product.description.length > 68 && '...'}
                 </p>
-                <div className="flex gap-4">
+                <div className="flex gap-2 md:gap-4">
                   <Button
                     text="View Product"
                     theme="ghost"
                     roundedBorders="md"
-                    className="h-12 w-44 text-xs"
+                    className="h-10 md:h-12 w-full md:w-44 text-xs"
                     size="custom"
                     fontWeight="semibold"
                     onClick={(): void =>
@@ -134,7 +134,7 @@ const PickedProducts = (): ReactElement => {
                     text="Buy Now"
                     theme="light"
                     roundedBorders="md"
-                    className="h-12 w-32 text-xs"
+                    className="h-10 md:h-12 w-full md:w-32 text-xs"
                     size="custom"
                     fontWeight="semibold"
                     onClick={(): void => {

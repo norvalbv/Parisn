@@ -5,17 +5,18 @@ const Newsletter = (): ReactElement => {
   const [email, setEmail] = useState('');
 
   return (
-    <div className="mx-auto mb-32 text-center">
+    <div className="mx-auto mb-16 md:mb-32 text-center px-4 md:px-0">
       <h3>
         Join the <span className="logo-text-medium">PARISN</span> Inner Circle
       </h3>
-      <span className="mb-11 mt-2 inline-block uppercase">
+      <span className="mb-6 md:mb-11 mt-2 inline-block uppercase">
         Subscribe to Stay Updated on the Latest Collections and Exclusive Offers
       </span>
       <TextInput
         value={null}
         placeholder="Email Address"
         onchange={(value: string): void => setEmail(value)}
+        className="w-full md:w-auto"
       />
     </div>
   );

@@ -9,7 +9,7 @@ import Newsletter from './NewsLetter';
 
 const HomePage = (): ReactElement => {
   return (
-    <div className="overflow-hidden px-[7.5rem]">
+    <div className="overflow-hidden px-4 md:px-[3.75rem] lg:px-[7.5rem]">
       <Hero />
       <Synopsis />
       <HowItWorks />
