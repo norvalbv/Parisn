@@ -2,8 +2,8 @@ import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from 'components/CardWrapper';
 import Form from 'components/Form';
-import useUser from 'hooks/useUser';
-import { ResetPassword as ResetPasswordType } from 'types';
+import useUser from '../../../../../src/hooks/useUser';
+import { ResetPassword as ResetPasswordType } from '../../../../../src/types';
 
 const ResetPassword = (): ReactElement => {
   const { changePassword } = useUser();

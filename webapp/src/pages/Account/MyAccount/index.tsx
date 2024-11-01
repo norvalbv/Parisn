@@ -1,6 +1,6 @@
 import React, { ReactElement, useState } from 'react';
 import Button from 'components/Button';
-import useUser from 'hooks/useUser';
+import useUser from '../../../../../src/hooks/useUser';
 import Drawer from 'components/Drawer';
 import ChangePassword from './TabPages/ChangePassword';
 import MyInformation from './TabPages/MyInformation';

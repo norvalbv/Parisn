@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import useInterval from 'hooks/useInterval';
+import useInterval from '@/src/hooks/useInterval';
 import React, { ReactElement } from 'react';
 
 type PageIndicatorsProps = {

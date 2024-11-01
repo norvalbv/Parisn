@@ -1,10 +1,11 @@
+'use client';
+
+import { collections } from '@/src/__mocks__/dataApiMock';
+import Loader from '@/src/components/Loading';
+import PageIndicators from '@/src/components/PageIndicators';
+import StyledLink from '@/src/components/StyledLink';
+import { COMPANY_NAME } from '@/src/constants';
 import React, { ReactElement, useState } from 'react';
-import StyledLink from 'components/StyledLink';
-import Radial from 'components/SVG/Design';
-// import { useCollections } from 'services/DataApiService';
-import Loader from 'components/Loading';
-import { collections } from '__mocks__/dataApiMock';
-import PageIndicators from 'components/PageIndicators';
 
 const Categories = (): ReactElement => {
   // const { data } = useCollections();
@@ -23,7 +24,7 @@ const Categories = (): ReactElement => {
       <div className="mx-auto mb-12 flex max-w-7xl flex-col items-center justify-between md:mb-16 md:flex-row">
         <div className="mb-6 text-center md:mb-0 md:text-left">
           <h3 className="mb-2 text-3xl font-semibold tracking-tight">
-            <span className="logo-text-medium">PARISN</span>&apos;s Collections
+            <span className="logo-text-medium">{COMPANY_NAME}</span>&apos;s Collections
           </h3>
           <p className="text-xs font-medium uppercase tracking-wider text-primary-neutral/80">
             Uncover Unparalleled Elegance

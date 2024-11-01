@@ -3,7 +3,7 @@
 import { COMPANY_NAME } from '@/src/constants';
 import { motion } from 'framer-motion';
 import React, { ReactElement } from 'react';
-import { AuroraBackground } from './BG';
+import { AuroraBackground } from './AuroraBackground';
 import { HoverBorderGradient } from './HoverBorderGradient';
 import { TextHoverEffect } from './TextHoverEffect';
 
@@ -33,7 +33,7 @@ const Hero = (): ReactElement => {
             as="button"
             className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
           >
-            <span>Shop Now</span>
+            Shop Now
           </HoverBorderGradient>
         </motion.div>
       </AuroraBackground>

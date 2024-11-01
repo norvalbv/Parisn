@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
-import useUser from 'hooks/useUser';
+import useUser from '../../../../src/hooks/useUser';
 import CardWrapper from 'components/CardWrapper';
 import Form from 'components/Form';
 import { contactSchema } from 'utils/validation';
 import { useCustomerSupport } from 'services/DataApiService';
-import { ContactForm } from 'types';
+import { ContactForm } from '../../../../src/types';
 import { DASHBOARD_IMAGE } from '../../constants';
 
 const ContactUs = (): ReactElement => {

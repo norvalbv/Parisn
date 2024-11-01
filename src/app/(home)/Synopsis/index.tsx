@@ -7,7 +7,7 @@ const Synopsis = (): ReactElement => {
       <h3 className="text-xl md:text-2xl lg:text-3xl">
         Unleash the Excitement of the Ultimate with
         <span className="block text-2xl font-normal leading-[2.5rem] tracking-[0.08rem] md:text-[2.625rem] md:leading-[3.125rem]">
-          PARISN
+          PARISEN
         </span>
       </h3>
     </section>

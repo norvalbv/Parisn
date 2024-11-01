@@ -1,7 +1,7 @@
 import clsx from 'clsx';
-import { Spinner } from 'components/CustomSVG';
+import { Spinner } from '@/src/components/CustomSVG';
 import React, { forwardRef, ReactElement, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import {
   BorderRequired,
   borderRequiredMap,
@@ -9,7 +9,7 @@ import {
   fontWeightMap,
   Rounded,
   roundedMap,
-} from 'types';
+} from '@/src/types';
 
 export type ButtonProps = {
   text: string | JSX.Element;
@@ -67,16 +67,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ): ReactElement => {
     const [hovered, setHovered] = useState(false);
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const clickHandle = (): void => {
       if (loading) return;
       if (onClick) onClick();
       if (navigateTo) {
         if (navigationState) {
-          navigate(navigateTo, { state: navigationState });
+          // router.push(navigateTo, { state: navigationState });
+          router.push(navigateTo);
         } else {
-          navigate(navigateTo);
+          router.push(navigateTo);
         }
       }
     };

@@ -1,19 +1,22 @@
+'use client';
+
 import React, { ReactElement, useRef, useState } from 'react';
-import Button from 'components/Button';
-import ClockIcon from 'components/SVG/ClockIcon';
-import Badge from 'components/Badge';
-import NavigationArrows from '@/components/NavigationArrows';
-import { products } from '@/__mocks__/dataApiMock';
-import Loader from '@/components/Loading';
-import { timeLeft } from '@/utils/timeLeft';
-import { logScalePrice } from 'utils/currentPrice';
-import useProduct from 'hooks/useProduct';
-import useInterval from 'hooks/useInterval';
-import { useNavigate } from 'react-router-dom';
+import Button from '@/src/components/Button';
+import ClockIcon from '@/src/components/SVG/ClockIcon';
+import Badge from '@/src/components/Badge';
+import NavigationArrows from '@/src/components/NavigationArrows';
+import { products } from '@/src/__mocks__/dataApiMock';
+import Loader from '@/src/components/Loading';
+import { timeLeft } from '@/lib/utils/timeLeft';
+import { logScalePrice } from '@/lib/utils/currentPrice';
+import useProduct from '@/src/hooks/useProduct';
+import useInterval from '@/src/hooks/useInterval';
+import clsx from 'clsx';
+import { useRouter } from 'next/navigation';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
-  const navigate = useNavigate();
+  const router = useRouter();
   const { setProductInfo } = useProduct();
   const ref = useRef<HTMLDivElement>(null);
   const containerWidth = ref.current?.offsetWidth || 0;
@@ -79,7 +82,7 @@ const PickedProducts = (): ReactElement => {
       </div>
       <div className="relative mx-auto max-w-7xl overflow-hidden">
         <div
-          className={classNames(
+          className={clsx(
             'flex min-w-min items-center gap-4 transition-all duration-500 sm:gap-6 md:gap-8'
           )}
           style={{
@@ -131,7 +134,7 @@ const PickedProducts = (): ReactElement => {
                     className="h-8 w-full text-[10px] font-medium hover:bg-white/5 sm:h-10 sm:text-xs"
                     size="custom"
                     onClick={(): void =>
-                      navigate(`/collections/${product.collection}/${product.id}`)
+                      router.push(`/collections/${product.collection}/${product.id}`)
                     }
                   />
                   <Button

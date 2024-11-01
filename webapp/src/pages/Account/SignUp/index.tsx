@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
-import { Auth, VerifyAccount } from 'types';
+import { Auth, VerifyAccount } from '../../../../../src/types';
 import CardWrapper from 'components/CardWrapper';
 import ErrorBoundary from 'components/ErrorBoundary';
 import Form from 'components/Form';
-import useUser from 'hooks/useUser';
+import useUser from '../../../../../src/hooks/useUser';
 
 const SignUp = (): ReactElement => {
   const { signUp, error, stage, user, confirmSignUp, setStage } = useUser();

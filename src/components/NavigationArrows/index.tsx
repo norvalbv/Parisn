@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { LeftIcon, RightIcon } from 'components/SVG';
+import { LeftIcon, RightIcon } from '@/src/components/SVG';
 
 type NavigationArrowsProps = {
   leftArrow: { onClick: () => void; fill: string; className?: string };

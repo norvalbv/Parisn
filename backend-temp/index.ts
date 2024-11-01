@@ -8,7 +8,7 @@ const io = require('socket.io')(server, {
   },
 });
 require('dotenv').config();
-import { Message } from '../webapp/src/types';
+import { Message } from '../src/types';
 
 /**
  * Middleware

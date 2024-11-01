@@ -1,20 +1,22 @@
 import { ReactElement } from 'react';
-// import HowItWorks from './HowItWorks';
+import AboutUs from './AboutUs';
+import Categories from './Categories';
 import Hero from './Hero';
-// import PickedProducts from './PickedProducts';
-// import Synopsis from './Synopsis';
-// import Newsletter from './NewsLetter';
+import HowItWorks from './HowItWorks';
+import Newsletter from './NewsLetter';
+import PickedProducts from './PickedProducts';
+import Synopsis from './Synopsis';
 
 const HomePage = (): ReactElement => {
   return (
     <>
       <Hero />
-      {/* <Synopsis />
+      <Synopsis />
       <HowItWorks />
       <Categories />
       <PickedProducts />
       <AboutUs />
-      <Newsletter /> */}
+      <Newsletter />
     </>
   );
 };

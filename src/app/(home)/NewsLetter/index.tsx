@@ -1,5 +1,7 @@
+'use client';
+
 import React, { ReactElement, useState } from 'react';
-import TextInput from 'components/DataInputs/TextInput';
+import TextInput from '@/src/components/DataInputs/TextInput';
 
 const Newsletter = (): ReactElement => {
   const [email, setEmail] = useState('');

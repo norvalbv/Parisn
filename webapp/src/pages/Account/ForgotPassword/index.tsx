@@ -2,8 +2,8 @@ import React, { ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from 'components/CardWrapper';
 import Form from 'components/Form';
-import useUser from 'hooks/useUser';
-import { ForgotPasswordSubmit } from 'types';
+import useUser from '../../../../../src/hooks/useUser';
+import { ForgotPasswordSubmit } from '../../../../../src/types';
 
 const ForgotPassword = (): ReactElement => {
   const { forgotPassword, forgotPasswordSubmit, stage, resendConfirmationCode, setStage } =

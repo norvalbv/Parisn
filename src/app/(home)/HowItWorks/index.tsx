@@ -1,9 +1,10 @@
+'use client';
+
 import React, { ReactElement, useRef } from 'react';
-import StyledLink from 'components/StyledLink';
-import Radial from 'components/SVG/Design';
-import { PRODUCT_1_IMAGE } from 'constants/index';
+import StyledLink from '@/src/components/StyledLink';
+import PRODUCT_1_IMAGE from '@/public/images/shoe.jpg';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import WavyBackground from 'components/Waves';
+import WavyBackground from '@/src/components/Waves';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;
@@ -44,7 +45,7 @@ const HowItWorks = (): ReactElement => {
         <div className="flex h-screen items-center">
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:gap-4 sm:p-8 md:w-4/5 md:flex-row md:p-20">
             <img
-              src={PRODUCT_1_IMAGE}
+              src={PRODUCT_1_IMAGE.src}
               alt=""
               className="w-[250px] rounded-xl object-cover sm:w-[300px] md:h-[400px] md:w-[400px]"
             />
@@ -100,7 +101,7 @@ const HowItWorks = (): ReactElement => {
         <div className="flex h-screen items-center">
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:gap-4 sm:p-8 md:w-4/5 md:flex-row md:p-20">
             <img
-              src={PRODUCT_1_IMAGE}
+              src={PRODUCT_1_IMAGE.src}
               alt=""
               className="w-[250px] rounded-xl object-cover sm:w-[300px] md:h-[400px] md:w-[400px]"
             />

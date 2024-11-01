@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import HorizontalTable from 'components/HorizontalTable';
-import useUser from 'hooks/useUser';
+import useUser from '../../../../../../src/hooks/useUser';
 
 const MyInformation = (): ReactElement => {
   const { user } = useUser();

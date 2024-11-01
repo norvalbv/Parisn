@@ -1,7 +1,6 @@
 import React, { ReactElement } from 'react';
-import Radial from 'components/SVG/Design';
-import { DASHBOARD_IMAGE } from 'constants/index';
-
+import Radial from '@/src/components/SVG/Design';
+import DASHBOARD_IMAGE from '@/public/images/dashboard-image.jpg';
 const AboutUs = (): ReactElement => {
   return (
     <div className="relative mx-auto mb-20 flex w-full flex-col items-center gap-8 md:mb-40 md:w-11/12 md:flex-row md:gap-16 lg:w-9/12">
@@ -21,7 +20,7 @@ const AboutUs = (): ReactElement => {
         </p>
       </div>
       <div className="h-full w-full opacity-0 md:w-1/2">
-        <img src={DASHBOARD_IMAGE} alt="p" className="h-auto w-full" />
+        <img src={DASHBOARD_IMAGE.src} alt="p" className="h-auto w-full" />
       </div>
     </div>
   );

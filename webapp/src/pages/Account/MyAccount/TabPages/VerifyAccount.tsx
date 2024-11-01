@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import Button from 'components/Button';
 import Form from 'components/Form';
-import useUser from 'hooks/useUser';
-import { VerifyAccount as VerifyAccountType } from 'types';
+import useUser from '../../../../../../src/hooks/useUser';
+import { VerifyAccount as VerifyAccountType } from '../../../../../../src/types';
 
 const VerifyAccount = (): ReactElement => {
   const { user, confirmSignUp, resendConfirmationCode } = useUser();

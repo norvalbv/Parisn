@@ -5,7 +5,7 @@ import LiveViewers from 'components/LiveViewers';
 import Loader from 'components/Loading';
 import { UserIcon } from 'components/SVG';
 import { logScalePrice } from 'utils/currentPrice';
-import useInterval from 'hooks/useInterval';
+import useInterval from '../../../../src/hooks/useInterval';
 
 const Collection = (): ReactElement => {
   const [currentPrices, setCurrentPrices] = useState<{ [key: string]: number }>({});

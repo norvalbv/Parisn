@@ -1,7 +1,7 @@
-import useMediaQuery from 'hooks/useMediaQuery';
+import { cn } from '@/lib/utils/cn';
+import useMediaQuery from '@/src/hooks/useMediaQuery';
 import { useEffect, useRef, useState } from 'react';
 import { createNoise3D } from 'simplex-noise';
-import { cn } from 'pages/HomePage/Hero/BG';
 
 const WavyBackground = ({
   children,
@@ -104,7 +104,7 @@ const WavyBackground = ({
   }, []);
 
   return (
-    <div className={cn('h-20vh flex flex-col items-center justify-center', containerClassName)}>
+    <div className={cn('h-20vh flex flex-col items-center justify-center', containerClassName || '')}>
       <canvas ref={canvasRef} id="canvas" style={{ background: 'transparent', width: '100%', filter: `blur(${blur}px)` }} />
       {children}
     </div>

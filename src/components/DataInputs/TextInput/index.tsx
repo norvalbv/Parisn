@@ -1,6 +1,7 @@
 import clsx from 'clsx';
-import Button from 'components/Button';
+import Button from '@/src/components/Button';
 import React, { ChangeEvent, ReactElement } from 'react';
+import { cn } from '@/lib/utils/cn';
 
 type TextInputProps = {
   icon?: JSX.Element;
@@ -11,6 +12,7 @@ type TextInputProps = {
   testId?: string | null;
   title?: string;
   value: string | null;
+  className?: string;
 };
 
 const TextInput = ({
@@ -22,6 +24,7 @@ const TextInput = ({
   testId,
   title,
   value,
+  className,
 }: TextInputProps): ReactElement => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     if (!onchange) return;
@@ -29,7 +32,12 @@ const TextInput = ({
     onchange(e.target.value);
   };
   return (
-    <div className="mx-auto my-4 flex max-w-max items-center justify-between gap-8">
+    <div
+      className={cn(
+        'mx-auto my-4 flex max-w-max items-center justify-between gap-8',
+        className || ''
+      )}
+    >
       {title && (
         <span className="font-semibold">
           {title}

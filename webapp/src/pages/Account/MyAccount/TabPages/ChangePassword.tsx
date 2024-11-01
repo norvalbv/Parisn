@@ -1,8 +1,8 @@
 import React, { ReactElement } from 'react';
 import Button from 'components/Button';
 import Form from 'components/Form';
-import useUser from 'hooks/useUser';
-import { ResetPassword } from 'types';
+import useUser from '../../../../../../src/hooks/useUser';
+import { ResetPassword } from '../../../../../../src/types';
 
 const ChangePassword = (): ReactElement => {
   const { changePassword, resendConfirmationCode } = useUser();

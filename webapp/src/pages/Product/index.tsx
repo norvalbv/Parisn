@@ -5,17 +5,17 @@ import Button from 'components/Button';
 import LiveViewers from 'components/LiveViewers';
 import ProductSizes from 'components/ProductSizes';
 import { useCheckout, useProductById } from 'services/DataApiService';
-import useProduct from 'hooks/useProduct';
+import useProduct from '../../../../src/hooks/useProduct';
 import Chat from 'components/Chat';
 import convertToDate from 'utils/convertToDate';
-import useUser from 'hooks/useUser';
+import useUser from '../../../../src/hooks/useUser';
 import Loader from 'components/Loading';
 import { logScalePrice } from 'utils/currentPrice';
 import Carousel from 'components/Carousel';
-import { useDrawer } from 'hooks/useDrawer';
+import { useDrawer } from '../../../../src/hooks/useDrawer';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants/index';
-import useInterval from 'hooks/useInterval';
-import { ProductSizes as ProductSizesType } from 'types';
+import useInterval from '../../../../src/hooks/useInterval';
+import { ProductSizes as ProductSizesType } from '../../../../src/types';
 
 const socket = io('ws://localhost:8000', {
   withCredentials: true,

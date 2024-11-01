@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
-import useRequest from 'hooks/useRequest';
-import { ApiResponse, CollectionData, ContactForm, FullUserInformation, ProductData } from 'types';
+import useRequest from '../../../src/hooks/useRequest';
+import { ApiResponse, CollectionData, ContactForm, FullUserInformation, ProductData } from '../../../src/types';
 import { collections, products } from '__mocks__/dataApiMock';
 
 type ProductByIDProps = {
