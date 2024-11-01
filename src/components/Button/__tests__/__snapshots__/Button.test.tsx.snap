@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Button /> Button props with all props as required 1`] = `
+<button
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded-xs font-bold underline relative items-center uppercase transition-all hover:scale-110 cursor-default border-primary-neutral bg-primary-neutral/40 text-primary-dark"
+  data-testid="Data Attribute"
+  disabled={true}
+  id="Test Id"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    {
+      "width": "25rem",
+    }
+  }
+  type="button"
+>
+  <svg
+    className="absolute left-0 top-0"
+    height="100%"
+    width="100%"
+  >
+    <line
+      stroke="darkRed"
+      strokeWidth={2.25}
+      x2="100%"
+      y2="100%"
+    />
+  </svg>
+  <span
+    className="mr-2.5"
+  >
+    <div>
+      Icon
+    </div>
+  </span>
+  <span
+    className="inline-block tracking-[0.16rem]"
+  >
+    Test Text
+  </span>
+</button>
+`;
+
+exports[`<Button /> Button props with mandatory props 1`] = `
+<button
+  className="px-6 py-2.5 text-sm text-primary-light bg-primary-dark border rounded font-normal relative items-center uppercase transition-colors duration-200 hover:bg-primary-neutral/20"
+  onClick={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  style={
+    {
+      "width": undefined,
+    }
+  }
+  type="button"
+>
+  <span
+    className="inline-block tracking-[0.16rem]"
+  >
+    Test Text
+  </span>
+</button>
+`;

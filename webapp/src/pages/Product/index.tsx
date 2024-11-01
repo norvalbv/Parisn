@@ -11,7 +11,6 @@ import convertToDate from 'utils/convertToDate';
 import useUser from 'hooks/useUser';
 import Loader from 'components/Loading';
 import { logScalePrice } from 'utils/currentPrice';
-import ProgressBar from 'components/Progressbar';
 import Carousel from 'components/Carousel';
 import { useDrawer } from 'hooks/useDrawer';
 import { DASHBOARD_IMAGE, PRODUCT_1_IMAGE } from 'constants/index';
@@ -24,15 +23,12 @@ const socket = io('ws://localhost:8000', {
 
 const Product = (): ReactElement => {
   const { openDrawer } = useDrawer();
-  const [selectedSize, setselectedSize] = useState<ProductSizesType>('m');
+  const [selectedSize, setSelectedSize] = useState<ProductSizesType>('m');
   const [localPrice, setLocalPrice] = useState<number>();
 
   const { user } = useUser();
-
   const { setProductInfo } = useProduct();
-
   const { startCheckout } = useCheckout();
-
   const location = useLocation();
   const currentProduct = location.pathname;
 
@@ -47,116 +43,92 @@ const Product = (): ReactElement => {
     setLocalPrice(price <= 1 ? 0 : price);
   }, 1000);
 
-  // join room
   socket.emit('join room', currentProduct);
 
   if (!data) return <Loader />;
 
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const compareSelectedVals: number = Object.entries(data.stock)[
-    Object.entries(data.stock).findIndex((x: [string, number]) =>
-      selectedSize.toLowerCase() === 'xl'
-        ? x[0].slice(0, 1).toLowerCase() === 'e'
-        : x[0].slice(0, 1).toLowerCase() === selectedSize.toLowerCase()
-    )
-  ][1];
-
   return (
-    <>
-      <div className="float-left h-[calc(100vh-3.125rem)] w-[40%]">
+    <div className="flex h-[calc(100vh-3.125rem)] bg-[#0D0D0E]">
+      {/* Image Section */}
+      <section className="w-1/2 border-r border-white/10">
         <Carousel
           images={[DASHBOARD_IMAGE, PRODUCT_1_IMAGE, data.image, DASHBOARD_IMAGE, DASHBOARD_IMAGE]}
         />
-      </div>
-      <div className="float-right h-[calc(100vh-3.125rem)] w-[60%] overflow-auto scroll-smooth scrollbar-none">
-        <div className="relative flex">
-          <div
-            id="product-overview"
-            className="mx-auto flex h-[calc(100vh-3.125rem)] flex-col items-center justify-center gap-4 tracking-wider"
-          >
-            <h2 className="text-3xl underline underline-offset-8">{data.title}</h2>
-            <div className="my-4 w-full text-center">
-              {!localPrice && localPrice !== 0 ? (
-                <>
-                  <p>price: £{data.price}</p>
-                  <ProgressBar value={100} />
-                </>
-              ) : localPrice <= 1 ? (
-                'FREE'
-              ) : (
-                <>
-                  <p>price: £{localPrice.toFixed(2)}</p>
-                  <ProgressBar value={localPrice / 10} />
-                </>
-              )}
-            </div>
-            <Button
-              text="Buy Now"
-              hoveredText={`Buy at £${(localPrice || data.price).toFixed(2)}`}
-              roundedBorders="lg"
-              onClick={(): void => {
-                setProductInfo({
-                  product: data,
-                  price: Number((localPrice || data.price).toFixed(2)),
-                  selectedSize,
-                });
+      </section>
 
-                const processedProduct = { ...data, selectedSize };
-                startCheckout({ user, product: processedProduct });
-              }}
-            />
-            <ProductSizes
-              className="mb-4"
-              selectedSize={selectedSize}
-              sizes={data.stock}
-              onClick={(size): void => setselectedSize(size)}
-            />
-            <p className={`text-sm ${compareSelectedVals ? '-mb-1 -mt-2' : 'my-1'}`}>
-              {compareSelectedVals ? `${compareSelectedVals}: left in stock` : null}
-            </p>
-            <a className="text-xs hover:text-secondary-neutral hover:underline" href="#description">
-              View Description
-            </a>
-            <div
-              className="absolute bottom-0 mx-auto my-2 grid w-full max-w-xs grid-cols-3 gap-1 rounded bg-gray-700 p-1 text-xxs"
-              role="group"
-            >
+      {/* Product Details */}
+      <section className="w-1/2">
+        <div className="h-full overflow-auto px-16 py-20">
+          {/* Header */}
+          <div className="mb-16">
+            <h1>{data.title}</h1>
+            <div className="mt-4 flex items-center gap-8 text-white/60">
+              <LiveViewers pageParams={currentProduct} />
+              <p>Ends {convertToDate(data.endTime, false, { type: 'short' })}</p>
               <button
-                type="button"
-                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
-              >
-                <LiveViewers pageParams={currentProduct} />
-              </button>
-              <button
-                type="button"
-                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
-              >
-                End: {convertToDate(data.endTime, false, { type: 'short' })}
-              </button>
-              <button
-                className="rounded-lg px-5 py-1.5 font-medium hover:bg-gray-500"
-                type="button"
                 onClick={(): void => openDrawer('Chat')}
+                className="text-white/60 hover:text-white"
               >
-                Open chat
+                Open Chat
               </button>
             </div>
           </div>
 
-          <Chat pageParams={currentProduct} />
+          {/* Price */}
+          <div className="mb-16">
+            <p className="h2">
+              {!localPrice && localPrice !== 0
+                ? `£${data.price}`
+                : localPrice <= 1
+                ? 'FREE'
+                : `£${localPrice.toFixed(2)}`}
+            </p>
+            <div className="mt-4 h-[2px] w-full bg-white/5">
+              <div 
+                className="h-full bg-white/20 transition-all duration-300" 
+                style={{ 
+                  width: `${((localPrice || data.price) / data.price) * 100}%` 
+                }} 
+              />
+            </div>
+          </div>
+
+          {/* Size Selection */}
+          <div className="mb-16">
+            <h4 className="mb-6">Select Size</h4>
+            <ProductSizes
+              selectedSize={selectedSize}
+              sizes={data.stock}
+              onClick={(size: ProductSizesType): void => setSelectedSize(size)}
+            />
+          </div>
+
+          {/* Purchase Button */}
+          <Button
+            text="Purchase Now"
+            hoveredText={`Secure for £${(localPrice || data.price).toFixed(2)}`}
+            className="mb-16 w-full bg-white text-black hover:bg-white/90"
+            onClick={(): void => {
+              setProductInfo({
+                product: data,
+                price: Number((localPrice || data.price).toFixed(2)),
+                selectedSize,
+              });
+              const processedProduct = { ...data, selectedSize };
+              startCheckout({ user, product: processedProduct });
+            }}
+          />
+
+          {/* Description */}
+          <div>
+            <h4 className="mb-6">About the Product</h4>
+            <p className="cta-medium-hairline text-white/70">{data.description}</p>
+          </div>
         </div>
-        <div
-          id="description"
-          className="mx-auto flex h-screen w-3/5 flex-col items-center justify-center gap-4 text-center leading-10 tracking-wider"
-        >
-          <p className="underline">Product Description</p>
-          <p className="my-6 font-light">{data.description}</p>
-          <a className="hover:text-secondary-neutral hover:underline" href="#product-overview">
-            Back
-          </a>
-        </div>
-      </div>
-    </>
+
+        <Chat pageParams={currentProduct} />
+      </section>
+    </div>
   );
 };
 

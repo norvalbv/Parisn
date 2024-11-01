@@ -37,5 +37,5 @@
       "module": "CommonJS"
     }
   },
-  "include": ["./src", "./cypress.config.ts", "./vite.config.ts", "./jest.config.ts"]
+  "include": ["./src", "./cypress.config.ts", "./vite.config.ts", "./jest.config.ts", "../src/HomePage", "../src/app/(home)/AboutUs", "../src/app/(home)/Categories", "../src/app/(home)/__tests__", "../src/app/(home)/Synopsis", "../src/app/(home)/PickedProducts", "../src/app/(home)/NewsLetter", "../src/app/(home)/HowItWorks", "../src/app/(home)/Hero"]
 }

@@ -1,17 +1,25 @@
 {
-  "name": "parisn",
+  "name": "parisen",
   "private": true,
   "version": "0.0.0",
+  "scripts": {
+    "format:check": "prettier --check 'app/**/*' 'components/**/*' 'lib/**/*'",
+    "format:fix": "prettier --write 'app/**/*' 'components/**/*' 'lib/**/*'",
+    "postinstall": "husky install ./.husky",
+    "lint": "eslint 'app/**/*' 'components/**/*' 'lib/**/*'",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "devDependencies": {
+    "@types/bun": "latest",
+    "@types/react": "^18.3.12",
+    "autoprefixer": "^10.4.20",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
-    "prettier": "^2.8.4"
-  },
-  "scripts": {
-    "format:check": "prettier --check webapp/src",
-    "format:fix": "prettier --write webapp/src",
-    "postinstall": "husky install ./.husky",
-    "lint": "eslint webapp/src"
+    "postcss": "^8.4.47",
+    "prettier": "^2.8.4",
+    "tailwindcss": "^3.4.14"
   },
   "husky": {
     "hooks": {
@@ -24,5 +32,17 @@
       "yarn lint"
     ]
   },
-  "packageManager": "yarn@3.2.1"
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.11",
+    "next": "^15.0.2",
+    "react": "^19.0.0-rc-603e6108-20241029",
+    "react-dom": "^19.0.0-rc-603e6108-20241029",
+    "simplex-noise": "^4.0.3",
+    "tailwind-merge": "^2.5.4",
+    "tailwind-scrollbar": "^3.1.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
 }

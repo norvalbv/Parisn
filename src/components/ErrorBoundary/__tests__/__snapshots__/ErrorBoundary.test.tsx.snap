@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ErrorBoundary /> should not render, the div inside should throw an error. 1`] = `
+<div>
+  Child component
+</div>
+`;
+
+exports[`<ErrorBoundary /> should render if error is thrown from child 1`] = `
+<div
+  className="flex items-center gap-4 rounded bg-red-400 px-4 py-2 "
+  role="alert"
+>
+  <b>
+    An error occured! Please try again or contact support if the error persists
+  </b>
+  <button
+    className="rounded border border-gray-500 px-4 py-2 hover:underline"
+    onClick={[Function]}
+    type="button"
+  >
+    Try again
+  </button>
+</div>
+`;
+
+exports[`<ErrorBoundary /> should render with all props 1`] = `
+<div
+  className="flex items-center gap-4 rounded bg-red-400 px-4 py-2 m-4 p-4 font-light"
+  role="alert"
+>
+  <b>
+    Error Message!
+  </b>
+  <button
+    className="rounded border border-gray-500 px-4 py-2 hover:underline"
+    onClick={[Function]}
+    type="button"
+  >
+    Try again
+  </button>
+</div>
+`;
