@@ -1,8 +1,16 @@
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        "sans-alt": ["var(--font-montserrat-alt1)", "sans-serif"],
+        sans: ['Poppins', 'sans-serif'],
+      },
       fontSize: {
         xs: [
           '0.75rem', // 12px
@@ -13,9 +21,6 @@ module.exports = {
           },
         ],
         xxs: ['10px', '12px'],
-      },
-      fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
       },
       colors: {
         primary: {
@@ -46,16 +51,37 @@ module.exports = {
         },
       },
       keyframes: {
+        aurora: {
+          from: {
+            backgroundPosition: "50% 50%, 50% 50%",
+          },
+          to: {
+            backgroundPosition: "350% 50%, 350% 50%",
+          },
+        },
         wiggle: {
           '0%, 100%': { transform: 'rotate(-45deg)' },
           '50%': { transform: 'rotate(45deg)' },
         },
       },
       animation: {
+        aurora: "aurora 60s linear infinite",
         'pulse-fast': 'pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'spin-slow': 'spin 3s linear infinite',
       },
     },
   },
-  plugins: [require('tailwind-scrollbar')],
+  plugins: [require('tailwind-scrollbar'), addVariablesForColors],
 };
+
+// This plugin adds each Tailwind color as a global CSS variable, e.g. var(--gray-200).
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+ 
+  addBase({
+    ":root": newVars,
+  });
+}

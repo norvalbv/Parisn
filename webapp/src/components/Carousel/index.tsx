@@ -48,7 +48,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
           setSelected((selected) => (selected === 0 ? images.length - 1 : selected - 1))
         }
       >
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 sm:h-7 sm:w-7">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none sm:h-7 sm:w-7 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60">
           <svg
             aria-hidden="true"
             className="h-3 w-3 text-white dark:text-gray-800"
@@ -74,7 +74,7 @@ const Carousel = ({ images }: CarouselProps): ReactElement => {
           setSelected((selected) => (selected === images.length - 1 ? 0 : selected + 1))
         }
       >
-        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 sm:h-7 sm:w-7">
+        <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-white/20 group-hover:bg-white/50 group-focus:outline-none sm:h-7 sm:w-7 dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60">
           <svg
             aria-hidden="true"
             className="h-3 w-3 text-white dark:text-gray-800"

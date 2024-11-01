@@ -4,7 +4,7 @@ import { InstagramLogo } from 'components/CustomSVG';
 
 const Footer = (): ReactElement => {
   return (
-    <footer className="p-4 md:px-6 md:py-8">
+    <footer className="p-4 md:px-6 md:py-8 bg-[#0D0D0E]">
       <div className="w-full sm:flex sm:items-center sm:justify-between">
         <a href="https://parisn.com/" className="mb-4 flex items-center sm:mb-0">
           <span className="font-normal">PARISN.COM</span>

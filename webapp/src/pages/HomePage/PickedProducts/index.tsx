@@ -11,15 +11,11 @@ import { logScalePrice } from 'utils/currentPrice';
 import useProduct from 'hooks/useProduct';
 import useInterval from 'hooks/useInterval';
 import { useNavigate } from 'react-router-dom';
-// import { useCheckout } from 'services/DataApiService';
 
 const PickedProducts = (): ReactElement => {
   const [indexedImageInCenter, setIndexedImageInCenter] = useState(0);
   const navigate = useNavigate();
-
   const { setProductInfo } = useProduct();
-  // const { startCheckout } = useCheckout();
-
   const ref = useRef<HTMLDivElement>(null);
   const containerWidth = ref.current?.offsetWidth || 0;
 
@@ -27,105 +23,114 @@ const PickedProducts = (): ReactElement => {
   const processedData = data.filter((product) => Object.values(product.metaData).some(Boolean));
 
   const [productsData, setProductsData] = useState(
-    processedData.map((product) => {
-      return {
-        ...product,
-        timeLeft: timeLeft(product.endTime),
-        currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
-      };
-    })
+    processedData.map((product) => ({
+      ...product,
+      timeLeft: timeLeft(product.endTime),
+      currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
+    }))
   );
 
   useInterval(() => {
     if (!processedData.length) return;
     setProductsData(
-      productsData.map((product) => {
-        return {
-          ...product,
-          timeLeft: timeLeft(product.endTime),
-          currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
-        };
-      })
+      productsData.map((product) => ({
+        ...product,
+        timeLeft: timeLeft(product.endTime),
+        currentPrice: logScalePrice(product.startTime, product.endTime, product.price).toFixed(2),
+      }))
     );
   }, 1000);
 
   if (!data) return <Loader />;
 
   return (
-    <section className="my-20 md:my-40">
-      <div className="flex flex-col md:flex-row items-center justify-between mb-6 md:mb-10">
-        <div className="text-center md:text-left mb-4 md:mb-0">
-          <h3>Dive into Our Handpicked Selection</h3>
-          <p className="uppercase">Featured Products with Unmatched Style</p>
+    <section className="my-10 overflow-hidden px-4 sm:my-20 md:my-40 md:px-8">
+      <div className="mx-auto mb-8 flex max-w-7xl flex-col items-center justify-between sm:mb-12 md:mb-16 md:flex-row">
+        <div className="mb-6 text-center md:mb-0 md:text-left">
+          <h3 className="mb-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+            Handpicked Selection
+          </h3>
+          <p className="text-[10px] font-medium uppercase tracking-wider text-primary-neutral/80 sm:text-xs">
+            Curated Luxury Pieces
+          </p>
         </div>
         <NavigationArrows
           leftArrow={{
-            className: !indexedImageInCenter ? '' : 'cursor-pointer',
+            className: !indexedImageInCenter
+              ? 'opacity-30'
+              : 'cursor-pointer hover:scale-105 transition-transform',
             fill: !indexedImageInCenter ? '#B0B0B0' : 'white',
             onClick: (): void => {
               if (!indexedImageInCenter) return;
-              setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter - 1);
+              setIndexedImageInCenter((prev) => prev - 1);
             },
           }}
           rightArrow={{
-            className: indexedImageInCenter === processedData.length - 3 ? '' : 'cursor-pointer',
-            fill: indexedImageInCenter === processedData.length - 3 ? '#B0B0B0' : 'white',
+            className:
+              indexedImageInCenter === processedData.length - 1
+                ? 'opacity-30'
+                : 'cursor-pointer hover:scale-105 transition-transform',
+            fill: indexedImageInCenter === processedData.length - 1 ? '#B0B0B0' : 'white',
             onClick: (): void => {
-              if (indexedImageInCenter === processedData.length - 3) return;
-              setIndexedImageInCenter((indexedImageInCenter) => indexedImageInCenter + 1);
+              if (indexedImageInCenter === processedData.length - 1) return;
+              setIndexedImageInCenter((prev) => prev + 1);
             },
           }}
         />
       </div>
-      <div
-        className={classNames(
-          'relative flex flex-col md:flex-row min-w-min items-center gap-6 md:gap-[3.75rem] overflow-hidden transition-all duration-500'
-        )}
-        style={{
-          left: `-${!indexedImageInCenter ? 0 : containerWidth * indexedImageInCenter + 60}px`,
-        }}
-      >
-        {productsData.map((product) => {
-          return (
+      <div className="relative mx-auto max-w-7xl overflow-hidden">
+        <div
+          className={classNames(
+            'flex min-w-min items-center gap-4 transition-all duration-500 sm:gap-6 md:gap-8'
+          )}
+          style={{
+            transform: `translateX(-${indexedImageInCenter * (containerWidth + 16)}px)`,
+          }}
+        >
+          {productsData.map((product) => (
             <section
-              className="relative h-[28rem] md:h-[31.875rem] w-full md:w-[19.625rem] rounded"
+              className="group relative h-[24rem] w-[100vw] rounded-2xl border border-white/10 bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 backdrop-blur-sm transition-all hover:border-white/20 sm:h-[28rem] sm:w-[18rem] md:h-[32rem] md:w-[20rem]"
               key={product.id}
               ref={ref}
             >
-              <div className="absolute top-[0.6875rem] flex w-full items-center justify-between px-3">
-                <div className="flex items-center gap-2">
-                  <ClockIcon />
-                  <span className="text-xxs font-normal">{product.timeLeft}</span>
+              <div className="absolute top-2 z-10 flex w-full items-center justify-between px-3 sm:top-4 sm:px-4">
+                <div className="flex items-center gap-1.5 rounded-full bg-black/60 px-2 py-1 backdrop-blur-md sm:gap-2 sm:px-3 sm:py-1.5">
+                  <ClockIcon className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <span className="text-[10px] font-semibold sm:text-xs">{product.timeLeft}</span>
                 </div>
                 <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
               </div>
-              <img
-                src={product.image}
-                alt={product.id}
-                className="h-[16rem] md:h-[18.5rem] w-full rounded-t object-cover"
-              />
-              <div className="h-[12rem] md:h-[13.375rem] rounded-b bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 px-3 py-4">
-                <div className="flex items-center justify-between">
-                  <h4 className="uppercase text-sm md:text-base">{product.title}</h4>
-                  <section className="w-min">
-                    <span className="text-xs text-primary-neutral">Current&nbsp;price</span>
-                    <span className="inline-block font-medium uppercase leading-[1.1875rem] tracking-[0.08rem]">
-                      {Number(product.currentPrice) < 0.5 ? 'FREE' : `£ ${product.currentPrice}`}
+              <div className="relative h-[14rem] overflow-hidden rounded-t-2xl sm:h-[16rem] md:h-[18rem]">
+                <img
+                  src={product.image}
+                  alt={product.id}
+                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="space-y-3 p-4 sm:space-y-4 sm:p-6">
+                <div className="flex items-start justify-between">
+                  <h4 className="text-sm font-semibold uppercase tracking-wide sm:text-base">
+                    {product.title}
+                  </h4>
+                  <div className="text-right">
+                    <span className="mb-0.5 block text-[10px] font-medium text-primary-neutral/80 sm:mb-1 sm:text-xs">
+                      Current price
                     </span>
-                  </section>
+                    <span className="text-lg font-semibold tracking-wide sm:text-xl">
+                      {Number(product.currentPrice) < 0.5 ? 'FREE' : `£${product.currentPrice}`}
+                    </span>
+                  </div>
                 </div>
-                <p className="mb-4 md:mb-6 mt-2 md:mt-3 h-[2.375rem] text-xs font-thin leading-[1.1875rem] text-white/60">
-                  {product.description.slice(0, 68)}&nbsp;
-                  {product.description.length > 68 && '...'}
+                <p className="line-clamp-2 text-xs font-normal text-primary-neutral/70 sm:text-sm">
+                  {product.description}
                 </p>
-                <div className="flex gap-2 md:gap-4">
+                <div className="flex gap-2 pt-1 sm:gap-3 sm:pt-2">
                   <Button
-                    text="View Product"
+                    text="View Details"
                     theme="ghost"
-                    roundedBorders="md"
-                    className="h-10 md:h-12 w-full md:w-44 text-xs"
+                    roundedBorders="lg"
+                    className="h-8 w-full text-[10px] font-medium hover:bg-white/5 sm:h-10 sm:text-xs"
                     size="custom"
-                    fontWeight="semibold"
                     onClick={(): void =>
                       navigate(`/collections/${product.collection}/${product.id}`)
                     }
@@ -133,10 +138,9 @@ const PickedProducts = (): ReactElement => {
                   <Button
                     text="Buy Now"
                     theme="light"
-                    roundedBorders="md"
-                    className="h-10 md:h-12 w-full md:w-32 text-xs"
+                    roundedBorders="lg"
+                    className="h-8 w-full text-[10px] font-medium sm:h-10 sm:text-xs"
                     size="custom"
-                    fontWeight="semibold"
                     onClick={(): void => {
                       setProductInfo({
                         product,
@@ -148,8 +152,8 @@ const PickedProducts = (): ReactElement => {
                 </div>
               </div>
             </section>
-          );
-        })}
+          ))}
+        </div>
       </div>
     </section>
   );

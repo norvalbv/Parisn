@@ -34,6 +34,7 @@ export type ButtonProps = {
   navigationState?: unknown;
   roundedBorders?: Rounded;
   fontWeight?: FontWeight;
+  fullWidth?: boolean;
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -61,19 +62,16 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       theme = 'dark',
       width,
       navigationState,
+      fullWidth = false,
     },
     ref
   ): ReactElement => {
     const [hovered, setHovered] = useState(false);
-
     const navigate = useNavigate();
+
     const clickHandle = (): void => {
-      if (loading) {
-        return;
-      }
-
+      if (loading) return;
       if (onClick) onClick();
-
       if (navigateTo) {
         if (navigationState) {
           navigate(navigateTo, { state: navigationState });
@@ -85,7 +83,6 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        // eslint-disable-next-line react/button-has-type
         type={type}
         className={classNames(
           buttonSizeMap[size],
@@ -94,21 +91,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           roundedMap[roundedBorders],
           fontWeightMap[fontWeight],
           className,
-          'relative items-center uppercase',
-          { 'transition-all hover:scale-110': hoveredAnimation },
+          'relative items-center uppercase transition-all duration-200',
+          fullWidth && 'w-full',
+          { 'hover:scale-[1.02]': hoveredAnimation },
           hoverColorRequired &&
             !disabled &&
             !loading &&
-            `transition-colors duration-200 hover:bg-primary-neutral/${
-              theme === 'light' ? '80' : '20'
-            }`,
+            `hover:bg-primary-neutral/${theme === 'light' ? '80' : '20'}`,
           {
             'cursor-default border-primary-neutral bg-primary-neutral/40 text-primary-dark':
               disabled || loading,
           }
         )}
-        style={{ width }}
-        onClick={(): void => clickHandle()}
+        style={{ width: fullWidth ? '100%' : width }}
+        onClick={clickHandle}
         id={id}
         data-testid={testId}
         disabled={disabled}
@@ -125,15 +121,17 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           </svg>
         )}
         {loading && (
-          <span className="absolute right-3 top-3 h-full">
-            <Spinner />
+          <span className="absolute right-2 top-1/2 -translate-y-1/2">
+            <Spinner className="h-4 w-4 animate-spin" />
           </span>
         )}
-        {icon && iconPosition === 'left' && <span className="mr-2.5">{icon}</span>}
-        <span className="inline-block tracking-[0.16rem]">
-          {hovered && hoveredText ? hoveredText : text}
+        <span className="flex items-center justify-center gap-2">
+          {icon && iconPosition === 'left' && <span className="flex-shrink-0">{icon}</span>}
+          <span className="inline-block whitespace-nowrap tracking-wider">
+            {hovered && hoveredText ? hoveredText : text}
+          </span>
+          {icon && iconPosition === 'right' && <span className="flex-shrink-0">{icon}</span>}
         </span>
-        {icon && iconPosition === 'right' && <span>{icon}</span>}
       </button>
     );
   }
@@ -148,10 +146,10 @@ const themeMap = {
 };
 
 const buttonSizeMap = {
-  xs: 'px-1 py-2 text-sm',
-  sm: 'px-5 py-2.5 text-sm',
-  md: 'px-6 py-2.5 text-sm',
-  lg: 'px-8 py-2.5 text-base',
+  xs: 'px-2 py-1.5 text-xs sm:px-3 sm:py-2',
+  sm: 'px-3 py-2 text-xs sm:px-4 sm:py-2.5',
+  md: 'px-4 py-2.5 text-sm sm:px-6 sm:py-3',
+  lg: 'px-6 py-3 text-sm sm:px-8 sm:py-3.5 sm:text-base',
   custom: '',
 };
 

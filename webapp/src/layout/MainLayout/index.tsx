@@ -25,7 +25,7 @@ const MainLayout = (): ReactElement => {
   return (
     <UserInformationProvider>
       <>
-        <div className="min-h-screen">
+        <div className="min-h-screen text-primary-light bg-[#0D0D0E]">
           <NavBar />
           <Outlet />
           <MyAccount />

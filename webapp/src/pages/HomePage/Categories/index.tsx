@@ -19,31 +19,52 @@ const Categories = (): ReactElement => {
   const processedData = data.slice(page * 3, page * 3 + 3);
 
   return (
-    <section className="relative flex flex-col items-center px-4 md:px-0">
-      <Radial colour="purple" className="hidden md:block" />
-      <p className="uppercase text-center">Uncover Unparalleled Elegance</p>
-      <h3 className="mb-6 md:mb-10 text-center">
-        <span className="logo-text-medium">PARISN</span>&apos;s Exceptional Collections
-      </h3>
-      <div className="flex flex-col md:flex-row items-center gap-6 md:gap-10">
-        {processedData.map((collection) => (
-          <div
-            className="relative h-[24rem] md:h-[31.875rem] w-full md:w-[19.625rem] rounded"
-            key={collection.collections}
-          >
-            <img
-              src={collection.image}
-              alt={`${collection.collections} collection cover`}
-              className="h-full w-full object-cover rounded brightness-[.65]"
-            />
-            <div className="absolute bottom-0 flex h-[6rem] md:h-[8.25rem] w-full flex-col items-center justify-center gap-4 md:gap-6 bg-gradient-to-b from-primary-dark/30 via-primary-dark/20 to-primary-dark/20">
-              <h4 className="font-thin leading-[1.8125rem] text-center">{collection.collections}</h4>
-              <StyledLink to={`/collections/${collection.collections}`} text="View All" />
-            </div>
-          </div>
-        ))}
+    <section className="my-20 overflow-hidden px-4 md:my-40 md:px-8">
+      <div className="mx-auto mb-12 flex max-w-7xl flex-col items-center justify-between md:mb-16 md:flex-row">
+        <div className="mb-6 text-center md:mb-0 md:text-left">
+          <h3 className="mb-2 text-3xl font-semibold tracking-tight">
+            <span className="logo-text-medium">PARISN</span>&apos;s Collections
+          </h3>
+          <p className="text-xs font-medium uppercase tracking-wider text-primary-neutral/80">
+            Uncover Unparalleled Elegance
+          </p>
+        </div>
       </div>
-      <PageIndicators pages={pageCount} currentPage={page} setCurrentPage={setPage} className="mt-6 md:mt-10" />
+
+      <div className="relative mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+          {processedData.map((collection) => (
+            <div
+              key={collection.collections}
+              className="group relative h-[24rem] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-primary-light/[.03] via-primary-light/5 to-primary-light/10 backdrop-blur-sm transition-all hover:border-white/20"
+            >
+              <div className="relative h-full w-full">
+                <img
+                  src={collection.image}
+                  alt={`${collection.collections} collection cover`}
+                  className="h-full w-full object-cover brightness-75 transition-transform duration-500 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
+                <div className="absolute bottom-0 left-0 right-0 space-y-4 p-6">
+                  <h4 className="text-center text-xl font-semibold uppercase tracking-wide">
+                    {collection.collections}
+                  </h4>
+                  <div className="flex justify-center">
+                    <StyledLink
+                      to={`/collections/${collection.collections}`}
+                      text="View Collection"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex justify-center">
+        <PageIndicators pages={pageCount} currentPage={page} setCurrentPage={setPage} />
+      </div>
     </section>
   );
 };

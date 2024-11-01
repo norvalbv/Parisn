@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import { ReactElement } from 'react';
 import HowItWorks from './HowItWorks';
 import Categories from './Categories';
 import Hero from './Hero';
@@ -9,7 +9,7 @@ import Newsletter from './NewsLetter';
 
 const HomePage = (): ReactElement => {
   return (
-    <div className="overflow-hidden px-4 md:px-[3.75rem] lg:px-[7.5rem]">
+    <div>
       <Hero />
       <Synopsis />
       <HowItWorks />
