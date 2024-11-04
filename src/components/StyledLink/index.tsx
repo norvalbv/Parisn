@@ -1,24 +1,48 @@
-import React, { ReactElement } from 'react';
-import { RightIcon } from '@/src/components/SVG';
-import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils/cn';
+import { LucideIcon } from 'lucide-react';
+import Link from 'next/link';
+import { MouseEvent, type ReactElement, cloneElement, isValidElement } from 'react';
 
 type StyledLinkProps = {
-  text?: string;
-  to: string;
+  children?: string;
+  href: string;
+  icon?: LucideIcon | ReactElement;
+  onClick?: (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+  className?: string;
 };
 
-const StyledLink = ({ text = 'LEARN MORE', to }: StyledLinkProps): ReactElement => {
-  const router = useRouter();
+const StyledLink = ({
+  children,
+  href,
+  icon: Icon,
+  onClick,
+  className,
+}: StyledLinkProps): ReactElement => {
+  const renderIcon = (): ReactElement | null => {
+    if (!Icon) return null;
+
+    const iconClass = 'ml-2 size-6 transition-transform duration-200 group-hover:translate-x-0.5';
+
+    if (isValidElement(Icon)) {
+      return cloneElement(Icon as ReactElement, { className: iconClass });
+    }
+
+    const LucideIcon = Icon as LucideIcon;
+    return <LucideIcon strokeWidth={1.5} className={iconClass} />;
+  };
+
   return (
-    <div
-      className="group flex max-w-max cursor-pointer items-center gap-3 font-semibold"
-      onClick={(): void => router.push(to)}
+    <Link
+      href={href}
+      className={cn(
+        'flex max-w-max items-center gap-3 text-slate-300 transition-colors duration-200 hover:text-white',
+        className ?? ''
+      )}
+      onClick={onClick}
     >
-      {text}
-      <div className="duration-300 group-hover:translate-x-2">
-        <RightIcon />
-      </div>
-    </div>
+      {children}
+      {Icon && renderIcon()}
+    </Link>
   );
 };
 

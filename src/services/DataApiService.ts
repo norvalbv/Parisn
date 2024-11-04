@@ -2,7 +2,13 @@ import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
 import useRequest from '../hooks/useRequest';
-import { ApiResponse, CollectionData, ContactForm, FullUserInformation, ProductData } from '../types';
+import {
+  ApiResponse,
+  CollectionData,
+  ContactForm,
+  FullUserInformation,
+  ProductData,
+} from '../types';
 import { collections, products } from '@/src/__mocks__/dataApiMock';
 
 type ProductByIDProps = {

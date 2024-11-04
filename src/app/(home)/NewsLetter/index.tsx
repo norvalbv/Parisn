@@ -38,7 +38,6 @@ const PreRegister = (): React.ReactElement => {
     //   signUpDate: Date.now(),
     //   newsletter: data.newsletter,
     // });
-
     // if (signUpResponse.success) {
     //   successfulToast(signUpResponse.message);
     //   reset();

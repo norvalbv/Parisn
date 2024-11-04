@@ -10,9 +10,10 @@ const AboutUs = (): ReactElement => {
           {COMPANY_NAME}.com
         </h4>
         <p className="text-sm md:text-base">
-          {COMPANY_NAME} brings a fresh approach to luxury retail. Our unique pricing model starts items at premium rates 
-          that gradually decrease over time. This innovative system lets you choose when to buy - whether at initial 
-          pricing or after reductions. It's shopping reimagined, where patience could lead to significant savings.
+          {COMPANY_NAME} brings a fresh approach to luxury retail. Our unique pricing model starts
+          items at premium rates that gradually decrease over time. This innovative system lets you
+          choose when to buy - whether at initial pricing or after reductions. It's shopping
+          reimagined, where patience could lead to significant savings.
         </p>
       </div>
       <div className="h-full w-full md:w-1/2">

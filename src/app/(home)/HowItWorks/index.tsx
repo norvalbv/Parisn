@@ -18,11 +18,7 @@ const HowItWorks = (): ReactElement => {
     offset: ['start end', 'end start'],
   });
 
-  const rawPrice = useTransform(
-    scrollYProgress,
-    [0.2, 0.8],
-    [MAX_PRICE, MIN_PRICE]
-  );
+  const rawPrice = useTransform(scrollYProgress, [0.2, 0.8], [MAX_PRICE, MIN_PRICE]);
 
   const price = useTransform(rawPrice, (value: number) => value.toFixed(2));
 
@@ -31,7 +27,7 @@ const HowItWorks = (): ReactElement => {
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <WavyBackground
           colors={[
-            'rgba(50, 117, 248, 0.15)', 
+            'rgba(50, 117, 248, 0.15)',
             'rgba(255, 192, 203, 0.15)',
             'rgba(255, 255, 255, 0.1)',
           ]}
@@ -61,11 +57,14 @@ const HowItWorks = (): ReactElement => {
           </div>
         </div>
 
-        <motion.div ref={priceRef} className="flex min-h-[150vh] md:min-h-dvh items-center"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}>
+        <motion.div
+          ref={priceRef}
+          className="flex min-h-[150vh] md:min-h-dvh items-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 20 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="sticky top-1/2 w-full -translate-y-1/2">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
               <div className="w-full space-y-4 text-center sm:space-y-6 md:w-1/3 md:text-left">
@@ -73,8 +72,10 @@ const HowItWorks = (): ReactElement => {
                   Experience Dynamic Pricing
                 </h4>
                 <p className="mb-4 mt-2 w-full text-sm leading-relaxed text-primary-neutral/80 sm:text-base md:mb-6">
-                  <span>Watch prices decrease in real-time. Our innovative system rewards patience,
-                  but remember - popular items may sell quickly at higher prices.</span>
+                  <span>
+                    Watch prices decrease in real-time. Our innovative system rewards patience, but
+                    remember - popular items may sell quickly at higher prices.
+                  </span>
                 </p>
               </div>
 
@@ -111,7 +112,7 @@ const HowItWorks = (): ReactElement => {
                 Choose your moment - buy now at current pricing or wait for further reductions.
                 Strategic patience may yield better prices, but popular items won't wait forever.
               </p>
-              <StyledLink to="/how-it-works#step-three" />
+              <StyledLink href="/how-it-works#step-three" />
             </div>
           </div>
         </div>

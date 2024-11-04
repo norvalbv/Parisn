@@ -96,9 +96,7 @@ const Form = ({
               <button
                 type="button"
                 className="m-0 text-left text-sm italic underline"
-                onClick={(): void =>
-                  type === 'password' ? setType('text') : setType('password')
-                }
+                onClick={(): void => (type === 'password' ? setType('text') : setType('password'))}
               >
                 {type === 'password' ? 'Show Password' : 'Hide Password'}
               </button>

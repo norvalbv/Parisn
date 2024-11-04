@@ -104,8 +104,14 @@ const WavyBackground = ({
   }, []);
 
   return (
-    <div className={cn('h-20vh flex flex-col items-center justify-center', containerClassName || '')}>
-      <canvas ref={canvasRef} id="canvas" style={{ background: 'transparent', width: '100%', filter: `blur(${blur}px)` }} />
+    <div
+      className={cn('h-20vh flex flex-col items-center justify-center', containerClassName || '')}
+    >
+      <canvas
+        ref={canvasRef}
+        id="canvas"
+        style={{ background: 'transparent', width: '100%', filter: `blur(${blur}px)` }}
+      />
       {children}
     </div>
   );

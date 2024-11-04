@@ -29,13 +29,13 @@ const buttonVariants = cva(
       hoveredAnimation: {
         true: 'hover:scale-[1.02]',
         false: '',
-      }
+      },
     },
     defaultVariants: {
       variant: 'dark',
       size: 'md',
       fullWidth: false,
-      hoveredAnimation: false
+      hoveredAnimation: false,
     },
   }
 );

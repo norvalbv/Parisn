@@ -21,7 +21,7 @@
   }
   body {
     /* text - 14px */ /* line height - 22px */
-    @apply text-[0.875rem] font-extralight leading-[1.375rem] tracking-[0.12rem];
+    @apply leading-5 tracking-wider;
   }
 }
 

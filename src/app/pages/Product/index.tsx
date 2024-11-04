@@ -84,11 +84,11 @@ const Product = (): ReactElement => {
                 : `£${localPrice.toFixed(2)}`}
             </p>
             <div className="mt-4 h-[2px] w-full bg-white/5">
-              <div 
-                className="h-full bg-white/20 transition-all duration-300" 
-                style={{ 
-                  width: `${((localPrice || data.price) / data.price) * 100}%` 
-                }} 
+              <div
+                className="h-full bg-white/20 transition-all duration-300"
+                style={{
+                  width: `${((localPrice || data.price) / data.price) * 100}%`,
+                }}
               />
             </div>
           </div>
