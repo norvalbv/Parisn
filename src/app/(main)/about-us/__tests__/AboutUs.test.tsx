@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import AboutUs from '..';
+import AboutUs from '../page';
 
 describe('<AboutUs />', () => {
   test('AboutUs props with mandatory props', () => {

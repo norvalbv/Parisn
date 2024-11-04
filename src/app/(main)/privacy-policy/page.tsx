@@ -1,9 +1,8 @@
 import React, { ReactElement } from 'react';
-import CardWrapper from 'components/CardWrapper';
 
 const PrivacyPolicy = (): ReactElement => {
   return (
-    <CardWrapper cardType="centered" className="w-1/2">
+    <div>
       <p className="text-center">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore illum eveniet error dolorem.
         Illo voluptate maxime nihil numquam molestiae aliquam, ullam, harum excepturi eligendi
@@ -24,7 +23,7 @@ const PrivacyPolicy = (): ReactElement => {
         cumque facilis enim maiores incidunt blanditiis minus. Rem voluptates aliquam ducimus sunt
         cum!
       </p>
-    </CardWrapper>
+    </div>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { Fragment, ReactElement, useState } from 'react';
 import Radial from '@/components/SVG/Design';
 import useInterval from '@/hooks/useInterval';
 import NavigationArrows from '@/components/NavigationArrows';
-import Shoes from '../../../app/(home)/Hero/shoes';
+import Shoes from '../../../app/(main)/(home)/Hero/shoes';
 import clsx from 'clsx';
 
 const indexFromSelected: { [key: number]: string } = {

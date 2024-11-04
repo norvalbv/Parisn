@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import TermsAndConditions from '..';
+import TermsAndConditions from '../page';
 
 describe('<TermsAndConditions />', () => {
   test('TermsAndConditions props with mandatory props', () => {

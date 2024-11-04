@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import PrivacyPolicy from '..';
+import PrivacyPolicy from '../page';
 
 describe('<PrivacyPolicy />', () => {
   test('PrivacyPolicy props with mandatory props', () => {

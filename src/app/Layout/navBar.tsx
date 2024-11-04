@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import NavItem from './navItem';
 import Hamburger from 'hamburger-react';
 import useOutsideClick from '@/src/hooks/useOutsideClick';
+import Link from 'next/link';
 
 const NavBar = (): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,9 @@ const NavBar = (): ReactElement => {
       {/* Mobile Menu Button */}
       <div className="flex h-16 items-center justify-between px-4 md:hidden">
         <div className="w-[3.25rem]" /> {/* Empty node with fixed width */}
-        <span className="font-semibold tracking-[0.2rem] text-slate-200">{COMPANY_NAME}.COM</span>
+        <Link href="/" className="font-semibold tracking-[0.2rem] text-slate-200">
+          {COMPANY_NAME}.COM
+        </Link>
         <button onClick={(): void => setIsMenuOpen((prev) => !prev)}>
           <Hamburger
             toggled={isMenuOpen}
@@ -72,9 +75,9 @@ const NavBar = (): ReactElement => {
       {/* Desktop Menu */}
       <div className="hidden h-16 items-center justify-between px-8 md:flex lg:px-[7.5rem]">
         <div className="flex w-full gap-8 text-slate-300 lg:gap-11"></div>
-        <span className="w-full text-center font-semibold text-white tracking-[0.2rem]">
+        <Link href="/" className="w-full text-center font-semibold text-white tracking-[0.2rem]">
           {COMPANY_NAME}.COM
-        </span>
+        </Link>
         <div className="flex w-full items-center justify-end gap-8 lg:gap-11">
           <NavItem href="#pre-register">Pre Register</NavItem>
           <NavItem href="/contact-us">Contact Us</NavItem>

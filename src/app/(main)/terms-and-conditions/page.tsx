@@ -1,11 +1,10 @@
 import React, { ReactElement } from 'react';
-import CardWrapper from 'components/CardWrapper';
+import CardWrapper from '@/src/components/CardWrapper';
 
 const TermsAndConditions = (): ReactElement => {
   return (
-    <CardWrapper cardType="centered" className="w-1/2">
+    <CardWrapper className="w-1/2">
       <p className="text-center">
-        {' '}
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quas et numquam similique
         molestiae suscipit laudantium ducimus doloribus itaque soluta? Odio aspernatur, rem illo
         dolores quasi debitis perspiciatis eos deserunt. Sequi quia fugit, maxime id debitis at
