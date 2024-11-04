@@ -25,29 +25,29 @@ const config: Config = {
       colors: {
         background: '#0D0D0E',
         'text-primary': '#FAFAFA',
-        'text-secondary': '#B3BCCE',
+        'text-secondary': '#8A91A3',
         action: '#004B6E',
-        secondary: {
-          dark: '#0D0E0D',
-          blueGreen: '#004B6E',
-          darkPurple: '#120E44',
-          purple: '#9E00FF',
-          green: '#00BA92',
-          blue: '#1BC5DC',
-          neutral: '#C0D1D9',
-          red: '#FF0000',
-        },
-        utility: {
-          warning: {
-            main: '#FF3A38',
-          },
-          pending: {
-            main: '#FF9237',
-          },
-          success: {
-            main: '#139C08',
-          },
-        },
+        // secondary: {
+        //   dark: '#0D0E0D',
+        //   blueGreen: '#004B6E',
+        //   darkPurple: '#120E44',
+        //   purple: '#9E00FF',
+        //   green: '#00BA92',
+        //   blue: '#1BC5DC',
+        //   neutral: '#C0D1D9',
+        //   red: '#FF0000',
+        // },
+        // utility: {
+        //   warning: {
+        //     main: '#FF3A38',
+        //   },
+        //   pending: {
+        //     main: '#FF9237',
+        //   },
+        //   success: {
+        //     main: '#139C08',
+        //   },
+        // },
       },
       keyframes: {
         aurora: {

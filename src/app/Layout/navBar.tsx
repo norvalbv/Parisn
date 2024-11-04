@@ -58,7 +58,7 @@ const NavBar = (): ReactElement => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
-            className="absolute z-10 p-6 left-0 right-0 flex items-center justify-center mx-auto mt-2 w-[95%] rounded-xl border border-white/10 bg-zinc-900/90 shadow-lg backdrop-blur-md md:hidden"
+            className="absolute p-6 left-0 right-0 flex items-center justify-center mx-auto mt-2 w-[95%] rounded-xl border border-white/10 bg-zinc-900/90 shadow-lg backdrop-blur-[0.5rem] md:hidden"
           >
             <div className="flex flex-col gap-6">
               <NavItem href="#pre-register" onClick={(): void => setIsMenuOpen(false)}>
