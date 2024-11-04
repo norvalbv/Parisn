@@ -1,15 +1,17 @@
 'use client';
 
-import React, { ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { ProductData } from '@/src/types/DataAPI';
 import { COMPANY_NAME } from '@/src/constants';
 import { motion, AnimatePresence } from 'framer-motion';
 import NavItem from './navItem';
 import Hamburger from 'hamburger-react';
+import useOutsideClick from '@/src/hooks/useOutsideClick';
 
 const NavBar = (): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
 
   const retrievedProductInfo = localStorage.getItem('savedProductInfo') || 'null';
   const parsedData = JSON.parse(retrievedProductInfo) as ProductData;
@@ -17,6 +19,11 @@ const NavBar = (): ReactElement => {
 
   const pathname = usePathname();
   const router = useRouter();
+
+  useOutsideClick({
+    ref: menuRef,
+    onBlur: () => setIsMenuOpen(false)
+  });
 
   useEffect(() => {
     if (truthyDataParsed && pathname !== '/checkout') router.push('/checkout');
@@ -46,6 +53,7 @@ const NavBar = (): ReactElement => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            ref={menuRef}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}

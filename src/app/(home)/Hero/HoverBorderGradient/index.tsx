@@ -61,14 +61,14 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       className={cn(
-        'relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full border bg-black/20 decoration-clone p-px transition duration-500 hover:bg-black/10 dark:bg-white/20',
+        'relative flex h-min w-fit flex-col flex-nowrap content-center items-center justify-center gap-10 overflow-visible rounded-full border bg-action/30 decoration-clone p-px transition duration-500 hover:bg-black/10',
         containerClassName || ''
       )}
       {...props}
     >
       <div
         className={cn(
-          'z-10 w-auto rounded-[inherit] bg-black px-4 py-2 text-white',
+          'z-10 w-auto rounded-[inherit] bg-background px-4 py-2',
           className || ''
         )}
       >
@@ -90,7 +90,6 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
         }}
         transition={{ ease: 'linear', duration: duration }}
       />
-      <div className="z-1 absolute inset-[2px] flex-none rounded-[100px] bg-black" />
     </Tag>
   );
 };

@@ -16,7 +16,7 @@ const StyledLink = ({
   href,
   icon: Icon,
   onClick,
-  className,
+  className = 'uppercase',
 }: StyledLinkProps): ReactElement => {
   const renderIcon = (): ReactElement | null => {
     if (!Icon) return null;

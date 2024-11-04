@@ -40,9 +40,8 @@ const Hero = (): ReactElement => {
           <HoverBorderGradient
             containerClassName="rounded-full"
             as="div"
-            className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
           >
-            <StyledLink href="#pre-register">Pre Register</StyledLink>
+            <StyledLink href="#pre-register">PRE REGISTER</StyledLink>
           </HoverBorderGradient>
         </motion.div>
       </AuroraBackground>
