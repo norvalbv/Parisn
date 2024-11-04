@@ -13,7 +13,7 @@ type HoverBorderGradientProps = React.HTMLAttributes<HTMLElement> & {
   as?: React.ElementType;
   duration?: number;
   clockwise?: boolean;
-}
+};
 
 export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
   children,
@@ -66,12 +66,7 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
       )}
       {...props}
     >
-      <div
-        className={cn(
-          'z-10 w-auto rounded-[inherit] bg-background px-4 py-2',
-          className || ''
-        )}
-      >
+      <div className={cn('z-10 w-auto rounded-[inherit] bg-background px-4 py-2', className || '')}>
         {children}
       </div>
       <motion.div

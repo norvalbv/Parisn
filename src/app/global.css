@@ -20,7 +20,7 @@
     @apply text-[1.125rem] font-normal capitalize leading-[1.375rem] tracking-[0.08rem];
   }
   body {
-    /* text - 14px */ /* line height - 22px */
+    /* text - 14px */ /* line height - 22purl(../../../bank-app-website/components/ui/Header)x */
     @apply leading-5 tracking-wider;
   }
 }

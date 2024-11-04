@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { Metadata } from 'next';
-import { Poppins } from 'next/font/google';
+import { Poppins, PT_Mono } from 'next/font/google';
 import './global.css';
 
 const poppins = Poppins({
@@ -8,6 +8,13 @@ const poppins = Poppins({
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
   display: 'swap',
   variable: '--font-poppins',
+});
+
+const cormorant = PT_Mono({
+  subsets: ['latin'],
+  weight: ['400'],
+  display: 'swap',
+  variable: '--font-cormorant',
 });
 
 export const metadata: Metadata = {
@@ -23,7 +30,12 @@ const RootLayout = ({
 }>): React.ReactElement => {
   return (
     <html lang="en">
-      <body className={clsx(poppins.className, 'min-h-screen bg-background text-text-primary')}>
+      <body className={clsx(          poppins.variable,
+          cormorant.variable,
+          'font-sans antialiased',
+          'min-h-screen bg-background text-text-primary',
+        )}
+      >
         {children}
       </body>
     </html>

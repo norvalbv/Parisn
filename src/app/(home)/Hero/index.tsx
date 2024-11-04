@@ -37,10 +37,7 @@ const Hero = (): ReactElement => {
           <p className="text-[11px] -mt-6 sm:-mt-10 sm:text-base text-center uppercase text-text-secondary px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
-          <HoverBorderGradient
-            containerClassName="rounded-full"
-            as="div"
-          >
+          <HoverBorderGradient containerClassName="rounded-full" as="div">
             <StyledLink href="#pre-register">PRE REGISTER</StyledLink>
           </HoverBorderGradient>
         </motion.div>

@@ -22,7 +22,7 @@ const NavBar = (): ReactElement => {
 
   useOutsideClick({
     ref: menuRef,
-    onBlur: () => setIsMenuOpen(false)
+    onBlur: () => setIsMenuOpen(false),
   });
 
   useEffect(() => {

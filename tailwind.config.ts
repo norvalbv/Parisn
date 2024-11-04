@@ -11,6 +11,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['var(--font-poppins)', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'serif'],
+      },
       fontSize: {
         xs: [
           '0.75rem', // 12px
