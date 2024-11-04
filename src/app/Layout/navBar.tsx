@@ -61,6 +61,11 @@ const NavBar = (): ReactElement => {
             className="absolute p-6 left-0 right-0 flex items-center justify-center mx-auto mt-2 w-[95%] rounded-xl border border-white/10 bg-zinc-900/90 shadow-lg backdrop-blur-[0.5rem] md:hidden"
           >
             <div className="flex flex-col gap-6">
+              {pathname !== '/' && (
+                <NavItem href="/" onClick={(): void => setIsMenuOpen(false)}>
+                  Home
+                </NavItem>
+              )}
               <NavItem href="#pre-register" onClick={(): void => setIsMenuOpen(false)}>
                 Pre Register
               </NavItem>
@@ -79,6 +84,7 @@ const NavBar = (): ReactElement => {
           {COMPANY_NAME}.COM
         </Link>
         <div className="flex w-full items-center justify-end gap-8 lg:gap-11">
+          {pathname !== '/' && <NavItem href="/">Home</NavItem>}
           <NavItem href="#pre-register">Pre Register</NavItem>
           <NavItem href="/contact-us">Contact Us</NavItem>
           {/*  <SearchIcon className="cursor-pointer text-slate-300 hover:text-white" />

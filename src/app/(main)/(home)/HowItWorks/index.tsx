@@ -46,7 +46,7 @@ const HowItWorks = (): ReactElement => {
         />
         <motion.div
           ref={priceRef}
-          className="flex min-h-[150vh] md:min-h-dvh items-center"
+          className="flex min-h-screen sm:min-h-[150vh] md:min-h-svh items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

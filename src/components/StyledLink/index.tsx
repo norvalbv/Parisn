@@ -35,7 +35,7 @@ const StyledLink = ({
     <Link
       href={href}
       className={cn(
-        'flex max-w-max items-center gap-3 text-slate-300 transition-colors duration-200 hover:text-white text-sm md:text-base',
+        'flex justify-center items-center gap-3 text-slate-300 transition-colors duration-200 hover:text-white text-sm md:text-base',
         className ?? ''
       )}
       onClick={onClick}

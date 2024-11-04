@@ -2,7 +2,7 @@ import { type VariantProps, cva, cx } from 'class-variance-authority';
 import type { LucideIcon } from 'lucide-react';
 import React, { type ReactElement } from 'react';
 
-const headerVariants = cva('', {
+const headerVariants = cva('text-center sm:text-left', {
   variants: {
     size: {
       xs: 'text-base sm:text-lg',
