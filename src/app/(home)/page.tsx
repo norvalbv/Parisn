@@ -1,10 +1,9 @@
 import { ReactElement } from 'react';
 import AboutUs from './AboutUs';
-import Categories from './Categories';
 import Hero from './Hero';
 import HowItWorks from './HowItWorks';
 import Newsletter from './NewsLetter';
-import PickedProducts from './PickedProducts';
+import SecuritySection from './SecuritySection';
 import Synopsis from './Synopsis';
 
 const HomePage = (): ReactElement => {
@@ -13,8 +12,7 @@ const HomePage = (): ReactElement => {
       <Hero />
       <Synopsis />
       <HowItWorks />
-      <Categories />
-      <PickedProducts />
+      <SecuritySection />
       <AboutUs />
       <Newsletter />
     </>

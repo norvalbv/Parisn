@@ -20,18 +20,18 @@ const HowItWorks = (): ReactElement => {
 
   const rawPrice = useTransform(
     scrollYProgress,
-    [0.2, 0.8], // Expanded range for slower price change
+    [0.2, 0.8],
     [MAX_PRICE, MIN_PRICE]
   );
 
   const price = useTransform(rawPrice, (value: number) => value.toFixed(2));
 
   return (
-    <div className="relative min-h-[400vh]">
+    <div className="relative min-h-[300vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <WavyBackground
           colors={[
-            'rgba(50, 117, 248, 0.15)',
+            'rgba(50, 117, 248, 0.15)', 
             'rgba(255, 192, 203, 0.15)',
             'rgba(255, 255, 255, 0.1)',
           ]}
@@ -46,73 +46,70 @@ const HowItWorks = (): ReactElement => {
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:gap-4 sm:p-8 md:w-4/5 md:flex-row md:p-20">
             <img
               src={PRODUCT_1_IMAGE.src}
-              alt=""
+              alt="Luxury product showcase"
               className="w-[250px] rounded-xl object-cover sm:w-[300px] md:h-[400px] md:w-[400px]"
             />
             <div className="px-4 text-center sm:px-0 md:text-left">
               <h4 className="text-xl font-semibold uppercase tracking-wide sm:text-2xl">
-                Select Your Luxury
+                Discover Your Perfect Piece
               </h4>
               <p className="mb-4 mt-2 w-full text-sm leading-relaxed text-primary-neutral/80 sm:text-base md:mb-6 md:w-4/5">
-                Browse our exclusive, time-sensitive collection. Watch as each item's price
-                elegantly descends over time, spiralling towards zero.
+                Explore our curated collection of luxury items. Hand curated by our team of experts,
+                uniquely yours.
               </p>
-              <StyledLink to="/how-it-works#step-one" />
             </div>
           </div>
         </div>
 
-        <div ref={priceRef} className="flex min-h-[150vh] items-center">
+        <motion.div ref={priceRef} className="flex min-h-[150vh] md:min-h-dvh items-center"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.5 }}>
           <div className="sticky top-1/2 w-full -translate-y-1/2">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
               <div className="w-full space-y-4 text-center sm:space-y-6 md:w-1/3 md:text-left">
-                <h3 className="text-2xl font-semibold uppercase tracking-wide sm:text-3xl">
-                  Watch The Price Drop
-                </h3>
-                <p className="px-4 text-base font-light leading-relaxed text-primary-neutral/80 sm:px-0 sm:text-lg">
-                  Our dynamic pricing system ensures you get the best deal. The longer you wait, the
-                  lower the price - but don't wait too long!
+                <h4 className="text-xl font-semibold uppercase tracking-wide sm:text-2xl">
+                  Experience Dynamic Pricing
+                </h4>
+                <p className="mb-4 mt-2 w-full text-sm leading-relaxed text-primary-neutral/80 sm:text-base md:mb-6">
+                  <span>Watch prices decrease in real-time. Our innovative system rewards patience,
+                  but remember - popular items may sell quickly at higher prices.</span>
                 </p>
               </div>
 
               <div className="relative flex w-full justify-center md:w-2/3 md:justify-end">
-                <motion.div
-                  className="z-40 flex items-center"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <div className="flex h-[100px] w-[280px] items-center justify-start rounded-2xl border border-white/10 bg-gradient-to-br from-black/90 via-black/80 to-black/60 px-6 shadow-2xl backdrop-blur-xl transition-all hover:border-white/20 sm:h-[140px] sm:w-[340px] sm:px-10">
-                    <div className="flex items-center text-white">
-                      <span className="mr-4 text-[3rem] font-extralight tracking-tighter sm:mr-6 sm:text-[4rem]">
-                        £
-                      </span>
-                      <motion.span className="text-[3rem] font-extralight tracking-tighter sm:text-[4rem]">
-                        <motion.span style={{ display: 'inline-block' }}>{price}</motion.span>
-                      </motion.span>
-                    </div>
+                <div className="group relative flex h-[120px] w-[300px] items-center justify-start overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-zinc-800/60 px-8 shadow-[0_0_50px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_80px_rgba(0,0,0,0.4)] sm:h-[160px] sm:w-[380px] sm:px-12">
+                  <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl transition-all duration-500 group-hover:bg-blue-500/30" />
+                  <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-pink-500/20 blur-3xl transition-all duration-500 group-hover:bg-pink-500/30" />
+                  <div className="relative flex items-center text-white">
+                    <span className="mr-4 text-[3.5rem] font-extralight tracking-tighter sm:mr-6 sm:text-[4.5rem]">
+                      £
+                    </span>
+                    <motion.span className="text-[3.5rem] font-extralight tracking-tighter sm:text-[4.5rem]">
+                      <motion.span style={{ display: 'inline-block' }}>{price}</motion.span>
+                    </motion.span>
                   </div>
-                </motion.div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <div className="flex h-screen items-center">
           <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:gap-4 sm:p-8 md:w-4/5 md:flex-row md:p-20">
             <img
               src={PRODUCT_1_IMAGE.src}
-              alt=""
+              alt="Strategic shopping demonstration"
               className="w-[250px] rounded-xl object-cover sm:w-[300px] md:h-[400px] md:w-[400px]"
             />
             <div className="px-4 text-center sm:px-0 md:text-left">
               <h4 className="text-xl font-semibold uppercase tracking-wide sm:text-2xl">
-                Claim or Wait
+                Make Your Move
               </h4>
               <p className="mb-4 mt-2 w-full text-sm leading-relaxed text-primary-neutral/80 sm:text-base md:mb-6 md:w-4/5">
-                Secure your chosen luxury at its prevailing price, or anticipate an even more
-                attractive deal as prices continue to dip - but remember, waiting could lead to your
-                desired item being snapped up by others.
+                Choose your moment - buy now at current pricing or wait for further reductions.
+                Strategic patience may yield better prices, but popular items won't wait forever.
               </p>
               <StyledLink to="/how-it-works#step-three" />
             </div>

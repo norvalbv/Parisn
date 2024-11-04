@@ -70,7 +70,7 @@ const NavBar = (): ReactElement => {
       >
         <div className="flex flex-col space-y-2 text-slate-300">
           {pathname !== '/home' && <Link href="/home" className="hover:text-white">Home</Link>}
-          <Link href="/collections" className="hover:text-white">Collections</Link>
+          <Link href="#pre-register" className="hover:text-white">Pre-Register</Link>
           <Link href="/contact-us" className="hover:text-white">Contact Us</Link>
         </div>
       </div>
@@ -79,19 +79,19 @@ const NavBar = (): ReactElement => {
       <div className="hidden h-[3.125rem] items-center justify-between px-8 md:flex lg:px-[7.5rem]">
         <div className="flex w-full gap-8 text-slate-300 lg:gap-11">
           {pathname !== '/home' && <Link href="/home" className="hover:text-white">Home</Link>}
-          <Link href="/collections" className="hover:text-white">Collections</Link>
+          <Link href="#pre-register" className="hover:text-white">Pre-Register</Link>
           <Link href="/contact-us" className="hover:text-white">Contact Us</Link>
         </div>
         <span className="w-full text-center font-semibold text-slate-200">{COMPANY_NAME}.COM</span>
-        <div className="flex w-full items-center justify-end gap-8 lg:gap-11">
-          <SearchIcon className="cursor-pointer text-slate-300 hover:text-white" />
+       <div className="flex w-full items-center justify-end gap-8 lg:gap-11">
+          {/*  <SearchIcon className="cursor-pointer text-slate-300 hover:text-white" />
           <BasketIcon className="cursor-pointer text-slate-300 hover:text-white" />
           {/* {!user.userInfo?.id ? (
             <UserIcon onClick={(): void => openDrawer('Account')} className="cursor-pointer text-slate-300 hover:text-white" />
           ) : (
             <UserIcon onClick={(): void => router.push('/login')} className="cursor-pointer text-slate-300 hover:text-white" />
           )} */}
-        </div>
+        </div> 
       </div>
     </nav>
   );

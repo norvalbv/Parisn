@@ -26,7 +26,7 @@ const RootLayout = ({
       <body
         className={clsx(
           poppins.className,
-          'min-h-screen bg-[#0D0D0E]'
+          'min-h-screen bg-[#0D0D0E] text-primary-light'
         )}
       >
         {children}

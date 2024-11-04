@@ -2,14 +2,13 @@ import React, { ReactElement } from 'react';
 
 const Synopsis = (): ReactElement => {
   return (
-    <section className="flex h-[50vh] flex-col items-center justify-center px-4 text-center md:px-0">
-      <p className="text-sm uppercase md:text-base">TRANSFORM THE RULES OF SHOPPING</p>
-      <h3 className="text-xl md:text-2xl lg:text-3xl">
-        Unleash the Excitement of the Ultimate with
-        <span className="block text-2xl font-normal leading-[2.5rem] tracking-[0.08rem] md:text-[2.625rem] md:leading-[3.125rem]">
-          PARISEN
-        </span>
-      </h3>
+    <section className="flex h-[30vh] flex-col items-center justify-center px-4 text-center md:px-0">
+      <p className="text-sm uppercase md:text-base">Redefining Luxury Shopping</p>
+      <p className="mt-6 max-w-2xl text-sm text-gray-400 md:text-base">
+        Watch as prices automatically decrease over time. Choose between securing your desired item immediately 
+        or strategically waiting for a better price - but remember, waiting carries the risk of another 
+        shopper claiming it first. The choice is yours.
+      </p>
     </section>
   );
 };

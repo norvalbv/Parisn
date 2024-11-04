@@ -33,17 +33,26 @@
     ]
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
+    "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-icons": "^1.3.1",
+    "@radix-ui/react-label": "^2.1.0",
     "aws-amplify": "^6.8.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.11",
     "lenis": "^1.1.14",
+    "lottie-react": "^2.4.0",
+    "lucide-react": "^0.454.0",
     "next": "^15.0.2",
     "react": "^19.0.0-rc-603e6108-20241029",
     "react-dom": "^19.0.0-rc-603e6108-20241029",
+    "react-hook-form": "^7.53.1",
     "react-toastify": "^10.0.6",
     "simplex-noise": "^4.0.3",
     "tailwind-merge": "^2.5.4",
-    "tailwind-scrollbar": "^3.1.0"
+    "tailwind-scrollbar": "^3.1.0",
+    "zod": "^3.23.8"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"

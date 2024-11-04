@@ -1,8 +1,10 @@
+'use client';
+
 import React, { Fragment, HTMLInputTypeAttribute, ReactElement, useState } from 'react';
-import { Formik, Field, Form as FormikForm, ErrorMessage } from 'formik';
-import { Link } from 'react-router-dom';
-import Button from 'components/Button';
-import Popup from 'components/Popup';
+import { useForm } from 'react-hook-form';
+import Button from '@/src/components/Button';
+import Popup from '@/src/components/Popup';
+import Link from 'next/link';
 
 type FormProps = {
   footerButton?: {
@@ -44,111 +46,111 @@ const Form = ({
   resetFormOnbSubmit = false,
   newsletterSignUp = false,
 }: FormProps): ReactElement => {
-  const initalValues: { [key: string]: string } = {};
+  const initialValues: { [key: string]: string } = {};
 
   Object.entries(formValues).forEach(([label, value]) => {
-    initalValues[label] = value.initialValue;
+    initialValues[label] = value.initialValue;
   });
 
   const [hovered, setHovered] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
+    defaultValues: initialValues,
+  });
+
+  const onSubmit = (values: Record<string, string>): void => {
+    console.log(values);
+    submitFn(values);
+    if (resetFormOnbSubmit) reset();
+  };
+
   return (
-    <Formik
-      initialValues={initalValues}
-      validateOnChange={false}
-      validationSchema={validationSchema}
-      onSubmit={(values, { resetForm }): void => {
-        console.log(values);
-        submitFn(values);
-        if (resetFormOnbSubmit) resetForm();
-      }}
-    >
-      <FormikForm className="flex flex-col gap-8">
-        {Object.entries(formValues).map(([id, values]) => {
-          // eslint-disable-next-line react-hooks/rules-of-hooks
-          const [type, setType] = useState(values.type);
-          return (
-            <Fragment key={id}>
-              <div className="flex items-center justify-between">
-                <label htmlFor={id}>{values.label}</label>
-                <ErrorMessage
-                  name={id}
-                  component="div"
-                  className="text-sm font-normal text-red-500"
-                />
-              </div>
-              <Field
-                id={id}
-                name={id}
-                placeholder={values.placeholder}
-                type={type}
-                className="-mb-4 -mt-8 block w-full rounded-lg border border-gray-600 bg-black p-2.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
-                disabled={values.disabled}
-                autoComplete={values.disableAutocomplete}
-              />
-              {values.id === 'password' && (
-                <button
-                  type="button"
-                  className="m-0 text-left text-sm italic underline"
-                  onClick={(): void =>
-                    type === 'password' ? setType('text') : setType('password')
-                  }
-                >
-                  {type === 'password' ? 'Show Password' : 'Hide Password'}
-                </button>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-8">
+      {Object.entries(formValues).map(([id, values]) => {
+        const [type, setType] = useState(values.type);
+        return (
+          <Fragment key={id}>
+            <div className="flex items-center justify-between">
+              <label htmlFor={id}>{values.label}</label>
+              {errors[id] && (
+                <div className="text-sm font-normal text-red-500">
+                  {errors[id]?.message as string}
+                </div>
               )}
-              {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
-            </Fragment>
-          );
-        })}
-        <div
-          className={`flex items-baseline justify-between ${
-            newsletterSignUp ? '' : 'flex-row-reverse'
-          }`}
-        >
-          {newsletterSignUp && (
-            <div>
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label className="cursor-pointer">
-                <input type="checkbox" id="newsletterSignUp" className="mr-2 cursor-pointer" />
-                Sign up to our newsletter
-              </label>
             </div>
-          )}
-          {footerLink?.active ? (
-            <Link className="cursor-pointer hover:underline" to={footerLink.to}>
-              {footerLink.label}
-            </Link>
-          ) : footerButton?.active ? (
-            <button
-              type="button"
-              className="relative w-48 cursor-pointer text-end hover:underline"
-              onClick={(): void => {
-                if (footerButton.onClick) footerButton.onClick();
-              }}
-              onMouseLeave={(): void => {
-                if (footerButton.onMouseLeave) footerButton.onMouseLeave();
-                setHovered(false);
-              }}
-              onMouseEnter={(): void => setHovered(true)}
-            >
-              {footerButton.showPopup?.text && hovered && (
-                <Popup text={footerButton.showPopup?.text} />
-              )}
-              {footerButton?.label}
-            </button>
-          ) : null}
-          {formError && (
-            <div className="mt-2 font-semibold text-utility-warning-main">{formError}</div>
-          )}
-        </div>
-        <Button
-          text={submitButton.label}
-          type="submit"
-          className={`${submitButton.className || ''} -mt-4`}
-        />
-      </FormikForm>
-    </Formik>
+            <input
+              {...register(id)}
+              id={id}
+              placeholder={values.placeholder}
+              type={type}
+              className="-mb-4 -mt-8 block w-full rounded-lg border border-gray-600 bg-black p-2.5 text-sm placeholder-gray-400 focus:border-blue-500 focus:ring-blue-500"
+              disabled={values.disabled}
+              autoComplete={values.disableAutocomplete}
+            />
+            {values.id === 'password' && (
+              <button
+                type="button"
+                className="m-0 text-left text-sm italic underline"
+                onClick={(): void =>
+                  type === 'password' ? setType('text') : setType('password')
+                }
+              >
+                {type === 'password' ? 'Show Password' : 'Hide Password'}
+              </button>
+            )}
+            {values.extraInfo && <div className="text-sm italic">{values.extraInfo}</div>}
+          </Fragment>
+        );
+      })}
+      <div
+        className={`flex items-baseline justify-between ${
+          newsletterSignUp ? '' : 'flex-row-reverse'
+        }`}
+      >
+        {newsletterSignUp && (
+          <div>
+            <label className="cursor-pointer">
+              <input type="checkbox" id="newsletterSignUp" className="mr-2 cursor-pointer" />
+              Sign up to our newsletter
+            </label>
+          </div>
+        )}
+        {footerLink?.active ? (
+          <Link className="cursor-pointer hover:underline" href={footerLink.to}>
+            {footerLink.label}
+          </Link>
+        ) : footerButton?.active ? (
+          <button
+            type="button"
+            className="relative w-48 cursor-pointer text-end hover:underline"
+            onClick={(): void => {
+              if (footerButton.onClick) footerButton.onClick();
+            }}
+            onMouseLeave={(): void => {
+              if (footerButton.onMouseLeave) footerButton.onMouseLeave();
+              setHovered(false);
+            }}
+            onMouseEnter={(): void => setHovered(true)}
+          >
+            {footerButton.showPopup?.text && hovered && (
+              <Popup text={footerButton.showPopup?.text} />
+            )}
+            {footerButton?.label}
+          </button>
+        ) : null}
+        {formError && (
+          <div className="mt-2 font-semibold text-utility-warning-main">{formError}</div>
+        )}
+      </div>
+      <Button type="submit" className={`${submitButton.className || ''} -mt-4`}>
+        {submitButton.label}
+      </Button>
+    </form>
   );
 };
 

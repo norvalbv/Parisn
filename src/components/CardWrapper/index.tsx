@@ -1,38 +1,31 @@
 import clsx from 'clsx';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, forwardRef } from 'react';
 
-export type CardWrapperProps = {
-  backgroundColor?: keyof typeof backgroundColorMap;
-  cardType?: keyof typeof cardTypeMap;
-  children: JSX.Element | JSX.Element[];
+type Props = {
+  children: ReactElement | ReactElement[];
   className?: string;
-  role?: string;
-};
-const CardWrapper = ({
-  backgroundColor = 'black',
-  cardType = 'default',
-  children,
-  className,
-  role,
-}: CardWrapperProps): ReactElement => {
-  return (
-    <div
-      className={clsx(cardTypeMap[cardType].outer, backgroundColorMap[backgroundColor])}
-      role={role}
-    >
-      <div className={clsx(cardTypeMap[cardType].inner, className)}>{children}</div>
-    </div>
-  );
+  maxWidth?: boolean;
+  id?: string;
 };
 
-const backgroundColorMap = {
-  white: 'bg-white text-black',
-  black: 'bg-primary-dark text-primary-light',
-};
+const CardWrapper = forwardRef<HTMLDivElement, Props>(
+  ({ children, className, maxWidth = true, id }, ref) => {
+    return (
+      <div
+        ref={ref}
+        className={clsx(
+          'relative z-10 px-4 sm:px-10',
+          className,
+          maxWidth && 'mx-auto max-w-screen-xl 2xl:max-w-screen-2xl'
+        )}
+        id={id}
+      >
+        {children}
+      </div>
+    );
+  }
+);
 
-const cardTypeMap = {
-  default: { outer: 'relative z-10', inner: 'max-w-[2000px] mx-auto' },
-  centered: { outer: 'h-screen w-full grid place-items-center relative', inner: '' },
-};
+CardWrapper.displayName = 'CardWrapper';
 
 export default CardWrapper;

@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`<ContactUs /> ContactUs props with mandatory props 1`] = `
-<div>
-  ContactUs
-</div>
-`;
