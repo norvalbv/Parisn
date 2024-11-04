@@ -1,11 +1,12 @@
 'use client';
 
-import React, { ReactElement, useRef } from 'react';
 import PRODUCT_1_IMAGE from '@/public/images/shoe.jpg';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import WavyBackground from '@/src/components/Waves';
-import ItemSection from './ItemSection';
 import Header from '@/src/components/Header';
+import PriceDisplay from '@/src/components/PriceDisplay';
+import WavyBackground from '@/src/components/Waves';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import React, { ReactElement, useRef } from 'react';
+import ItemSection from './ItemSection';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;
@@ -36,7 +37,6 @@ const HowItWorks = (): ReactElement => {
           waveOpacity={0.3}
         />
       </div>
-
       <section ref={containerRef} className="absolute inset-0 py-10 sm:py-20">
         <ItemSection
           imageSrc={PRODUCT_1_IMAGE.src}
@@ -44,7 +44,6 @@ const HowItWorks = (): ReactElement => {
           title="Discover Your Perfect Piece"
           description="Explore our curated collection of luxury items. Hand curated by our team of experts, uniquely yours."
         />
-
         <motion.div
           ref={priceRef}
           className="flex min-h-[150vh] md:min-h-dvh items-center"
@@ -64,23 +63,11 @@ const HowItWorks = (): ReactElement => {
               </div>
 
               <div className="relative flex w-full justify-center md:w-2/3 md:justify-end">
-                <div className="group relative flex h-[120px] w-[300px] items-center justify-start overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-br from-zinc-900/90 via-zinc-900/80 to-zinc-800/60 px-8 shadow-[0_0_50px_rgba(0,0,0,0.3)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:shadow-[0_0_80px_rgba(0,0,0,0.4)] sm:h-[160px] sm:w-[380px] sm:px-12">
-                  <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-blue-500/20 blur-3xl transition-all duration-500 group-hover:bg-blue-500/30" />
-                  <div className="absolute -bottom-20 -left-20 h-40 w-40 rounded-full bg-pink-500/20 blur-3xl transition-all duration-500 group-hover:bg-pink-500/30" />
-                  <div className="relative flex items-center text-white">
-                    <span className="mr-4 text-[3.5rem] font-extralight tracking-tighter sm:mr-6 sm:text-[4.5rem]">
-                      £
-                    </span>
-                    <motion.span className="text-[3.5rem] font-extralight tracking-tighter sm:text-[4.5rem]">
-                      <motion.span style={{ display: 'inline-block' }}>{price}</motion.span>
-                    </motion.span>
-                  </div>
-                </div>
+                <PriceDisplay price={price} />
               </div>
             </div>
           </div>
         </motion.div>
-
         <ItemSection
           imageSrc={PRODUCT_1_IMAGE.src}
           imageAlt="Strategic shopping demonstration"
