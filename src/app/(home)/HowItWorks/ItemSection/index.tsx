@@ -1,5 +1,7 @@
 import { ReactElement } from 'react';
 import StyledLink from '@/src/components/StyledLink';
+import { cn } from '@/lib/utils/cn';
+import Header from '@/src/components/Header';
 
 type ItemSectionProps = {
   imageSrc: string;
@@ -29,14 +31,13 @@ const ItemSection = ({
           />
         </div>
         <div
-          className={`flex-1 px-4 text-center sm:px-0 md:text-left ${
+          className={cn(
+            'flex-1 px-4 text-center sm:px-0 md:text-left',
             isReversed ? 'md:order-1' : ''
-          }`}
+          )}
         >
-          <h4 className="text-xl font-semibold uppercase tracking-wide sm:text-2xl">{title}</h4>
-          <p className="mb-4 mt-2 w-full text-sm text-text-secondary sm:text-base md:mb-6 md:w-4/5">
-            {description}
-          </p>
+          <Header title={title} />
+          <p className="mb-4 mt-2 w-full md:mb-6 md:w-4/5">{description}</p>
           {showLink && <StyledLink href="/how-it-works#step-three" />}
         </div>
       </div>

@@ -31,10 +31,10 @@ const Hero = (): ReactElement => {
           }}
           className="relative flex flex-col items-center justify-center gap-4"
         >
-          <div className="flex w-full h-fit items-center justify-center">
+          <h1 className="flex w-full h-fit items-center justify-center">
             <TextHoverEffect text={COMPANY_NAME} />
-          </div>
-          <p className="text-[11px] -mt-6 sm:-mt-10 sm:text-base text-center uppercase text-text-secondary px-4 sm:px-10">
+          </h1>
+          <p className="-mt-6 sm:-mt-10 text-center uppercase px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
           <HoverBorderGradient containerClassName="rounded-full" as="div">

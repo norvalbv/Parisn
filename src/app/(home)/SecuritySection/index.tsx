@@ -16,11 +16,11 @@ const SecuritySection = (): ReactElement => {
       />
       <div className="w-full text-center md:w-1/2 md:text-left">
         <h3 className="mb-4 max-md:text-center md:mb-6">
-          Your Money
+          Authentic Luxury
           <br />
-          In Trusted Hands.
+          Guaranteed.
         </h3>
-        <p className="mb-6 text-sm md:text-base">{SECURITY_DESCRIPTION}</p>
+        <p className="mb-6 text-sm md:text-base text-text-secondary">{SECURITY_DESCRIPTION}</p>
       </div>
     </CardWrapper>
   );

@@ -5,11 +5,11 @@ import React, { type ReactElement } from 'react';
 const headerVariants = cva('', {
   variants: {
     size: {
-      xs: 'text-lg sm:text-xl',
-      sm: 'text-2xl',
-      md: 'text-3xl sm:text-4xl',
-      lg: 'text-3xl sm:text-4xl lg:text-6xl',
-      xl: 'text-6xl md:text-8xl lg:text-9xl',
+      xs: 'text-base sm:text-lg',
+      sm: 'text-lg sm:text-xl', 
+      md: 'text-xl sm:text-2xl',
+      lg: 'text-2xl sm:text-3xl',
+      xl: 'text-3xl sm:text-4xl',
     },
     alignment: {
       center: 'text-center',
@@ -20,10 +20,9 @@ const headerVariants = cva('', {
       sm: 'mb-4',
       md: 'mb-8',
     },
-    fontWeight: {
-      normal: 'font-normal',
-      medium: 'font-semibold',
-      bold: 'font-bold',
+    uppercase: {
+      true: 'uppercase',
+      false: '',
     },
     as: {
       h1: '',
@@ -32,31 +31,26 @@ const headerVariants = cva('', {
     },
   },
   defaultVariants: {
-    fontWeight: 'bold',
     size: 'lg',
     alignment: 'left',
     as: 'h2',
     margin: 'sm',
+    uppercase: true,
   },
 });
 
 export type HeaderProps = VariantProps<typeof headerVariants> & {
   title?: string;
-  highlightedText?: string;
-  inline?: boolean;
   icon?: LucideIcon;
   className?: string;
 };
 
 const Header = ({
   title,
-  highlightedText,
   size,
   alignment,
-  inline,
   as,
   icon: Icon,
-  fontWeight,
   margin,
   className,
 }: HeaderProps): ReactElement => {
@@ -65,8 +59,8 @@ const Header = ({
   return (
     <Component
       className={cx(
-        headerVariants({ size, margin, alignment, as, fontWeight }),
-        Icon && 'flex items-center',
+        headerVariants({ size, margin, alignment, as }),
+        Icon && 'flex items-center tracking-widest',
         className
       )}
     >
@@ -75,22 +69,7 @@ const Header = ({
           <Icon />
         </span>
       )}
-      {title && title}
-      {highlightedText && (
-        <>
-          {!inline && title && <br />}
-          {inline && '\u00A0'}
-          {highlightedText.split(' ').map((word, index) => (
-            <span
-              key={index}
-              className="inline-block bg-gradient-to-t from-teal-400 to-teal-700 bg-clip-text text-transparent"
-            >
-              {word}
-              {index < highlightedText.split(' ').length - 1 && '\u00A0'}
-            </span>
-          ))}
-        </>
-      )}
+      {title}
     </Component>
   );
 };

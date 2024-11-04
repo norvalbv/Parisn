@@ -5,6 +5,7 @@ import PRODUCT_1_IMAGE from '@/public/images/shoe.jpg';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import WavyBackground from '@/src/components/Waves';
 import ItemSection from './ItemSection';
+import Header from '@/src/components/Header';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;
@@ -55,10 +56,8 @@ const HowItWorks = (): ReactElement => {
           <div className="sticky top-1/2 w-full -translate-y-1/2">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
               <div className="w-full space-y-4 text-center sm:space-y-6 md:w-1/3 md:text-left">
-                <h4 className="text-xl font-semibold uppercase tracking-wide sm:text-2xl">
-                  Experience Dynamic Pricing
-                </h4>
-                <p className="mb-4 mt-2 w-full text-sm text-text-secondary sm:text-base md:mb-6">
+                <Header title="Experience Dynamic Pricing" />
+                <p className="mb-4 mt-2 w-full md:mb-6">
                   Watch prices decrease in real-time. Our innovative system rewards patience, but
                   remember - popular items may sell quickly at higher prices.
                 </p>

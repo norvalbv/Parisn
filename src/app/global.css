@@ -23,6 +23,10 @@
     /* text - 14px */ /* line height - 22purl(../../../bank-app-website/components/ui/Header)x */
     @apply leading-5 tracking-wider;
   }
+
+  p {
+    @apply text-sm text-text-secondary sm:text-base;
+  }
 }
 
 @layer components {

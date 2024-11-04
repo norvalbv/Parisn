@@ -30,7 +30,10 @@ const config: Config = {
         background: '#0D0D0E',
         'text-primary': '#FAFAFA',
         'text-secondary': '#8A91A3',
-        action: '#004B6E',
+        // Copied from Figma colour palette generator
+        action: '#1A7CB2',
+        'action-secondary': '#B21A7C',
+        'action-tertiary': '#7CB21A',
         // secondary: {
         //   dark: '#0D0E0D',
         //   blueGreen: '#004B6E',
