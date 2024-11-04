@@ -7,13 +7,12 @@ import Loading from '../Loading';
 import { cn } from '@/lib/utils/cn';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-dark disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-text-primary disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
-        light: 'text-primary-dark bg-primary-light hover:bg-primary-neutral/80',
-        dark: 'text-primary-light bg-primary-dark hover:bg-primary-neutral/20',
-        ghost: 'text-primary-light bg-transparent hover:bg-primary-neutral/20',
+        dark: 'text-text-primary bg-background hover:bg-zinc-800/80',
+        ghost: 'text-text-primary bg-transparent hover:bg-zinc-800/20',
       },
       size: {
         xs: 'px-2 py-1.5 text-xs sm:px-3 sm:py-2',

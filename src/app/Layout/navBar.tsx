@@ -35,10 +35,7 @@ const NavBar = (): ReactElement => {
       <div className="flex h-16 items-center justify-between px-4 md:hidden">
         <div className="w-[3.25rem]" /> {/* Empty node with fixed width */}
         <span className="font-semibold tracking-[0.2rem] text-slate-200">{COMPANY_NAME}.COM</span>
-        <button
-          onClick={(): void => setIsMenuOpen(!isMenuOpen)}
-          className="text-slate-300 hover:text-white"
-        >
+        <button onClick={(): void => setIsMenuOpen((prev) => !prev)}>
           <Hamburger
             toggled={isMenuOpen}
             size={16}

@@ -6,7 +6,7 @@ import PriceDisplay from '@/src/components/PriceDisplay';
 import WavyBackground from '@/src/components/Waves';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { ReactElement, useRef } from 'react';
-import ItemSection from './ItemSection';
+import ItemSection from './itemSection';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;
@@ -54,7 +54,7 @@ const HowItWorks = (): ReactElement => {
         >
           <div className="sticky top-1/2 w-full -translate-y-1/2">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
-              <div className="w-full space-y-4 text-center sm:space-y-6 md:w-1/3 md:text-left">
+              <div className="px-4 text-center sm:px-0 md:text-left">
                 <Header title="Experience Dynamic Pricing" />
                 <p className="mb-4 mt-2 w-full md:mb-6">
                   Watch prices decrease in real-time. Our innovative system rewards patience, but
@@ -74,7 +74,6 @@ const HowItWorks = (): ReactElement => {
           title="Make Your Move"
           description="Choose your moment - buy now at current pricing or wait for further reductions. Strategic patience may yield better prices, but popular items won't wait forever."
           isReversed
-          showLink
         />
       </section>
     </div>

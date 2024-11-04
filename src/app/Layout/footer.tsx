@@ -1,51 +1,56 @@
 import { InstagramLogo } from '@/src/components/CustomSVG';
+import { COMPANY_NAME } from '@/src/constants';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
 
 const Footer = (): ReactElement => {
+  const footerLinks = [
+    { href: '/terms-and-conditions', label: 'Terms & Conditions' },
+    { href: '/about-us', label: 'About Us' },
+    { href: '/privacy-policy', label: 'Privacy Policy' },
+  ];
+
   return (
-    <footer className="p-4 md:px-6 md:py-8 bg-[#0D0D0E]">
-      <div className="w-full sm:flex sm:items-center sm:justify-between">
-        <a href="https://parisn.com/" className="mb-4 flex items-center sm:mb-0">
-          <span className="font-normal">PARISEN.COM</span>
-        </a>
-        <nav>
-          <ul className="mb-6 flex flex-wrap items-center sm:mb-0">
-            <li>
-              <Link href="/how-it-works" className="mr-2 hover:underline md:mr-4">
-                How It Works
-              </Link>
-            </li>
-            <li>
-              <Link href="/terms-and-conditions" className="mr-2 hover:underline md:mr-4">
-                Terms and Conditions
-              </Link>
-            </li>
-            <li>
-              <Link href="/about-us" className="mr-2 hover:underline md:mr-4">
-                About Us
-              </Link>
-            </li>
-            <li>
-              <Link href="/privacy-policy" className="hover:underline">
-                Privacy Policy
-              </Link>
-            </li>
-          </ul>
-        </nav>
+    <footer className="bg-background px-4 py-6 md:px-8 md:py-10">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <Link href="/" className="text-lg font-medium tracking-wider uppercase">
+            {COMPANY_NAME}.com
+          </Link>
+
+          <nav>
+            <ul className="flex flex-wrap justify-center gap-4 md:gap-6">
+              {footerLinks.map(({ href, label }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-sm text-gray-300 transition-colors hover:text-white"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <hr className="my-8 h-px w-full bg-white/10" />
+
+        <div className="flex flex-col items-center gap-6">
+          <a
+            href="https://www.instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-opacity hover:opacity-80"
+          >
+            <InstagramLogo />
+          </a>
+
+          <small className="text-sm text-gray-400">
+            {COMPANY_NAME}™ {new Date().getFullYear()} - All Rights Reserved.
+          </small>
+        </div>
       </div>
-      <hr className="my-6 border-gray-500 sm:mx-auto lg:my-8" />
-      <div className="my-6 flex items-center justify-center">
-        <a
-          href="https://www.instagram.com"
-          target="_blank"
-          rel="noreferrer"
-          className="cursor-pointer"
-        >
-          <InstagramLogo />
-        </a>
-      </div>
-      <small className="block sm:text-center">Parisn™ 2023 - All Rights Reserved.</small>
     </footer>
   );
 };

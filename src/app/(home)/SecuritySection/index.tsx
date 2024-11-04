@@ -1,6 +1,7 @@
 'use client';
 
 import CardWrapper from '@/src/components/CardWrapper';
+import Header from '@/src/components/Header';
 import gradientBall from '@/src/constants/gradient-ball.json';
 import Lottie from 'lottie-react';
 import React, { ReactElement } from 'react';
@@ -15,12 +16,8 @@ const SecuritySection = (): ReactElement => {
         className="mb-8 w-full max-w-[18rem] md:mb-0 md:w-1/2 md:max-w-[24rem]"
       />
       <div className="w-full text-center md:w-1/2 md:text-left">
-        <h3 className="mb-4 max-md:text-center md:mb-6">
-          Authentic Luxury
-          <br />
-          Guaranteed.
-        </h3>
-        <p className="mb-6 text-sm md:text-base text-text-secondary">{SECURITY_DESCRIPTION}</p>
+        <Header title="Authentic Luxury Guaranteed." />
+        <p className="mb-6">{SECURITY_DESCRIPTION}</p>
       </div>
     </CardWrapper>
   );
