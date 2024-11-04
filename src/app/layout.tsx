@@ -23,7 +23,7 @@ const RootLayout = ({
 }>): React.ReactElement => {
   return (
     <html lang="en">
-      <body className={clsx(poppins.className, 'min-h-screen bg-[#0D0D0E] text-primary-light')}>
+      <body className={clsx(poppins.className, 'min-h-screen bg-background text-text-primary')}>
         {children}
       </body>
     </html>

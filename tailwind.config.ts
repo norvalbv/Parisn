@@ -23,11 +23,10 @@ const config: Config = {
         xxs: ['10px', '12px'],
       },
       colors: {
-        primary: {
-          dark: '#020202',
-          neutral: '#B0B0B0',
-          light: '#FAFAFA',
-        },
+        background: '#0D0D0E',
+        'text-primary': '#FAFAFA',
+        'text-secondary': '#B3BCCE',
+        action: '#004B6E',
         secondary: {
           dark: '#0D0E0D',
           blueGreen: '#004B6E',

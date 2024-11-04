@@ -1,11 +1,12 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils/cn';
 
 type Direction = 'TOP' | 'LEFT' | 'BOTTOM' | 'RIGHT';
 
-interface HoverBorderGradientProps extends React.HTMLAttributes<HTMLElement> {
+type HoverBorderGradientProps = React.HTMLAttributes<HTMLElement> & {
   children: React.ReactNode;
   containerClassName?: string;
   className?: string;
@@ -23,7 +24,7 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
   clockwise = true,
   ...props
 }) => {
-  const [hovered, setHovered] = useState<boolean>(false);
+  const [hovered, setHovered] = useState(false);
   const [direction, setDirection] = useState<Direction>('TOP');
 
   const rotateDirection = (currentDirection: Direction): Direction => {
@@ -44,7 +45,7 @@ export const HoverBorderGradient: React.FC<HoverBorderGradientProps> = ({
   };
 
   const highlight =
-    'radial-gradient(80% 180% at 50% 50%, #3275F8 0%, rgba(50, 117, 248, 0.2) 50%, rgba(255, 255, 255, 0) 100%)';
+    'radial-gradient(80% 180% at 50% 50%, #004B6E 0%, rgba(0, 75, 110, 0.5) 50%, rgba(255, 255, 255, 0) 100%)';
 
   useEffect(() => {
     if (!hovered) {

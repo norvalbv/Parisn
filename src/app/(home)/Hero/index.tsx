@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react';
 import { AuroraBackground } from './AuroraBackground';
 import { HoverBorderGradient } from './HoverBorderGradient';
 import { TextHoverEffect } from './TextHoverEffect';
+import StyledLink from '@/src/components/StyledLink';
 
 const Hero = (): ReactElement => {
   return (
@@ -30,18 +31,18 @@ const Hero = (): ReactElement => {
           }}
           className="relative flex flex-col items-center justify-center gap-4"
         >
-          <div className="flex h-[16rem] items-center justify-center">
+          <div className="flex w-full h-fit items-center justify-center">
             <TextHoverEffect text={COMPANY_NAME} />
           </div>
-          <p className="-mt-12 text-center uppercase text-white md:text-left">
+          <p className="text-[11px] -mt-6 sm:-mt-10 sm:text-base text-center uppercase text-text-secondary px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
           <HoverBorderGradient
             containerClassName="rounded-full"
-            as="button"
+            as="div"
             className="flex items-center space-x-2 bg-white text-black dark:bg-black dark:text-white"
           >
-            Shop Now
+            <StyledLink href="#pre-register">Pre Register</StyledLink>
           </HoverBorderGradient>
         </motion.div>
       </AuroraBackground>
