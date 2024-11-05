@@ -3,12 +3,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
-import {
-  ApiResponse,
-  CollectionData,
-  FullUserInformation,
-  ProductData,
-} from '../types';
+import { ApiResponse, CollectionData, FullUserInformation, ProductData } from '../types';
 import { collections, products } from '@/src/__mocks__/dataApiMock';
 import { useRouter } from 'next/navigation';
 
@@ -121,7 +116,6 @@ export const useCollection = (collection: string): CollectionApiReturn => {
 
   return { data: processedData, error, isLoading, isValidating };
 };
-
 
 interface FullProductData extends ProductData {
   selectedSize: string;

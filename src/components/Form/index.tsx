@@ -148,8 +148,8 @@ const Form = ({
           <div className="mt-2 font-semibold text-utility-warning-main">{formError}</div>
         )}
       </div>
-      <Button 
-        type="submit" 
+      <Button
+        type="submit"
         className={`${submitButton.className || ''} -mt-4`}
         loading={submitButton.loading}
       >
