@@ -31,7 +31,7 @@ const NavBar = (): ReactElement => {
   }, [pathname]);
 
   return (
-    <nav className="fixed top-0 z-40 w-full border-b border-white/10 bg-zinc-900/50 backdrop-blur-md uppercase">
+    <nav className="fixed top-0 z-40 w-full border-b border-white/10 bg-zinc-900/50 backdrop-blur-md">
       {/* Mobile Menu Button */}
       <div className="flex h-16 items-center justify-between px-4 md:hidden">
         <div className="w-[3.25rem]" /> {/* Empty node with fixed width */}
@@ -78,12 +78,12 @@ const NavBar = (): ReactElement => {
       </AnimatePresence>
 
       {/* Desktop Menu */}
-      <div className="hidden h-16 items-center justify-between px-8 md:flex lg:px-[7.5rem]">
-        <div className="flex w-full gap-8 text-slate-300 lg:gap-11"></div>
+      <div className="hidden h-16 items-center justify-between px-4 md:flex">
+        <div className="flex w-full gap-8 text-slate-300 lg:gap-11" />
         <Link href="/" className="w-full text-center font-semibold text-white tracking-[0.2rem]">
           {COMPANY_NAME}.COM
         </Link>
-        <div className="flex w-full items-center justify-end gap-8 lg:gap-11">
+        <div className="flex w-full items-center justify-end gap-6">
           {pathname !== '/' && <NavItem href="/">Home</NavItem>}
           <NavItem href="#pre-register">Pre Register</NavItem>
           <NavItem href="/contact-us">Contact Us</NavItem>

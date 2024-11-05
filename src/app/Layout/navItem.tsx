@@ -10,7 +10,7 @@ type NavItemProps = {
 
 const NavItem = ({ href, children, onClick, type = 'link' }: NavItemProps): ReactElement => {
   const baseStyles =
-    'w-full relative text-slate-300 hover:text-white transition-colors duration-200 after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full';
+    'relative text-slate-300 hover:text-white transition-colors duration-200 after:absolute after:bottom-[-2px] after:left-0 after:h-[2px] after:w-0 after:bg-white after:transition-all after:duration-300 hover:after:w-full';
 
   return type === 'button' ? (
     <button onClick={onClick} className={baseStyles}>

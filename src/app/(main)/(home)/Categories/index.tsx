@@ -51,10 +51,9 @@ const Categories = (): ReactElement => {
                     {collection.collections}
                   </h4>
                   <div className="flex justify-center">
-                    <StyledLink
-                      to={`/collections/${collection.collections}`}
-                      text="View Collection"
-                    />
+                    <StyledLink href={`/collections/${collection.collections}`}>
+                      View Collection
+                    </StyledLink>
                   </div>
                 </div>
               </div>

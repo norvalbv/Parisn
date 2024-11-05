@@ -132,7 +132,6 @@ const PickedProducts = (): ReactElement => {
                     theme="ghost"
                     roundedBorders="lg"
                     className="h-8 w-full text-[10px] font-medium hover:bg-white/5 sm:h-10 sm:text-xs"
-                    size="custom"
                     onClick={(): void =>
                       router.push(`/collections/${product.collection}/${product.id}`)
                     }

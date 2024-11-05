@@ -27,13 +27,13 @@ const config: Config = {
         xxs: ['10px', '12px'],
       },
       colors: {
-        background: '#0D0D0E',
-        'text-primary': '#FAFAFA',
-        'text-secondary': '#8A91A3',
-        // Copied from Figma colour palette generator
-        action: '#1A7CB2',
-        'action-secondary': '#B21A7C',
-        'action-tertiary': '#7CB21A',
+        background: '#0F0F11', // Rich dark background
+        'text-primary': '#F5F5F0', // Warm white
+        'text-secondary': '#9A8F8F', // Muted taupe
+        // Luxury brand colors
+        action: '#C9A87D', // Rich gold
+        'action-secondary': '#8B7355', // Warm bronze
+        'action-tertiary': '#4A4A4A', // Deep charcoal
         // secondary: {
         //   dark: '#0D0E0D',
         //   blueGreen: '#004B6E',

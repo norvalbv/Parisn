@@ -2,6 +2,7 @@ import { InstagramLogo } from '@/src/components/CustomSVG';
 import { COMPANY_NAME } from '@/src/constants';
 import Link from 'next/link';
 import React, { ReactElement } from 'react';
+import NavItem from './navItem';
 
 const Footer = (): ReactElement => {
   const footerLinks = [
@@ -22,12 +23,7 @@ const Footer = (): ReactElement => {
             <ul className="flex flex-wrap justify-center gap-4 md:gap-6">
               {footerLinks.map(({ href, label }) => (
                 <li key={href}>
-                  <Link
-                    href={href}
-                    className="text-sm text-gray-300 transition-colors hover:text-white"
-                  >
-                    {label}
-                  </Link>
+                  <NavItem href={href}>{label}</NavItem>
                 </li>
               ))}
             </ul>
@@ -46,7 +42,7 @@ const Footer = (): ReactElement => {
             <InstagramLogo />
           </a>
 
-          <small className="text-sm text-gray-400">
+          <small className="text-xs text-gray-400">
             {COMPANY_NAME}™ {new Date().getFullYear()} - All Rights Reserved.
           </small>
         </div>

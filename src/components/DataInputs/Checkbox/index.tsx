@@ -13,7 +13,7 @@ const Checkbox = React.forwardRef<
   <CheckboxPrimitive.Root
     ref={ref}
     className={cn(
-      'peer h-5 w-5 shrink-0 rounded-md border border-zinc-700 bg-zinc-900 shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-600 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-zinc-700 data-[state=checked]:text-zinc-100 hover:border-zinc-600',
+      'peer h-5 w-5 shrink-0 rounded-md border border-action/30 bg-background shadow-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-action/20 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-action data-[state=checked]:text-background hover:border-action/50',
       className || ''
     )}
     aria-label={props['aria-label'] || 'Checkbox'}

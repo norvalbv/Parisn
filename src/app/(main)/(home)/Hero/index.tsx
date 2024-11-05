@@ -4,9 +4,8 @@ import { COMPANY_NAME } from '@/src/constants';
 import { motion } from 'framer-motion';
 import React, { ReactElement } from 'react';
 import { AuroraBackground } from './AuroraBackground';
-import { HoverBorderGradient } from './HoverBorderGradient';
 import { TextHoverEffect } from './TextHoverEffect';
-import StyledLink from '@/src/components/StyledLink';
+import Button from '@/src/components/Button';
 
 const Hero = (): ReactElement => {
   return (
@@ -37,9 +36,9 @@ const Hero = (): ReactElement => {
           <p className="-mt-6 sm:-mt-10 text-center uppercase px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
-          <HoverBorderGradient containerClassName="rounded-full" as="div">
-            <StyledLink href="#pre-register">PRE REGISTER</StyledLink>
-          </HoverBorderGradient>
+          <Button animate>
+            PRE REGISTER
+          </Button>
         </motion.div>
       </AuroraBackground>
     </header>

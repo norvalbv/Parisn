@@ -11,6 +11,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import Header from '@/src/components/Header';
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -48,9 +49,8 @@ const PreRegister = (): React.ReactElement => {
 
   return (
     <CardWrapper className="h-[50vh] w-full sm:w-3/4 md:w-2/3 lg:w-1/2" id="pre-register">
-      <p className="mb-8">
-        Be the first to know when we launch. Sign up for early access and exclusive offers.
-      </p>
+      <Header title="Be the first to know when we launch." />
+      <p className='mb-6 text-sm'>Sign up for early access and exclusive offers.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4 sm:flex-row">
           <Input
@@ -73,7 +73,7 @@ const PreRegister = (): React.ReactElement => {
           />
           <Label htmlFor="newsletter">Subscribe to newsletter</Label>
         </div>
-        <p className="text-sm text-gray-500">We respect your privacy. Unsubscribe at any time.</p>
+        <p className="text-xs">We respect your privacy. Unsubscribe at any time.</p>
       </form>
     </CardWrapper>
   );
