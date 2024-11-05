@@ -6,7 +6,7 @@ import {
   useMotionTemplate,
   useMotionValue,
   useTransform,
-} from "framer-motion";
+} from 'framer-motion';
 import React, { useRef } from 'react';
 
 export const MovingBorder = ({
@@ -24,7 +24,7 @@ export const MovingBorder = ({
 }) => {
   const pathRef = useRef<any>();
   const progress = useMotionValue<number>(0);
- 
+
   useAnimationFrame((time) => {
     const length = pathRef.current?.getTotalLength();
     if (length) {
@@ -32,18 +32,12 @@ export const MovingBorder = ({
       progress.set((time * pxPerMillisecond) % length);
     }
   });
- 
-  const x = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).x
-  );
-  const y = useTransform(
-    progress,
-    (val) => pathRef.current?.getPointAtLength(val).y
-  );
- 
+
+  const x = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).x);
+  const y = useTransform(progress, (val) => pathRef.current?.getPointAtLength(val).y);
+
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
- 
+
   return (
     <>
       <svg
@@ -54,21 +48,14 @@ export const MovingBorder = ({
         height="100%"
         {...otherProps}
       >
-        <rect
-          fill="none"
-          width="100%"
-          height="100%"
-          rx={rx}
-          ry={ry}
-          ref={pathRef}
-        />
+        <rect fill="none" width="100%" height="100%" rx={rx} ry={ry} ref={pathRef} />
       </svg>
       <motion.div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          display: "inline-block",
+          display: 'inline-block',
           transform,
         }}
       >

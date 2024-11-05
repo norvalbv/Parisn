@@ -1,17 +1,17 @@
 'use client';
 
+import { createPreRegister } from '@/lib/actions/createPreRegister';
+import { erroneousToast, successfulToast } from '@/lib/toasts';
 import Button from '@/src/components/Button';
 import CardWrapper from '@/src/components/CardWrapper';
 import { Checkbox } from '@/src/components/DataInputs/Checkbox';
-import { Label } from '@/src/components/DataInputs/Label';
-// import { createPreRegister } from '@/lib/actions/createPreRegister';
-import { erroneousToast, successfulToast } from '@/lib/toasts';
 import { Input } from '@/src/components/DataInputs/Input';
+import { Label } from '@/src/components/DataInputs/Label';
+import Header from '@/src/components/Header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
-import Header from '@/src/components/Header';
 
 const schema = z.object({
   email: z.string().email({ message: 'Invalid email address' }),
@@ -34,23 +34,23 @@ const PreRegister = (): React.ReactElement => {
   });
 
   const onSubmit = async (data: FormData) => {
-    // const signUpResponse = await createPreRegister({
-    //   email: data.email,
-    //   signUpDate: Date.now(),
-    //   newsletter: data.newsletter,
-    // });
-    // if (signUpResponse.success) {
-    //   successfulToast(signUpResponse.message);
-    //   reset();
-    // } else {
-    //   erroneousToast(signUpResponse?.message);
-    // }
+    const signUpResponse = await createPreRegister({
+      email: data.email,
+      signUpDate: Date.now(),
+      newsletter: data.newsletter,
+    });
+    if (signUpResponse.success) {
+      successfulToast(signUpResponse.message);
+      reset();
+    } else {
+      erroneousToast(signUpResponse?.message);
+    }
   };
 
   return (
     <CardWrapper className="h-[50vh] w-full sm:w-3/4 md:w-2/3 lg:w-1/2" id="pre-register">
       <Header title="Be the first to know when we launch." />
-      <p className='mb-6 text-sm'>Sign up for early access and exclusive offers.</p>
+      <p className="mb-6 text-sm">Sign up for early access and exclusive offers.</p>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="flex flex-col gap-4 sm:flex-row">
           <Input

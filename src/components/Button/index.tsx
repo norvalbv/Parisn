@@ -2,11 +2,11 @@
 
 import { cn } from '@/lib/utils/cn';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { useAnimationFrame, useMotionValue } from "framer-motion";
+import { useAnimationFrame, useMotionValue } from 'framer-motion';
 import type { LucideIcon } from 'lucide-react';
 import React, { useRef, useState, type ReactElement } from 'react';
 import Loading from '../Loading';
-import { MovingBorder } from '@/src/app/(main)/(home)/Hero/MovingBorder';
+import { MovingBorder } from './movingBorder';
 
 const buttonVariants = cva(
   'inline-flex rounded-md items-center justify-center transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/20 disabled:pointer-events-none disabled:opacity-50',
@@ -14,6 +14,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-action text-background hover:bg-action/90',
+        secondary: 'bg-action-secondary text-background',
       },
       size: {
         xs: 'h-8 px-2.5 text-xs',
@@ -61,7 +62,7 @@ const Button = ({
   children,
   animate = false,
   duration = 2000,
-  as: Component = "button",
+  as: Component = 'button',
   borderClassName,
   ...props
 }: Props): ReactElement => {
@@ -112,39 +113,35 @@ const Button = ({
   if (animate) {
     return (
       <Component
-        className="bg-transparent relative text-xl  h-16 w-40 p-[1px] overflow-hidden "
-      style={{
-        borderRadius: `8px`,
-      }}
-      {...props}
-    >
-      <div
-        className="absolute inset-0"
-        style={{ borderRadius: `calc(8px * 0.96)` }}
-      >
-        <MovingBorder duration={duration} rx="30%" ry="30%">
-          <div
-            className={cn(
-              "h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)]",
-              borderClassName
-            )}
-          />
-        </MovingBorder>
-      </div>
- 
-      <div
-        className={cn(
-          "relative bg-slate-900/[0.8] border border-slate-800 backdrop-blur-xl text-white flex items-center justify-center w-full h-full text-sm antialiased",
-          'bg-white dark:bg-slate-900 text-black dark:text-white border-neutral-200 dark:border-slate-800'
-        )}
+        className="bg-transparent relative text-xl p-[1px] overflow-hidden hover:scale-105 transition-all duration-200"
         style={{
-          borderRadius: `calc(8px * 0.96)`,
+          borderRadius: `8px`,
         }}
+        {...props}
       >
-        {children}
-      </div>
-    </Component>
+        <div className="absolute inset-0" style={{ borderRadius: `calc(8px * 0.96)` }}>
+          <MovingBorder duration={duration} rx="30%" ry="30%">
+            <div
+              className={cn(
+                'h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--white)_40%,transparent_60%)]',
+                borderClassName
+              )}
+            />
+          </MovingBorder>
+        </div>
 
+        <div
+          className={cn(
+            'relative backdrop-blur-xl flex items-center justify-center',
+            baseButtonClasses
+          )}
+          style={{
+            borderRadius: `calc(8px * 0.96)`,
+          }}
+        >
+          {children}
+        </div>
+      </Component>
     );
   }
 

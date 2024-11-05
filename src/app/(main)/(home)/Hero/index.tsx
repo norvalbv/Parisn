@@ -36,7 +36,7 @@ const Hero = (): ReactElement => {
           <p className="-mt-6 sm:-mt-10 text-center uppercase px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
-          <Button animate>
+          <Button>
             PRE REGISTER
           </Button>
         </motion.div>

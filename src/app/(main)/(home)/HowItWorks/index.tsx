@@ -1,6 +1,6 @@
 'use client';
 
-import PRODUCT_1_IMAGE from '@/public/images/profile.webp';
+import PRODUCT_1_IMAGE from '@/public/images/profile.png';
 import Header from '@/src/components/Header';
 import PriceDisplay from '@/src/components/PriceDisplay';
 import WavyBackground from '@/src/components/Waves';

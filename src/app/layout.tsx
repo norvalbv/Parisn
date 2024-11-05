@@ -30,10 +30,12 @@ const RootLayout = ({
 }>): React.ReactElement => {
   return (
     <html lang="en">
-      <body className={clsx(          poppins.variable,
+      <body
+        className={clsx(
+          poppins.variable,
           cormorant.variable,
           'font-sans antialiased',
-          'min-h-screen bg-background text-text-primary',
+          'min-h-screen bg-background text-text-primary'
         )}
       >
         {children}

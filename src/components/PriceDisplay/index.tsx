@@ -8,15 +8,13 @@ type PriceDisplayProps = {
   className?: string;
 };
 
-const PriceDisplay = ({ 
-  price, 
+const PriceDisplay = ({
+  price,
   currency = '£',
   className = '',
 }: PriceDisplayProps): ReactElement => {
   return (
-    <Badge 
-      className={`h-[120px] w-[300px] px-8 sm:h-[160px] sm:w-[380px] sm:px-12 ${className}`}
-    >
+    <Badge className={`h-[120px] w-[300px] px-8 sm:h-[160px] sm:w-[380px] sm:px-12 ${className}`}>
       <div className="flex items-center">
         <span className="mr-4 text-[3.5rem] font-extralight tracking-tighter sm:mr-6 sm:text-[4.5rem]">
           {currency}
@@ -29,4 +27,4 @@ const PriceDisplay = ({
   );
 };
 
-export default PriceDisplay; 
+export default PriceDisplay;

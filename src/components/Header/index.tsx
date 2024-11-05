@@ -6,7 +6,7 @@ const headerVariants = cva('text-center sm:text-left', {
   variants: {
     size: {
       xs: 'text-base sm:text-lg',
-      sm: 'text-lg sm:text-xl', 
+      sm: 'text-lg sm:text-xl',
       md: 'text-xl sm:text-2xl',
       lg: 'text-2xl sm:text-3xl',
       xl: 'text-3xl sm:text-4xl',

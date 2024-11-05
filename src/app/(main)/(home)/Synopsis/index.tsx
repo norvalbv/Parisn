@@ -2,7 +2,7 @@ import Header from '@/src/components/Header';
 import React, { ReactElement } from 'react';
 
 const Synopsis = (): ReactElement => {
-  return (  
+  return (
     <section className="flex h-[30vh] flex-col items-center justify-center px-4 text-center md:px-0">
       <Header title="Redefining Luxury Shopping" />
       <p className="mt-6 max-w-2xl">
