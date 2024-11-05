@@ -6,11 +6,9 @@ const AboutUs = (): ReactElement => {
     <div className="text-center min-h-svh">
       <Header title="About Us" />
       <p>
-        This is a DEMO SITE. It is not currently responsive :( I also don&apos;t currently plan on
-        making it mobile responsive.
-        <span className="my-10 block">Check out my Github. @norvalbv</span>
-        Site built with React, JavaScript, Typescript, Tailwind, Formik, AWS, Azure Devops, and a
-        bunch of other stuff!
+        Welcome to PARISEN, where luxury meets authenticity. Our mission is to provide you with the finest luxury items, guaranteed to be genuine and of the highest quality.
+        <span className="my-10 block">Explore our collection and experience the elegance of PARISEN.</span>
+        Our site is built with modern technologies including React, TypeScript, TailwindCSS, and more to ensure a seamless and enjoyable shopping experience.
       </p>
     </div>
   );

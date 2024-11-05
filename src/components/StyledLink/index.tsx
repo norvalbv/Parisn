@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils/cn';
 import { LucideIcon } from 'lucide-react';
 import Link from 'next/link';
