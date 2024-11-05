@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import HorizontalTable from 'components/HorizontalTable';

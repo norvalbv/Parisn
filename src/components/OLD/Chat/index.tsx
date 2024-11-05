@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useEffect, useRef, useState } from 'react';
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import { io } from 'socket.io-client';

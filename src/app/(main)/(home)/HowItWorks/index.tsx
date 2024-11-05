@@ -3,10 +3,10 @@
 import PRODUCT_1_IMAGE from '@/public/images/profile.png';
 import Header from '@/src/components/Header';
 import PriceDisplay from '@/src/components/PriceDisplay';
-import WavyBackground from '@/src/components/Waves';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { ReactElement, useRef } from 'react';
 import ItemSection from './itemSection';
+import WavyBackground from './Waves';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;

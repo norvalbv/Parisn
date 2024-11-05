@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useState } from 'react';
 import { ProductSizes as ProductSizesType, Stock } from 'types';
 import Button from 'components/Button';

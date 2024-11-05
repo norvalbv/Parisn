@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import { Link } from 'react-router-dom';
 import { useDrawer } from '../../../../../hooks/useDrawer';

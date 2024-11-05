@@ -5,7 +5,6 @@ import { createNoise3D } from 'simplex-noise';
 
 const WavyBackground = ({
   children,
-  className,
   containerClassName,
   colors,
   backgroundFill = 'transparent',
@@ -14,7 +13,6 @@ const WavyBackground = ({
   waveOpacity = 0.5,
 }: {
   children?: any;
-  className?: string;
   containerClassName?: string;
   colors?: string[];
   backgroundFill?: string;
@@ -104,9 +102,7 @@ const WavyBackground = ({
   }, []);
 
   return (
-    <div
-      className={cn('h-20vh flex flex-col items-center justify-center', containerClassName || '')}
-    >
+    <div className={cn('h-20vh flex flex-col items-center justify-center', containerClassName)}>
       <canvas
         ref={canvasRef}
         id="canvas"

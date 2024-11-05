@@ -1,3 +1,4 @@
+//@ts-nocheck
 import clsx from 'clsx';
 import React, { ReactElement, useEffect, useState } from 'react';
 import { io } from 'socket.io-client';

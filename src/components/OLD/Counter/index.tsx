@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 

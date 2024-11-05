@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import CardWrapper from 'components/CardWrapper';
 

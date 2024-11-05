@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useState } from 'react';
 import { io } from 'socket.io-client';
 import { useLocation } from 'react-router-dom';

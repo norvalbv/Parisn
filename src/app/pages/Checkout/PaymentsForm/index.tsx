@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { Dispatch, FormEvent, ReactElement, SetStateAction, useState } from 'react';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 

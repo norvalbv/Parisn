@@ -3,7 +3,6 @@
 import React, { ReactElement, useRef, useState } from 'react';
 import Button from '@/src/components/Button';
 import ClockIcon from '@/src/components/SVG/ClockIcon';
-import Badge from '@/src/components/Badge';
 import NavigationArrows from '@/src/components/NavigationArrows';
 import { products } from '@/src/__mocks__/dataApiMock';
 import Loader from '@/src/components/Loading';
@@ -100,7 +99,6 @@ const PickedProducts = (): ReactElement => {
                   <ClockIcon className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span className="text-[10px] font-semibold sm:text-xs">{product.timeLeft}</span>
                 </div>
-                <Badge type={product.metaData.newDrop ? 'new' : 'limited'} />
               </div>
               <div className="relative h-[14rem] overflow-hidden rounded-t-2xl sm:h-[16rem] md:h-[18rem]">
                 <img
@@ -128,20 +126,15 @@ const PickedProducts = (): ReactElement => {
                 </p>
                 <div className="flex gap-2 pt-1 sm:gap-3 sm:pt-2">
                   <Button
-                    text="View Details"
-                    theme="ghost"
-                    roundedBorders="lg"
                     className="h-8 w-full text-[10px] font-medium hover:bg-white/5 sm:h-10 sm:text-xs"
                     onClick={(): void =>
                       router.push(`/collections/${product.collection}/${product.id}`)
                     }
-                  />
+                  >
+                    View Details
+                  </Button>
                   <Button
-                    text="Buy Now"
-                    theme="light"
-                    roundedBorders="lg"
                     className="h-8 w-full text-[10px] font-medium sm:h-10 sm:text-xs"
-                    size="custom"
                     onClick={(): void => {
                       setProductInfo({
                         product,
@@ -149,7 +142,9 @@ const PickedProducts = (): ReactElement => {
                         selectedSize: 'm',
                       });
                     }}
-                  />
+                  >
+                    Buy Now
+                  </Button>
                 </div>
               </div>
             </section>

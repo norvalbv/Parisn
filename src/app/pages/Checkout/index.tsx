@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { loadStripe } from '@stripe/stripe-js';

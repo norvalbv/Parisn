@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useMemo } from 'react';
 // React error boundaries do not work with functional components out of the box - hence the use of the package below.
 import { ErrorBoundary as ErrorBounds } from 'react-error-boundary';

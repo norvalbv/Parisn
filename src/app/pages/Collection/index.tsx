@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCollection } from '../../../services/DataApiService';

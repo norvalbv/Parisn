@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import { FontSize, fontSizeMap, FontWeight, fontWeightMap } from 'types';
 

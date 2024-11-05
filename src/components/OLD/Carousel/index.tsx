@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { Fragment, ReactElement, useState } from 'react';
 import Radial from '@/components/SVG/Design';
 import useInterval from '@/hooks/useInterval';

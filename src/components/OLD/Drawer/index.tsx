@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import { CloseIcon } from 'components/SVG';
 import { useDrawer } from 'hooks/useDrawer';

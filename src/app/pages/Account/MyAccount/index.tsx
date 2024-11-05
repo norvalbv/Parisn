@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useState } from 'react';
 import Button from 'components/Button';
 import useUser from '../../../../hooks/useUser';

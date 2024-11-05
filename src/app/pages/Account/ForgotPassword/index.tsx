@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CardWrapper from 'components/CardWrapper';

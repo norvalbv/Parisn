@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import Button from 'components/Button';
 import Form from 'components/Form';

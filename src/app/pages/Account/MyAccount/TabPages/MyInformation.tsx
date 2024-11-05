@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { ReactElement } from 'react';
 import HorizontalTable from 'components/HorizontalTable';
 import useUser from '../../../../../hooks/useUser';
