@@ -1,6 +1,6 @@
 'use client';
 
-import PRODUCT_1_IMAGE from '@/public/images/shoe.jpg';
+import PRODUCT_1_IMAGE from '@/public/images/profile.webp';
 import Header from '@/src/components/Header';
 import PriceDisplay from '@/src/components/PriceDisplay';
 import WavyBackground from '@/src/components/Waves';
@@ -24,7 +24,7 @@ const HowItWorks = (): ReactElement => {
   const price = useTransform(rawPrice, (value: number) => value.toFixed(2));
 
   return (
-    <div className="relative min-h-[300vh]">
+    <div className="relative min-h-[250vh] 2xl:min-h-[120vh]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <WavyBackground
           colors={[
@@ -46,7 +46,7 @@ const HowItWorks = (): ReactElement => {
         />
         <motion.div
           ref={priceRef}
-          className="flex min-h-screen sm:min-h-[150vh] md:min-h-svh items-center"
+          className="flex min-h-svh sm:min-h-[140vh] 2xl:min-h-[40vh] items-center"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

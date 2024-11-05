@@ -1,4 +1,4 @@
-import PRODUCT_1_IMAGE from '@/public/images/shoe.jpg';
+import PRODUCT_1_IMAGE from '@/public/images/profile.webp';
 import { CollectionData, ProductData } from '@/src/types';
 import { COMPANY_NAME } from '../constants';
 

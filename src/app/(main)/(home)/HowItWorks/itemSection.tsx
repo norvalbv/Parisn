@@ -21,13 +21,13 @@ const ItemSection = ({
   href,
 }: ItemSectionProps): ReactElement => {
   return (
-    <div className="flex h-screen items-center">
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-8 px-4 sm:gap-4 sm:p-8 md:w-4/5 md:flex-row md:p-20">
+    <div className="min-h-screen md:min-h-[50vh] 2xl:min-h-[40vh] flex items-center py-8 lg:py-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:gap-4 sm:p-6 md:w-4/5 md:flex-row md:p-12">
         <div className={cn('flex flex-1 justify-center', isReversed && 'md:order-2')}>
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="w-[15.625rem] rounded-xl object-cover sm:w-[18.75rem] md:h-[25rem] md:w-[25rem]"
+            className="w-[15.625rem] rounded-xl object-cover sm:w-[18.75rem] md:h-[20rem] md:w-[20rem]"
           />
         </div>
         <div
