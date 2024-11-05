@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import Button from '@/src/components/Button';
 import Popup from '@/src/components/Popup';
 import Link from 'next/link';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 type FormProps = {
   footerButton?: {
@@ -28,9 +30,9 @@ type FormProps = {
     };
   };
   formError?: string | null;
-  submitButton: { label: string; className?: string };
-  submitFn: (arg: { [key: string]: string }) => void;
-  validationSchema?: unknown;
+  submitButton: { label: string; className?: string; loading?: boolean };
+  submitFn: (arg: Record<string, string>) => Promise<void> | void;
+  validationSchema?: z.ZodSchema<any>;
   resetFormOnbSubmit?: boolean;
   newsletterSignUp?: boolean;
 };
@@ -61,6 +63,7 @@ const Form = ({
     formState: { errors },
   } = useForm({
     defaultValues: initialValues,
+    resolver: validationSchema ? zodResolver(validationSchema) : undefined,
   });
 
   const onSubmit = (values: Record<string, string>): void => {
@@ -145,7 +148,11 @@ const Form = ({
           <div className="mt-2 font-semibold text-utility-warning-main">{formError}</div>
         )}
       </div>
-      <Button type="submit" className={`${submitButton.className || ''} -mt-4`}>
+      <Button 
+        type="submit" 
+        className={`${submitButton.className || ''} -mt-4`}
+        loading={submitButton.loading}
+      >
         {submitButton.label}
       </Button>
     </form>

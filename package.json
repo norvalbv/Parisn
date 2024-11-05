@@ -47,6 +47,7 @@
     "lucide-react": "^0.454.0",
     "next": "^15.0.2",
     "node-appwrite": "^14.1.0",
+    "nodemailer": "^6.9.16",
     "react": "^19.0.0-rc-603e6108-20241029",
     "react-dom": "^19.0.0-rc-603e6108-20241029",
     "react-hook-form": "^7.53.1",

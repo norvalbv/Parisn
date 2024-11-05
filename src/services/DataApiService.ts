@@ -1,15 +1,14 @@
 import axios, { AxiosResponse } from 'axios';
 import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
-import useRequest from '../hooks/useRequest';
 import {
   ApiResponse,
   CollectionData,
-  ContactForm,
   FullUserInformation,
   ProductData,
 } from '../types';
 import { collections, products } from '@/src/__mocks__/dataApiMock';
+import { useRouter } from 'next/navigation';
 
 type ProductByIDProps = {
   collection: string;
@@ -121,38 +120,6 @@ export const useCollection = (collection: string): CollectionApiReturn => {
   return { data: processedData, error, isLoading, isValidating };
 };
 
-type CustomerSupportResponse = {
-  sendSupportEmail: (arg: ContactForm) => void;
-};
-
-/**
- * Customer Support Emails
- */
-export const useCustomerSupport = (): CustomerSupportResponse => {
-  const sendSupportEmail = (values: ContactForm): void => {
-    const { firstName, lastName, email, orderNumber, message } = values;
-    axios
-      .post('https://dlnkbdtmp6.execute-api.eu-west-2.amazonaws.com/support-request', {
-        firstName,
-        lastName,
-        email,
-        orderNumber,
-        message,
-      })
-      .then(() => {
-        toast.success('Message sent!');
-      })
-      .catch((err) => {
-        if (typeof err === 'string') {
-          toast.warning(err);
-        } else {
-          toast.warning('An Error occured. Try again.');
-        }
-      });
-  };
-
-  return { sendSupportEmail };
-};
 
 interface FullProductData extends ProductData {
   selectedSize: string;
@@ -176,7 +143,7 @@ type StartCheckoutApiResponse = {
  * Send Checkout Confirmation
  */
 export const useCheckout = (): UseCheckoutResponse => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const startCheckout = ({ user, product }: StartCheckoutProps): void => {
     const { id, collection, selectedSize } = product;
     const checkoutid = uuidv4()
@@ -203,14 +170,9 @@ export const useCheckout = (): UseCheckoutResponse => {
       })
       .then((res: AxiosResponse) => {
         if (typeof res.data === 'object' && 'client_secret' in res.data) {
-          navigate('/checkout', {
-            state: res.data as StartCheckoutApiResponse,
-            replace: true,
-          });
+          router.push('/checkout');
         } else if ('no price') {
-          navigate('/checkout', {
-            replace: true,
-          });
+          router.push('/checkout');
         } else {
           throw new Error('Client secret nor no price found in res.data');
         }
