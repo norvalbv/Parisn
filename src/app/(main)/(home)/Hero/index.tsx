@@ -6,6 +6,7 @@ import React, { ReactElement } from 'react';
 import { AuroraBackground } from './AuroraBackground';
 import { TextHoverEffect } from './TextHoverEffect';
 import Button from '@/src/components/Button';
+import StyledLink from '@/src/components/StyledLink';
 
 const Hero = (): ReactElement => {
   return (
@@ -36,7 +37,9 @@ const Hero = (): ReactElement => {
           <p className="-mt-6 sm:-mt-10 text-center uppercase px-4 sm:px-10">
             Where Luxury Meets Strategic Shopping With Automatic Decreasing Prices
           </p>
-          <Button>PRE REGISTER</Button>
+          <StyledLink href="#pre-register" variant="button">
+            PRE REGISTER
+          </StyledLink>
         </motion.div>
       </AuroraBackground>
     </header>

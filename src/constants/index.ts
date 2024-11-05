@@ -1,1 +1,1 @@
-export const COMPANY_NAME = 'PARISSEN';
+export const COMPANY_NAME = 'PARISEN';

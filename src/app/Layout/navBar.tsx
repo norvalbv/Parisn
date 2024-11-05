@@ -85,14 +85,14 @@ const NavBar = (): ReactElement => {
       </AnimatePresence>
 
       {/* Desktop Menu */}
-      <div className="hidden h-16 items-center justify-between px-4 md:flex">
+      <div className="hidden h-16 items-center justify-between px-8 md:flex">
         <div className="flex w-full gap-8 text-slate-300 lg:gap-11" />
         <Link href="/" className="w-full text-center font-semibold text-white tracking-[0.2rem]">
           {COMPANY_NAME}.COM
         </Link>
         <div className="flex w-full items-center justify-end gap-6">
           {pathname !== '/' && <NavItem href="/">Home</NavItem>}
-          <NavItem href="#pre-register">Pre Register</NavItem>
+          <NavItem href="/#pre-register">Pre Register</NavItem>
           <NavItem href="/contact-us">Contact Us</NavItem>
           {/*  <SearchIcon className="cursor-pointer text-slate-300 hover:text-white" />
           <BasketIcon className="cursor-pointer text-slate-300 hover:text-white" />
