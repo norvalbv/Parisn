@@ -12,11 +12,8 @@ import Link from 'next/link';
 
 const NavBar = (): ReactElement => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [parsedData, setParsedData] = useState<ProductData | null>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-
-  const retrievedProductInfo = localStorage.getItem('savedProductInfo') || 'null';
-  const parsedData = JSON.parse(retrievedProductInfo) as ProductData;
-  const truthyDataParsed = parsedData !== null && Object.values(parsedData).every((item) => item);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -27,8 +24,18 @@ const NavBar = (): ReactElement => {
   });
 
   useEffect(() => {
-    if (truthyDataParsed && pathname !== '/checkout') router.push('/checkout');
-  }, [pathname]);
+    if (typeof window !== 'undefined') {
+      const retrievedProductInfo = localStorage.getItem('savedProductInfo') || 'null';
+      const parsed = JSON.parse(retrievedProductInfo) as ProductData;
+      setParsedData(parsed);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (parsedData && Object.values(parsedData).every((item) => item) && pathname !== '/checkout') {
+      router.push('/checkout');
+    }
+  }, [pathname, parsedData]);
 
   return (
     <nav className="fixed top-0 z-40 w-full border-b border-white/10 bg-zinc-900/50 backdrop-blur-md">
