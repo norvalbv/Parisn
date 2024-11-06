@@ -32,7 +32,7 @@ const Footer = (): ReactElement => {
 
       <div className="flex flex-col items-center gap-6">
         <a
-          href="https://www.instagram.com"
+          href="https://www.instagram.com/parisenglobal"
           target="_blank"
           rel="noreferrer"
           className="transition-opacity hover:opacity-80"
