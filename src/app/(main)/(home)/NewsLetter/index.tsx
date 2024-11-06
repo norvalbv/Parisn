@@ -49,7 +49,7 @@ const PreRegister = (): React.ReactElement => {
 
   return (
     <CardWrapper
-      className="h-[60vh] flex justify-center items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2"
+      className="h-[60rem] flex justify-center items-center w-full sm:w-3/4 md:w-2/3 lg:w-1/2"
       id="pre-register"
     >
       <div>

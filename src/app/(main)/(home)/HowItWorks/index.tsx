@@ -24,7 +24,7 @@ const HowItWorks = (): ReactElement => {
   const price = useTransform(rawPrice, (value: number) => value.toFixed(2));
 
   return (
-    <div className="relative min-h-[250vh] 2xl:min-h-[120vh]">
+    <div className="relative h-[300vh] sm:h-[180rem] 2xl:h-[160rem]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <WavyBackground
           colors={[
@@ -37,7 +37,7 @@ const HowItWorks = (): ReactElement => {
           waveOpacity={0.3}
         />
       </div>
-      <section ref={containerRef} className="absolute inset-0 py-10 sm:py-20">
+      <section ref={containerRef} className="absolute inset-0">
         <ItemSection
           imageSrc={PRODUCT_1_IMAGE.src}
           imageAlt="Luxury product showcase"
@@ -46,13 +46,13 @@ const HowItWorks = (): ReactElement => {
         />
         <motion.div
           ref={priceRef}
-          className="flex min-h-svh sm:min-h-[140vh] 2xl:min-h-[40vh] items-center"
+          className="min-h-svh sm:min-h-[80rem] top-0 relative"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="sticky top-1/2 w-full -translate-y-1/2">
+          <div className="sticky top-1/2 transform w-full">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
               <div className="px-4 text-center sm:px-0 md:text-left">
                 <Header title="Experience Dynamic Pricing" />

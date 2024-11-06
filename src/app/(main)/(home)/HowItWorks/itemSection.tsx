@@ -21,7 +21,7 @@ const ItemSection = ({
   href,
 }: ItemSectionProps): ReactElement => {
   return (
-    <div className="min-h-screen md:min-h-[50vh] 2xl:min-h-[40vh] flex items-center py-8 lg:py-12">
+    <div className="min-h-svh sm:min-h-[50rem] 2xl:min-h-[40rem] flex items-center py-8 lg:py-12">
       <div className="mx-auto flex w-full max-w-7xl flex-col items-center gap-6 px-4 sm:gap-4 sm:p-6 md:w-4/5 md:flex-row md:p-12">
         <div className={cn('flex flex-1 justify-center', isReversed && 'md:order-2')}>
           <img
@@ -37,7 +37,7 @@ const ItemSection = ({
           )}
         >
           <Header title={title} />
-          <p className="mb-4 mt-2 w-full md:mb-6">{description}</p>
+          <p className="w-full">{description}</p>
           {href && <StyledLink href={href} />}
         </div>
       </div>
