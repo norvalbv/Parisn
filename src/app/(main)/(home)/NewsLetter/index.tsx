@@ -10,6 +10,7 @@ import { Label } from '@/src/components/DataInputs/Label';
 import Header from '@/src/components/Header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowRight } from 'lucide-react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 
@@ -33,7 +34,10 @@ const PreRegister = (): React.ReactElement => {
     },
   });
 
+  const [loading, setLoading] = useState(false);
+
   const onSubmit = async (data: FormData) => {
+    setLoading(true);
     const signUpResponse = await createPreRegister({
       email: data.email,
       signUpDate: Date.now(),
@@ -42,8 +46,10 @@ const PreRegister = (): React.ReactElement => {
     if (signUpResponse.success) {
       successfulToast(signUpResponse.message);
       reset();
+      setLoading(false);
     } else {
       erroneousToast(signUpResponse?.message);
+      setLoading(false);
     }
   };
 
@@ -68,6 +74,7 @@ const PreRegister = (): React.ReactElement => {
               icon={ArrowRight}
               iconPosition="right"
               className="w-full sm:w-auto"
+              loading={loading}
             >
               Pre Register
             </Button>
