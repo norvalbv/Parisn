@@ -7,8 +7,9 @@ const Synopsis = (): ReactElement => {
       <Header title="Redefining Luxury Shopping" />
       <p className="mt-6 max-w-2xl">
         Watch as prices automatically decrease over time. Choose between securing your desired item
-        immediately or strategically waiting for a better price - but remember, waiting carries the
-        risk of another shopper claiming it first. The choice is yours.
+        immediately or strategically waiting for a better price. All items are of limited supply and
+        waiting for a better price carries the risk of another shopper claiming it first. The choice
+        is yours.
       </p>
     </section>
   );

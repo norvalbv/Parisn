@@ -60,7 +60,7 @@ const PreRegister = (): React.ReactElement => {
     >
       <div>
         <Header title="Be the first to know when we launch." />
-        <p className="mb-6 text-sm">Sign up for early access and exclusive offers.</p>
+        <p className="mb-6 text-sm">Sign up to receive updates and exclusive offers.</p>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div className="flex flex-col gap-4 sm:flex-row">
             <Input

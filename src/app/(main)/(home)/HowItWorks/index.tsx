@@ -7,6 +7,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { ReactElement, useRef } from 'react';
 import ItemSection from './itemSection';
 import WavyBackground from './Waves';
+import { COMPANY_NAME } from '@/src/constants';
 
 const MAX_PRICE = 1000;
 const MIN_PRICE = 0;
@@ -42,7 +43,7 @@ const HowItWorks = (): ReactElement => {
           imageSrc={PRODUCT_1_IMAGE.src}
           imageAlt="Luxury product showcase"
           title="Discover Your Perfect Piece"
-          description="Explore our curated collection of luxury items. Hand curated by our team of experts, uniquely yours."
+          description="Explore our curated collection of high quality products, uniquely yours."
         />
         <motion.div
           ref={priceRef}
@@ -57,8 +58,8 @@ const HowItWorks = (): ReactElement => {
               <div className="px-4 text-center sm:px-0 md:text-left">
                 <Header title="Experience Dynamic Pricing" />
                 <p className="mb-4 mt-2 w-full md:mb-6">
-                  Watch prices decrease in real-time. Our innovative system rewards patience, but
-                  remember - popular items may sell quickly at higher prices.
+                  Watch prices decrease in real time across all our products. Each product is only
+                  available for a short duration and will always become free if not sold.
                 </p>
               </div>
 
@@ -72,7 +73,7 @@ const HowItWorks = (): ReactElement => {
           imageSrc={PRODUCT_1_IMAGE.src}
           imageAlt="Strategic shopping demonstration"
           title="Make Your Move"
-          description="Choose your moment - buy now at current pricing or wait for further reductions. Strategic patience may yield better prices, but popular items won't wait forever."
+          description="Choose your moment. Buy now at current pricing or wait for further reductions. Strategic patience may yield better prices, but popular items won't wait forever."
           isReversed
         />
       </section>

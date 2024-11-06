@@ -12,7 +12,7 @@ const AboutUs = (): ReactElement => {
           <p className="text-sm sm:text-base lg:text-lg text-center md:text-left leading-relaxed sm:leading-relaxed">
             {COMPANY_NAME} brings a fresh approach to luxury retail. Our unique pricing model starts
             items at premium rates that gradually decrease over time. This innovative system lets
-            you choose when to buy - whether at initial pricing or after reductions. It's shopping
+            you choose when to buy - whether at initial pricing or after reductions. It&apos;s shopping
             re-imagined, where patience could lead to significant savings.
           </p>
         </div>
