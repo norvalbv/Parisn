@@ -1,4 +1,4 @@
-import PRODUCT_1_IMAGE from '@/public/images/profile.png';
+import PRODUCT_1_IMAGE from '@/public/images/profile.jpg';
 import { CollectionData, ProductData } from '@/src/types';
 import { COMPANY_NAME } from '../constants';
 

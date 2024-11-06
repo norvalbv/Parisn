@@ -1,6 +1,6 @@
 'use client';
 
-import PRODUCT_1_IMAGE from '@/public/images/profile.png';
+import PRODUCT_1_IMAGE from '@/public/images/profile.jpg';
 import Header from '@/src/components/Header';
 import PriceDisplay from '@/src/components/PriceDisplay';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -24,7 +24,7 @@ const HowItWorks = (): ReactElement => {
   const price = useTransform(rawPrice, (value: number) => value.toFixed(2));
 
   return (
-    <div className="relative h-[280vh] sm:h-[180rem] 2xl:h-[160rem]">
+    <div className="relative h-[280vh] sm:h-[200rem] 2xl:h-[180rem]">
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <WavyBackground
           colors={[
@@ -46,7 +46,7 @@ const HowItWorks = (): ReactElement => {
         />
         <motion.div
           ref={priceRef}
-          className="min-h-svh sm:min-h-[80rem] top-0 relative"
+          className="min-h-svh sm:min-h-[100rem] top-0 relative"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}
