@@ -53,7 +53,7 @@ const HowItWorks = (): ReactElement => {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="sticky top-1/3 sm:top-1/2 transform w-full">
+          <div className="sticky top-1/3 transform w-full">
             <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-8 p-4 sm:gap-16 sm:p-8 md:flex-row md:p-20">
               <div className="px-4 text-center sm:px-0 md:text-left">
                 <Header title="Experience Dynamic Pricing" />
